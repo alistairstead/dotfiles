@@ -1,0 +1,449 @@
+'exception-reporting':
+  'userId': '685fd792-8f9b-3adc-c6f6-177d3a14824a'
+'release-notes':
+  'viewedVersion': '0.85.0'
+'welcome':
+  'showOnStartup': false
+'metrics':
+  'userId': '993232f0e07e444482a314d43c08c5c6eb7e8ab5'
+'editor':
+  'showInvisibles': true
+  'fontFamily': 'Menlo'
+'core':
+  'themes': [
+    'atom-dark-ui'
+    'atom-dark-syntax'
+  ]
+  'ignoredNames': [
+    '.git'
+    '.svn'
+    '.DS_Store'
+  ]
+  'disabledPackages': [
+    'atom-prettify'
+    'autocomplete'
+  ]
+  'excludeVcsIgnoredPaths': false
+'autocomplete':
+  'includeCompletionsFromAllBuffers': true
+'autosave': {}
+'autocomplete-plus':
+  'includeCompletionsFromAllBuffers': true
+  'liveCompletion': true
+  'fileBlacklist': '*.md'
+'test-status':
+  'Rakefile': 'rake spec'
+  'Gruntfile.js': 'grunt test'
+  'behat.yml': 'bin/behat'
+  'phpspec.yml': 'bin/phpspec'
+  'gulpfile': 'gulp test'
+'tree-view':
+  'hideIgnoredNames': true
+'test-jumper':
+  'locations': [
+    'lib|spec'
+    'app|spec'
+  ]
+  'spec-announcer': 'Spec'
+'gist-it':
+  'newGistsDefaultToPrivate': true
+  'userToken': '73b9099eaccde00d40db90f3aae8add39d93ce9c'
+'markdown-preview':
+  'grammars': [
+    'source.gfm'
+    'source.litcoffee'
+    'text.plain'
+    'text.plain.null-grammar'
+  ]
+'spell-check':
+  'grammars': [
+    'source.gfm'
+    'text.git-commit'
+    'text.plain'
+    'text.plain.null-grammar'
+  ]
+'dash':
+  'grammars':
+    'JavaScript': [
+      'nodejs'
+      'javascript'
+    ]
+    'ActionScript': [
+      'actionscript'
+    ]
+    'Boo': [
+      'unity3d'
+    ]
+    'C': [
+      'c'
+      'glib'
+      'gl2'
+      'gl3'
+      'gl4'
+      'manpages'
+    ]
+    'C#': [
+      'net'
+      'mono'
+      'unity3d'
+    ]
+    'C++': [
+      'cpp'
+      'net'
+      'boost'
+      'qt'
+      'cvcpp'
+      'cocos2dx'
+      'c'
+      'manpages'
+    ]
+    'CSS': [
+      'css'
+      'bootstrap'
+      'foundation'
+      'cordova'
+      'phonegap'
+    ]
+    'Clojure': [
+      'clojure'
+    ]
+    'CoffeeScript': [
+      'coffee'
+      'javascript'
+      'jquery'
+      'jqueryui'
+      'jquerym'
+      'backbone'
+      'marionette'
+      'meteor'
+      'sproutcore'
+      'moo'
+      'prototype'
+      'bootstrap'
+      'foundation'
+      'lodash'
+      'underscore'
+      'ember'
+      'sencha'
+      'extjs'
+      'titanium'
+      'knockout'
+      'zepto'
+      'yui'
+      'd3'
+      'svg'
+      'dojo'
+      'nodejs'
+      'mongoose'
+      'grunt'
+      'express'
+      'chai'
+      'html'
+      'css'
+      'cordova'
+      'phonegap'
+      'unity3d'
+    ]
+    'CoffeeScript (Literate)': [
+      'coffee'
+      'javascript'
+      'jquery'
+      'jqueryui'
+      'jquerym'
+      'backbone'
+      'marionette'
+      'meteor'
+      'sproutcore'
+      'moo'
+      'prototype'
+      'bootstrap'
+      'foundation'
+      'lodash'
+      'underscore'
+      'ember'
+      'sencha'
+      'extjs'
+      'titanium'
+      'knockout'
+      'zepto'
+      'yui'
+      'd3'
+      'svg'
+      'dojo'
+      'nodejs'
+      'mongoose'
+      'grunt'
+      'express'
+      'chai'
+      'html'
+      'css'
+      'cordova'
+      'phonegap'
+      'unity3d'
+    ]
+    'ColdFusion': [
+      'cf'
+    ]
+    'Elixir': [
+      'elixir'
+    ]
+    'Erlang': [
+      'erlang'
+    ]
+    'GitHub Markdown': [
+      'markdown'
+    ]
+    'Go': [
+      'go'
+    ]
+    'HTML': [
+      'html'
+      'svg'
+      'css'
+      'bootstrap'
+      'foundation'
+      'javascript'
+      'jquery'
+      'jqueryui'
+      'jquerym'
+      'angularjs'
+      'backbone'
+      'marionette'
+      'meteor'
+      'moo'
+      'prototype'
+      'ember'
+      'lodash'
+      'underscore'
+      'sencha'
+      'extjs'
+      'knockout'
+      'zepto'
+      'cordova'
+      'phonegap'
+      'yui'
+    ]
+    'HTML (Rails)': [
+      'ruby'
+      'rubygems'
+      'rails'
+      'html'
+      'svg'
+      'css'
+      'bootstrap'
+      'foundation'
+      'javascript'
+      'jquery'
+      'jqueryui'
+      'jquerym'
+      'angularjs'
+      'backbone'
+      'marionette'
+      'meteor'
+      'moo'
+      'prototype'
+      'ember'
+      'lodash'
+      'underscore'
+      'sencha'
+      'extjs'
+      'knockout'
+      'zepto'
+      'cordova'
+      'phonegap'
+      'yui'
+    ]
+    'Handlebars': [
+      'ember'
+    ]
+    'Haskell': [
+      'haskell'
+    ]
+    'Jade': [
+      'jade'
+    ]
+    'Java': [
+      'java'
+      'javafx'
+      'grails'
+      'groovy'
+      'playjava'
+      'spring'
+      'cvj'
+      'processing'
+    ]
+    'LESS': [
+      'less'
+      'css'
+      'bootstrap'
+      'foundation'
+      'cordova'
+      'phonegap'
+    ]
+    'Lisp': [
+      'lisp'
+    ]
+    'Literate Haskell': [
+      'haskell'
+    ]
+    'Lua': [
+      'lua'
+      'corona'
+    ]
+    'OCaml': [
+      'ocaml'
+    ]
+    'Objective-C': [
+      'iphoneos'
+      'macosx'
+      'appledoc'
+      'cocos2d'
+      'cocos3d'
+      'kobold2d'
+      'sparrow'
+      'c'
+      'manpages'
+    ]
+    'Objective-C++': [
+      'iphoneos'
+      'macosx'
+      'appledoc'
+      'cocos2d'
+      'cocos3d'
+      'kobold2d'
+      'sparrow'
+      'c'
+      'manpages'
+      'cpp'
+      'cocos2dx'
+    ]
+    'Objective-J': [
+      'cappuccino'
+    ]
+    'PHP': [
+      'php'
+      'wordpress'
+      'drupal'
+      'zend'
+      'laravel'
+      'yii'
+      'joomla'
+      'ee'
+      'codeigniter'
+      'cakephp'
+      'symfony'
+      'typo3'
+      'twig'
+      'smarty'
+      'mysql'
+      'sqlite'
+      'mongodb'
+      'psql'
+      'redis'
+      'html'
+      'svg'
+      'css'
+      'bootstrap'
+      'foundation'
+      'javascript'
+      'jquery'
+      'jqueryui'
+      'jquerym'
+      'angularjs'
+      'backbone'
+      'marionette'
+      'meteor'
+      'moo'
+      'prototype'
+      'ember'
+      'lodash'
+      'underscore'
+      'sencha'
+      'extjs'
+      'knockout'
+      'zepto'
+      'cordova'
+      'phonegap'
+      'yui'
+    ]
+    'Perl': [
+      'perl'
+      'manpages'
+    ]
+    'Processing': [
+      'processing'
+    ]
+    'Puppet': [
+      'puppet'
+    ]
+    'Python': [
+      'python'
+      'django'
+      'twisted'
+      'sphinx'
+      'flask'
+      'cvp'
+    ]
+    'R': [
+      'r'
+    ]
+    'Ruby': [
+      'ruby'
+      'rubygems'
+      'rails'
+    ]
+    'Ruby Haml': [
+      'haml'
+    ]
+    'Ruby on Rails': [
+      'ruby'
+      'rubygems'
+      'rails'
+    ]
+    'Rust': [
+      'rust'
+    ]
+    'SQL': [
+      'mysql'
+      'sqlite'
+      'psql'
+    ]
+    'SQL (Rails)': [
+      'ruby'
+      'rubygems'
+      'rails'
+    ]
+    'Sass': [
+      'sass'
+      'compass'
+      'bourbon'
+      'neat'
+      'css'
+    ]
+    'Scala': [
+      'scala'
+      'akka'
+      'playscala'
+    ]
+    'Shell Scripts': [
+      'bash'
+      'manpages'
+    ]
+    'Stylus': [
+      'stylus'
+      'css'
+      'bootstrap'
+      'foundation'
+      'cordova'
+      'phonegap'
+    ]
+    'Tcl': [
+      'tcl'
+    ]
+    'YAML': [
+      'chef'
+      'ansible'
+    ]
+'find-and-replace':
+  'openProjectFindResultsInRightPane': true
+  'focusEditorAfterSearch': true

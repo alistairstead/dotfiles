@@ -1,0 +1,107 @@
+####### Variables
+TM_GIT                  = "/usr/bin/git"
+TM_HG                   = "/opt/local/bin/hg"
+TM_XHTML                = '/'
+PATH                    = '$PATH:/opt/local/bin:/usr/local/bin:/usr/texbin'
+TM_MAKE_FLAGS           = 'rj8'
+TM_C_POINTER            = '*'
+
+TmCtagsAutoJump         = false
+TmCtagsTagFileName      = 'tags'
+
+TM_ORGANIZATION         = 'inviqa.com'
+TM_FULLNAME             = 'Alistair Stead'
+
+# Display the name of the home directory.
+projectDirectory        = '$CWD'
+windowTitleSCM = '${TM_SCM_BRANCH:+ ($TM_SCM_NAME: $TM_SCM_BRANCH)}'
+# windowTitle             = '$TM_FILEPATH on $windowTitleSCM'
+windowTitle = '$TM_DISPLAYNAME — ${CWD/^.*\///}$windowTitleSCM'
+
+####### File Browser
+exclude = "{*.{o,pyc},Icon\r,CVS,_darcs,_MTN,\{arch\},blib,*~.nib}"
+include = "{*,.zshrc,.zshenv,.zsh,.tm_properties,.htaccess,.gitconfig,.gitignore,.gitmodules,.githelpers,.vagrant,.zf.ini,.*.yml,.chef,.ssh,.*rc,.rspec,.slugignore,.modman}"
+
+####### Global Settings
+theme               = C8C58F9A-35FE-44A4-9BC2-2F3C343DC81D
+fontName            = "Menlo"
+fontSize            = 14
+showInvisibles      = true
+showWrapColumn      = true
+spellChecking       = true
+spellingLanguage    = 'en'
+## Tabs
+softTabs            = true
+tabSize             = 4
+softWrap            = true
+showWrapColumn      = true
+wrapColumn          = 120
+
+####### File Specifics
+
+# Default scope for new files
+[ attr.untitled ]
+fileType            = 'text.html.php'
+
+[ text.html.markdown ]
+wrapColumn          = "Use Window Frame"
+
+[ .git/* ]
+fileType            = text.git-commit
+softWrap            = true
+wrapColumn          = 72
+spellChecking       = true
+spellingLanguage    = 'en'
+
+[ text.git-rebase ]
+
+[ text.git-commit ]
+
+[ source.git-config ]
+
+[ *.yml.dist ]
+fileType            = source.yaml
+
+[ *.vcl.erb ]
+fileType            = source.varnish.vcl
+
+[ *.lock ]
+fileType            = source.json
+
+[ source.yaml, source.json ]
+softTabs            = true
+tabSize             = 2
+
+[ .zshenv ]
+fileType            = source.shell
+
+[ .*rc ]
+fileType            = source.shell
+
+[ *.xml.* ]
+fileType            = text.xml
+
+[ text.gherkin.feature ]
+softTabs            = true
+tabSize             = 2
+
+[ text.html.php ]
+disableIndentCorrections = '1';
+
+[ source.ruby ]
+softTabs            = true
+tabSize             = 2
+
+[ source.python ]
+softTabs            = true
+tabSize             = 4
+
+[ "{README,INSTALL,LICENSE,TODO}" ]
+fileType            = text.plain
+
+[ "{capfile,Capfile,Vagrantfile,Kitchenfile,Gemfile,Cheffile,Rakefile,Guardfile}" ]
+fileType            = source.ruby
+
+####### Binary Files
+[ *.{icns,ico,jpg,jpeg,m4v,nib,pdf,png,psd,pyc,rtf,tif,tiff,xib} ]
+binary              = true

@@ -1,0 +1,7 @@
+{
+    "cmd": ["./bin/behat", "-f", "progress", "--no-ansi"],
+    "selector": ["feature.behat", "source.php"],
+    "working_dir": "${project_path:${folder}}",
+    "syntax": "Packages/User/TestConsole.tmLanguage"
+}
+

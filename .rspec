@@ -1,0 +1,4 @@
+et default rspec options. tty mode to make tork have color output.
+--format nested
+--color
+--tty

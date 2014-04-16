@@ -1,0 +1,44 @@
+{
+  /*
+   * Default diagram type.
+   *
+   * Valid options: activity, class, usecase
+   */
+  "default_type": "class",
+
+  /*
+   * Default output file type.
+   *
+   * Valid options: jpg, json, pdf, png, svg
+   */
+  "default_extension": "png",
+
+  /*
+   * Default diagram style.
+   *
+   * Valid optins: nofunky, plain, scruffy
+   */
+  "default_style": "plain",
+
+  /*
+   * Default diagram orientation.
+   *
+   * Valid options:
+   *   LR = Left-to-right
+   *   TB = Top-to-bottom
+   *   RL = Right-to-left
+   */
+  "default_dir": "TB",
+
+  /*
+   * Default output scale where applicable.
+   *
+   * Valid options:
+   *    60 = Tiny
+   *    80 = Small
+   *   100 = Normal
+   *   120 = Big
+   *   180 = Huge
+   */
+  "default_scale": "100"
+}

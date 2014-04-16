@@ -1,0 +1,45 @@
+{
+    // Your username on GitHub
+    // "username": "alistairstead",
+
+    // Your password on GitHub
+    // "password": "3warwoowar",
+
+    // Your GitHub API token
+    // see: https://github.com/condemil/Gist#generating-access-token
+    "token": "3af22e7b52b1c2c704c22f001dfd90d9b622c5e8",
+
+    // Show GitHub organizations
+    // "include_orgs": true,
+    // "include_orgs": ["inviqa", "MageTest"],
+
+    // Show GitHub users
+    "include_users": false,
+    // "include_users": ["user1", "user2"],
+
+    // Show the authors of Gists
+    "show_authors": true,
+
+    // Proxy server
+    // Format: "http://user:pass@proxy:port"
+    "https_proxy": "",
+
+    // Enterprise support
+    "enterprise": false,
+    // Github URL
+    // Default: Leave empty if you want to use GitHub.com
+    // Example: https://github.domain.com
+    "url": "",
+
+    // Max Gists to show (max 100 allowed by GitHub API)
+    "max_gists": 100,
+
+    // Only use starred gists
+    "use_starred": false
+
+    // Limit to gists with specific prefix
+    //"gist_prefix": "Snippet:",
+
+    // Limit to gists with specific tag (#tag)
+    //"gist_tag": "snippet"
+}

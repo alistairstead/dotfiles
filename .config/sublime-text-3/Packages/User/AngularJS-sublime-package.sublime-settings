@@ -1,0 +1,128 @@
+{
+  /**
+    Completion Options
+  **/
+
+  // turns all completion help off
+  "disable_all_completions": false,
+  // turns off completions for indexed directives
+  "disable_indexed_directive_completions": false,
+  // turns off completions for directives isolate attributes
+  "disable_indexed_isolate_completions": false,
+  // turns off default completions
+  "disable_default_directive_completions": false,
+  // turns off default element completions
+  "disable_default_element_completions": false,
+  // turns off the js completions
+  "disable_default_js_completions": false,
+
+  // flag to add the `data-` prefix to the completions
+  "enable_data_prefix": false,
+  // flag to add AngularUI directives to completion list
+
+  // Scope triggers
+  "js_scope": "source.js - string.quoted - comment - meta.brace.square",
+  "filter_scope": "text.html string.quoted",
+
+  // Avoid prefixes (add chars that you want to prevent completion triggers)
+  "js_prefixes": [","],
+
+
+  /**
+    Indexing Options
+  **/
+
+  // AngularJS definitions to search for
+  "match_definitions": ["constant", "controller", "directive", "factory", "filter", "module", "service", "value"],
+  // directories you wish to ignore within your current working directory
+  "exclude_dirs":[
+    "node_modules/"
+  ],
+  // file suffixes to ignore (uses string.endswith(...))
+  "exclude_file_suffixes":[
+    "angular.js",
+    "min.js"
+  ],
+
+
+  /**
+    Quick Panel Options
+  **/
+
+  // Shows preview of file where currently highlighted definition is
+  // (Only works in Sublime Text 3)
+  "show_file_preview": true,
+
+
+  /**
+    Definition Lookup Options
+  **/
+
+  // Characters considered to separate directives (words)
+  // this is a modified version of what Sublime Text uses by default
+  // It's modified to allow for - to be considered part of a word
+  // for cases such as my-new-directive
+  "non_word_chars": "[\\./\\\\(\\)\"':,;<>~!@#\\$%\\^&\\*\\|\\+=\\[\\]{}`~\\? ]",
+
+
+
+
+  /**
+    Advanced Options (adjusting these could break the plugin)
+  **/
+
+
+  // {0} is the location of where the definition name will be inserted
+  // ex: directive
+  "match_expression": "((^[ \\\\t]*\\.{0}|^[ \\\\t]*{0}|angular\\.{0}|\\)\\.{0}|app\\.{0})[ ]*\\([ ]*[\"\\'])([\\w\\.\\$]*)([\"\\'])",
+
+  // what group to expect the name in
+  // ex: module('myApp')
+  // myApp is currently in group 3 of the current 'match_expression'
+  "match_expression_group": 3,
+
+  // Good for debugging if you're wanting to modify the scope options below
+  // prints scopes to the console on each on_query_completion event
+  "show_current_scope": false,
+
+
+
+
+  /** ::NOTICE::
+    Deprecating the scope options since they will most likely
+    break functionality with the new features that have been added.
+  **/
+
+
+  //indexing your project should get you more updated completions
+  "enable_AngularUI_directives": false,
+
+  // set to true to only show completions when ALL scopes are matched
+  "ensure_all_scopes_are_matched": false,
+
+  // defines what scopes to show completions in based on cursor placement in current buffer
+  "attribute_defined_scopes": [
+    "text.html meta.tag punctuation.definition.tag",
+    "entity.other.attribute-name.html",
+    "attibutes.tag.jade",
+    "meta.section.attributes.haml",
+    "text.html meta.tag.inline",
+    "text.html.basic meta.tag.block.any.html"
+  ],
+
+  // defines a list of scopes that will should be avoided
+  // such as no completions within double quotes
+  "attribute_avoided_scopes": [
+    "string.quoted.double.html",
+    "source.css"
+  ],
+
+  // defines what scopes component completions reside in
+  "component_defined_scopes": [
+    "text.html.basic - source.php.embedded.block.html",
+    // Allows completions when in partial HTML files
+    "text.html.basic invalid.illegal.bad-angle-bracket.html",
+    "source.jade",
+    "text.haml"
+  ]
+}
