@@ -9,6 +9,7 @@
 'editor':
   'showInvisibles': true
   'fontFamily': 'Menlo'
+  'fontSize': 19
 'core':
   'disabledPackages': [
     'atom-prettify'

@@ -5,11 +5,17 @@ end
 
 # rbenv
 # set PATH -g -x $HOME/.rbenv/bin $PATH
+
+
+set -g -x PATH "/usr/local/sbin"         $PATH
+set -g -x PATH "/usr/local/bin"          $PATH
+
+set -g -x PATH "/usr/sbin"                $PATH
+set -g -x PATH "/usr/bin"                $PATH
+
 set -g -x PATH $HOME/.rbenv/shims $PATH
 rbenv rehash >/dev/null ^&1
 
-set -g -x PATH "/usr/local/bin"          $PATH
-set -g -x PATH "/usr/local/sbin"         $PATH
 set -g -x PATH "$HOME/bin"               $PATH
 
 ### Added by the Heroku Toolbelt
@@ -36,14 +42,23 @@ alias copy 'pbcopy'
 alias paste 'pbpaste'
 
 alias ga 'git add'
+make_completion ga 'git add'
 alias gap 'git add -p'
+make_completion gap 'git add -p'
 alias gau 'git add -u'
+make_completion gau 'git add -u'
 alias gb 'git branch'
+make_completion gb 'git branch'
 alias gc 'git commit -v'
+make_completion gc 'git commit -v'
 alias gc! 'git commit'
+make_completion gc! 'git commit'
 alias gco 'git checkout'
+make_completion gco 'git checkout'
 alias gp 'git push'
+make_completion gp 'git push'
 alias gs 'git status --short'
+make_completion gs 'git status --short'
 
 # List direcory contents
 alias lsa 'ls -lah'
@@ -173,3 +188,5 @@ alias copykey 'pubkey'
 test -s $HOME/.nvm-fish/nvm.fish; and source $HOME/.nvm-fish/nvm.fish
 
 . $HOME/.config/fish/private.fish
+
+varclear PATH fish_complete_path
