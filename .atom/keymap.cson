@@ -12,10 +12,19 @@
 # '.editor':
 #   'enter': 'editor:newline'
 #
-# 'body':
+# 'body'
 #   'ctrl-P': 'core:move-up'
 #   'ctrl-p': 'core:move-down'
 
 
 '.workspace':
   'ctrl-n': 'fancy-new-file:toggle'
+
+'.vim-mode.insert-mode':
+  'ctrl-i': 'vim-mode:activate-command-mode'
+
+'.vim-mode.command-mode':
+  'up': 'core.noop'
+  'down': 'core.noop'
+  'left': 'core.noop'
+  'right': 'core.noop'

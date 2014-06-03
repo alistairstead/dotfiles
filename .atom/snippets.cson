@@ -13,3 +13,17 @@
 #     'prefix': 'log'
 #     'body': 'console.log $1'
 #
+'.source.js':
+  'use strict':
+    'prefix': 'us'
+    'body': "'use strict';"
+
+'.source.js':
+  'it':
+    'prefix': 'it'
+    'body': "it('$1', function ($2) {\n  $3\n});"
+
+'.source.js':
+  'describe':
+    'prefix': 'desc'
+    'body': "describe('$1', function ($2) {\n  $3\n});"

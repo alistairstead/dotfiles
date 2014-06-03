@@ -8,7 +8,7 @@
     user = alistairstead
 
 [core]
-    editor = atom --wait
+    editor = atom --wait --new-wondow=false
     excludesfile = ~/.gitignore-global
     pager = less -FXRS -x2
 

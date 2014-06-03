@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': '685fd792-8f9b-3adc-c6f6-177d3a14824a'
 'release-notes':
-  'viewedVersion': '0.85.0'
+  'viewedVersion': '0.95.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -10,20 +10,16 @@
   'showInvisibles': true
   'fontFamily': 'Menlo'
 'core':
-  'themes': [
-    'atom-dark-ui'
-    'atom-dark-syntax'
-  ]
-  'ignoredNames': [
-    '.git'
-    '.svn'
-    '.DS_Store'
-  ]
   'disabledPackages': [
     'atom-prettify'
     'autocomplete'
+    'php-checkstyle'
+    'docblockr'
+    'editor-stats'
+    'linter-phpcs'
+    'linter-phpmd'
+    'autosave'
   ]
-  'excludeVcsIgnoredPaths': false
 'autocomplete':
   'includeCompletionsFromAllBuffers': true
 'autosave': {}
@@ -40,11 +36,10 @@
 'tree-view':
   'hideIgnoredNames': true
 'test-jumper':
-  'locations': [
-    'lib|spec'
-    'app|spec'
-  ]
   'spec-announcer': 'Spec'
+  'locations': [
+    'public|public'
+  ]
 'gist-it':
   'newGistsDefaultToPrivate': true
   'userToken': '73b9099eaccde00d40db90f3aae8add39d93ce9c'
@@ -447,3 +442,15 @@
 'find-and-replace':
   'openProjectFindResultsInRightPane': true
   'focusEditorAfterSearch': true
+'linter-jshint':
+  'jshintExecutablePath': '/usr/local/bin/'
+'linter-phpcs':
+  'phpcsExecutablePath': '/usr/local/bin/'
+  'standard': 'PSR2'
+'linter-phpmd':
+  'phpmdExecutablePath': '/usr/local/bin/'
+  'rulesets': 'cleancode,codesize,controversial,design,naming,unusedcode'
+'linter-json':
+  'jsonExecutablePath': '/usr/local/bin/'
+'linter-jsonlint':
+  'jsonExecutablePath': '/usr/local/bin/'

@@ -99,3 +99,7 @@ Applications/*
 bin/*
 mongorc
 node_modules/*
+.berkshelf/
+.boweryconf/
+.boweryconf
+.atom/compile-cache
