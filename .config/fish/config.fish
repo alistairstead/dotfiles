@@ -6,12 +6,11 @@ end
 # rbenv
 # set PATH -g -x $HOME/.rbenv/bin $PATH
 
+set -g -x PATH "/usr/sbin"                $PATH
+set -g -x PATH "/usr/bin"                $PATH
 
 set -g -x PATH "/usr/local/sbin"         $PATH
 set -g -x PATH "/usr/local/bin"          $PATH
-
-set -g -x PATH "/usr/sbin"                $PATH
-set -g -x PATH "/usr/bin"                $PATH
 
 set -g -x PATH $HOME/.rbenv/shims $PATH
 rbenv rehash >/dev/null ^&1

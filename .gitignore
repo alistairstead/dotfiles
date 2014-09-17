@@ -103,3 +103,4 @@ node_modules/*
 .boweryconf/
 .boweryconf
 .atom/compile-cache
+.config
