@@ -4,7 +4,6 @@
 
 DOTFILES_ROOT="`pwd`"
 source "${DOTFILES_ROOT}/script/shared/common.sh"
-source "${DOTFILES_ROOT}/script/shared/generate_gitconfig.sh"
 
 set -e
 
@@ -81,7 +80,6 @@ install_dotfiles () {
 }
 
 echo ''
-generate_gitconfig
 install_dotfiles
 echo ''
 echo '  Installed!'

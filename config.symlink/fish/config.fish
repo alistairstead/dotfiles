@@ -2,40 +2,19 @@ if test -d $fish_path/completions
   set fish_complete_path $fish_path/completions $fish_complete_path
 end
 
-
-# rbenv
-# set PATH -g -x $HOME/.rbenv/bin $PATH
-
-set -g -x PATH "/usr/sbin"                $PATH
-set -g -x PATH "/usr/bin"                $PATH
-
-set -g -x PATH "/usr/local/sbin"         $PATH
-set -g -x PATH "/usr/local/bin"          $PATH
-
-set -g -x PATH $HOME/.rbenv/shims $PATH
-rbenv rehash >/dev/null ^&1
-
 set -g -x PATH "$HOME/bin"               $PATH
 
-### Added by the Heroku Toolbelt
-set -g -x PATH "/usr/local/heroku/bin"    $PATH
-# check whether the mysql binary directory exists and if so add it to the PATH
-set -g -x PATH "/usr/local/mysql/bin"     $PATH
-
-# Haskell binary directory
-set -g -x PATH "$HOME/Library/Haskell/bin"    $PATH
-
 set -g -x fish_greeting 'Would you like to play a game?'
-set -g -x EDITOR 'atom'
+set -g -x EDITOR 'vim'
 set -g -x COMMAND_MODE unix2003
 set -g -x RUBYOPT rubygems
-set -g -x JAVA_HOME "/usr"
+# set -g -x JAVA_HOME "/usr"
 
 set -g -x MINK_EXTENSION_PARAMS 'show_auto=true&show_cmd=open %s'
 
 # set -g -x DEBUG 'express:*'
 
-set -g -x NODE_ENV 'development'
+#set -g -x NODE_ENV 'development'
 
 alias copy 'pbcopy'
 alias paste 'pbpaste'
@@ -183,9 +162,8 @@ alias db-backups 'heroku pgbackups --remote production'
 alias pubkey "more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias copykey 'pubkey'
 
-# https://github.com/Alex7Kom/nvm-fish
-test -s $HOME/.nvm-fish/nvm.fish; and source $HOME/.nvm-fish/nvm.fish
+test -s $HOME/.config/fish/boxen.fish; and source $HOME/.config/fish/boxen.fish
 
-. $HOME/.config/fish/private.fish
+test -s $HOME/.config/fish/private.fish; and source $HOME/.config/fish/private.fish
 
 varclear PATH fish_complete_path

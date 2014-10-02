@@ -1,0 +1,16 @@
+atom.symlink/.node-gyp
+atom.symlink/compile-cache
+atom.symlink/packages
+atom.symlink/storage
+config.symlink/configstore
+config.symlink/fish/fish_history
+config.symlink/fish/fishd.*
+config.symlink/fish/generated_completions
+config.symlink/fish/private.fish
+config.symlink/learnyounode
+config.symlink/npm-updater
+config.symlink/robomongo
+config.symlink/stream-adventure
+*.DS_Store
+*.orig
+**/*.cache

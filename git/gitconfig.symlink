@@ -9,7 +9,7 @@
 
 [core]
 	editor = vim
-    excludesfile = ~/.gitignore-global
+    excludesfile = /opt/boxen/config/git/gitignore
     pager = less -FXRS -x2
 
 [alias]
@@ -151,7 +151,7 @@
     threads = 0
 
 [credential]
-    helper = osxkeychain
+    helper = /opt/boxen/bin/boxen-git-credential
 
 [init]
     templatedir = ~/git/templates
@@ -171,3 +171,6 @@
 	prompt = false
 [merge]
 	tool = Kaleidoscope
+
+[hub]
+protocol = https

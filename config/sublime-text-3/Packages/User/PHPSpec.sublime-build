@@ -1,6 +1,0 @@
-{
-    "cmd": ["./bin/phpspec", "--no-ansi"],
-    "shell": true,
-    "working_dir": "${project_path:${folder}}",
-    "selector": "source.php",
-}

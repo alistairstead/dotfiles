@@ -1,0 +1,11 @@
+'exception-reporting':
+  'userId': '3b647e39-b328-1d59-ffad-e3bb6e24f723'
+'welcome':
+  'showOnStartup': false
+'metrics':
+  'userId': '993232f0e07e444482a314d43c08c5c6eb7e8ab5'
+'core':
+  'themes': [
+    'unity-ui'
+    'seti-syntax'
+  ]
