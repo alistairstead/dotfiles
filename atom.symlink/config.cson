@@ -9,3 +9,33 @@
     'unity-ui'
     'seti-syntax'
   ]
+  'disabledPackages': [
+    'autocomplete'
+  ]
+  'excludeVcsIgnoredPaths': false
+  'ignoredNames': [
+    '.git'
+  ]
+'tree-view': {}
+'autocomplete-plus':
+  'includeCompletionsFromAllBuffers': true
+  'fileBlacklist': '*.md'
+'atom-beautify':
+  'js_jslint_happy': true
+'jumpy':
+  'highContrast': true
+  'fontSize': 0.851
+'linter':
+  'showStatusBarWhenCursorIsInErrorRange': true
+'editor':
+  'lineHeight': 1.6
+  'fontSize': 17
+  'scrollPastEnd': true
+  'preferredLineLength': 120
+  'showIndentGuide': true
+  'showInvisibles': true
+  'invisibles': {}
+'markdown-preview':
+  'liveUpdate': false
+'markdown-table-formatter':
+  'autoSelectEntireDocument': false

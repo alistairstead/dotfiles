@@ -10,3 +10,5 @@
 '*_test.go': 'go test -v .'
 'phpunit.xml': 'phpunit'
 'setup.py': 'python setup.py test'
+'behat.yml': 'bin/behat'
+'phpspec.yml': 'bin/phpspec'

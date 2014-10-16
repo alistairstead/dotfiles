@@ -10,18 +10,20 @@
 
 while (($#)); do
     echo $1
+    URI="$1?`date +%s`"
+    echo $URI
     curl -so /dev/null -H "Pragma: no-cache" -H "Cache-Control: no-cache" \
         -w "
-                http status:  %{http_code}
-            time_namelookup:  %{time_namelookup}
-               time_connect:  %{time_connect}
-            time_appconnect:  %{time_appconnect}
-           time_pretransfer:  %{time_pretransfer}
-              time_redirect:  %{time_redirect}
-         time_starttransfer:  %{time_starttransfer}
+                HTTP status:  %{http_code}
+                 DNS lookup:  %{time_namelookup}
+          Server Connection:  %{time_connect}
+             App Connection:  %{time_appconnect}
+                 Processing:  %{time_pretransfer}
+                Redirection:  %{time_redirect}
+        First byte transfer:  %{time_starttransfer}
                     --------  ----------
-                 time_total:  %{time_total}
-           bytes downloaded:  %{size_download}" \
-        "$1?`date +%s`"
+                 Total time:  %{time_total}
+     Total bytes downloaded:  %{size_download}" \
+        "$URI"
     shift
 done

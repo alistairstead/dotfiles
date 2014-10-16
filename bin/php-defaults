@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Install composer
+curl -s http://getcomposer.org/installer | php -- --install-dir=bin
+composer.phar install
+
+sudo pear config-set auto_discover 1
+sudo pear upgrade pear
+sudo pear upgrade --alldeps pear.phpunit.de/PHPUnit
+sudo pear upgrade pear.phpunit.de/phploc
+sudo pear upgrade pear.phpunit.de/phpcpd
+sudo pear upgrade pear.phpunit.de/phpdcd
+sudo pear upgrade PHP_CodeSniffer
+

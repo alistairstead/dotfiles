@@ -10,6 +10,7 @@ apm install autocomplete-snippets
 apm install cowsay
 apm install dash
 apm install easy-motion
+apm install editorconfig
 apm install fancy-new-file
 apm install fixmyjs
 apm install gist-it
@@ -21,6 +22,7 @@ apm install js-refactor
 apm install jumpy
 apm install key-peek
 apm install language-fish-shell
+apm install language-gherkin
 apm install language-git
 apm install language-todo
 apm install linter
