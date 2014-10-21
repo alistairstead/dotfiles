@@ -15,3 +15,5 @@ config.symlink/stream-adventure
 *.orig
 **/*.cache
 config.symlink
+composer.symlink/vendor
+composer.symlink/cache

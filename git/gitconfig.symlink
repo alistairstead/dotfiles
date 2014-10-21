@@ -8,7 +8,7 @@
     user = alistairstead
 
 [core]
-	editor = vim
+	  editor = vim
     excludesfile = /opt/boxen/config/git/gitignore
     pager = less -FXRS -x2
 
@@ -40,7 +40,7 @@
     sl = stash list
     sh = show --pretty="format:" --name-only
 
-    # show number of commits per contributer, sorted
+    # show number of commits per contributor, sorted
     count = shortlog -sn
 
     undo = reset --soft HEAD~1
@@ -80,10 +80,10 @@
 
     head = !git l -1
     h = !git head
-    hp = "!source ~/.githelpers && show_git_head"
+    hp = "!source ~/src/dotfiles/git/functions/log && show_git_head"
     r = !git l -30
     ra = !git r --all
-    l = "!source ~/.githelpers && pretty_git_log"
+    l = "!source ~/src/dotfiles/git/functions/log && pretty_git_log"
     la = !git l --all
     # git changelog 0.4.5...0.5.3 using tags or tree-ish references
     whatchanged = log --pretty=oneline --no-merges
@@ -106,7 +106,7 @@
 
     # "git rev-parse" not completely correct; see the __gitdir alias in:
     # https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
-    updatehooks = !rm -rf $(git rev-parse --git-dir)/hooks && cp -a ~/git/templates/hooks $(git rev-parse --git-dir) && chmod +x $(git rev-parse --git-dir)/hooks/*
+    updatehooks = !rm -rf $(git rev-parse --git-dir)/hooks && cp -a ~/src/dotfiles/templates/hooks $(git rev-parse --git-dir) && chmod +x $(git rev-parse --git-dir)/hooks/*
 
 [color]
     diff = auto
@@ -154,7 +154,7 @@
     helper = /opt/boxen/bin/boxen-git-credential
 
 [init]
-    templatedir = ~/git/templates
+    templatedir = ~/src/dotfiles/git/templates
 
 [rerere]
     enabled = true

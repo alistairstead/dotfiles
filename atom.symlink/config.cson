@@ -1,41 +1,43 @@
-'exception-reporting':
-  'userId': '3b647e39-b328-1d59-ffad-e3bb6e24f723'
-'welcome':
-  'showOnStartup': false
-'metrics':
-  'userId': '993232f0e07e444482a314d43c08c5c6eb7e8ab5'
-'core':
-  'themes': [
-    'unity-ui'
-    'seti-syntax'
-  ]
-  'disabledPackages': [
-    'autocomplete'
-  ]
-  'excludeVcsIgnoredPaths': false
-  'ignoredNames': [
-    '.git'
-  ]
-'tree-view': {}
-'autocomplete-plus':
-  'includeCompletionsFromAllBuffers': true
-  'fileBlacklist': '*.md'
-'atom-beautify':
-  'js_jslint_happy': true
-'jumpy':
-  'highContrast': true
-  'fontSize': 0.851
-'linter':
-  'showStatusBarWhenCursorIsInErrorRange': true
-'editor':
-  'lineHeight': 1.6
-  'fontSize': 17
-  'scrollPastEnd': true
-  'preferredLineLength': 120
-  'showIndentGuide': true
-  'showInvisibles': true
-  'invisibles': {}
-'markdown-preview':
-  'liveUpdate': false
-'markdown-table-formatter':
-  'autoSelectEntireDocument': false
+'global':
+  'exception-reporting':
+    'userId': '3b647e39-b328-1d59-ffad-e3bb6e24f723'
+  'welcome':
+    'showOnStartup': false
+  'metrics':
+    'userId': '993232f0e07e444482a314d43c08c5c6eb7e8ab5'
+  'core':
+    'themes': [
+      'unity-ui'
+      'seti-syntax'
+    ]
+    'disabledPackages': [
+      'autocomplete'
+    ]
+    'excludeVcsIgnoredPaths': false
+    'ignoredNames': [
+      '.git'
+    ]
+  'autocomplete-plus':
+    'includeCompletionsFromAllBuffers': true
+    'fileBlacklist': '*.md'
+  'atom-beautify':
+    'js_jslint_happy': true
+  'jumpy':
+    'highContrast': true
+    'fontSize': 0.851
+  'linter':
+    'showStatusBarWhenCursorIsInErrorRange': true
+  'editor':
+    'lineHeight': 1.6
+    'fontSize': 17
+    'scrollPastEnd': true
+    'preferredLineLength': 120
+    'showIndentGuide': true
+    'showInvisibles': true
+    'invisibles': {}
+  'markdown-preview':
+    'liveUpdate': false
+  'markdown-table-formatter':
+    'autoSelectEntireDocument': false
+  'tree-view':
+    'hideVcsIgnoredFiles': true

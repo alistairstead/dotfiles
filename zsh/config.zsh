@@ -11,31 +11,22 @@ export CLICOLOR=true
 
 # autoload -U $ZSH/functions/*(:t)
 
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+setopt nobeep                  # i hate beeps
+setopt autopushd               # automatically append dirs to the push/pop list
+setopt cdablevars              # avoid the need for an explicit $
+setopt correct_all             # correct all the words in the command line
+setopt noflowcontrol           # if I could disable Ctrl-s completely I would!
+setopt RM_STAR_WAIT            # confirmation after 'rm *' etc..
 
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
 setopt NO_LIST_BEEP
 setopt LOCAL_OPTIONS # allow functions to have local options
 setopt LOCAL_TRAPS # allow functions to have local traps
-setopt HIST_VERIFY
-setopt SHARE_HISTORY # share history between sessions ???
-setopt EXTENDED_HISTORY # add timestamps to history
+
 setopt PROMPT_SUBST
 setopt CORRECT
-setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
-
-setopt APPEND_HISTORY # adds history
-setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
-setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
-setopt HIST_REDUCE_BLANKS
-
-# don't expand aliases _before_ completion has finished
-#   like: git comm-[tab]
-setopt complete_aliases
 
 zle -N newtab
 
@@ -46,3 +37,14 @@ bindkey '^[[5C' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char
+
+
+setopt autocd                   # change to dirs without cd
+setopt pushd_to_home            # Push to home directory when no argument is given.
+setopt auto_pushd               # Push the old directory onto the stack on cd.
+setopt auto_name_dirs           # Auto add variable-stored paths to ~ list.
+setopt pushd_ignore_dups        # Do not store duplicates in the stack.
+
+# Report CPU usage for commands running longer than 10 seconds.
+export TIMEFMT="%U user %S system %P cpu %*E total, running %J"
+REPORTTIME=10
