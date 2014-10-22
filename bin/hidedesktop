@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+echo 'Ready! preeeeSENT ARMS!'
+defaults write com.apple.finder CreateDesktop -bool false;
+killall Finder
+echo "You see nothing!"

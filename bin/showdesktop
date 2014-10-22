@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+echo 'And relax'
+defaults write com.apple.finder CreateDesktop -bool true
+killall Finder
+echo "I see dead icons!"

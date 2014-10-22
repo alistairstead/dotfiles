@@ -39,3 +39,7 @@ else
   # Process grep should output full paths to binaries.
   alias pgrep='pgrep -fl'
 fi
+
+alias :w='fail'
+alias :q='fail'
+alias :wq='fail'

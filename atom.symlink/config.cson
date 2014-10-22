@@ -13,10 +13,10 @@
     'disabledPackages': [
       'autocomplete'
     ]
-    'excludeVcsIgnoredPaths': false
     'ignoredNames': [
       '.git'
     ]
+    'excludeVcsIgnoredPaths': false
   'autocomplete-plus':
     'includeCompletionsFromAllBuffers': true
     'fileBlacklist': '*.md'
@@ -36,8 +36,8 @@
     'showInvisibles': true
     'invisibles': {}
   'markdown-preview':
-    'liveUpdate': false
+    'liveUpdate': true
   'markdown-table-formatter':
     'autoSelectEntireDocument': false
   'tree-view':
-    'hideVcsIgnoredFiles': true
+    'hideVcsIgnoredFiles': false
