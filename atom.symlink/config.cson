@@ -22,6 +22,7 @@
     'fileBlacklist': '*.md'
   'atom-beautify':
     'js_jslint_happy': true
+    '_analyticsUserId': '5487d0e0-4fd7-4b0e-a897-b0e964b107c5'
   'jumpy':
     'highContrast': true
     'fontSize': 0.851
@@ -29,15 +30,11 @@
     'showStatusBarWhenCursorIsInErrorRange': true
   'editor':
     'lineHeight': 1.6
-    'fontSize': 17
     'scrollPastEnd': true
     'preferredLineLength': 120
     'showIndentGuide': true
     'showInvisibles': true
-    'invisibles': {}
-  'markdown-preview':
-    'liveUpdate': true
   'markdown-table-formatter':
     'autoSelectEntireDocument': false
-  'tree-view':
-    'hideVcsIgnoredFiles': false
+  'test-status':
+    'autorun': false

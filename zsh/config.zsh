@@ -7,9 +7,9 @@ fi
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
-# fpath=($ZSH/functions $fpath)
+fpath=($ZSH/functions $fpath)
 
-# autoload -U $ZSH/functions/*(:t)
+autoload -U $ZSH/functions/*(:t)
 
 setopt nobeep                  # i hate beeps
 setopt autopushd               # automatically append dirs to the push/pop list

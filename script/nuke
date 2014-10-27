@@ -11,4 +11,4 @@ set -e
 echo ''
 delete_all
 echo ''
-echo '  Nuked!'
+echo 'You just ☢NUKED your dotfiles!'

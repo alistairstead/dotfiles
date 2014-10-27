@@ -10,3 +10,12 @@ setopt inc_append_history # Add comamnds as they are typed, don't wait until she
 setopt hist_find_no_dups  # When searching history don't display results already cycled through twice'
 setopt share_history      # Share command history data
 setopt HIST_VERIFY
+
+# Lists the ten most used commands.
+alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
+
+# Shortcut for searching commands history.
+# hist git
+function hist() {
+  history 0 | grep $@
+}

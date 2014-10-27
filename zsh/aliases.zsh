@@ -11,6 +11,17 @@ alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -l'
 
+# grc overides for ls
+#   Made possible through contributions from generous benefactors like
+#   `brew install coreutils`
+if $(gls &>/dev/null)
+then
+  alias ls="gls -F --color"
+  alias l="gls -lAh --color"
+  alias ll="gls -l --color"
+  alias la='gls -A --color'
+fi
+
 # alias divers
 alias services='sudo netstat -tulpn'
 alias d='watch date'
@@ -22,7 +33,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias p='pbpaste'
 
   # Remove all items safely, to Trash (`brew install trash`).
-  alias rm='trash'
+  # alias rm='trash'
 
   # Case-insensitive pgrep that outputs full path.
   alias pgrep='pgrep -fli'
