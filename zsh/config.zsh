@@ -29,14 +29,18 @@ setopt CORRECT
 setopt IGNORE_EOF
 
 zle -N newtab
+zle -N predict-on
+zle -N predict-off
 
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
+bindkey '^N' newtab
 bindkey '^?' backward-delete-char
+bindkey "^R" history-incremental-search-backward
+bindkey "^X^Z" predict-on   # C-x C-z
+bindkey "^Z" predict-off    # C-z
+bindkey "^F" forward-word
+bindkey "^B" backward-word
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
 
 
 setopt autocd                   # change to dirs without cd

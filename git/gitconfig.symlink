@@ -106,7 +106,7 @@
 
     # "git rev-parse" not completely correct; see the __gitdir alias in:
     # https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
-    updatehooks = !rm -rf $(git rev-parse --git-dir)/hooks && cp -a ~/src/dotfiles/templates/hooks $(git rev-parse --git-dir) && chmod +x $(git rev-parse --git-dir)/hooks/*
+    updatehooks = !rm -rf $(git rev-parse --git-dir)/hooks && cp -a ~/src/dotfiles/git/templates/hooks $(git rev-parse --git-dir) && chmod +x $(git rev-parse --git-dir)/hooks/*
 
 [color]
     diff = auto

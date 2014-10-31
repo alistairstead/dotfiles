@@ -38,3 +38,4 @@
     'autoSelectEntireDocument': false
   'test-status':
     'autorun': false
+  'tree-view': {}

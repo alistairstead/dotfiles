@@ -33,7 +33,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   alias p='pbpaste'
 
   # Remove all items safely, to Trash (`brew install trash`).
-  # alias rm='trash'
+  alias rm='trash'
 
   # Case-insensitive pgrep that outputs full path.
   alias pgrep='pgrep -fli'
