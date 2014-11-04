@@ -10,11 +10,13 @@ antigen bundle command-not-found
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
 
+antigen bundle zsh-users/zsh-completions
+
 # ZSH port of Fish shell’s history search feature
 antigen bundle zsh-users/zsh-history-substring-search
 # bind UP and DOWN arrow keys
 for keycode in '[' '0'; do
-bindkey "^[${keycode}A" history-substring-search-up
+  bindkey "^[${keycode}A" history-substring-search-up
   bindkey "^[${keycode}B" history-substring-search-down
 done
 unset keycode

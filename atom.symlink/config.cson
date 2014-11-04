@@ -12,6 +12,7 @@
     ]
     'disabledPackages': [
       'autocomplete'
+      'atom-phpcs'
     ]
     'ignoredNames': [
       '.git'
@@ -34,8 +35,9 @@
     'preferredLineLength': 120
     'showIndentGuide': true
     'showInvisibles': true
+    'invisibles': {}
   'markdown-table-formatter':
     'autoSelectEntireDocument': false
   'test-status':
     'autorun': false
-  'tree-view': {}
+  'atom-phpcs': {}
