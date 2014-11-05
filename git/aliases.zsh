@@ -45,3 +45,6 @@ function gcp() {
 alias gcl='git clone'
 alias gch='git checkout'
 alias gl='git log --no-merges'
+
+alias push='git push'
+alias pull='git pull'
