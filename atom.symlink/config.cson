@@ -40,4 +40,5 @@
     'autoSelectEntireDocument': false
   'test-status':
     'autorun': false
-  'atom-phpcs': {}
+  'linter-phpcs': {}
+  'linter-phpmd': {}
