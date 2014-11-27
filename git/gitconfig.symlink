@@ -8,7 +8,7 @@
     user = alistairstead
 
 [core]
-	  editor = vim
+	  editor = atom
     excludesfile = /opt/boxen/config/git/gitignore
     pager = less -FXRS -x2
 
