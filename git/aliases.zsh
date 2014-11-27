@@ -24,8 +24,13 @@ function g() {
 
 function gc() {
   args=$@
-  git commit -m "$args"
+  if [[ $# -eq 0 ]]; then
+    git commit -v
+  else
+    git commit -m "$args"
+  fi
 }
+
 function gca() {
   args=$@
   git commit --amend -m "$args"
