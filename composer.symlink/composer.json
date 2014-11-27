@@ -1,6 +1,8 @@
 {
     "require": {
         "behat/behat": "*",
-        "phpspec/phpspec": "*"
+        "phpspec/phpspec": "*",
+        "instaclick/php-code-sniffer": "*",
+        "phpmd/phpmd": "*"
     }
 }
