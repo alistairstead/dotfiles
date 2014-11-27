@@ -8,7 +8,7 @@
     user = alistairstead
 
 [core]
-	  editor = atom
+	  editor = atom -w
     excludesfile = /opt/boxen/config/git/gitignore
     pager = less -FXRS -x2
 
