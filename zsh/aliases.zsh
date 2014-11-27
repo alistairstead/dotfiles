@@ -54,3 +54,6 @@ fi
 alias :w='fail'
 alias :q='fail'
 alias :wq='fail'
+
+alias zsh_config='atom ~/src/dotfiles'
+alias todo='atom ~/Dropbox/notes/todo.todo'
