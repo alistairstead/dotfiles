@@ -28,7 +28,7 @@
     'highContrast': true
     'fontSize': 0.851
   'linter':
-    'showStatusBarWhenCursorIsInErrorRange': true
+    'statusBar': 'Show error if the cursor is in range'
   'editor':
     'lineHeight': 1.6
     'scrollPastEnd': true
@@ -42,3 +42,6 @@
     'autorun': false
   'linter-phpcs': {}
   'linter-phpmd': {}
+'.text.todo':
+  'editor':
+    'softWrapAtPreferredLineLength': false
