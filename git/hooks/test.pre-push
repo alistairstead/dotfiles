@@ -1,0 +1,15 @@
+#/usr/bin/env bash
+
+# git hook to run test commands before `git push`
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+
+check_tests() {
+  echo grep --quiet "$1" && eval "$2"
+}
+
+# Example usage
+# In this example it's used to run `npm test` if package.json changed and `bower install` if `bower.json` changed.
+check_tests package.json "npm test"
+check_tests phpspec.yml "./bin/phpspec run"
+check_tests behat.yml "./bin/behat"
