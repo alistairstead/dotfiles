@@ -56,10 +56,10 @@
     includeCompletionsFromAllBuffers: true
   "autoclose-html": {}
   "tree-view": {}
-".angular.html.text":
+".js.regexp.source":
   editor:
     preferredLineLength: 120
-".js.regexp.source":
+".angular.html.text":
   editor:
     preferredLineLength: 120
 ".js.source":

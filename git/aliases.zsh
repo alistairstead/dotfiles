@@ -8,7 +8,7 @@ alias gf='git fetch'
 alias gu='git pull'
 alias gup='git pull && git push'
 
-alias gs='git status --short'
+alias gs='git status'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gdisc='git discard'
@@ -31,12 +31,21 @@ function gc() {
   fi
 }
 
+function gcnv() {
+  args=$@
+  if [[ $# -eq 0 ]]; then
+    git commit --no-verify -v
+  else
+    git commit --no-verify -m "$args"
+  fi
+}
+
 function gca() {
   args=$@
   git commit --amend -m "$args"
 }
 
-function gf() {
+function gb() {
   local branch=$1
   git checkout -b $branch origin/$branch
 }
