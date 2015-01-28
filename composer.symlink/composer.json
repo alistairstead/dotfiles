@@ -3,6 +3,7 @@
         "behat/behat": "*",
         "phpspec/phpspec": "*",
         "instaclick/php-code-sniffer": "*",
-        "phpmd/phpmd": "*"
+        "phpmd/phpmd": "*",
+        "phploc/phploc": "*"
     }
 }

@@ -16,6 +16,23 @@ sudo scutil --set HostName "alistAir"
 sudo scutil --set LocalHostName "alistAir"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "alistAir"
 
+# Reduce notification banner display time (requires restart)
+# See: http://osxdaily.com/2014/01/29/change-notifications-banner-time-mac-os-x/
+defaults write com.apple.notificationcenterui bannerTime 1.5
+
+# -----------------------------------------------
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
+# -----------------------------------------------
+
+# Disable shadow in screenshots of windows
+defaults write com.apple.screencapture disable-shadow -bool true
+
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
 

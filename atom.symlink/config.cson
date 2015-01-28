@@ -1,47 +1,67 @@
-'global':
-  'exception-reporting':
-    'userId': '3b647e39-b328-1d59-ffad-e3bb6e24f723'
-  'welcome':
-    'showOnStartup': false
-  'metrics':
-    'userId': '993232f0e07e444482a314d43c08c5c6eb7e8ab5'
-  'core':
-    'themes': [
-      'unity-ui'
-      'seti-syntax'
+"*":
+  "exception-reporting":
+    userId: "3b647e39-b328-1d59-ffad-e3bb6e24f723"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "993232f0e07e444482a314d43c08c5c6eb7e8ab5"
+  core:
+    ignoredNames: [
+      ".git"
     ]
-    'disabledPackages': [
-      'autocomplete'
-      'atom-phpcs'
+    excludeVcsIgnoredPaths: false
+    disabledPackages: [
+      "atom-phpcs"
+      "autoclose-html"
+      "autocomplete-plus-async"
+      "cowsay"
+      "dash"
+      "git-blame"
+      "git-history"
+      "git-log"
+      "markdown-table-formatter"
+      "atom-angularjs"
+      "autosave"
+      "dev-live-reload"
+      "autocomplete"
+      "turbo-javascript"
     ]
-    'ignoredNames': [
-      '.git'
+    themes: [
+      "unity-ui"
+      "seti-syntax"
     ]
-    'excludeVcsIgnoredPaths': false
-  'autocomplete-plus':
-    'includeCompletionsFromAllBuffers': true
-    'fileBlacklist': '*.md'
-  'atom-beautify':
-    'js_jslint_happy': true
-    '_analyticsUserId': '5487d0e0-4fd7-4b0e-a897-b0e964b107c5'
-  'jumpy':
-    'highContrast': true
-    'fontSize': 0.851
-  'linter':
-    'statusBar': 'Show error if the cursor is in range'
-  'editor':
-    'lineHeight': 1.6
-    'scrollPastEnd': true
-    'preferredLineLength': 120
-    'showIndentGuide': true
-    'showInvisibles': true
-    'invisibles': {}
-  'markdown-table-formatter':
-    'autoSelectEntireDocument': false
-  'test-status':
-    'autorun': false
-  'linter-phpcs': {}
-  'linter-phpmd': {}
-'.text.todo':
-  'editor':
-    'softWrapAtPreferredLineLength': false
+  "autocomplete-plus":
+    fileBlacklist: "*.md"
+    includeCompletionsFromAllBuffers: true
+  "atom-beautify":
+    _analyticsUserId: "5487d0e0-4fd7-4b0e-a897-b0e964b107c5"
+    js_jslint_happy: true
+  jumpy:
+    fontSize: 0.851
+    highContrast: true
+  linter:
+    statusBar: "Show error if the cursor is in range"
+  editor:
+    lineHeight: 1.6
+    showInvisibles: true
+    showIndentGuide: true
+    preferredLineLength: 120
+    scrollPastEnd: true
+    useShadowDOM: true
+    invisibles: {}
+  "markdown-table-formatter":
+    autoSelectEntireDocument: false
+  "test-status": {}
+  "autocomplete-plus-async":
+    includeCompletionsFromAllBuffers: true
+  "autoclose-html": {}
+  "tree-view": {}
+".angular.html.text":
+  editor:
+    preferredLineLength: 120
+".js.regexp.source":
+  editor:
+    preferredLineLength: 120
+".js.source":
+  editor:
+    preferredLineLength: 120

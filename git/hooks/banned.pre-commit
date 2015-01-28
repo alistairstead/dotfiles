@@ -1,26 +1,43 @@
-#!/bin/zsh
-# Banned Words
-# If the file(s) being commited contain any of the below banned words
-# then fail the commit
+#!/usr/bin/env ruby
 
-COLOR_RED="\x1B[31m"
-COLOR_GREEN="\x1B[32m"
-COLOR_NONE="\x1B[0m"
+# Git pre-commit hook that prevents accidentally committing things that shouldn't be, like:
+#
+#   * ":focus", used with RSpec/Guard
+#   * "show_page", used to debug request specs
+#   * "console.log" or "console.debug", used in JavaScript debugging
+#   * "DO NOT COMMIT!" comments
+#
+# Modify the regexps to suit your needs. The error message shows the full regexp match, or just the first capture group, if there is one.
+#
+# To bypass this commit hook (and others), perhaps when defining ":focus" or "show_page" for the first time, commit with the "--no-verify" option.
+#
+# By Henrik Nyh <http://henrik.nyh.se> 2011-10-08 under the MIT License.
 
-LIST="debugger\|console\|TODO\|FIXME\|BANNED\|var_dump\|<<<\|AWS"
+FORBIDDEN = [
+/\bdebugger\b/,
+/\bconsole\.log\b/,
+/\bconsole\.error\b/,
+/\bTODO\b/i,
+/\bFIXME\b/i,
+/\bvar_dump\b/,
+/\b<<<\b/,
+/\bAWS\b/i,
+/\bdo not commit\b/i
+]
 
-if `git rev-parse --verify HEAD >/dev/null 2>&1`; then
-    against=HEAD
-else
-    against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
-fi
+COLOR_RED = "\x1B[31m"
+COLOR_GREEN = "\x1B[32m"
+COLOR_NONE = "\x1B[0m"
 
-for FILE in `git diff-index --name-status --cached $against -- | cut -c3-` ; do
-    # check if the fil contains one fo the words in the list
-    if grep -w $LIST $FILE; then
-        echo ""
-        echo "${COLOR_RED}✘ ${FILE} contains a banned word.${COLOR_NONE}"
-        exit 1
-    fi
-done
-echo "${COLOR_GREEN}✔ No banned words detected${COLOR_NONE}"
+full_diff = `git diff --cached --`.force_encoding("ASCII-8BIT")
+
+full_diff.scan(%r{^\+\+\+ b/(.+)\n@@.*\n([\s\S]*?)(?:^diff|\z)}).each do |file, diff|
+  added = diff.split("\n").select { |x| x.start_with?("+") }.join("\n")
+  if FORBIDDEN.any? { |re| added.match(re) }
+    puts %{#{COLOR_RED}✘ Git hook forbids adding "#{$1 || $&}" to #{file}#{COLOR_NONE}}
+    puts %{#{COLOR_RED}To commit anyway, use --no-verify#{COLOR_NONE}}
+    exit 1
+  else
+    puts %{#{COLOR_GREEN}✔ No banned words detected#{COLOR_NONE}}
+  end
+end
