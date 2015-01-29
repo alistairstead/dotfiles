@@ -27,7 +27,7 @@
       "turbo-javascript"
     ]
     themes: [
-      "unity-ui"
+      "seti-ui"
       "seti-syntax"
     ]
   "autocomplete-plus":
