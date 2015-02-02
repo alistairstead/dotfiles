@@ -17,14 +17,17 @@
 #   'ctrl-p': 'core:move-down'
 
 
-'.workspace':
-  'ctrl-n': 'fancy-new-file:toggle'
+# '.workspace':
+#   'ctrl-n': 'fancy-new-file:toggle'
+
+'.platform-darwin .workspace':
+  'ctrl-n': 'advanced-new-file:toggle'
 
 '.workspace .editor:not(.mini)':
-    'ctrl-;': 'jumpy:toggle'
+  'ctrl-;': 'jumpy:toggle'
 
 '.workspace .editor.jumpy-jump-mode':
-    'ctrl-;': 'jumpy:clear'
+  'ctrl-;': 'jumpy:clear'
 
 
 '.vim-mode.insert-mode':

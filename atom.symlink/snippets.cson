@@ -66,6 +66,38 @@
     \t${0}
     });
     """
+  "@ before":
+    prefix: "bef"
+    body: """
+    before(function (done) {
+    \t${0}
+    \tdone();
+    });
+    """
+  "@ beforeEach":
+    prefix: "befe"
+    body: """
+    beforeEach(function (done) {
+    \t${0}
+    \tdone();
+    });
+    """
+  "@ after":
+    prefix: "aft"
+    body: """
+    after(function (done) {
+    \t${0}
+    \tdone();
+    });
+    """
+  "@ afterEach":
+    prefix: "afte"
+    body: """
+    afterEach(function (done) {
+    \t${0}
+    \tdone();
+    });
+    """
   "@ it asynchronous":
     prefix: "ita"
     body: """

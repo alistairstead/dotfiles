@@ -23,16 +23,17 @@
       "atom-angularjs"
       "autosave"
       "dev-live-reload"
-      "autocomplete"
       "turbo-javascript"
+      "fancy-new-file"
+      "js-refactor"
     ]
     themes: [
       "seti-ui"
       "seti-syntax"
     ]
   "autocomplete-plus":
-    fileBlacklist: "*.md"
     includeCompletionsFromAllBuffers: true
+    enableBuiltinProvider: false
   "atom-beautify":
     _analyticsUserId: "5487d0e0-4fd7-4b0e-a897-b0e964b107c5"
     js_jslint_happy: true

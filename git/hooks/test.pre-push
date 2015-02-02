@@ -2,12 +2,29 @@
 
 # git hook to run test commands before `git push`
 
-check_tests() {
-  test -e "$1" && eval "$2"
-}
+repo=$( git rev-parse --show-toplevel )
+# Branch names against which you want to ensure tests are run
+protected_branchs=('master', 'develop')
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+match=$(echo "${protected_branchs[@]:0}" | grep -o $current_branch)
+
+# Exit early if we have no commits to be tested
+commits=`git log @{u}..`
+if [ -z "$commits" ]; then
+    exit 0
+fi
+
+# If you are on a matching branch
+if [[ ! -z $match ]]; then
+  check_tests() {
+    test -e "${repo}/$1" && eval "$2" && exit 0
+  }
+fi
 
 # Example usage
-# In this example it's used to run `npm test` if package.json changed and `bower install` if `bower.json` changed.
+# In this example it's used to run `npm test` if package.json is present at the root of the repos.
 check_tests package.json "npm test"
 check_tests phpspec.yml "./bin/phpspec run"
 check_tests behat.yml "./bin/behat"
+
+exit 0
