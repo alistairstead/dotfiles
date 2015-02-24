@@ -151,7 +151,7 @@
     threads = 0
 
 [credential]
-	helper = /opt/boxen/bin/boxen-git-credential
+	helper = osxkeychain
 
 [init]
     templatedir = ~/src/dotfiles/git/templates

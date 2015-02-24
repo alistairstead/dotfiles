@@ -9,14 +9,12 @@
     ignoredNames: [
       ".git"
     ]
-    excludeVcsIgnoredPaths: false
     disabledPackages: [
       "atom-phpcs"
       "autoclose-html"
       "autocomplete-plus-async"
       "cowsay"
       "dash"
-      "git-blame"
       "git-history"
       "git-log"
       "markdown-table-formatter"
@@ -25,15 +23,24 @@
       "dev-live-reload"
       "turbo-javascript"
       "fancy-new-file"
+      "language-vcl"
+      "refactor"
       "js-refactor"
     ]
     themes: [
-      "seti-ui"
+      "unity-ui"
       "seti-syntax"
     ]
+    excludeVcsIgnoredPaths: false
   "autocomplete-plus":
     includeCompletionsFromAllBuffers: true
-    enableBuiltinProvider: false
+    suggestionListFollows: "Word"
+    autoActivationDelay: 50
+    fileBlacklist: [
+      ".md"
+    ]
+    navigateCompletions: "ctrl-p,ctrl-n"
+    confirmCompletion: "tab and enter"
   "atom-beautify":
     _analyticsUserId: "5487d0e0-4fd7-4b0e-a897-b0e964b107c5"
     js_jslint_happy: true
@@ -41,7 +48,8 @@
     fontSize: 0.851
     highContrast: true
   linter:
-    statusBar: "Show error if the cursor is in range"
+    statusBar: "Show error of the selected line"
+    showErrorInline: false
   editor:
     lineHeight: 1.6
     showInvisibles: true
@@ -57,10 +65,10 @@
     includeCompletionsFromAllBuffers: true
   "autoclose-html": {}
   "tree-view": {}
-".js.regexp.source":
+".angular.html.text":
   editor:
     preferredLineLength: 120
-".angular.html.text":
+".js.regexp.source":
   editor:
     preferredLineLength: 120
 ".js.source":

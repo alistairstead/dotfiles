@@ -29,7 +29,6 @@
 '.workspace .editor.jumpy-jump-mode':
   'ctrl-;': 'jumpy:clear'
 
-
 '.vim-mode.insert-mode':
   'ctrl-i': 'vim-mode:activate-command-mode'
 
@@ -38,3 +37,13 @@
   'down': 'core.noop'
   'left': 'core.noop'
   'right': 'core.noop'
+
+'atom-text-editor:not(mini).autocomplete-active':
+  'tab': 'autocomplete-plus:confirm'
+  'enter': 'autocomplete-plus:confirm'
+  'up': 'autocomplete-plus:select-previous'
+  'down': 'autocomplete-plus:select-next'
+  'ctrl-p': 'autocomplete-plus:select-previous'
+  'ctrl-n': 'autocomplete-plus:select-next'
+  'ctrl-k': 'autocomplete-plus:select-previous'
+  'ctrl-j': 'autocomplete-plus:select-next'

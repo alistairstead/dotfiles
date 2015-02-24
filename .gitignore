@@ -17,3 +17,5 @@ config.symlink/stream-adventure
 config.symlink
 composer.symlink/vendor
 composer.symlink/cache
+zsh/private.zsh
+atom.symlink/.apm/
