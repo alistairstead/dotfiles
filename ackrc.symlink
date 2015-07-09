@@ -1,3 +1,8 @@
+--ignore-dir=log
+--ignore-dir=tmp
+--ignore-dir=vendor
+--ignore-dir=public/generated
+
 # lexically sort filenames
 --sort-files
 

@@ -14,33 +14,36 @@
       "autoclose-html"
       "autocomplete-plus-async"
       "cowsay"
-      "dash"
       "git-history"
       "git-log"
       "markdown-table-formatter"
-      "atom-angularjs"
       "autosave"
       "dev-live-reload"
       "turbo-javascript"
+      "pepper-autocomplete"
       "fancy-new-file"
-      "language-vcl"
-      "refactor"
-      "js-refactor"
+      "atom-angularjs"
+      "behat-atom"
+      "behat-atom"
+      "easy-motion"
+      "php-introspector"
     ]
     themes: [
       "unity-ui"
-      "seti-syntax"
+      "atom-dark-syntax"
     ]
     excludeVcsIgnoredPaths: false
   "autocomplete-plus":
     includeCompletionsFromAllBuffers: true
-    suggestionListFollows: "Word"
+    suggestionListFollows: "Cursor"
     autoActivationDelay: 50
+    confirmCompletion: "tab and enter"
+    strictMatching: true
+    backspaceTriggersAutocomplete: true
+    minimumWordLength: 2
     fileBlacklist: [
       ".md"
     ]
-    navigateCompletions: "ctrl-p,ctrl-n"
-    confirmCompletion: "tab and enter"
   "atom-beautify":
     _analyticsUserId: "5487d0e0-4fd7-4b0e-a897-b0e964b107c5"
     js_jslint_happy: true
@@ -50,6 +53,13 @@
   linter:
     statusBar: "Show error of the selected line"
     showErrorInline: false
+    ignoredLinterErrors: [
+      "php"
+      "phpcs"
+    ]
+    subtleLinterErrors: [
+      "phpmd"
+    ]
   editor:
     lineHeight: 1.6
     showInvisibles: true
@@ -58,17 +68,26 @@
     scrollPastEnd: true
     useShadowDOM: true
     invisibles: {}
+    fontSize: 15
   "markdown-table-formatter":
     autoSelectEntireDocument: false
   "test-status": {}
-  "autocomplete-plus-async":
-    includeCompletionsFromAllBuffers: true
   "autoclose-html": {}
   "tree-view": {}
-".angular.html.text":
+  "linter-phpmd": {}
+  "unity-ui":
+    showIcons: true
+    colorStatusIndicatorsInTreeView: true
+  "tool-bar":
+    position: "Left"
+  "atom-ternjs":
+    useSnippetsAndFunction: true
+  "git-projects":
+    rootPath: "/Users/ali/src"
+".js.regexp.source":
   editor:
     preferredLineLength: 120
-".js.regexp.source":
+".angular.html.text":
   editor:
     preferredLineLength: 120
 ".js.source":

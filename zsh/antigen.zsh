@@ -1,35 +1,53 @@
 source ~/src/dotfiles/antigen/antigen.zsh
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-# antigen bundle git
-antigen bundle heroku
-# antigen bundle pip
-# antigen bundle lein
-antigen bundle command-not-found
+local b="antigen-bundle"
 
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
+# Guess what to install when running an unknown command.
+$b command-not-found
 
-antigen bundle zsh-users/zsh-completions
+$b extract
+$b atom
+$b brew
+$b brew-cask
+$b common-aliases
+$b git
+$b heroku
+$b vagrant
 
-# ZSH port of Fish shell’s history search feature
-antigen bundle zsh-users/zsh-history-substring-search
-# bind UP and DOWN arrow keys
-for keycode in '[' '0'; do
-  bindkey "^[${keycode}A" history-substring-search-up
-  bindkey "^[${keycode}B" history-substring-search-down
-done
-unset keycode
+# Tracks your most used directories, based on 'frecency'.
+$b robbyrussell/oh-my-zsh plugins/z
 
-# bind P and N for EMACS mode
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
+# suggestion as you type
+$b tarruda/zsh-autosuggestions
 
-# Load the theme.
-# antigen theme robbyrussell
+# nicoulaj's moar completion files for zsh
+$b zsh-users/zsh-completions src
+
+# Syntax highlighting on the readline
+$b zsh-users/zsh-syntax-highlighting
+
+# colors for all files!
+$b trapd00r/zsh-syntax-highlighting-filetypes
+
+# dont set a theme, because pure does it all
+$b mafredri/zsh-async
+$b sindresorhus/pure
+
+# history search
+$b zsh-users/zsh-history-substring-search
+
+
+
 
 # Tell antigen that you're done.
 antigen apply
+
+# bind UP and DOWN arrow keys for history search
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 

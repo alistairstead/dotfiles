@@ -68,9 +68,11 @@ rb_prompt() {
 }
 
 node_version() {
-  if (( $+commands[nodenv] ))
+  if ! [[ -z "$(nvm)" ]]
   then
-    echo "$(nodenv version | sed 's/[[:alpha:]|(|[:space:]]//g' | awk -F- '{print $1}')"
+    echo $(nvm current)
+  else
+    echo "no node"
   fi
 }
 

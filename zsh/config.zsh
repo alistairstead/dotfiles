@@ -1,15 +1,11 @@
-if [[ -n $SSH_CONNECTION ]]; then
-  export PS1='%m:%3~$(git_info_for_prompt)%# '
-else
-  export PS1='%3~$(git_info_for_prompt)%# '
-fi
+#if [[ -n $SSH_CONNECTION ]]; then
+#  export PS1='%m:%3~$(git_info_for_prompt)%# '
+#else
+#  export PS1='%3~$(git_info_for_prompt)%# '
+#fi
 
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
-
-fpath=($ZSH/functions $fpath)
-
-autoload -U $ZSH/functions/*(:t)
 
 setopt nobeep                  # i hate beeps
 setopt autopushd               # automatically append dirs to the push/pop list
@@ -30,7 +26,7 @@ setopt IGNORE_EOF
 
 zle -N newtab
 zle -N predict-on
-zle -N predict-off
+#zle -N predict-off
 
 bindkey '^N' newtab
 bindkey '^?' backward-delete-char

@@ -1,15 +1,12 @@
 # -*- sh -*-
 
-[user]
-    name = Alistair Stead
-    email = alistair.stead@designdisclosure.com
-
-[github]
-    user = alistairstead
+[include]
+  # For username / github token / etc
+  path = ~/.gitconfig.local
 
 [core]
 	  editor = atom -w
-    excludesfile = /opt/boxen/config/git/gitignore
+    excludesfile = ~/.gitignore-global
     pager = less -FXRS -x2
 
 [alias]
@@ -151,7 +148,19 @@
     threads = 0
 
 [credential]
-	helper = osxkeychain
+
+# rewrites
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	insteadOf = "git://github.com"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+    pushInsteadOf = "https://github.com/"
+[url "git@gist.github.com:"]
+	insteadOf = "gst:"
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+	pushInsteadOf = "https://gist.github.com/"
 
 [init]
     templatedir = ~/src/dotfiles/git/templates
