@@ -52,7 +52,6 @@
     highContrast: true
   linter:
     statusBar: "Show error of the selected line"
-    showErrorInline: false
     ignoredLinterErrors: [
       "php"
       "phpcs"
@@ -60,6 +59,8 @@
     subtleLinterErrors: [
       "phpmd"
     ]
+    showErrorPanel: false
+    showErrorTabFile: false
   editor:
     lineHeight: 1.6
     showInvisibles: true
@@ -84,6 +85,14 @@
     useSnippetsAndFunction: true
   "git-projects":
     rootPath: "/Users/ali/src"
+  "atom-color-highlight": {}
+  minimap:
+    plugins:
+      pigments: true
+    displayCodeHighlights: false
+    absoluteMode: true
+  "vim-mode": {}
+  "linter-jshint": {}
 ".js.regexp.source":
   editor:
     preferredLineLength: 120

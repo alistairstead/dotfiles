@@ -11,7 +11,7 @@ compinit
 zmodload zsh/complist
 
 # Load additional config like history.zsh, etc…
-for file in ~/src/dotfiles/zsh/{antigen,completion,config,fpath,history,path}.zsh; do
+for file in ~/src/dotfiles/zsh/{antigen,completion,config,fpath,history,path,prompt}.zsh; do
   [ -r "$file" ] && source "$file"
 done
 unset file

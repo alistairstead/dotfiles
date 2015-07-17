@@ -30,13 +30,13 @@ zle -N predict-on
 
 bindkey '^N' newtab
 bindkey '^?' backward-delete-char
-bindkey "^H" history-substring-search-up
+bindkey "^K" history-substring-search-up
 bindkey "^J" history-substring-search-down
 bindkey "^R" history-incremental-search-backward
 bindkey "^X^Z" predict-on   # C-x C-z
 bindkey "^Z" predict-off    # C-z
-bindkey "^F" forward-word
-bindkey "^B" backward-word
+bindkey "^L" forward-word
+bindkey "^H" backward-word
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 

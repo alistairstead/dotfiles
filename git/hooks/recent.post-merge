@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo ""
 echo -e "\033[1m RECENT COMMITS \033[0m"

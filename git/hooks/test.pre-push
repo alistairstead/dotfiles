@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # git hook to run test commands before `git push`
 
@@ -22,14 +22,13 @@ if [[ ! -z $match ]]; then
       eval "$2"
       EXIT_CODE=$((${EXIT_CODE} + $?))
     fi
-
   }
 fi
 
 # Example usage
 # In this example it's used to run `npm test` if package.json is present at the root of the repos.
 check_tests package.json "npm test"
-check_tests phpspec.yml "./bin/phpspec run"
-check_tests behat.yml "./bin/behat"
+check_tests /bin/phpspec "/bin/phpspec run --quiet"
+check_tests /bin/behat "/bin/behat"
 
 exit $((${EXIT_CODE}))

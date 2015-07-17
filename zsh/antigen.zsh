@@ -8,19 +8,22 @@ local b="antigen-bundle"
 $b command-not-found
 
 $b extract
-$b atom
+# $b atom
 $b brew
 $b brew-cask
 $b common-aliases
-$b git
+# $b git
+# $b gitfast
+# $b git-extras
 $b heroku
 $b vagrant
+$b osx
+$b composer
+$b sudo
+$b web-search
 
 # Tracks your most used directories, based on 'frecency'.
-$b robbyrussell/oh-my-zsh plugins/z
-
-# suggestion as you type
-$b tarruda/zsh-autosuggestions
+$b z
 
 # nicoulaj's moar completion files for zsh
 $b zsh-users/zsh-completions src
@@ -31,23 +34,28 @@ $b zsh-users/zsh-syntax-highlighting
 # colors for all files!
 $b trapd00r/zsh-syntax-highlighting-filetypes
 
-# dont set a theme, because pure does it all
-$b mafredri/zsh-async
-$b sindresorhus/pure
-
 # history search
 $b zsh-users/zsh-history-substring-search
 
+# dont set a theme, because pure does it all
+# $b mafredri/zsh-async
+# $b sindresorhus/pure
 
-
+# suggestion as you type
+$b tarruda/zsh-autosuggestions
 
 # Tell antigen that you're done.
 antigen apply
 
+# Enable autosuggestions automatically
+zle-line-init() {
+    zle autosuggest-start
+}
+
+zle -N zle-line-init
+
 # bind UP and DOWN arrow keys for history search
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 

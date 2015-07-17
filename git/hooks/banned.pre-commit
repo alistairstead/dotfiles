@@ -1,18 +1,5 @@
 #!/usr/bin/env ruby
 
-# Git pre-commit hook that prevents accidentally committing things that shouldn't be, like:
-#
-#   * ":focus", used with RSpec/Guard
-#   * "show_page", used to debug request specs
-#   * "console.log" or "console.debug", used in JavaScript debugging
-#   * "DO NOT COMMIT!" comments
-#
-# Modify the regexps to suit your needs. The error message shows the full regexp match, or just the first capture group, if there is one.
-#
-# To bypass this commit hook (and others), perhaps when defining ":focus" or "show_page" for the first time, commit with the "--no-verify" option.
-#
-# By Henrik Nyh <http://henrik.nyh.se> 2011-10-08 under the MIT License.
-
 FORBIDDEN = [
 /\bdebugger\b/,
 /\bconsole\.log\b/,
@@ -25,6 +12,7 @@ FORBIDDEN = [
 /\bdo not commit\b/i
 ]
 
+EXIT_CODE=0
 COLOR_RED = "\x1B[31m"
 COLOR_GREEN = "\x1B[32m"
 COLOR_NONE = "\x1B[0m"
@@ -35,9 +23,14 @@ full_diff.scan(%r{^\+\+\+ b/(.+)\n@@.*\n([\s\S]*?)(?:^diff|\z)}).each do |file, 
   added = diff.split("\n").select { |x| x.start_with?("+") }.join("\n")
   if FORBIDDEN.any? { |re| added.match(re) }
     puts %{#{COLOR_RED}✘ Git hook forbids adding "#{$1 || $&}" to #{file}#{COLOR_NONE}}
-    puts %{#{COLOR_RED}To commit anyway, use --no-verify#{COLOR_NONE}}
-    exit 1
-  else
-    puts %{#{COLOR_GREEN}✔ No banned words detected#{COLOR_NONE}}
+    EXIT_CODE=1
   end
 end
+
+if EXIT_CODE != 0
+    puts %{#{COLOR_RED}To commit anyway, use --no-verify#{COLOR_NONE}}
+else
+    puts %{#{COLOR_GREEN}✔ No banned words detected#{COLOR_NONE}}
+end
+
+exit EXIT_CODE

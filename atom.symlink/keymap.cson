@@ -6,52 +6,25 @@
 #
 # You can create a new keybinding in this file by typing "key" and then hitting
 # tab.
-#
-# Here's an example taken from Atom's built-in keymap:
-#
-# '.editor':
-#   'enter': 'editor:newline'
-#
-# 'body'
-#   'ctrl-P': 'core:move-up'
-#   'ctrl-p': 'core:move-down'
 
-
-'.workspace':
+'atom-workspace':
   'ctrl-n': 'advanced-new-file:toggle'
   'ctrl-o': 'git-projects:toggle'
 
-'.editor:not(.mini).vim-mode:not(.insert-mode):not(.jumpy-jump-mode)':
-  'ctrl-;': 'jumpy:toggle'
-  'f': 'jumpy:toggle'
-
-'.editor:not(.mini).vim-mode:not(.jumpy-jump-mode)':
+'atom-workspace atom-text-editor:not(.mini)':
   'ctrl-;': 'jumpy:toggle'
 
-'.editor:not(.mini).jumpy-jump-mode':
+'atom-workspace atom-text-editor.jumpy-jump-mode':
   'ctrl-;': 'jumpy:clear'
-#
-# '.atom-text-editor.jumpy-jump-mode':
-#   'ctrl-;': 'jumpy:clear'
 
-'.vim-mode.insert-mode':
+'atom-text-editor.vim-mode':
   'ctrl-i': 'vim-mode:activate-command-mode'
 
-# '.vim-mode.command-mode':
-#   'up': 'core.noop'
-#   'down': 'core.noop'
-#   'left': 'core.noop'
-#   'right': 'core.noop'
-
-# 'atom-text-editor:not(mini).autocomplete-active':
-#   'tab': 'autocomplete-plus:confirm'
-#   'enter': 'autocomplete-plus:confirm'
-#   'up': 'autocomplete-plus:select-previous'
-#   'down': 'autocomplete-plus:select-next'
-#   'ctrl-p': 'autocomplete-plus:select-previous'
-#   'ctrl-n': 'autocomplete-plus:select-next'
-#   'ctrl-k': 'autocomplete-plus:select-previous'
-#   'ctrl-j': 'autocomplete-plus:select-next'
+'atom-text-editor.vim-mode.command-mode':
+  'up': 'core.noop'
+  'down': 'core.noop'
+  'left': 'core.noop'
+  'right': 'core.noop'
 
 'atom-text-editor:not(mini).autocomplete-active':
   'tab': 'autocomplete-plus:confirm'
