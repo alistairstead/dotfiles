@@ -18,7 +18,7 @@ fi
 # If you are on a matching branch
 if [[ ! -z $match ]]; then
   check_tests() {
-    if [[ test -e "${repo}/$1" ]]; then
+    if [[ -e "${repo}/$1" ]]; then
       eval "$2"
       EXIT_CODE=$((${EXIT_CODE} + $?))
     fi
