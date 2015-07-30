@@ -1,4 +1,12 @@
 
+gnu_path='$(brew --prefix coreutils)/libexec/gnubin'
+if [[ -f $gnu_path ]]; then
+  export PATH=$gnu_path:$PATH
+fi
+export PATH=~/src/dotfiles/bin:$PATH
+export PATH=~/.composer/vendor/bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
+
 # Load our dotfiles like ~/.bash_prompt, etc…
 #   ~/.extra can be used for settings you don’t want to commit,
 #   Use it to configure your PATH, thus it being first in line.
