@@ -6,6 +6,9 @@ fi
 export PATH=~/src/dotfiles/bin:$PATH
 export PATH=~/.composer/vendor/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
+export MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"
 
 # Load our dotfiles like ~/.bash_prompt, etc…
 #   ~/.extra can be used for settings you don’t want to commit,

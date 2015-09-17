@@ -15,6 +15,7 @@ config.symlink/stream-adventure
 *.orig
 **/*.cache
 config.symlink
+composer.symlink/auth.json
 composer.symlink/vendor
 composer.symlink/cache
 zsh/private.zsh

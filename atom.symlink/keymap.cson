@@ -8,7 +8,7 @@
 # tab.
 
 'atom-workspace':
-  'ctrl-n': 'advanced-new-file:toggle'
+  'ctrl-n': 'advanced-open-file:toggle'
   'ctrl-o': 'git-projects:toggle'
 
 'atom-workspace atom-text-editor:not(.mini)':
@@ -18,7 +18,8 @@
   'ctrl-;': 'jumpy:clear'
 
 'atom-text-editor.vim-mode':
-  'ctrl-i': 'vim-mode:activate-command-mode'
+  'ctrl-i': 'vim-mode:reset-normal-mode'
+  'i i': 'vim-mode:reset-normal-mode'
 
 'atom-text-editor.vim-mode.command-mode':
   'up': 'core.noop'

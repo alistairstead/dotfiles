@@ -45,6 +45,7 @@ tmtagsHistory
 .bundle
 *dump.rdb
 *.swp
+.imdone
 
 
 # Thumbnails

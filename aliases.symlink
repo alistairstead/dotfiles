@@ -1,7 +1,7 @@
 #!/bin/bash
 
 alias reload='. ~/.zshrc'
-
+alias dotfiles='a ~/src/dotfiles'
 alias man='nocorrect man'
 alias mv='nocorrect mv'
 alias mysql='nocorrect mysql'
@@ -16,7 +16,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
-
+alias src="cd ~/src"
 
 alias rm="rm -i"
 

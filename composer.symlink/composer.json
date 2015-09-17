@@ -4,6 +4,7 @@
         "phpspec/phpspec": "*",
         "instaclick/php-code-sniffer": "*",
         "phpmd/phpmd": "*",
-        "phploc/phploc": "*"
+        "phploc/phploc": "*",
+        "magento-ecg/coding-standard": "dev-master"
     }
 }

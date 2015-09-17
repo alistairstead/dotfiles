@@ -27,10 +27,11 @@
       "behat-atom"
       "easy-motion"
       "php-introspector"
+      "linter-jshint"
     ]
     themes: [
-      "unity-ui"
-      "atom-dark-syntax"
+      "atom-material-ui"
+      "atom-material-syntax"
     ]
     excludeVcsIgnoredPaths: false
   "autocomplete-plus":
@@ -74,10 +75,10 @@
     autoSelectEntireDocument: false
   "test-status": {}
   "autoclose-html": {}
-  "tree-view": {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
   "linter-phpmd": {}
   "unity-ui":
-    showIcons: true
     colorStatusIndicatorsInTreeView: true
   "tool-bar":
     position: "Left"
@@ -89,14 +90,29 @@
   minimap:
     plugins:
       pigments: true
-    displayCodeHighlights: false
     absoluteMode: true
   "vim-mode": {}
   "linter-jshint": {}
-".js.regexp.source":
+  "linter-js-standard":
+    honorStyleSettings: true
+    lintMarkdownFiles: true
+    showEslintRules: true
+    checkStyleDevDependencies: true
+    style: "semi-standard"
+  "advanced-new-file":
+    createFileInstantly: true
+    showFilesInAutoComplete: true
+  "api-blueprint-preview": {}
+  "terminal-plus":
+    core: {}
+    style: {}
+  "standard-formatter":
+    checkStyleDevDependencies: true
+    style: "happiness"
+".angular.html.text":
   editor:
     preferredLineLength: 120
-".angular.html.text":
+".js.regexp.source":
   editor:
     preferredLineLength: 120
 ".js.source":
