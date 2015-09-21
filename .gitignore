@@ -2,6 +2,7 @@ atom.symlink/.node-gyp
 atom.symlink/compile-cache
 atom.symlink/packages
 atom.symlink/storage
+bin/
 config.symlink/configstore
 config.symlink/fish/fish_history
 config.symlink/fish/fishd.*
