@@ -8,9 +8,13 @@ export MONGODB_URL='mongodb://127.0.0.1:27017'
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
-# Prefer US English and use UTF-8
+# Prefer UK English and use UTF-8
 export LC_ALL="en_GB.UTF-8"
-export LANG="en_GB"
+export LANG='en_GB.UTF-8'
+export LC_CTYPE='en_GB.UTF-8'
+
+export TERM='xterm-256color'
+export TERM_PROGRAM='iTerm.app'
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -20,7 +24,7 @@ command -v gdircolors >/dev/null 2>&1 || alias gdircolors="dircolors"
 eval "$(gdircolors -b ~/.dircolors)"
 
 
-export PORT=5000
+export PORT=8080
 export NODE_ENV=development
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY_FILE=~/.node_history;

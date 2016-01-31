@@ -10,19 +10,19 @@
 #
 # '.source.coffee':
 #   'Console log':
-#     'prefix': 'log'
-#     'body': 'console.log $1'
+#     prefix: 'log'
+#     body: 'console.log $1'
 #
 '.source.js':
   "@ console.log":
-    prefix: "cl"
-    body: "console.log(${0});"
+    prefix: "log"
+    body: "console.log(${0})"
   "@ console.error":
-    prefix: "ce"
-    body: "console.error(${0});"
+    prefix: "error"
+    body: "console.error(${0})"
   "@ console.dir":
-    prefix: "cd"
-    body: "console.dir(${0});"
+    prefix: "dir"
+    body: "console.dir(${0})"
   "@ anonymous function":
     prefix: "f"
     body: "function (${1:arguments}) {${0}}"
@@ -37,9 +37,9 @@
     prefix: "iife"
     body: """
     (function () {
-    \t'use strict';
+    \t'use strict'
     \t${0}
-    })();
+    })()
     """
   "@ function apply":
     prefix: "fa"
@@ -57,76 +57,76 @@
     ${1:fn}.bind(${2:this}, ${3:arguments})
     """
   '@ use strict':
-    'prefix': 'us'
-    'body': "'use strict';"
+    prefix: 'us'
+    body: "'use strict'"
   "@ describe":
     prefix: "desc"
     body: """
-    describe('${1:description}', function () {
+    describe('${1:description}', () => {
     \t${0}
-    });
+    })
     """
   "@ before":
     prefix: "bef"
     body: """
-    before(function (done) {
+    before((done) => {
     \t${0}
-    \tdone();
-    });
+    \tdone()
+    })
     """
   "@ beforeEach":
     prefix: "befe"
     body: """
-    beforeEach(function (done) {
+    beforeEach((done) => {
     \t${0}
-    \tdone();
-    });
+    \tdone()
+    })
     """
   "@ after":
     prefix: "aft"
     body: """
-    after(function (done) {
+    after((done) => {
     \t${0}
-    \tdone();
-    });
+    \tdone()
+    })
     """
   "@ afterEach":
     prefix: "afte"
     body: """
-    afterEach(function (done) {
+    afterEach((done) => {
     \t${0}
-    \tdone();
-    });
+    \tdone()
+    })
     """
   "@ it asynchronous":
     prefix: "ita"
     body: """
-    it('${1:description}', function (done) {
+    it('${1:description}', (done) => {
     \t${0}
-    });
+    })
     """
   "@ it synchronous":
     prefix: "its"
     body: """
-    it('${1:description}', function () {
+    it('${1:description}', () => {
     \t${0}
-    });
+    })
     """
   "@ exports.member":
     prefix: "ex"
-    body: "exports.${1:name} = ${2:value};"
+    body: "export default ${1:name}"
   "@ module.exports":
     prefix: "mo"
-    body: "module.exports = ${1:name};"
+    body: "module.exports = ${1:name}"
   "@ require":
     prefix: "re"
-    body: "require('${1:module}');"
+    body: "require('${1:module}')"
   "@ forEach loop":
     prefix: "fe"
     body: """
     ${1:iterable}.forEach(function (${2:item}) {
     \t${0}
-    });
+    })
     """
   "@ Chain forEach":
     prefix: ".fe"
@@ -136,7 +136,7 @@
     body: """
     ${1:iterable}.map(function (${2:item}) {
     \t${0}
-    });
+    })
     """
   "@ Chain map":
     prefix: ".map"
@@ -146,7 +146,7 @@
     body: """
     ${1:iterable}.reduce(function (${2:previous}, ${3:current}) {
     \t${0}
-    }${4:, initial});
+    }${4:, initial})
     """
   "@ Chain reduce":
     prefix: ".reduce"
@@ -156,8 +156,149 @@
     body: """
     ${1:iterable}.filter(function (${2:item}) {
     \t${0}
-    });
+    })
     """
   "@ Chain filter":
     prefix: ".filter"
     body: ".filter(function (${1:item}) {${0}})"
+  "@ Class template":
+    prefix: "class"
+    body: """
+    class ${1:name} extends ${2:derived} {
+    \t${0}
+    }
+    """
+  "@ React ES6 Component":
+    prefix: "rc"
+    body: """
+    import React from 'react'
+
+    export default class ${1:MyComponent} extends React.Component {
+      render() {
+        return (${2:<div>MyComponent</div>})
+      }
+    }
+
+    ${1}.propTypes = {
+    }
+    """
+  "@ React ES6 Component with Constructor":
+    prefix: "rcc"
+    body: """
+    import React from 'react'
+
+    export default class ${1:MyComponent} extends React.Component {
+      constructor(props) {
+        super(props)
+      }
+
+      render() {
+        return (${2:<div>MyComponent</div>})
+      }
+    }
+
+    ${1}.propTypes = {
+    }
+    """
+  "@ React ES6 Constructor":
+    prefix: "rconst"
+    body: """
+    constructor(props) {
+      super(props)
+      ${1}
+    }
+    """
+  "@ React ES6 Functional Component":
+    prefix: "rfunc"
+    body: """
+    import React from 'react'
+
+    export const ${1} = (props) => {
+      return (${2:<div>MyComponent</div>})
+    }
+
+    ${1}.propTypes = {
+    }
+    """
+  "@ React ES6 bind method to this":
+    prefix: "rbm",
+    body: """
+    this.${1} = this.${1}.bind(this)
+    """
+  "@ React ES6 props definition":
+    prefix: "rpd",
+    body: """
+    ${1}.propTypes = {
+      ${2}
+    }
+    """
+  "@ React PropType string":
+    prefix: "rpstr",
+    body: "${1:myProp}: React.PropTypes.string,"
+  "React PropType string required":
+    prefix: "rpstrr",
+    body: "${1:myProp}: React.PropTypes.string.isRequired,"
+
+  # PropType number
+  "@ React PropType number":
+    prefix: "rpn",
+    body: "${1:myProp}: React.PropTypes.number,"
+  "@ React PropType number required":
+    prefix: "rpnr",
+    body: "${1:myProp}: React.PropTypes.number.isRequired,"
+
+  # PropType object
+  "@ React PropType object":
+    prefix: "rpo",
+    body: "${1:myProp}: React.PropTypes.object,"
+  "@ React PropType object required":
+    prefix: "rpor",
+    body: "${1:myProp}: React.PropTypes.object.isRequired,"
+
+  # PropType array
+  '@ React PropType array':
+    prefix: 'rpa',
+    body: "${1:myProp}: React.PropTypes.array,"
+  '@ React PropType array required':
+    prefix: 'rpar',
+    body: "${1:myProp}: React.PropTypes.array.isRequired,"
+
+  # PropType bool
+  '@ React PropType bool':
+    prefix: 'rpb',
+    body: "${1:myProp}: PropTypes.bool,"
+  '@ React PropType bool required':
+    prefix: 'rpbr',
+    body: "${1:myProp}: PropTypes.bool.isRequired,"
+
+  # PropType element
+  '@ React PropType element':
+    prefix: 'rpe',
+    body: "${1:myProp}: PropTypes.element,"
+  '@ React PropType element required':
+    prefix: 'rper',
+    body: "${1:myProp}: PropTypes.element.isRequired,"
+
+  # PropType function
+  '@ React PropType function':
+    prefix: 'rpf',
+    body: "${1:myProp}: PropTypes.func,"
+  '@ React PropType function required':
+    prefix: 'rpfr',
+    body: "${1:myProp}: PropTypes.func.isRequired,"
+
+  # PropType shape
+  '@ React PropType shape':
+    prefix: 'rps',
+    body: """
+      ${1:myProp}: PropTypes.shape({
+        ${2}
+      }),
+    """
+  '@ React PropType shape required':
+    prefix: 'rpsr',
+    body: """
+      ${1:myProp}: PropTypes.shape({
+        ${2}
+      }).isRequired,
+    """

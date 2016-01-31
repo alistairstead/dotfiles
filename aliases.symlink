@@ -1,12 +1,11 @@
 #!/bin/bash
 
-alias reload='. ~/.zshrc'
 alias dotfiles='a ~/src/dotfiles'
 alias man='nocorrect man'
 alias mv='nocorrect mv'
 alias mysql='nocorrect mysql'
 alias mkdir='nocorrect mkdir'
-alias sudo='nocorrect sudo'
+# alias sudo='nocorrect sudo'
 
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
@@ -82,7 +81,7 @@ alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # All the dig info
-alias dig="dig +nocmd any +multiline +noall +answer"
+# alias dig="dig +nocmd any +multiline +answer"
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache"
@@ -213,7 +212,7 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 
 
 # Enable aliases to be sudo’ed
-alias sudo='sudo '
+# alias sudo='sudo '
 
 # Get week number
 alias week='date +%V'
@@ -313,3 +312,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+
+alias ssh-tunnel-enable='echo -n > ~/.ssh/config && cat ~/.ssh/*.config > ~/.ssh/config'
+alias ssh-tunnel-disable='echo -n > ~/.ssh/config && cat ~/.ssh/hosts.*.config > ~/.ssh/config'

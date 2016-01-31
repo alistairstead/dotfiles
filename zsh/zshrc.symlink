@@ -1,3 +1,4 @@
+# uncomment to profile prompt startup with zprof
 # zmodload zsh/zprof
 
 # vim bindings
@@ -11,16 +12,23 @@ compinit
 zmodload zsh/complist
 
 # Load additional config like history.zsh, etc…
-for file in ~/src/dotfiles/zsh/{antigen,completion,config,fpath,history,path,prompt}.zsh; do
+for file in ~/src/dotfiles/zsh/{antigen,completion,config,fpath,history,path}.zsh; do
   [ -r "$file" ] && source "$file"
 done
 unset file
 
 # Automatically list directory contents on `cd`.
-auto-ls () { ls; }
+auto-ls () {
+	emulate -L zsh;
+	# explicit sexy ls'ing as aliases arent honored in here.
+	hash gls >/dev/null 2>&1 && CLICOLOR_FORCE=1 gls -aFh --color --group-directories-first || ls
+}
 chpwd_functions=( auto-ls $chpwd_functions )
 
+# uncomment to finish profiling
 # zprof
 
 # Load default dotfiles
 source ~/.bash_profile
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

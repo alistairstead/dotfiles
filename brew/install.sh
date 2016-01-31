@@ -70,7 +70,6 @@ brew install ack
 brew install git
 brew install git-extras
 brew install imagemagick --with-webp
-brew install node # This installs `npm` too using the recommended installation method
 brew install pv
 brew install rename
 brew install tree
@@ -91,17 +90,17 @@ brew tap homebrew/services
 brew install heroku-toolbelt
 
 # service
-brew install mongodb
-brew install rabbitmq
-brew install redis
+# brew install mongodb
+# brew install rabbitmq
+# brew install redis
 
 brew install trash
 
 # PHP
 
-brew tap homebrew/php
-brew install homebrew/php/composer
-brew install homebrew/php/php56
+# brew tap homebrew/php
+# brew install homebrew/php/composer
+# brew install homebrew/php/php56
 
 # Remove outdated versions from the cellar
 brew cleanup

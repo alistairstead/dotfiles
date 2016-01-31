@@ -213,40 +213,40 @@ function cdf() { # short for `cdfinder`
 
 # Extract archives - use: extract <file>
 # Based on http://dotfiles.org/~pseup/.bashrc
-function extract() {
-	if [ -f "$1" ] ; then
-		local filename=$(basename "$1")
-		local foldername="${filename%%.*}"
-		local fullpath=`perl -e 'use Cwd "abs_path";print abs_path(shift)' "$1"`
-		local didfolderexist=false
-		if [ -d "$foldername" ]; then
-			didfolderexist=true
-			read -p "$foldername already exists, do you want to overwrite it? (y/n) " -n 1
-			echo
-			if [[ $REPLY =~ ^[Nn]$ ]]; then
-				return
-			fi
-		fi
-		mkdir -p "$foldername" && cd "$foldername"
-		case $1 in
-			*.tar.bz2) tar xjf "$fullpath" ;;
-			*.tar.gz) tar xzf "$fullpath" ;;
-			*.tar.xz) tar Jxvf "$fullpath" ;;
-			*.tar.Z) tar xzf "$fullpath" ;;
-			*.tar) tar xf "$fullpath" ;;
-			*.taz) tar xzf "$fullpath" ;;
-			*.tb2) tar xjf "$fullpath" ;;
-			*.tbz) tar xjf "$fullpath" ;;
-			*.tbz2) tar xjf "$fullpath" ;;
-			*.tgz) tar xzf "$fullpath" ;;
-			*.txz) tar Jxvf "$fullpath" ;;
-			*.zip) unzip "$fullpath" ;;
-			*) echo "'$1' cannot be extracted via extract()" && cd .. && ! $didfolderexist && rm -r "$foldername" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
-}
+# function extract() {
+# 	if [ -f "$1" ] ; then
+# 		local filename=$(basename "$1")
+# 		local foldername="${filename%%.*}"
+# 		local fullpath=`perl -e 'use Cwd "abs_path";print abs_path(shift)' "$1"`
+# 		local didfolderexist=false
+# 		if [ -d "$foldername" ]; then
+# 			didfolderexist=true
+# 			read -p "$foldername already exists, do you want to overwrite it? (y/n) " -n 1
+# 			echo
+# 			if [[ $REPLY =~ ^[Nn]$ ]]; then
+# 				return
+# 			fi
+# 		fi
+# 		mkdir -p "$foldername" && cd "$foldername"
+# 		case $1 in
+# 			*.tar.bz2) tar xjf "$fullpath" ;;
+# 			*.tar.gz) tar xzf "$fullpath" ;;
+# 			*.tar.xz) tar Jxvf "$fullpath" ;;
+# 			*.tar.Z) tar xzf "$fullpath" ;;
+# 			*.tar) tar xf "$fullpath" ;;
+# 			*.taz) tar xzf "$fullpath" ;;
+# 			*.tb2) tar xjf "$fullpath" ;;
+# 			*.tbz) tar xjf "$fullpath" ;;
+# 			*.tbz2) tar xjf "$fullpath" ;;
+# 			*.tgz) tar xzf "$fullpath" ;;
+# 			*.txz) tar Jxvf "$fullpath" ;;
+# 			*.zip) unzip "$fullpath" ;;
+# 			*) echo "'$1' cannot be extracted via extract()" && cd .. && ! $didfolderexist && rm -r "$foldername" ;;
+# 		esac
+# 	else
+# 		echo "'$1' is not a valid file"
+# 	fi
+# }
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
@@ -380,4 +380,28 @@ webmify(){
 # `shellswitch zsh`
 shellswitch () {
 	chsh -s $(brew --prefix)/bin/$1
+}
+
+# Freshen up your brew.
+freshbrew() {
+  me="$(whoami)"
+
+  file1="$(stat /usr/local/bin | awk '{ print $5 }')"
+  file2="$(stat /usr/local/share | awk '{ print $5 }')"
+
+  if [ "$me" != "$file1" ]; then
+    echo -e "Need to chown /usr/local/bin"
+    sudo chown -R $(whoami):admin /usr/local/bin
+  fi
+
+  if [ "$me" != "$file2" ]; then
+    echo -e "Need to chown /usr/local/share"
+    sudo chown -R $(whoami):admin /usr/local/share
+  fi
+
+  brew doctor
+  brew update
+  brew upgrade
+  brew cleanup
+  brew prune
 }

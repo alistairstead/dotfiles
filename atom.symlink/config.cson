@@ -1,118 +1,123 @@
 "*":
-  "exception-reporting":
-    userId: "3b647e39-b328-1d59-ffad-e3bb6e24f723"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "993232f0e07e444482a314d43c08c5c6eb7e8ab5"
+  "advanced-new-file":
+    createFileInstantly: true
+    showFilesInAutoComplete: true
+  "atom-color-highlight": {}
+  "atom-material-ui":
+    fonts:
+      useRoboto: true
+      useRobotoInUI: true
+    panels:
+      panelContrast: true
+    tabs:
+      rippleAccentColor: true
+      showTabIcons: "Show on all tabs"
+      tabSize: "Small"
+    treeView:
+      compactTreeView: true
+    ui:
+      accentColor: "Green"
+      slimScrollbar: true
+  "atom-ternjs":
+    documentation: false
+    excludeLowerPriorityProviders: true
+    guess: false
+    inlineFnCompletion: false
+    lint: false
+    origins: false
+    urls: false
+    useSnippets: true
+    useSnippetsAndFunction: true
+  "autoclose-html": {}
+  "autocomplete-plus":
+    autoActivationDelay: 50
+    backspaceTriggersAutocomplete: true
+    confirmCompletion: "tab and enter"
+    enableAutoConfirmSingleSuggestion: false
+    fileBlacklist: [
+      ".md"
+    ]
+    includeCompletionsFromAllBuffers: true
+    minimumWordLength: 2
+    strictMatching: true
+    suggestionListFollows: "Cursor"
   core:
+    excludeVcsIgnoredPaths: false
     ignoredNames: [
       ".git"
-    ]
-    disabledPackages: [
-      "atom-phpcs"
-      "autoclose-html"
-      "autocomplete-plus-async"
-      "cowsay"
-      "git-history"
-      "git-log"
-      "markdown-table-formatter"
-      "autosave"
-      "dev-live-reload"
-      "turbo-javascript"
-      "pepper-autocomplete"
-      "fancy-new-file"
-      "atom-angularjs"
-      "behat-atom"
-      "behat-atom"
-      "easy-motion"
-      "php-introspector"
-      "linter-jshint"
     ]
     themes: [
       "atom-material-ui"
       "atom-material-syntax"
     ]
-    excludeVcsIgnoredPaths: false
-  "autocomplete-plus":
-    includeCompletionsFromAllBuffers: true
-    suggestionListFollows: "Cursor"
-    autoActivationDelay: 50
-    confirmCompletion: "tab and enter"
-    strictMatching: true
-    backspaceTriggersAutocomplete: true
-    minimumWordLength: 2
-    fileBlacklist: [
-      ".md"
-    ]
-  "atom-beautify":
-    _analyticsUserId: "5487d0e0-4fd7-4b0e-a897-b0e964b107c5"
-    js_jslint_happy: true
+  editor:
+    fontSize: 15
+    invisibles: {}
+    lineHeight: 1.6
+    preferredLineLength: 120
+    showIndentGuide: true
+    showInvisibles: true
+    useShadowDOM: true
+  emmet: {}
+  "exception-reporting":
+    userId: "3b647e39-b328-1d59-ffad-e3bb6e24f723"
+  "git-projects":
+    rootPath: "/Users/ali/src"
   jumpy:
     fontSize: 0.851
     highContrast: true
   linter:
-    statusBar: "Show error of the selected line"
     ignoredLinterErrors: [
       "php"
       "phpcs"
     ]
+    showErrorPanel: false
+    showErrorTabFile: false
+    statusBar: "Show error of the selected line"
     subtleLinterErrors: [
       "phpmd"
     ]
-    showErrorPanel: false
-    showErrorTabFile: false
-  editor:
-    lineHeight: 1.6
-    showInvisibles: true
-    showIndentGuide: true
-    preferredLineLength: 120
-    scrollPastEnd: true
-    useShadowDOM: true
-    invisibles: {}
-    fontSize: 15
-  "markdown-table-formatter":
-    autoSelectEntireDocument: false
-  "test-status": {}
-  "autoclose-html": {}
-  "tree-view":
-    hideVcsIgnoredFiles: true
-  "linter-phpmd": {}
-  "unity-ui":
-    colorStatusIndicatorsInTreeView: true
-  "tool-bar":
-    position: "Left"
-  "atom-ternjs":
-    useSnippetsAndFunction: true
-  "git-projects":
-    rootPath: "/Users/ali/src"
-  "atom-color-highlight": {}
-  minimap:
-    plugins:
-      pigments: true
-    absoluteMode: true
-  "vim-mode": {}
-  "linter-jshint": {}
   "linter-js-standard":
-    honorStyleSettings: true
+    checkStyleDevDependencies: true
     lintMarkdownFiles: true
     showEslintRules: true
-    checkStyleDevDependencies: true
-    style: "semi-standard"
-  "advanced-new-file":
-    createFileInstantly: true
-    showFilesInAutoComplete: true
-  "api-blueprint-preview": {}
-  "terminal-plus":
-    core: {}
-    style: {}
-  "standard-formatter":
-    checkStyleDevDependencies: true
-    style: "happiness"
+  "markdown-table-formatter":
+    autoSelectEntireDocument: false
+  metrics:
+    userId: "993232f0e07e444482a314d43c08c5c6eb7e8ab5"
+  minimap:
+    absoluteMode: true
+    plugins:
+      pigments: true
+  pigments: {}
+  tabs: {}
+  "test-status": {}
+  "tool-bar":
+    position: "Left"
+  "tree-view": {}
+  "unity-dark-ui":
+    showIcons: true
+  "unity-ui":
+    colorStatusIndicatorsInTreeView: true
+  "vim-mode": {}
+  welcome:
+    showOnStartup: false
+".attribute-values.js.jsx.source":
+  editor:
+    preferredLineLength: 120
+".js.jsx.react.source":
+  editor:
+    preferredLineLength: 120
 ".angular.html.text":
   editor:
     preferredLineLength: 120
+".js.jsx.source":
+  editor:
+    preferredLineLength: 120
 ".js.regexp.source":
+  editor:
+    preferredLineLength: 120
+".js.source.subtlegradient":
   editor:
     preferredLineLength: 120
 ".js.source":

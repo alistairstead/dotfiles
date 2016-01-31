@@ -40,6 +40,11 @@ bindkey "^H" backward-word
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 
+# bind UP and DOWN arrow keys for history search
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
 
 setopt autocd                   # change to dirs without cd
 setopt pushd_to_home            # Push to home directory when no argument is given.

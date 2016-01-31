@@ -4,26 +4,32 @@ antigen use oh-my-zsh
 
 local b="antigen-bundle"
 
-# Guess what to install when running an unknown command.
-$b command-not-found
-
-$b extract
 # $b atom
 $b brew
 $b brew-cask
-$b common-aliases
+# Guess what to install when running an unknown command.
+$b command-not-found
+$b composer
+$b docker
+$b extract
+# $b common-aliases
 # $b git
 # $b gitfast
 # $b git-extras
 $b heroku
+$b httpie
+$b last-working-dir
+$b lol
 $b vagrant
 $b osx
-$b composer
+
 $b sudo
-$b web-search
+$b symfony2
+# $b web-search
+$b arialdomartini/oh-my-git
 
 # Tracks your most used directories, based on 'frecency'.
-$b z
+$b robbyrussell/oh-my-zsh plugins/z
 
 # nicoulaj's moar completion files for zsh
 $b zsh-users/zsh-completions src
@@ -35,7 +41,7 @@ $b zsh-users/zsh-syntax-highlighting
 $b trapd00r/zsh-syntax-highlighting-filetypes
 
 # history search
-$b zsh-users/zsh-history-substring-search
+$b zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 
 # dont set a theme, because pure does it all
 # $b mafredri/zsh-async
@@ -43,6 +49,10 @@ $b zsh-users/zsh-history-substring-search
 
 # suggestion as you type
 $b tarruda/zsh-autosuggestions
+
+antigen theme arialdomartini/oh-my-git-themes oppa-lana-style
+
+# antigen theme ~/src/dotfiles/zsh/ theme
 
 # Tell antigen that you're done.
 antigen apply
@@ -53,9 +63,6 @@ zle-line-init() {
 }
 
 zle -N zle-line-init
-
-# bind UP and DOWN arrow keys for history search
-zmodload zsh/terminfo
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 

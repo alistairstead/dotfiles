@@ -10,6 +10,7 @@
 'atom-workspace':
   'ctrl-n': 'advanced-open-file:toggle'
   'ctrl-o': 'git-projects:toggle'
+  'ctrl-.': 'terminal-plus:toggle'
 
 'atom-workspace atom-text-editor:not(.mini)':
   'ctrl-;': 'jumpy:toggle'
@@ -36,3 +37,6 @@
   'ctrl-n': 'core:move-down'
   'ctrl-k': 'core:move-up'
   'ctrl-j': 'core:move-down'
+
+'atom-text-editor:not([mini])':
+  'alt-tab': 'emmet:expand-abbreviation'
