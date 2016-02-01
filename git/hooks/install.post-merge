@@ -5,9 +5,7 @@ EXIT_CODE=0
 changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 
 check_run() {
-	if [[ echo "$changed_files" | grep --quiet "$1" ]]; then
-		eval $2
-	fi
+	echo "$changed_files" | grep --quiet "$1" && eval "$2"
 }
 
 # Example usage
