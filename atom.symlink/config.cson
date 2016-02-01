@@ -8,6 +8,7 @@
       useRoboto: true
       useRobotoInUI: true
     panels:
+      depth: true
       panelContrast: true
     tabs:
       rippleAccentColor: true
@@ -102,13 +103,13 @@
   "vim-mode": {}
   welcome:
     showOnStartup: false
+".angular.html.text":
+  editor:
+    preferredLineLength: 120
 ".attribute-values.js.jsx.source":
   editor:
     preferredLineLength: 120
 ".js.jsx.react.source":
-  editor:
-    preferredLineLength: 120
-".angular.html.text":
   editor:
     preferredLineLength: 120
 ".js.jsx.source":
@@ -117,9 +118,9 @@
 ".js.regexp.source":
   editor:
     preferredLineLength: 120
-".js.source.subtlegradient":
+".js.source":
   editor:
     preferredLineLength: 120
-".js.source":
+".js.source.subtlegradient":
   editor:
     preferredLineLength: 120
