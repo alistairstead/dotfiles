@@ -56,12 +56,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 source <(npm completion)
+source <(pm2 completion)
 
 # z beats cd most of the time.
 #   github.com/rupa/z
 #source ~/code/z/z.sh
-
-
 
 ##
 ## Completion…
