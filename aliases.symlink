@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias dotfiles='a ~/src/dotfiles'
+alias dotfiles='atom-beta --add ~/src/dotfiles'
 alias man='nocorrect man'
 alias mv='nocorrect mv'
 alias mysql='nocorrect mysql'
@@ -316,3 +316,5 @@ alias reload="exec $SHELL -l"
 
 alias ssh-tunnel-enable='echo -n > ~/.ssh/config && cat ~/.ssh/*.config > ~/.ssh/config'
 alias ssh-tunnel-disable='echo -n > ~/.ssh/config && cat ~/.ssh/hosts.*.config > ~/.ssh/config'
+
+alias composer="docker run --rm -u $UID -v $PWD:/app composer/composer"
