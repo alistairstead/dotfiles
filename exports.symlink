@@ -1,9 +1,5 @@
-export EDITOR='atom'
-export GIT_EDITOR='vim'
-
-export REDIS_URL='redis://localhost:6379'
-export RABBITMQ_URL='amqp://guest:guest@localhost:5672'
-export MONGODB_URL='mongodb://127.0.0.1:27017'
+export EDITOR='atom-beta'
+export GIT_EDITOR='atom-beta --add --wait'
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
