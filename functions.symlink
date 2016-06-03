@@ -405,3 +405,13 @@ freshbrew() {
   brew cleanup
   brew prune
 }
+
+create-cask-manifest() {
+  manifest="~/src/dotfiles/brew/cask-manifest.txt"
+  echo '' > manifest
+  for app in $(exec brew cask list); do
+      echo $app >> ~/src/dotfiles/brew/cask-manifest.txt
+  done
+  echo "File created $(manifest)"
+  cat manifest
+}
