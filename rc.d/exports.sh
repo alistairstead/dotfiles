@@ -1,6 +1,3 @@
-export EDITOR='atom-beta'
-export GIT_EDITOR='atom-beta --add --wait'
-
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
