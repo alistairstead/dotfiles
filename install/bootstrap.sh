@@ -3,7 +3,7 @@
 # bootstrap installs things.
 
 DOTFILES_ROOT="`pwd`"
-source "${DOTFILES_ROOT}/script/shared/common.sh"
+source "${DOTFILES_ROOT}/shared/common.sh"
 
 set -e
 
