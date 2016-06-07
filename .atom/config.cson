@@ -4,29 +4,30 @@
     showFilesInAutoComplete: true
   "atom-color-highlight": {}
   "atom-material-ui":
-    fonts:
-      useRoboto: true
-      useRobotoInUI: true
-    panels:
-      depth: true
-      panelContrast: true
+    colors:
+      abaseColor:
+        alpha: 1
+        blue: 66
+        green: 66
+        red: 66
+      accentColor:
+        alpha: 1
+        blue: 121
+        green: 251
+        red: 212
+    fonts: {}
     tabs:
-      rippleAccentColor: true
-      showTabIcons: "Show on all tabs"
-      tabSize: "Small"
+      compactTabs: true
+      tintedTabBar: true
     treeView:
-      compactTreeView: true
+      blendTabs: true
+      compactList: true
     ui:
-      accentColor: "Green"
-      slimScrollbar: true
+      animations: false
   "atom-ternjs":
-    documentation: false
+    displayAboveSnippets: true
     excludeLowerPriorityProviders: true
-    guess: false
-    inlineFnCompletion: false
     lint: false
-    origins: false
-    urls: false
     useSnippets: true
     useSnippetsAndFunction: true
   "autoclose-html": {}
@@ -35,6 +36,7 @@
     backspaceTriggersAutocomplete: true
     confirmCompletion: "tab and enter"
     enableAutoConfirmSingleSuggestion: false
+    enableBuiltinProvider: false
     fileBlacklist: [
       ".md"
     ]
@@ -43,16 +45,19 @@
     strictMatching: true
     suggestionListFollows: "Cursor"
   core:
+    disabledPackages: [
+      "autocomplete-elixir"
+      "build-elixir"
+      "elixir-cmd"
+      "linter-phpmd"
+    ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
       ".git"
     ]
-    themes: [
-      "atom-material-ui"
-      "atom-material-syntax"
-    ]
+    projectHome: "/Users/astead/src"
   editor:
-    fontSize: 15
+    fontFamily: "Operator Mono"
     invisibles: {}
     lineHeight: 1.6
     preferredLineLength: 120
@@ -90,6 +95,8 @@
     absoluteMode: true
     plugins:
       pigments: true
+  "one-dark-ui":
+    layoutMode: "Compact"
   pigments: {}
   tabs: {}
   "test-status": {}
@@ -100,7 +107,9 @@
     showIcons: true
   "unity-ui":
     colorStatusIndicatorsInTreeView: true
-  "vim-mode": {}
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+    wrapLeftRightMotion: true
   welcome:
     showOnStartup: false
 ".angular.html.text":

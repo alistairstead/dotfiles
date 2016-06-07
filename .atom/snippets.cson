@@ -14,6 +14,9 @@
 #     body: 'console.log $1'
 #
 '.source.js':
+  "@ process.env":
+    prefix: "pro"
+    body: "process.env.${0}"
   "@ console.log":
     prefix: "log"
     body: "console.log(${0})"

@@ -123,17 +123,17 @@
   track = checkout -t
   head = !git l -1
   h = !git head
-  hp = "!source ~/src/dotfiles/git/functions/log && show_git_head"
+  hp = "!source ~/dotfiles/git/functions/log && show_git_head"
   r = !git l -30
   ra = !git r --all
-  l = "!source ~/src/dotfiles/git/functions/log && pretty_git_log"
+  l = "!source ~/dotfiles/git/functions/log && pretty_git_log"
   la = !git l --all
   # git changelog 0.4.5...0.5.3 using tags or tree-ish references
   whatchanged = log --pretty=oneline --no-merges
   cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
   rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
 
-  updatehooks = !rm -rf $(git rev-parse --git-dir)/hooks && cp -a ~/src/dotfiles/git/templates/hooks $(git rev-parse --git-dir) && chmod +x $(git rev-parse --git-dir)/hooks/*
+  updatehooks = !rm -rf $(git rev-parse --git-dir)/hooks && cp -a ~/dotfiles/git/templates/hooks $(git rev-parse --git-dir) && chmod +x $(git rev-parse --git-dir)/hooks/*
 
 [include]
   # For username / github token / etc
@@ -242,7 +242,7 @@
 
 [init]
 
-  templatedir = ~/src/dotfiles/git/templates
+  templatedir = ~/dotfiles/git/templates
 
 [rerere]
 

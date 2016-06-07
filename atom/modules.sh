@@ -15,7 +15,7 @@ apm install fancy-new-file
 apm install fixmyjs
 apm install gist-it
 apm install git-blame
-apm install git-history
+apm install git-history     
 apm install git-log
 apm install javascript-snippets
 apm install js-refactor

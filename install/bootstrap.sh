@@ -1,25 +1,29 @@
-#!/bin/bash
-#
-# bootstrap installs things.
+#!/usr/bin/env bash
 
 DOTFILES_ROOT="`pwd`"
 source "${DOTFILES_ROOT}/shared/common.sh"
+manifest_file="${DOTFILES_ROOT}/manifest.txt"
 
 set -e
 
 install_dotfiles () {
-  info 'installing dotfiles'
+  info "Starting Install\n"
+  info "Installing from DOTFILES_ROOT :: ${DOTFILES_ROOT}\n"
+  info "Reading manifest_file :: ${manifest_file}\n"
+  manifest=$(<$manifest_file)
 
   overwrite_all=false
   backup_all=false
   skip_all=false
   nuke_all=false
 
-  for source in `find $DOTFILES_ROOT -maxdepth 2 -name \*.symlink`
+  for source in $manifest
   do
-    dest="$HOME/.`basename \"${source%.*}\"`"
+    dest="${HOME}/${source}"
+    source="${DOTFILES_ROOT}/${source}"
 
-    if [ -f $dest ] || [ -d $dest ]
+
+    if [ -L $dest ] || [ -f $dest ] || [ -d $dest ]
     then
 
       overwrite=false
@@ -82,4 +86,5 @@ install_dotfiles () {
 echo ''
 install_dotfiles
 echo ''
+exec $SHELL -l
 echo '  Installed!'

@@ -1,0 +1,14 @@
+.bashrc
+.bash_profile
+.inputrc
+.zshrc
+.zlogin
+.ackrc
+.npmrc
+.gitconfig
+.gitignore-global
+.dircolors
+.editorconfig
+.tmux.conf
+.atom
+.config

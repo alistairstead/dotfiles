@@ -1,4 +1,4 @@
-source ~/src/dotfiles/antigen/antigen.zsh
+source ~/dotfiles/antigen/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
@@ -48,7 +48,7 @@ $b zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 # $b sindresorhus/pure
 
 # suggestion as you type
-$b tarruda/zsh-autosuggestions
+$b zsh-users/zsh-autosuggestions
 
 antigen theme arialdomartini/oh-my-git-themes arialdo-granzestyle
 # arialdo-pathinline
@@ -61,7 +61,7 @@ antigen apply
 
 # Enable autosuggestions automatically
 zle-line-init() {
-    zle autosuggest-start
+    # zle autosuggest-start
 }
 
 zle -N zle-line-init
