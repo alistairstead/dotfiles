@@ -12,3 +12,5 @@
 .tmux.conf
 .atom
 .config
+.vim
+.vimrc
