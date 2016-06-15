@@ -85,3 +85,6 @@
 [submodule ".vim/bundle/yajs"]
 	path = .vim/bundle/yajs
 	url = https://github.com/othree/yajs.vim.git
+[submodule ".vim/bundle/vim-commentary"]
+	path = .vim/bundle/vim-commentary
+	url = git://github.com/tpope/vim-commentary.git
