@@ -6,15 +6,15 @@
   "atom-material-ui":
     colors:
       abaseColor:
-        alpha: 1
-        blue: 66
-        green: 66
         red: 66
-      accentColor:
+        green: 66
+        blue: 66
         alpha: 1
-        blue: 121
-        green: 251
+      accentColor:
         red: 212
+        green: 251
+        blue: 121
+        alpha: 1
     fonts: {}
     tabs:
       compactTabs: true
@@ -50,6 +50,8 @@
       "build-elixir"
       "elixir-cmd"
       "linter-phpmd"
+      "autocomplete-emojis"
+      "autocomplete-atom-api"
     ]
     excludeVcsIgnoredPaths: false
     ignoredNames: [
@@ -57,7 +59,7 @@
     ]
     projectHome: "/Users/astead/src"
   editor:
-    fontFamily: "Operator Mono"
+    fontFamily: "OperatorMono Nerd Font"
     invisibles: {}
     lineHeight: 1.6
     preferredLineLength: 120
@@ -87,6 +89,8 @@
     checkStyleDevDependencies: true
     lintMarkdownFiles: true
     showEslintRules: true
+  "linter-phpcs":
+    disableWhenNoConfigFile: true
   "markdown-table-formatter":
     autoSelectEntireDocument: false
   metrics:

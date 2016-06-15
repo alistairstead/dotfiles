@@ -20,19 +20,24 @@
 
 'atom-text-editor.vim-mode':
   'ctrl-i': 'vim-mode:reset-normal-mode'
-  'i i': 'vim-mode:reset-normal-mode'
+  'j k': 'vim-mode:reset-normal-mode'
+  'up': 'core.noop'
+  'down': 'core.noop'
+  'left': 'core.noop'
+  'right': 'core.noop'
 
 'atom-text-editor.vim-mode.command-mode':
   'up': 'core.noop'
   'down': 'core.noop'
   'left': 'core.noop'
   'right': 'core.noop'
+  'del': 'core.noop'
 
 'atom-text-editor:not(mini).autocomplete-active':
   'tab': 'autocomplete-plus:confirm'
   'enter': 'autocomplete-plus:confirm'
-  'up': 'core:move-up'
-  'down': 'core:move-down'
+  'up': 'core.noop'
+  'down': 'core.noop'
   'ctrl-p': 'core:move-up'
   'ctrl-n': 'core:move-down'
   'ctrl-k': 'core:move-up'
