@@ -142,7 +142,7 @@
 [core]
 	quotepath = false
   excludesfile = ~/.gitignore-global
-	pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
   # Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line

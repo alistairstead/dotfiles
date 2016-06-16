@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias dotfiles='atom-beta --add ~/src/dotfiles'
+alias dotfiles='vim ~/src/dotfiles'
 alias man='nocorrect man'
 alias mv='nocorrect mv'
 alias mysql='nocorrect mysql'

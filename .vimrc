@@ -31,8 +31,8 @@ se nobackup
 se noswapfile
 se dir=/tmp,/var/tmp
 se autoread
-se relativenumber
 se number
+se relativenumber
 se visualbell
 se ch=1
 se laststatus=2
@@ -250,8 +250,9 @@ nnoremap * *N
 "
 "  AIRLINE
 "
-let g:airline_theme='wombatish'
+let g:airline_theme='sol'
 let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
 
 "
 """"""""""""""""""""""""""""""""""""""""
@@ -288,11 +289,16 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 "
 "  CTRLP
 "
-let g:ctrlp_map = '<c-t>'
-let g:ctrlp_working_path_mode = 2
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_height = 15
 let g:ctrlp_open_multi = '1v'
-let g:ctrlp_custom_ignore = '\v[\/](vendor|node_modules|\.git|\.hg)$'
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](\.git|\.hg|\.svn|vendor|node_modules)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'some_bad_symbolic_links',
+    \ }
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 
@@ -322,13 +328,43 @@ vnoremap <leader><tab>> :Tab /=><cr>
 "
 "  EASYMOTION
 "
-let g:EasyMotion_leader_key='t'
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+"
+"""""""""""""""""""""""""""""""""""""
+"
+"  NERDTREE
+"
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+map <C-\> :NERDTreeToggle<CR>
 "
 """"""""""""""""""""""""""""""""""""""""
 "
 "  SYNTASTIC
 "
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php', 'phpmd']
 
@@ -431,4 +467,9 @@ augroup vimrc_autocmd
         " Autocalls
         au BufWrite * :call <sid>MkdirsIfNotExists(expand('<afile>:h'))
     endif
+augroup END
+
+augroup reload_vimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
