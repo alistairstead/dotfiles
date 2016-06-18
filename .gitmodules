@@ -100,3 +100,30 @@
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
+[submodule ".vim/bundle/vim-behat"]
+	path = .vim/bundle/vim-behat
+	url = https://github.com/veloce/vim-behat
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule ".vim/bundle/delimitmate"]
+	path = .vim/bundle/delimitmate
+	url = https://github.com/raimondi/delimitmate
+[submodule ".vim/bundle/gundo"]
+	path = .vim/bundle/gundo
+	url = https://github.com/sjl/gundo.vim
+[submodule ".vim/bundle/vim-json"]
+	path = .vim/bundle/vim-json
+	url = https://github.com/elzr/vim-json
+[submodule ".vim/bundle/vim-dispatch"]
+	path = .vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch
+[submodule ".vim/bundle/vim-startify"]
+	path = .vim/bundle/vim-startify
+	url = https://github.com/mhinz/vim-startify
+[submodule ".vim/bundle/vim-autotag"]
+	path = .vim/bundle/vim-autotag
+	url = git@github.com:craigemery/vim-autotag.git
+[submodule ".vim/bundle/neiocomplete"]
+	path = .vim/bundle/neiocomplete
+	url = https://github.com/shougo/neocomplete.vim
