@@ -11,11 +11,20 @@ call pathogen#infect()
 "
 "  HIGHLIGHTING
 "
-syntax on
-colo mustango
 se cursorline
 se listchars=tab:▸\ ,trail:□,eol:¬
-
+"
+"""""""""""""""""""""""""""""""""""""""
+"
+"  THEME OPTIONS
+"
+let g:solarized_termcolors=256
+let g:solarized_bold=1
+let g:solarized_underline=1
+let g:solarized_italic=1
+syntax on
+set background=dark
+colorscheme solarized
 "
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -39,9 +48,9 @@ se laststatus=2
 se noshowmode
 se mousehide
 se ttyfast
-se autoindent
-se copyindent
-se smartindent
+" se autoindent
+" se copyindent
+" se smartindent
 se smarttab
 se nolist
 se backspace=indent,eol,start
@@ -235,10 +244,10 @@ vnoremap <s-l>   <nop>
 "
 "  SEARCH TUNING
 "
-nnoremap / /\v
-vnoremap / /\v
-nnoremap * *N
-
+" nnoremap / /\v
+" vnoremap / /\v
+" nnoremap * *N
+nnoremap <CR> :noh<CR><CR>
 
 "
 "+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -250,7 +259,7 @@ nnoremap * *N
 "
 "  AIRLINE
 "
-let g:airline_theme='sol'
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 
@@ -393,8 +402,23 @@ nnoremap <leader>e :call PhpExpandClass()<cr>
 "
 "  BEHAT
 "
-let feature_filetype='behat'
+" mandatory if you want the '*.feature' files to be set with behat filetype
+let g:feature_filetype='behat'
 
+" The plugin tries successively several behat executables to find the good one
+" (php behat.phar, bin/behat, etc). You can define a custom list that will
+" be prepended to the default path with g:behat_executables.
+" let behat_executables = ['behat.sh']
+
+" if you use neocomplcache add this to enable behat completion
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.behat = '\(When\|Then\|Given\|And\)\s.*$'
+
+" disable omni completion steps cache
+" normally you don't want to do this because it's slow (and will prevent neocomplcache from working)
+" let g:behat_disable_omnicompl_cache = 1
 
 "
 "+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
