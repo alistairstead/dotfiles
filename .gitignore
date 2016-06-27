@@ -14,3 +14,4 @@ bin/
 .zshrc.d/private.sh
 .atom/.apm
 .atom/blob-store
+.vim/.netrwhist
