@@ -285,3 +285,6 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[user]
+	email = ailstair_stead@me.com
+	name = Alistair Stead
