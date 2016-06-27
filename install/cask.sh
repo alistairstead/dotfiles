@@ -30,6 +30,8 @@ brew cask install licecap
 brew cask install limechat
 brew cask install little-snitch
 brew cask install miro-video-converter
+brew cask install omnifocus-beta
+brew cask install omnifocus-clip-o-tron
 brew cask install omnigraffle
 brew cask install skype
 brew cask install slack
