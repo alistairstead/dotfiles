@@ -27,75 +27,47 @@ brew update
 # Upgrade any already-installed formulae
 brew upgrade
 
-
-# GNU core utilities (those that come with OS X are outdated)
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
-brew install moreutils
-# GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
-brew install findutils
-# GNU `sed`, overwriting the built-in `sed`
-brew install gnu-sed --default-names
-
-
-# Bash 4
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before running `chsh`.
-brew install bash
-# regular bash-completion package is held back to an older release, so we get latest from versions.
-#   github.com/Homebrew/homebrew/blob/master/Library/Formula/bash-completion.rb#L3-L4
 brew tap homebrew/versions
-brew install homebrew/versions/bash-completion2
 
-# generic colouriser  http://kassiopeia.juls.savba.sk/~garabik/software/grc/
+brew install bash
+brew install bash-completion2
 brew install grc
-
 brew install gpg
 brew install keybase
-
-# Install wget with IRI support
 brew install wget --enable-iri
-
-# Install more recent versions of some OS X tools
 brew install vim --override-system-vi
-brew install homebrew/dupes/grep
-brew install homebrew/dupes/screen
-
-# github util. imho better than hub
 brew install gh
 brew install hub
-
-
 # mtr - ping & traceroute. best.
 brew install mtr
-
-# Install other useful binaries
 brew install ack
 brew install git
 brew install git-extras
-brew install imagemagick --with-webp
-brew install pv
-brew install rename
 brew install tree
-brew install zopfli
-brew install ffmpeg --with-libvpx
 brew install ssh-copy-id
-
-brew install terminal-notifier
-
-brew install android-platform-tools
-brew install pidcat   # colored logcat guy
-
 brew install zsh
-
 brew install heroku-toolbelt
-
 brew install trash
 
-# PHP
-
-# brew tap homebrew/php
-# brew install homebrew/php/composer
-# brew install homebrew/php/php56
+brew install findutils --default-names
+brew install gnu-sed --default-names
+brew install gnu-tar --default-names
+brew install gnu-which --default-names
+brew install gnutls --default-names
+brew install grep --default-names
+brew install coreutils
+brew install moreutils
+brew install binutils
+brew install diffutils
+brew install gzip
+brew install watch
+brew install tmux
+brew install wget
+brew install nmap
+brew install htop
+brew install selenium-server-standalone
+brew install chromedriver
+brew install jmeter
 
 # Remove outdated versions from the cellar
 brew cleanup
