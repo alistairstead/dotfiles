@@ -62,12 +62,12 @@ brew install diffutils
 brew install gzip
 brew install watch
 brew install tmux
-brew install wget
 brew install nmap
 brew install htop
 brew install selenium-server-standalone
 brew install chromedriver
 brew install jmeter
+brew install mackup
 
 # Remove outdated versions from the cellar
 brew cleanup
