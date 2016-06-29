@@ -68,7 +68,7 @@ rb_prompt() {
 }
 
 node_version() {
-  if ! [[ -z "$(nvm)" ]]
+  if [[ -f /usr/local/bin/nvm ]]
   then
     echo $(nvm current)
   else
