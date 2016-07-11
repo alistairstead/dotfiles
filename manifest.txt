@@ -8,6 +8,7 @@
 .gitconfig
 .gitignore-global
 .inputrc
+.mackup
 .mackup.cfg
 .npmrc
 .tmux.conf
