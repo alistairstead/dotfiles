@@ -68,6 +68,7 @@ brew install selenium-server-standalone
 brew install chromedriver
 brew install jmeter
 brew install mackup
+brew install homebrew/binary/ngrok2
 
 # Remove outdated versions from the cellar
 brew cleanup
