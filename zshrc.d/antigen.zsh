@@ -50,7 +50,8 @@ $b zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
 # suggestion as you type
 $b zsh-users/zsh-autosuggestions
 
-antigen theme arialdomartini/oh-my-git-themes oppa-lana-style
+antigen theme arialdomartini/oh-my-git-themes arialdo-pathinline
+#oppa-lana-style
 # arialdo-granzestyle
 # arialdo-pathinline
 # oppa-lana-style

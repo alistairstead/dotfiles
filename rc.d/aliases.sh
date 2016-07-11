@@ -318,3 +318,5 @@ alias ssh-tunnel-enable='echo -n > ~/.ssh/config && cat ~/.ssh/*.config > ~/.ssh
 alias ssh-tunnel-disable='echo -n > ~/.ssh/config && cat ~/.ssh/hosts.*.config > ~/.ssh/config'
 
 alias composer="docker run --rm -u $UID -v $PWD:/app composer/composer"
+alias php7='docker run -it --rm -v "$PWD:/app" -w /app php:7 php'
+#alias iex='docker run -it --rm -v "$PWD:/app" -w /app elixir iex -S mix'
