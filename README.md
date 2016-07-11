@@ -6,14 +6,19 @@
 * Mac OS X
 
 
-# Install
+# Install Dotfiles
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/alistairstead/dotfiles/master/install.sh)" && source
 ~/.zshrc
 ```
 
+## Install OS X configuration
 
+* Connect to iCloud
+* Connect 1Password
+* Connect Dropbox
+* Restore [makckup](https://github.com/lra/mackup)
 
 # License and Author
 
