@@ -262,7 +262,22 @@ nnoremap <CR> :noh<CR><CR>
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
-
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 "
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -308,7 +323,7 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
-let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0
 
 "
@@ -318,6 +333,13 @@ let g:ctrlp_match_window_reversed = 0
 "
 let g:LustyJugglerShowKeys = '1'
 
+"
+""""""""""""""""""""""""""""""""""""
+"
+"  STARTIFY
+"
+let g:startify_bookmarks = [ {'c': '~/.vimrc'}, '~/.zshrc' ]
+let g:startify_files_number = 5
 "
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -356,8 +378,8 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "
 "  NERDTREE
 "
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <C-\> :NERDTreeToggle<CR>
 "
@@ -397,6 +419,13 @@ let php_noShortTags = 1
 nnoremap <leader>u :call PhpInsertUse()<cr>
 nnoremap <leader>e :call PhpExpandClass()<cr>
 
+"
+""""""""""""""""""""""""""""""""""""""""""
+"
+"  ELIXIR
+"
+"run tests right from vim - super helpful
+map <leader><space> :!mix test<CR>
 "
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -476,6 +505,7 @@ augroup vimrc_autocmd
         au FocusLost silent! :wa
         au FileType helpfile setlocal nonumber
 
+        au BufWritePost $MYVIMRC source $MYVIMRC
         " File types
         au BufRead,BufNewFile *.php         setlocal filetype=php iskeyword-=$
         au BufRead,BufNewFile *.php         inoremap <buffer> § $
@@ -491,9 +521,4 @@ augroup vimrc_autocmd
         " Autocalls
         au BufWrite * :call <sid>MkdirsIfNotExists(expand('<afile>:h'))
     endif
-augroup END
-
-augroup reload_vimrc
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
