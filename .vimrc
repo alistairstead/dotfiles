@@ -48,9 +48,9 @@ se laststatus=2
 se noshowmode
 se mousehide
 se ttyfast
-" se autoindent
-" se copyindent
-" se smartindent
+se autoindent
+se copyindent
+se smartindent
 se smarttab
 se nolist
 se backspace=indent,eol,start
@@ -63,7 +63,7 @@ se path=**
 "  FOLDING
 "
 se foldmethod=syntax
-se foldlevel=1
+se foldlevel=4
 
 "
 """"""""""""""""""""""""""""""""""""""""
@@ -323,6 +323,7 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0
 
@@ -332,6 +333,7 @@ let g:ctrlp_match_window_reversed = 0
 "  LUSTY
 "
 let g:LustyJugglerShowKeys = '1'
+let g:LustyJugglerSuppressRubyWarning = 1
 
 "
 """"""""""""""""""""""""""""""""""""

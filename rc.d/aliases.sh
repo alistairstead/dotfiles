@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias dotfiles='vim ~/src/dotfiles'
+alias dotfiles='vim ~/dotfiles'
 alias man='nocorrect man'
 alias mv='nocorrect mv'
 alias mysql='nocorrect mysql'
