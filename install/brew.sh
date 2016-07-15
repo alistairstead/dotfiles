@@ -35,7 +35,8 @@ brew install grc
 brew install gpg
 brew install keybase
 brew install wget --enable-iri
-brew install vim --override-system-vi
+#brew install vim --override-system-vi
+brew install neovim/neovim/neovim
 brew install gh
 brew install hub
 # mtr - ping & traceroute. best.
@@ -69,6 +70,7 @@ brew install chromedriver
 brew install jmeter
 brew install mackup
 brew install homebrew/binary/ngrok2
+brew install reattach-to-user-namespace
 
 # Remove outdated versions from the cellar
 brew cleanup
