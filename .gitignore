@@ -2,7 +2,6 @@
 .atom/compile-cache
 .atom/packages
 .atom/storage
-bin/
 *.DS_Store
 *.orig
 **/*.cache
