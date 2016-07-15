@@ -14,50 +14,6 @@ function edit() {
 }
 alias e=edit
 
-# `s` with no arguments opens the current directory in Sublime Text, otherwise
-# opens the given location
-function s() {
-	if [ $# -eq 0 ]; then
-		subl .
-	else
-		subl "$@"
-	fi;
-}
-
-# `a` with no arguments opens the current directory in Atom Editor, otherwise
-# opens the given location
-function a() {
-  local _file_path > /dev/null 2>&1
-	if [ $# -eq 0 ]; then
-		_file_path="."
-	else
-		_file_path="$@"
-	fi;
-
-  local _atom_paths > /dev/null 2>&1
-  _atom_paths=(
-      "$HOME/Applications/Atom.app"
-      "/Applications/Atom.app"
-  )
-
-  for _atom_path in $_atom_paths; do
-      if [[ -a $_atom_path ]]; then
-          open -a $_atom_path $_file_path
-          break
-      fi
-  done
-}
-
-# `v` with no arguments opens the current directory in Vim, otherwise opens the
-# given location
-function v() {
-	if [ $# -eq 0 ]; then
-		vim .
-	else
-		vim "$@"
-	fi;
-}
-
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
@@ -414,4 +370,8 @@ create-cask-manifest() {
   done
   echo "File created $(manifest)"
   cat manifest
+}
+
+diex() {
+  docker run -it --rm -v "${PWD}:/app" -w /app elixir iex "$@"
 }
