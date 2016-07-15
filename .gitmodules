@@ -130,6 +130,3 @@
 [submodule ".vim/bundle/alchemist.vim"]
 	path = .vim/bundle/alchemist.vim
 	url = git@github.com:slashmili/alchemist.vim.git
-[submodule ".vim/bundle/command-t"]
-	path = .vim/bundle/command-t
-	url = git@github.com:wincent/command-t.git
