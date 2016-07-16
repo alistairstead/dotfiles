@@ -1,18 +1,6 @@
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule ".vim/bundle/markdown"]
-	path = .vim/bundle/markdown
-	url = https://github.com/tpope/vim-markdown.git
-[submodule ".vim/bundle/git"]
-	path = .vim/bundle/git
-	url = https://github.com/tpope/vim-git.git
-[submodule ".vim/bundle/fugitive"]
-	path = .vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/surround"]
-	path = .vim/bundle/surround
-	url = https://github.com/tpope/vim-surround.git
 [submodule ".vim/bundle/unimpared"]
 	path = .vim/bundle/unimpared
 	url = https://github.com/tpope/vim-unimpaired.git
@@ -22,12 +10,6 @@
 [submodule ".vim/bundle/BufOnly"]
 	path = .vim/bundle/BufOnly
 	url = https://github.com/vim-scripts/BufOnly.vim.git
-[submodule ".vim/bundle/easymotion"]
-	path = .vim/bundle/easymotion
-	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule ".vim/bundle/php-namespace"]
-	path = .vim/bundle/php-namespace
-	url = https://github.com/arnaud-lb/vim-php-namespace.git
 [submodule ".vim/bundle/scss"]
 	path = .vim/bundle/scss
 	url = https://github.com/cakebaker/scss-syntax.vim.git
@@ -40,93 +22,24 @@
 [submodule ".vim/bundle/commaobject"]
 	path = .vim/bundle/commaobject
 	url = https://github.com/austintaylor/vim-commaobject.git
-[submodule ".vim/bundle/ctrlp"]
-	path = .vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule ".vim/bundle/vimux"]
 	path = .vim/bundle/vimux
 	url = https://github.com/benmills/vimux.git
-[submodule ".vim/bundle/go"]
-	path = .vim/bundle/go
-	url = https://github.com/fsouza/go.vim.git
 [submodule ".vim/bundle/movar"]
 	path = .vim/bundle/movar
 	url = https://github.com/robmiller/vim-movar.git
 [submodule ".vim/bundle/funcoo"]
 	path = .vim/bundle/funcoo
 	url = https://github.com/rizzatti/funcoo.vim.git
-[submodule ".vim/bundle/abolish"]
-	path = .vim/bundle/abolish
-	url = https://github.com/tpope/vim-abolish.git
-[submodule ".vim/bundle/vim-airline"]
-	path = .vim/bundle/vim-airline
-	url = https://github.com/bling/vim-airline
-[submodule ".vim/bundle/lusty"]
-	path = .vim/bundle/lusty
-	url = https://github.com/sjbach/lusty.git
 [submodule ".vim/bundle/ag"]
 	path = .vim/bundle/ag
 	url = https://github.com/rking/ag.vim
-[submodule ".vim/bundle/rust"]
-	path = .vim/bundle/rust
-	url = https://github.com/rust-lang/rust.vim.git
-[submodule ".vim/bundle/scala"]
-	path = .vim/bundle/scala
-	url = git@github.com:derekwyatt/vim-scala.git
-[submodule ".vim/bundle/elixir"]
-	path = .vim/bundle/elixir
-	url = https://github.com/elixir-lang/vim-elixir.git
-[submodule ".vim/bundle/editorconfig"]
-	path = .vim/bundle/editorconfig
-	url = https://github.com/editorconfig/editorconfig-vim.git
-[submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
-[submodule ".vim/bundle/yajs"]
-	path = .vim/bundle/yajs
-	url = https://github.com/othree/yajs.vim.git
-[submodule ".vim/bundle/dash.vim"]
-	path = .vim/bundle/dash.vim
-	url = git@github.com:rizzatti/dash.vim.git
-[submodule ".vim/bundle/vim-numbertoggle"]
-	path = .vim/bundle/vim-numbertoggle
-	url = git://github.com/jeffkreeftmeijer/vim-numbertoggle.git
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".vim/bundle/vim-airline-themes"]
-	path = .vim/bundle/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
-[submodule ".vim/bundle/nerdcommenter"]
-	path = .vim/bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter
 [submodule ".vim/bundle/vim-behat"]
 	path = .vim/bundle/vim-behat
 	url = https://github.com/veloce/vim-behat
-[submodule ".vim/bundle/vim-colors-solarized"]
-	path = .vim/bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
-[submodule ".vim/bundle/delimitmate"]
-	path = .vim/bundle/delimitmate
-	url = https://github.com/raimondi/delimitmate
 [submodule ".vim/bundle/gundo"]
 	path = .vim/bundle/gundo
 	url = https://github.com/sjl/gundo.vim
-[submodule ".vim/bundle/vim-json"]
-	path = .vim/bundle/vim-json
-	url = https://github.com/elzr/vim-json
-[submodule ".vim/bundle/vim-dispatch"]
-	path = .vim/bundle/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch
-[submodule ".vim/bundle/vim-startify"]
-	path = .vim/bundle/vim-startify
-	url = https://github.com/mhinz/vim-startify
 [submodule ".vim/bundle/vim-autotag"]
 	path = .vim/bundle/vim-autotag
 	url = git@github.com:craigemery/vim-autotag.git
-[submodule ".vim/bundle/neiocomplete"]
-	path = .vim/bundle/neiocomplete
-	url = https://github.com/shougo/neocomplete.vim
-[submodule ".vim/bundle/alchemist.vim"]
-	path = .vim/bundle/alchemist.vim
-	url = git@github.com:slashmili/alchemist.vim.git
