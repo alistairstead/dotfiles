@@ -1,3 +1,7 @@
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
 call plug#begin()
 
 Plug 'tpope/vim-sensible'
@@ -17,7 +21,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'shougo/neocomplete'
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'slashmili/alchemist.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'Lokaltog/vim-easymotion'
@@ -27,7 +31,7 @@ Plug 'kana/vim-smartinput'
 
 call plug#end()
 
-"se cursorline
+se cursorline
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
@@ -79,44 +83,25 @@ se scrolloff=3
 " Use "+p (in N) or <c-r>+ (in I)
 
 "
-""""""""""""""""""""""""""""""""""""""""
-"
-"  GENERAL OVERRIDINGS
-"
+" General overridings
 inoremap jk <esc>
 inoremap <esc> <nop>
 "nnoremap Y y$
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  DASH
-"
+" Dash
 nnoremap <leader>d :Dash<cr>
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  HIGHLIGHTING MAPPINGS
-"
+" Highlighting mappings
 nnoremap <leader>ll :set list!<cr>
 nnoremap <silent> <leader><space> :nohlsearch<cr>
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  LINES MOVEMENT
-"
+" Lines movement
 nnoremap <s-up>   [e
 nnoremap <s-down> ]e
 vnoremap <s-up>   [egv
 vnoremap <s-down> ]egv
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  FS NAVIGATION
-"
+" FS Navigation
 nnoremap <leader>ep :e <c-r>=expand("%:p:h")."/"<cr>
 nnoremap <leader>es :vsp <c-r>=expand("%:p:h")."/"<cr>
 nnoremap <leader>se :Vex<cr><c-w>=
@@ -124,20 +109,12 @@ nnoremap <leader>mk :!mkdir <c-r>=expand("%:p:h")."/"<cr>
 nnoremap <leader>rm :!rm -rf <c-r>=expand("%:p:h")."/"<cr>
 cnoremap w!!        w !sudo tee % >/dev/null
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  TABS MANAGEMENT
-"
+" Tabs management
 nnoremap <leader>df :tab split<cr>
 nnoremap <leader>dd :tabclose<cr>
 nnoremap <leader>do :tabonly<cr>
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  WINDOWS MANAGEMENT
-"
+" Windows management
 nnoremap <leader>we <c-w>v<c-w>l
 nnoremap <leader>ws <c-w>s<c-w>j
 nnoremap <leader>wq <c-w>v<c-w>h
@@ -154,19 +131,11 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-x> <c-w>x
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  BUFFERS MANAGEMENT
-"
+" Buffers management
 nnoremap <leader>bo :BufOnly<cr>
 nnoremap <leader>bc :bd<cr>
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  MOVEMENT TUNING
-"
+" Movement tuning
 nnoremap j     gj
 nnoremap k     gk
 nnoremap <tab> %
@@ -174,11 +143,7 @@ vnoremap <tab> %
 vnoremap <     <gv
 vnoremap >     >gv
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  MOVEMENT COMBINATIONS TUNING
-"
+" Movement combinations tuning
 nnoremap <up>    <nop>
 nnoremap <down>  <nop>
 nnoremap <left>  <nop>
@@ -192,26 +157,13 @@ vnoremap <s-j>   <nop>
 vnoremap <s-k>   <nop>
 vnoremap <s-l>   <nop>
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  SEARCH TUNING
-"
+" Search tuning
 " nnoremap / /\v
 " vnoremap / /\v
 " nnoremap * *N
 nnoremap <CR> :noh<CR><CR>
 
-"
-"+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-"|
-"|  > PLUGINS CONFIGURATION
-"|
-"|
-""""""""""""""""""""""""""""""""""""""""
-"
-"  AIRLINE
-"
+" Airline
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
@@ -231,11 +183,8 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  FUGITIVE
-"
+
+" Fugitive
 nnoremap <leader>gs  :Gstatus<cr>
 nnoremap <leader>ga  :Gwrite<cr>
 nnoremap <leader>gh  :Gbrowse!<cr>
@@ -244,28 +193,17 @@ nnoremap <leader>grm :Gremove<cr>
 nnoremap <leader>gmv :Gmove<cr>
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  ACK
-"
+
+" Ack
 nnoremap <expr><leader>a ":Ack! "
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  UltiSnips
-"
+" UltiSnips
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsListSnippets = '<c-tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  CTRLP
-"
+" CTRLP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
@@ -280,26 +218,11 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_match_window_reversed = 0
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  LUSTY
-"
-let g:LustyJugglerShowKeys = '1'
-let g:LustyJugglerSuppressRubyWarning = 1
-
-"
-""""""""""""""""""""""""""""""""""""
-"
-"  STARTIFY
-"
+" Startify
 let g:startify_bookmarks = [ {'c': '~/.vimrc'}, '~/.zshrc' ]
 let g:startify_files_number = 5
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  TABULAR
-"
+
+" Tabular
 nnoremap <leader><tab><tab> :Tab /
 nnoremap <leader><tab>= :Tab /=<cr>
 nnoremap <leader><tab>: :Tab /:\zs<cr>
@@ -309,39 +232,28 @@ vnoremap <leader><tab>= :Tab /=<cr>
 vnoremap <leader><tab>: :Tab /:\zs<cr>
 vnoremap <leader><tab>> :Tab /=><cr>
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  EASYMOTION
-"
+" Easymotion
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
-
 " s{char}{char} to move to {char}{char}
 nmap s <Plug>(easymotion-overwin-f2)
-
 " Move to line
 map <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
-
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
-"
-"""""""""""""""""""""""""""""""""""""
-"
-"  NERDTREE
-"
+
+" Nerdtree
+map <C-\> :NERDTreeToggle<CR>
+let g:NERDTreeWinSize = 24
+let g:NERDTreeMinimalUI = 1
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-map <C-\> :NERDTreeToggle<CR>
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  SYNTASTIC
-"
+
+" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -350,42 +262,49 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:airline#extensions#syntastic#enabled = 0
 
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php', 'phpmd']
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  VIMUX
+" VIMUX
 "
 nnoremap <leader>vr :VimuxPromptCommand<cr>
 nnoremap <leader>vl :VimuxRunLastCommand<cr>
 nnoremap <leader>vc :VimuxCloseRunner<cr>
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  PHP
-"
+" Elm
+let g:polyglot_disabled = ['elm']
+let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1
+let g:elm_syntastic_show_warnings = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:elm_syntastic_show_warnings = 1
+
+" PHP
 let g:php_folding=1
 let php_noShortTags = 1
 
 nnoremap <leader>u :call PhpInsertUse()<cr>
 nnoremap <leader>e :call PhpExpandClass()<cr>
 
-"
-""""""""""""""""""""""""""""""""""""""""""
-"
-"  ELIXIR
-"
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Elixir
 "run tests right from vim - super helpful
-map <leader><space> :!mix test<CR>
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  BEHAT
-"
+map <leader>m :!mix test<CR>
+
+" Markdown
+autocmd BufNewFile,BufRead *.md set spell | set lbr | set nonu
+let g:markdown_fenced_languages = ['html', 'json', 'css', 'javascript', 'elm', 'vim']
+
+" .vimrc
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+
+" BEHAT
 " mandatory if you want the '*.feature' files to be set with behat filetype
 let g:feature_filetype='behat'
 
@@ -436,12 +355,7 @@ function! <sid>MkdirsIfNotExists(directory)
     endif
 endfunction
 
-"
-"+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-"|
-"|  > AUTOCMD
-"|
-"|
+"  AUTOCMD
 filetype on
 filetype plugin on
 filetype indent on
@@ -460,7 +374,6 @@ augroup vimrc_autocmd
         au FocusLost silent! :wa
         au FileType helpfile setlocal nonumber
 
-        au BufWritePost $MYVIMRC source $MYVIMRC
         " File types
         au BufRead,BufNewFile *.php         setlocal filetype=php iskeyword-=$
         au BufRead,BufNewFile *.php         inoremap <buffer> § $
