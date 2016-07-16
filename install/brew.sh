@@ -49,7 +49,7 @@ brew install ssh-copy-id
 brew install zsh
 brew install heroku-toolbelt
 brew install trash
-
+brew install python3
 brew install findutils --default-names
 brew install gnu-sed --default-names
 brew install gnu-tar --default-names
