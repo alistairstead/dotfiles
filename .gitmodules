@@ -1,18 +1,12 @@
 [submodule "antigen"]
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule ".vim/bundle/unimpared"]
-	path = .vim/bundle/unimpared
-	url = https://github.com/tpope/vim-unimpaired.git
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
 [submodule ".vim/bundle/BufOnly"]
 	path = .vim/bundle/BufOnly
 	url = https://github.com/vim-scripts/BufOnly.vim.git
-[submodule ".vim/bundle/scss"]
-	path = .vim/bundle/scss
-	url = https://github.com/cakebaker/scss-syntax.vim.git
 [submodule ".vim/bundle/php-getter-setter"]
 	path = .vim/bundle/php-getter-setter
 	url = https://github.com/docteurklein/php-getter-setter.vim.git
