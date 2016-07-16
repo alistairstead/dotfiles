@@ -1,23 +1,44 @@
-""""""""""""""""""""""""""""""""""""""""
-"
-"  BUNDLES (PATHOGEN)
-"
-"    `:Helptags` to regenerate docs
-"
-call pathogen#infect()
+call plug#begin()
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  HIGHLIGHTING
-"
-se cursorline
-se listchars=tab:▸\ ,trail:□,eol:¬
-"
-"""""""""""""""""""""""""""""""""""""""
-"
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-abolish'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'elmcast/elm-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'rizzatti/dash.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'shougo/neocomplete'
+Plug 'slashmili/alchemist.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'arnaud-lb/vim-php-namespace'
+Plug 'docteurklein/php-getter-setter.vim'
+Plug 'kana/vim-smartinput'
+
+call plug#end()
+
+"se cursorline
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+set fillchars+=vert:\
+let mapleader=" "
+set number
+set ignorecase
+set noswapfile
+set completeopt=longest,menuone
+
 "  THEME OPTIONS
-"
 let g:solarized_termcolors=256
 let g:solarized_bold=1
 let g:solarized_underline=1
@@ -25,64 +46,12 @@ let g:solarized_italic=1
 syntax on
 set background=dark
 colorscheme solarized
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  ENVIRONMENT
-"
-se encoding=utf8
-se backspace=2
-se fileformat=unix
-se fileformats=unix
-se nocompatible
-se hidden
-se nobackup
-se noswapfile
-se dir=/tmp,/var/tmp
-se autoread
-se number
-se relativenumber
-se visualbell
-se ch=1
-se laststatus=2
-se noshowmode
-se mousehide
-se ttyfast
-se autoindent
-se copyindent
-se smartindent
-se smarttab
-se nolist
-se backspace=indent,eol,start
-se wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/*cache,*/logs,*/web/bundles,.DS_Store
-se path=**
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
 "  FOLDING
-"
 se foldmethod=syntax
 se foldlevel=4
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  SEARCH
-"
-se incsearch
-se hlsearch
-se showmatch
-se ignorecase
-se smartcase
-se gdefault
-se tags+=vendor.tags
-
-"
-""""""""""""""""""""""""""""""""""""""""
-"
 "  SCROLLING
-"
 se scrolljump=3
 se scrolloff=3
 
@@ -96,20 +65,6 @@ se scrolloff=3
 "se wildmode=full
 "inoremap <c-l> <c-x><c-l>
 
-"
-""""""""""""""""""""""""""""""""""""""""
-"
-"  WRAPPING
-"
-se wrap
-se linebreak
-se textwidth=100
-se colorcolumn=100
-se formatoptions=qrn1
-"se formatprg=par
-"se formatoptions+=tca
-
-"
 "+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 "|
 "|  > CUSTOM MAPPINGS
@@ -128,11 +83,9 @@ se formatoptions=qrn1
 "
 "  GENERAL OVERRIDINGS
 "
-let mapleader = ","
-let maplocalleader = "\\"
 inoremap jk <esc>
 inoremap <esc> <nop>
-nnoremap Y y$
+"nnoremap Y y$
 
 "
 """"""""""""""""""""""""""""""""""""""""
