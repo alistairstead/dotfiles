@@ -299,17 +299,6 @@ function gz() {
 	printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio";
 }
 
-# Syntax-highlight JSON strings or files
-# Usage: `json '{"foo":42}'` or `echo '{"foo":42}' | json`
-function json() {
-	if [ -t 0 ]; then # argument
-		python -mjson.tool <<< "$*" | pygmentize -l javascript;
-	else # pipe
-		python -mjson.tool | pygmentize -l javascript;
-	fi;
-}
-
-
 # animated gifs from any video
 # from alex sexton   gist.github.com/SlexAxton/4989674
 gifify() {
@@ -372,6 +361,10 @@ create-cask-manifest() {
   cat manifest
 }
 
-diex() {
+iex() {
   docker run -it --rm -v "${PWD}:/app" -w /app elixir iex "$@"
+}
+
+mix() {
+  docker run -it --rm -v "${PWD}:/app" -w /app elixir mix "$@"
 }
