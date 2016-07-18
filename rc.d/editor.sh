@@ -5,5 +5,3 @@ if which nvim &> /dev/null; then
 elif which vim &> /dev/null; then
   export EDITOR=vim
 fi
-
-# export GIT_EDITOR='atom-beta --add --wait'
