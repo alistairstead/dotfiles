@@ -28,6 +28,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'docteurklein/php-getter-setter.vim'
 Plug 'kana/vim-smartinput'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -301,8 +302,7 @@ autocmd BufNewFile,BufRead *.md set spell | set lbr | set nonu
 let g:markdown_fenced_languages = ['html', 'json', 'css', 'javascript', 'elm', 'vim']
 
 " .vimrc
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
-
+autocmd BufWritePost .vimrc source %
 
 " BEHAT
 " mandatory if you want the '*.feature' files to be set with behat filetype
