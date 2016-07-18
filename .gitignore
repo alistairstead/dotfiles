@@ -14,3 +14,5 @@
 .atom/.apm
 .atom/blob-store
 .vim/.netrwhist
+caches
+.vim/plugged
