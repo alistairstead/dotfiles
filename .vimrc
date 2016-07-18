@@ -29,6 +29,7 @@ Plug 'arnaud-lb/vim-php-namespace'
 Plug 'docteurklein/php-getter-setter.vim'
 Plug 'kana/vim-smartinput'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -273,6 +274,10 @@ let g:syntastic_php_checkers = ['php', 'phpmd']
 nnoremap <leader>vr :VimuxPromptCommand<cr>
 nnoremap <leader>vl :VimuxRunLastCommand<cr>
 nnoremap <leader>vc :VimuxCloseRunner<cr>
+
+" vim-tmux-navgator
+" https://github.com/christoomey/vim-tmux-navigator#it-doesnt-work-in-neovim-specifically-c-h
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
 " Elm
 let g:polyglot_disabled = ['elm']
