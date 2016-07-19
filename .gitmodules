@@ -2,20 +2,20 @@
 	path = antigen
 	url = https://github.com/zsh-users/antigen.git
 [submodule ".vim/bundle/BufOnly"]
-	path = .vim/bundle/BufOnly
+	path = link/.vim/bundle/BufOnly
 	url = https://github.com/vim-scripts/BufOnly.vim.git
 [submodule ".vim/bundle/commaobject"]
-	path = .vim/bundle/commaobject
+	path = link/.vim/bundle/commaobject
 	url = https://github.com/austintaylor/vim-commaobject.git
 [submodule ".vim/bundle/vimux"]
 	path = .vim/bundle/vimux
 	url = https://github.com/benmills/vimux.git
 [submodule ".vim/bundle/movar"]
-	path = .vim/bundle/movar
+	path = link/.vim/bundle/movar
 	url = https://github.com/robmiller/vim-movar.git
 [submodule ".vim/bundle/funcoo"]
 	path = .vim/bundle/funcoo
 	url = https://github.com/rizzatti/funcoo.vim.git
 [submodule ".vim/bundle/gundo"]
-	path = .vim/bundle/gundo
+	path = link/.vim/bundle/gundo
 	url = https://github.com/sjl/gundo.vim

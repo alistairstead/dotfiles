@@ -269,15 +269,9 @@ let g:airline#extensions#syntastic#enabled = 0
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php', 'phpmd']
 
-" VIMUX
-"
-nnoremap <leader>vr :VimuxPromptCommand<cr>
-nnoremap <leader>vl :VimuxRunLastCommand<cr>
-nnoremap <leader>vc :VimuxCloseRunner<cr>
-
 " vim-tmux-navgator
 let g:tmux_navigator_no_mappings = 1
-
+" https://robots.thoughtbot.com/seamlessly-navigate-vim-and-tmux-splits
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
