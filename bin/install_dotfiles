@@ -258,7 +258,7 @@ function do_stuff() {
 
 # Enough with the functions, let's do stuff.
 
-export prompt_delay=5
+export prompt_delay=10
 
 # Ensure that we can actually, like, compile anything.
 if [[ ! "$(type -P gcc)" ]] && is_osx; then
@@ -316,8 +316,8 @@ backup_dir="$DOTFILES/backups/$(date "+%Y_%m_%d-%H_%M_%S")/"
 backup=
 
 # Execute code for each file in these subdirectories.
-#do_stuff "copy"
-#do_stuff "link"
+do_stuff "copy"
+do_stuff "link"
 do_stuff "init"
 
 # Alert if backups were made.
