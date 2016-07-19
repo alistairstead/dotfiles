@@ -143,13 +143,13 @@ defaults write NSGlobalDomain KeyRepeat -int 0
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
+defaults write NSGlobalDomain AppleLanguages -array "en"
+defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=GBP"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Brussels" > /dev/null
+sudo systemsetup -settimezone "Europe/London" > /dev/null
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -556,7 +556,7 @@ tell application "Terminal"
 	(* Open the custom theme so that it gets added to the list
 	   of available terminal themes (note: this will open two
 	   additional terminal windows). *)
-	do shell script "open '$HOME/dotfiles/init/" & themeName & ".terminal'"
+	do shell script "open '$HOME/dotfiles/conf/" & themeName & ".terminal'"
 
 	(* Wait a little bit to ensure that the custom theme is added. *)
 	delay 1
@@ -597,7 +597,7 @@ EOD
 defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
 # Install the Solarized Dark theme for iTerm
-open "${HOME}/dotfiles/init/Solarized Dark.itermcolors"
+open "${HOME}/dotfiles/conf/Solarized Dark.itermcolors"
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
