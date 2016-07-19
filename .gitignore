@@ -16,3 +16,4 @@
 .vim/.netrwhist
 caches
 .vim/plugged
+link/.vim
