@@ -40,7 +40,9 @@ se cursorline
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
-set fillchars+=vert:\
+" Set split separator to Unicode box drawing character
+set fillchars=vert:│
+
 let mapleader=" "
 set number
 set ignorecase
@@ -64,23 +66,13 @@ se foldlevel=4
 "  SCROLLING
 se scrolljump=3
 se scrolloff=3
-
 "
-""""""""""""""""""""""""""""""""""""""""
-"
-"  AUTOCOMPLETION
-"
-"se wildcharm=<tab>
-"se wildmenu
-"se wildmode=full
-"inoremap <c-l> <c-x><c-l>
-
 "+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 "|
 "|  > CUSTOM MAPPINGS
 "|
-"|
-""""""""""""""""""""""""""""""""""""""""
+"+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 " nvim integration with system clipboard
 set clipboard+=unnamedplus
 
@@ -132,10 +124,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-x> <c-w>x
-
-" Buffers management
-nnoremap <leader>bo :BufOnly<cr>
-nnoremap <leader>bc :bd<cr>
 
 " Movement tuning
 nnoremap j     gj
