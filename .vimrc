@@ -30,6 +30,9 @@ Plug 'docteurklein/php-getter-setter.vim'
 Plug 'kana/vim-smartinput'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'carlitux/deoplete-ternjs'
+Plug 'wellle/tmux-complete.vim'
+Plug 'jgdavey/tslime.vim'
 
 call plug#end()
 
@@ -42,7 +45,8 @@ let mapleader=" "
 set number
 set ignorecase
 set noswapfile
-set completeopt=longest,menuone
+"set completeopt=longest,menuone
+set completeopt+=noinsert
 
 "  THEME OPTIONS
 let g:solarized_termcolors=256
@@ -77,12 +81,8 @@ se scrolloff=3
 "|
 "|
 """"""""""""""""""""""""""""""""""""""""
-"
-"  COPY-PASTE
-"
-"set clipboard=unnamed
-"
-" Use "+p (in N) or <c-r>+ (in I)
+" nvim integration with system clipboard
+set clipboard+=unnamedplus
 
 "
 " General overridings
@@ -276,6 +276,14 @@ nnoremap <leader>vl :VimuxRunLastCommand<cr>
 nnoremap <leader>vc :VimuxCloseRunner<cr>
 
 " vim-tmux-navgator
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+" Disable in favor of NERDTreeToggle
+"nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 " https://github.com/christoomey/vim-tmux-navigator#it-doesnt-work-in-neovim-specifically-c-h
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
@@ -297,6 +305,7 @@ nnoremap <leader>e :call PhpExpandClass()<cr>
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
 
 " Elixir
 "run tests right from vim - super helpful
