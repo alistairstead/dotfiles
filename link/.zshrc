@@ -14,7 +14,4 @@ if [ -d $HOME/dotfiles/rc.d ]; then
   done
 fi
 
-export NVM_DIR="${HOME}/.nvm"
-test -e "${NVM_DIR}/nvm.sh" && . "${NVM_DIR}/nvm.sh"
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
