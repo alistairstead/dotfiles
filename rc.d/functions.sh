@@ -369,6 +369,15 @@ mix() {
   docker run -it --rm -v "${PWD}:/app" -w /app elixir mix "$@"
 }
 
+vim() {
+    unset -f vim
+    if [ -s /usr/local/bin/nvim ]; then
+      nvim "$@"
+    else
+      vim "$@"
+    fi
+}
+
 nvm() {
     unset -f nvm
     export NVM_DIR=~/.nvm
