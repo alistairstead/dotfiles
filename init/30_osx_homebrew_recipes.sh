@@ -14,8 +14,8 @@ recipes=(
   grc
   gpg
   keybase
-  'wget --enable-iri'
-  #vim --override-system-vi
+  wget --enable-iri
+  vim --override-system-vi
   neovim/neovim/neovim
   gh
   hub
@@ -30,12 +30,12 @@ recipes=(
   heroku-toolbelt
   trash
   python3
-  'findutils --default-names'
-  'gnu-sed --default-names'
-  'gnu-tar --default-names'
-  'gnu-which --default-names'
-  'gnutls --default-names'
-  'grep --default-names'
+  findutils --default-names
+  gnu-sed --default-names
+  gnu-tar --default-names
+  gnu-which --default-names
+  gnutls --default-names
+  grep --default-names
   coreutils
   moreutils
   binutils
@@ -51,9 +51,12 @@ recipes=(
   mackup
   homebrew/binary/ngrok2
   reattach-to-user-namespace
+  homebrew/devel-only/elm-format --HEAD
+  jet
 )
-
+IFS=$'\n'
 brew_install_recipes
+unset IFS
 
 if [[ "$(dscl . -read ~ UserShell | awk '{print $2}')" != "$binroot/zsh" ]]; then
   e_header "Making $binroot/zsh your default shell"
