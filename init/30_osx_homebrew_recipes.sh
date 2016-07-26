@@ -53,6 +53,7 @@ recipes=(
   reattach-to-user-namespace
   homebrew/devel-only/elm-format --HEAD
   jet
+  Kubernetes-cli --HEAD
 )
 IFS=$'\n'
 brew_install_recipes
