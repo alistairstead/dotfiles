@@ -218,12 +218,20 @@ freshbrew() {
   brew prune
 }
 
-iex() {
-  docker run -it --rm -v "${PWD}:/app" -w /app elixir iex "$@"
+#iex() {
+  #docker run -it --rm -v "${PWD}:/app" -w /app elixir iex "$@"
+#}
+
+#mix() {
+  #docker run -it --rm -v "${PWD}:/app" -w /app elixir mix "$@"
+#}
+
+postgres_start() {
+  docker run --name postgres -d -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -p 5432:5432 postgres
 }
 
-mix() {
-  docker run -it --rm -v "${PWD}:/app" -w /app elixir mix "$@"
+postgres_stop() {
+  docker rm postgres -f
 }
 
 vim() {
@@ -254,4 +262,8 @@ npm() {
     export NVM_DIR=~/.nvm
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
     npm "$@"
+}
+
+docker-clean() {
+  docker volume rm $(docker volume ls -qf dangling=true)
 }
