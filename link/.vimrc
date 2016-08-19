@@ -18,6 +18,7 @@ Plug 'elmcast/elm-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
@@ -33,6 +34,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'carlitux/deoplete-ternjs'
 Plug 'wellle/tmux-complete.vim'
 Plug 'jgdavey/tslime.vim'
+Plug 'vim-scripts/BufOnly.vim'
 
 call plug#end()
 
@@ -51,13 +53,11 @@ set noswapfile
 set completeopt+=noinsert
 
 "  THEME OPTIONS
-let g:solarized_termcolors=256
-let g:solarized_bold=1
-let g:solarized_underline=1
-let g:solarized_italic=1
+" Molokai
+let g:rehash256=1
 syntax on
 set background=dark
-colorscheme solarized
+colorscheme molokai
 
 "  FOLDING
 se foldmethod=syntax
@@ -153,21 +153,22 @@ vnoremap <s-l>   <nop>
 " nnoremap * *N
 nnoremap <CR> :noh<CR><CR>
 
+" Buffer management
+nnoremap <leader>bo :BufOnly<cr>
+nnoremap <leader>bc :bd<cr>
+
 " Airline
-let g:airline_theme='solarized'
+let g:airline_theme='molokai'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 " unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'

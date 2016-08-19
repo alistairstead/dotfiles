@@ -30,6 +30,7 @@ casks=(
   dash
   docker
   dropbox
+  duet
   evernote
   fantastical
   firefox-nightly
