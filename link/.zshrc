@@ -19,6 +19,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 export NVM_DIR="/Users/astead/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+[[ $SHLVL != "2" ]] && tmux new
+
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/astead/Dropbox/Mackup/Downloads/google-cloud-sdk/path.zsh.inc'
 
