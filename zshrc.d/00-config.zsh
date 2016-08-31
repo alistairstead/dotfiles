@@ -24,17 +24,10 @@ setopt PROMPT_SUBST
 setopt CORRECT
 setopt IGNORE_EOF
 
-zle -N newtab
-zle -N predict-on
-#zle -N predict-off
-
-bindkey '^N' newtab
 bindkey '^?' backward-delete-char
-bindkey "^K" history-substring-search-up
-bindkey "^J" history-substring-search-down
+bindkey "^P" history-substring-search-up
+bindkey "^N" history-substring-search-down
 bindkey "^R" history-incremental-search-backward
-bindkey "^X^Z" predict-on   # C-x C-z
-bindkey "^Z" predict-off    # C-z
 bindkey "^L" forward-word
 bindkey "^H" backward-word
 bindkey "^A" beginning-of-line
@@ -55,3 +48,37 @@ setopt pushd_ignore_dups        # Do not store duplicates in the stack.
 # Report CPU usage for commands running longer than 10 seconds.
 export TIMEFMT="%U user %S system %P cpu %*E total, running %J"
 REPORTTIME=10
+
+#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+## Aliases and functions
+#ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
+#ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
+
+## Commands and builtins
+#ZSH_HIGHLIGHT_STYLES[command]="fg=green"
+#ZSH_HIGHLIGHT_STYLES[hashed-command]="fg=green,bold"
+#ZSH_HIGHLIGHT_STYLES[builtin]="fg=green,bold"
+#ZSH_HIGHLIGHT_STYLES[precommand]="fg=green,underline"
+#ZSH_HIGHLIGHT_STYLES[commandseparator]="none"
+
+## Paths
+#ZSH_HIGHLIGHT_STYLES[path]='fg=white,underline'
+
+## Globbing
+#ZSH_HIGHLIGHT_STYLES[globbing]='fg=yellow,bold'
+
+## Options and arguments
+#ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=red'
+#ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=red'
+
+#ZSH_HIGHLIGHT_STYLES[back-quoted-argument]="fg=green"
+#ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="fg=green"
+#ZSH_HIGHLIGHT_STYLES[double-quoted-argument]="fg=green"
+#ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]="fg=green"
+#ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]="fg=green"
+
+## Patterns
+#ZSH_HIGHLIGHT_PATTERNS+=('mv *' 'fg=white,bold,bg=red')
+#ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+#ZSH_HIGHLIGHT_PATTERNS+=('sudo ' 'fg=white,bold,bg=red')
