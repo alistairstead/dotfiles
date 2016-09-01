@@ -7,9 +7,9 @@ function hist() {
 # Opens file in EDITOR.
 function e() {
   if [ $# -eq 0 ]; then
-		$EDITOR .;
+		$EDITOR
 	else
-		$EDITOR "$@";
+		$EDITOR "$@"
 	fi;
 }
 
@@ -235,7 +235,6 @@ postgres_stop() {
 }
 
 vim() {
-    unset -f vim
     if [ -s /usr/local/bin/nvim ]; then
       nvim "$@"
     else
@@ -261,6 +260,7 @@ npm() {
     unset -f npm
     export NVM_DIR=~/.nvm
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+    source <(npm completion)
     npm "$@"
 }
 

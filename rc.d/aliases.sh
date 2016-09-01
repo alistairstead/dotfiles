@@ -29,7 +29,7 @@ alias where=which
 alias brwe=brew
 
 # be nice
-alias please=sudo
+alias please='sudo '
 alias hosts='sudo $EDITOR /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
 # use coreutils `ls` if possible…
