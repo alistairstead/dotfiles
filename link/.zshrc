@@ -1,4 +1,15 @@
 # $HOME/.zshrc
+#
+
+#Check if zplug is installed
+if [[ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]]; then
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+fi
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
 # load all files from dotfiles/zshrc.d directory
 if [ -d $HOME/dotfiles/zshrc.d ]; then
@@ -13,13 +24,6 @@ if [ -d $HOME/dotfiles/rc.d ]; then
     source $file
   done
 fi
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export NVM_DIR="/Users/astead/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-[[ $SHLVL != "2" ]] && tmux new
 
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/astead/Dropbox/Mackup/Downloads/google-cloud-sdk/path.zsh.inc'
