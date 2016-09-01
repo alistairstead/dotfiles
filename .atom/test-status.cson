@@ -1,4 +1,0 @@
-'Gruntfile.*': 'grunt test'
-'gulpfile.*': 'gulp test'
-'phpunit.xml': 'phpunit'
-'package.json': 'npm test'
