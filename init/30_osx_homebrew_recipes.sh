@@ -9,6 +9,7 @@ brew_tap_kegs
 
 # Homebrew recipes
 recipes=(
+  awk
   bash
   bash-completion2
   grc
