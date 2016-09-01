@@ -1,7 +1,3 @@
-.atom/.node-gyp
-.atom/compile-cache
-.atom/packages
-.atom/storage
 *.DS_Store
 *.orig
 **/*.cache
@@ -17,3 +13,4 @@
 caches
 .vim/plugged
 link/.vim
+.atom
