@@ -14,6 +14,8 @@ zplug "tcnksm/docker-alias", \
 
 #zplug "sorin-ionescu/prezto", use:"*.zsh"
 
+zplug "tmuxinator/tmuxinator", use:"completion/*.zsh"
+
 zplug "knu/z", \
       use:z.sh, \
       nice:10

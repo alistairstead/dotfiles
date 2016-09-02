@@ -55,6 +55,7 @@ recipes=(
   homebrew/devel-only/elm-format --HEAD
   jet
   Kubernetes-cli --HEAD
+  terminal-notifier
 )
 IFS=$'\n'
 brew_install_recipes
