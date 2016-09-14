@@ -44,6 +44,7 @@ casks=(
   iterm2
   java
   kaleidoscope
+  keybase
   licecap
   limechat
   little-snitch

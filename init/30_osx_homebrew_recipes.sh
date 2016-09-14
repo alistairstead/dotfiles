@@ -12,12 +12,11 @@ recipes=(
   awk
   bash
   bash-completion2
-  grc
-  gpg
-  keybase
   wget --enable-iri
   vim --override-system-vi
   neovim/neovim/neovim
+  gpg
+  # https://github.com/pstadler/keybase-gpg-github
   gh
   hub
   #mtr - ping & traceroute. best.
