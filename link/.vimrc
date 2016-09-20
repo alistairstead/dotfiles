@@ -35,6 +35,7 @@ Plug 'carlitux/deoplete-ternjs'
 Plug 'wellle/tmux-complete.vim'
 Plug 'jgdavey/tslime.vim'
 Plug 'vim-scripts/BufOnly.vim'
+Plug 'mileszs/ack.vim'
 
 call plug#end()
 
