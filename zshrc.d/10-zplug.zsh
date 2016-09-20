@@ -12,6 +12,9 @@ zplug "marzocchi/zsh-notify"
 zplug "tcnksm/docker-alias", \
       use:zshrc
 
+zplug "plugins/docker-compose", from:oh-my-zsh
+zplug "plugins/kubectl", from:oh-my-zsh
+
 #zplug "sorin-ionescu/prezto", use:"*.zsh"
 
 zplug "tmuxinator/tmuxinator", use:"completion/*.zsh"
