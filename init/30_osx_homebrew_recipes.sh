@@ -55,6 +55,7 @@ recipes=(
   jet
   Kubernetes-cli --HEAD
   terminal-notifier
+  postgres
 )
 IFS=$'\n'
 brew_install_recipes
