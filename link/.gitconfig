@@ -286,7 +286,7 @@
 	smudge = git-lfs smudge %f
 	required = true
 [user]
-	email = ailstair_stead@me.com
+	email = alistair_stead@me.com
 	name = Alistair Stead
 	signingkey = C4FE2AAA
 [commit]
