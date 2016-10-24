@@ -36,6 +36,8 @@ Plug 'wellle/tmux-complete.vim'
 Plug 'jgdavey/tslime.vim'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'mileszs/ack.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -75,8 +77,11 @@ se scrolloff=3
 "+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 " nvim integration with system clipboard
-set clipboard+=unnamedplus
-
+" yank to clipboard
+if has('clipboard')
+	set clipboard=unnamed
+	"set clipboard+=unnamedplus
+endif
 "
 " General overridings
 inoremap jk <esc>
@@ -118,6 +123,7 @@ nnoremap <leader>wo :on<cr>
 nnoremap <leader>w= <c-w>=
 nnoremap <leader>w0 <c-w>\|
 nnoremap <leader>w- <c-w>_
+
 nnoremap <leader>wk <c-w>K
 nnoremap <leader>wh <c-w>H
 nnoremap <c-h> <c-w>h
@@ -202,7 +208,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_height = 15
 let g:ctrlp_open_multi = '1v'
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.git|\.hg|\.svn|vendor|node_modules)$',
+    \ 'dir':  '\v[\/](\.git|\.hg|\.svn|vendor|node_modules|_build)$',
     \ 'file': '\v\.(exe|so|dll)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
@@ -258,6 +264,8 @@ let g:airline#extensions#syntastic#enabled = 0
 
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php', 'phpmd']
+"let g:syntastic_elixir_checkers = ['dogma']
+
 
 " vim-tmux-navgator
 let g:tmux_navigator_no_mappings = 1
@@ -384,6 +392,8 @@ augroup vimrc_autocmd
         au BufRead,BufNewFile *.ejs         setlocal filetype=html
         au BufRead,BufNewFile *.json        setlocal filetype=javascript
         au BufRead,BufNewFile *.pp          setlocal filetype=ruby
+        au BufRead,BufNewFile *.eex         setlocal filetype=elixir
+        au BufRead,BufNewFile *.exs         setlocal filetype=elixir
 
         " Autocalls
         au BufWrite * :call <sid>MkdirsIfNotExists(expand('<afile>:h'))

@@ -24,8 +24,6 @@ export NODE_REPL_HISTORY_FILE=~/.node_history;
 # Allow 32³ entries; the default is 1000.
 export NODE_REPL_HISTORY_SIZE='32768';
 
-export MIX_ENV=dev
-
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";

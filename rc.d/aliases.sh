@@ -317,5 +317,5 @@ alias reload="exec $SHELL -l"
 alias ssh-tunnel-enable='echo -n > ~/.ssh/config && cat ~/.ssh/*.config > ~/.ssh/config'
 alias ssh-tunnel-disable='echo -n > ~/.ssh/config && cat ~/.ssh/hosts.*.config > ~/.ssh/config'
 
-alias composer="docker run --rm -u $UID -v $PWD:/app composer/composer"
+alias composer="docker run -it --rm -u $UID -v $PWD:/app composer/composer"
 alias php7='docker run -it --rm -v "$PWD:/app" -w /app php:7 php'

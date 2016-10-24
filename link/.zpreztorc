@@ -54,7 +54,7 @@ zstyle ':prezto:load' pmodule \
 zstyle ':prezto:module:editor' key-bindings 'vi'
 
 # Auto convert .... to ../..
- zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 #
 # Git
@@ -112,7 +112,7 @@ zstyle ':prezto:module:prompt' theme 'steeef'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
- zstyle ':prezto:module:syntax-highlighting' highlighters \
+zstyle ':prezto:module:syntax-highlighting' highlighters \
    'main' \
    'brackets' \
    'pattern' \
@@ -121,7 +121,7 @@ zstyle ':prezto:module:prompt' theme 'steeef'
    'root'
 
 # Set syntax highlighting styles.
- zstyle ':prezto:module:syntax-highlighting' styles \
+zstyle ':prezto:module:syntax-highlighting' styles \
    'builtin' 'bg=blue' \
    'command' 'bg=blue' \
    'function' 'bg=blue'
@@ -131,23 +131,23 @@ zstyle ':prezto:module:prompt' theme 'steeef'
 #
 
 # Auto set the tab and window titles.
- zstyle ':prezto:module:terminal' auto-title 'yes'
+zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Set the window title format.
- zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
 # Set the tab title format.
- zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 
 #
 # Tmux
 #
 
 # Auto start a session when Zsh is launched in a local terminal.
- zstyle ':prezto:module:tmux:auto-start' local 'yes'
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 # Auto start a session when Zsh is launched in a SSH connection.
- zstyle ':prezto:module:tmux:auto-start' remote 'yes'
+zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
- #zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+#zstyle ':prezto:module:tmux:iterm' integrate 'yes'
