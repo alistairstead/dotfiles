@@ -38,6 +38,7 @@ Plug 'vim-scripts/BufOnly.vim'
 Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'mattn/emmet-vim'
+Plug 'elixir-lang/vim-elixir'
 
 call plug#end()
 
@@ -260,11 +261,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:airline#extensions#syntastic#enabled = 0
+let g:airline#extensions#syntastic#enabled = 1
 
 let g:syntastic_javascript_checkers = ['standard']
 let g:syntastic_php_checkers = ['php', 'phpmd']
-"let g:syntastic_elixir_checkers = ['dogma']
 
 
 " vim-tmux-navgator
