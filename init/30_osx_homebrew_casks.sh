@@ -4,14 +4,41 @@ is_osx || return 1
 # Exit if Homebrew is not installed.
 [[ ! "$(type -P brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
 
-# Ensure the cask keg and recipe are installed.
-kegs=(caskroom/versions)
-brew_tap_kegs
-recipes=(brew-cask)
-brew_install_recipes
+# Tap Homebrew kegs.
+function brew_tap_kegs() {
+  kegs=($(setdiff "${kegs[*]}" "$(brew tap)"))
+  if (( ${#kegs[@]} > 0 )); then
+    e_header "Tapping Homebrew kegs: ${kegs[*]}"
+    IFS=$'\n'
+    for keg in "${kegs[@]}"; do
+      brew tap $keg
+    done
+    unset IFS
+  fi
+}
 
-# Exit if, for some reason, cask is not installed.
-[[ ! "$(brew ls --versions brew-cask)" ]] && e_error "Brew-cask failed to install." && return 1
+# Install Homebrew recipes.
+function brew_install_recipes() {
+  # recipes=($(setdiff "${recipes[*]}" "$(brew list)"))
+  if (( ${#recipes[@]} > 0 )); then
+    e_header "Installing Homebrew recipes: ${recipes[*]}"
+    IFS=$'\n'
+    for recipe in "${recipes[@]}"; do
+      brew install $recipe
+    done
+    unset IFS
+  fi
+}
+
+# Ensure the cask keg and recipe are installed.
+kegs=(
+  caskroom/versions
+)
+
+brew_tap_kegs
+
+# Exit if Homebrew is not installed cask is now part of brew by default.
+[[ ! "$(type -P brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
 
 # Hack to show the first-run brew-cask password prompt immediately.
 brew cask info this-is-somewhat-annoying 2>/dev/null
@@ -75,7 +102,7 @@ casks=(
 )
 
 # Install Homebrew casks.
-casks=($(setdiff "${casks[*]}" "$(brew cask list 2>/dev/null)"))
+# casks=($(setdiff "${casks[*]}" "$(brew cask list 2>/dev/null)"))
 if (( ${#casks[@]} > 0 )); then
   e_header "Installing Homebrew casks: ${casks[*]}"
   for cask in "${casks[@]}"; do
