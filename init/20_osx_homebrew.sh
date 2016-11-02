@@ -29,11 +29,10 @@ function brew_tap_kegs() {
 
 # Install Homebrew recipes.
 function brew_install_recipes() {
-  recipes=($(setdiff "${recipes[*]}" "$(brew list)"))
+  # recipes=($(setdiff "${recipes[*]}" "$(brew list)"))
   if (( ${#recipes[@]} > 0 )); then
     e_header "Installing Homebrew recipes: ${recipes[*]}"
     for recipe in "${recipes[@]}"; do
-      e_header "Install ${recipes[@]}"
       brew install $recipe
     done
   fi
