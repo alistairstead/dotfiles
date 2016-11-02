@@ -81,11 +81,10 @@ recipes=(
   chromedriver
   jmeter
   mackup
-  homebrew/binary/ngrok2
   reattach-to-user-namespace
   "homebrew/devel-only/elm-format --HEAD"
   jet
-  "Kubernetes-cli --HEAD"
+  kubernetes-cli
   terminal-notifier
   postgres
 )
