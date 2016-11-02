@@ -44,8 +44,8 @@ recipes=(
   awk
   bash
   bash-completion2
-  wget --enable-iri
-  vim --override-system-vi
+  "wget --enable-iri"
+  "vim --override-system-vi"
   neovim/neovim/neovim
   gpg
   # https://github.com/pstadler/keybase-gpg-github
@@ -62,12 +62,12 @@ recipes=(
   heroku-toolbelt
   trash
   python3
-  findutils --default-names
-  gnu-sed --default-names
-  gnu-tar --default-names
-  gnu-which --default-names
-  gnutls --default-names
-  grep --default-names
+  "findutils --default-names"
+  "gnu-sed --default-names"
+  "gnu-tar --default-names"
+  "gnu-which --default-names"
+  "gnutls --default-names"
+  "grep --default-names"
   coreutils
   moreutils
   binutils
@@ -83,9 +83,9 @@ recipes=(
   mackup
   homebrew/binary/ngrok2
   reattach-to-user-namespace
-  homebrew/devel-only/elm-format --HEAD
+  "homebrew/devel-only/elm-format --HEAD"
   jet
-  Kubernetes-cli --HEAD
+  "Kubernetes-cli --HEAD"
   terminal-notifier
   postgres
 )
