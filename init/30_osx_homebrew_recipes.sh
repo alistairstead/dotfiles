@@ -6,7 +6,7 @@ is_osx || return 1
 
 # Tap Homebrew kegs.
 function brew_tap_kegs() {
-  kegs=($(setdiff "${kegs[*]}" "$(brew tap)"))
+  # kegs=($(setdiff "${kegs[*]}" "$(brew tap)"))
   if (( ${#kegs[@]} > 0 )); then
     e_header "Tapping Homebrew kegs: ${kegs[*]}"
     IFS=$'\n'
@@ -24,6 +24,7 @@ function brew_install_recipes() {
     e_header "Installing Homebrew recipes: ${recipes[*]}"
     IFS=$'\n'
     for recipe in "${recipes[@]}"; do
+      e_header "Installing recipe: ${recipe}"
       brew install $recipe
     done
     unset IFS
@@ -32,6 +33,7 @@ function brew_install_recipes() {
 
 
 kegs=(
+  homebrew/dupes
   homebrew/versions
 )
 
