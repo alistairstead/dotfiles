@@ -87,6 +87,7 @@ recipes=(
   kubernetes-cli
   terminal-notifier
   postgres
+  homebrew/completions/tmuxinator-completion
 )
 
 brew_install_recipes
