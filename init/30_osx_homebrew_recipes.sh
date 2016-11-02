@@ -4,7 +4,37 @@ is_osx || return 1
 # Exit if Homebrew is not installed.
 [[ ! "$(type -P brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
 
-kegs=(homebrew/versions)
+# Tap Homebrew kegs.
+function brew_tap_kegs() {
+  kegs=($(setdiff "${kegs[*]}" "$(brew tap)"))
+  if (( ${#kegs[@]} > 0 )); then
+    e_header "Tapping Homebrew kegs: ${kegs[*]}"
+    IFS=$'\n'
+    for keg in "${kegs[@]}"; do
+      brew tap $keg
+    done
+    unset IFS
+  fi
+}
+
+# Install Homebrew recipes.
+function brew_install_recipes() {
+  # recipes=($(setdiff "${recipes[*]}" "$(brew list)"))
+  if (( ${#recipes[@]} > 0 )); then
+    e_header "Installing Homebrew recipes: ${recipes[*]}"
+    IFS=$'\n'
+    for recipe in "${recipes[@]}"; do
+      brew install $recipe
+    done
+    unset IFS
+  fi
+}
+
+
+kegs=(
+  homebrew/versions
+)
+
 brew_tap_kegs
 
 # Homebrew recipes
@@ -57,9 +87,8 @@ recipes=(
   terminal-notifier
   postgres
 )
-IFS=$'\n'
+
 brew_install_recipes
-unset IFS
 
 # Misc cleanup!
 
