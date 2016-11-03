@@ -4,7 +4,10 @@ endfunction
 
 call plug#begin()
 
-Plug 'tpope/vim-sensible'
+if !has('nvim')
+  Plug 'tpope/vim-sensible'
+endif
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
@@ -80,8 +83,8 @@ se scrolloff=3
 " nvim integration with system clipboard
 " yank to clipboard
 if has('clipboard')
-	set clipboard=unnamed
-	"set clipboard+=unnamedplus
+	"set clipboard=unnamed
+  set clipboard+=unnamedplus
 endif
 "
 " General overridings
