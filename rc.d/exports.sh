@@ -23,6 +23,7 @@ export NODE_ENV=development
 export NODE_REPL_HISTORY_FILE=~/.node_history;
 # Allow 32³ entries; the default is 1000.
 export NODE_REPL_HISTORY_SIZE='32768';
+export NVM_DIR="$HOME/.nvm"
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
