@@ -7,7 +7,7 @@ export LC_ALL="en_GB.UTF-8"
 export LANG='en_GB.UTF-8'
 export LC_CTYPE='en_GB.UTF-8'
 
-export TERM='xterm-256color'
+#export TERM='xterm-256color'
 export TERM_PROGRAM='iTerm.app'
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
