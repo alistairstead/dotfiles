@@ -6,6 +6,8 @@ source $DOTFILES/rc.d/functions.sh
 
 mkdir $HOME/.nvm
 
+nvm install stable
+
 npm install -g diff-so-fancy tern elm elm-test elm-oracle
 
 
