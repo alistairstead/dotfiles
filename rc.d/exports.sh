@@ -1,3 +1,4 @@
+export XDG_CONFIG_HOME=$HOME/.config
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
