@@ -76,6 +76,7 @@ recipes=(
   watch
   tmux
   nmap
+  nvm
   htop
   selenium-server-standalone
   chromedriver
