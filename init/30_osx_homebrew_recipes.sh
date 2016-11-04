@@ -31,7 +31,6 @@ function brew_install_recipes() {
   fi
 }
 
-
 kegs=(
   homebrew/dupes
   homebrew/versions
@@ -42,6 +41,8 @@ brew_tap_kegs
 # Homebrew recipes
 recipes=(
   awk
+  awscli
+  aws-shell
   bash
   bash-completion2
   "wget --enable-iri"
