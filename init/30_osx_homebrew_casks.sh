@@ -48,11 +48,11 @@ casks=(
   # Applications
   ngrok
   alfred
-  atom-beta
   backblaze
   bartender
   cheatsheet
   chromium
+  caffeine
   cloak
   cleanmymac
   dash
@@ -61,7 +61,6 @@ casks=(
   duet
   evernote
   fantastical
-  firefox-nightly
   firefox
   gitter
   google-chrome
