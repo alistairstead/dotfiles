@@ -34,6 +34,7 @@ function brew_install_recipes() {
 kegs=(
   homebrew/dupes
   homebrew/versions
+  homebrew/command-not-found
 )
 
 brew_tap_kegs
