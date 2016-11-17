@@ -35,6 +35,8 @@ kegs=(
   homebrew/dupes
   homebrew/versions
   homebrew/command-not-found
+  homebrew/completions
+  homebrew/devel-only
 )
 
 brew_tap_kegs
@@ -46,8 +48,8 @@ recipes=(
   aws-shell
   bash
   bash-completion2
-  "wget --enable-iri"
-  "vim --override-system-vi"
+  wget --enable-iri
+  vim --override-system-vi
   neovim/neovim/neovim
   gpg
   # https://github.com/pstadler/keybase-gpg-github
@@ -64,12 +66,12 @@ recipes=(
   heroku-toolbelt
   trash
   python3
-  "findutils --default-names"
-  "gnu-sed --default-names"
-  "gnu-tar --default-names"
-  "gnu-which --default-names"
-  "gnutls --default-names"
-  "grep --default-names"
+  findutils --default-names
+  gnu-sed --default-names
+  gnu-tar --default-names
+  gnu-which --default-names
+  gnutls --default-names
+  grep --default-names
   coreutils
   moreutils
   binutils
@@ -85,12 +87,18 @@ recipes=(
   jmeter
   mackup
   reattach-to-user-namespace
-  "homebrew/devel-only/elm-format --HEAD"
   jet
   kubernetes-cli
   terminal-notifier
   postgres
-  homebrew/completions/tmuxinator-completion
+  tmuxinator-completion
+  mix-completion
+  docker-completion
+  docker-compose-completion
+  launchctl-completion
+  open-completion
+  elm
+  elm-format
 )
 
 brew_install_recipes
