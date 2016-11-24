@@ -9,19 +9,19 @@ source $HOME/.zplug/init.zsh
 
 zplug "zplug/zplug"
 zplug "marzocchi/zsh-notify"
-#zplug "tcnksm/docker-alias", \
-      #use:zshrc
+zplug "tcnksm/docker-alias", \
+      use:zshrc
 
-#zplug "plugins/docker-compose", from:oh-my-zsh
-#zplug "plugins/kubectl", from:oh-my-zsh
+zplug "plugins/docker-compose", from:oh-my-zsh
+zplug "plugins/kubectl", from:oh-my-zsh
 
 #zplug "sorin-ionescu/prezto", use:"*.zsh"
 
 zplug "tmuxinator/tmuxinator", use:"completion/*.zsh"
 
-#zplug "knu/z", \
-      #use:z.sh, \
-      #nice:10
+zplug "knu/z", \
+      use:z.sh, \
+      nice:10
 
 
 # Install plugins if there are plugins that have not been installed
