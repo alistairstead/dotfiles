@@ -31,7 +31,6 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'spectrum' \
   'utility' \
-  'completion' \
   'node' \
   'directory' \
   'terminal' \
