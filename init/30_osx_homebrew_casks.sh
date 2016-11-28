@@ -65,6 +65,7 @@ casks=(
   gitter
   google-chrome
   google-chrome-canary
+  grammarly
   gyazo
   imagealpha
   imageoptim

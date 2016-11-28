@@ -66,12 +66,12 @@ recipes=(
   heroku-toolbelt
   trash
   python3
-  findutils --default-names
-  gnu-sed --default-names
-  gnu-tar --default-names
-  gnu-which --default-names
-  gnutls --default-names
-  grep --default-names
+  findutils
+  gnu-sed
+  gnu-tar
+  gnu-which
+  gnutls
+  grep
   coreutils
   moreutils
   binutils
