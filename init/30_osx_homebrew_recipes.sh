@@ -67,10 +67,10 @@ recipes=(
   trash
   python3
   findutils
-  gnu-sed
-  gnu-tar
-  gnu-which
-  gnutls
+  gnu-sed --with-default-names
+  gnu-tar --with-default-names
+  gnu-which --with-default-names
+  gnutls --with-default-names
   grep
   coreutils
   moreutils
