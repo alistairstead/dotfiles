@@ -38,3 +38,5 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Always enable colored `grep` output.
 export GREP_OPTIONS='--color=auto';
+
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1

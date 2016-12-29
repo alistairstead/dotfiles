@@ -402,3 +402,6 @@ augroup vimrc_autocmd
         au BufWrite * :call <sid>MkdirsIfNotExists(expand('<afile>:h'))
     endif
 augroup END
+
+let g:python_host_prog = $HOME."/.pyenv/versions/neovim2/bin/python"
+let g:python3_host_prog = $HOME."/.pyenv/versions/neovim3/bin/python"
