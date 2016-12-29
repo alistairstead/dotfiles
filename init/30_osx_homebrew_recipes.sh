@@ -65,7 +65,6 @@ recipes=(
   zsh
   heroku-toolbelt
   trash
-  python3
   findutils
   gnu-sed --with-default-names
   gnu-tar --with-default-names
