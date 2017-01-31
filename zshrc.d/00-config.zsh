@@ -14,8 +14,3 @@ bindkey "^E" end-of-line
 export TIMEFMT="%U user %S system %P cpu %*E total, running %J"
 REPORTTIME=10
 
-if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
-
-export PATH="/Users/alistairstead/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
