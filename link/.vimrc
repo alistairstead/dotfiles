@@ -17,6 +17,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
+Plug 'groenewege/vim-less'
+Plug 'ap/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
 Plug 'elmcast/elm-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
@@ -113,6 +116,12 @@ nnoremap <leader>mk :!mkdir <c-r>=expand("%:p:h")."/"<cr>
 nnoremap <leader>rm :!rm -rf <c-r>=expand("%:p:h")."/"<cr>
 cnoremap w!!        w !sudo tee % >/dev/null
 
+" Note that remapping C-s requires flow control to be disabled
+" (e.g. in .bashrc or .zshrc)
+map <C-s> <esc>:w<CR>
+imap <C-s> <esc>:w<CR>
+map <C-t> <esc>:tabnew<CR>
+
 " Tabs management
 nnoremap <leader>df :tab split<cr>
 nnoremap <leader>dd :tabclose<cr>
@@ -168,6 +177,11 @@ nnoremap <CR> :noh<CR><CR>
 nnoremap <leader>bo :BufOnly<cr>
 nnoremap <leader>bc :bd<cr>
 
+map <Leader>vi :tabe ~/.vimrc<CR>
+map <Leader>p :set paste<CR><esc>"*]p:set nopaste<cr>
+map <Leader>mdg :!mix deps.get<cr>
+
+"
 " Airline
 let g:airline_theme='molokai'
 let g:airline_powerline_fonts=1
@@ -340,19 +354,43 @@ let g:neocomplcache_omni_patterns.behat = '\(When\|Then\|Given\|And\)\s.*$'
 "|
 "|
 """"""""""""""""""""""""""""""""""""""""
-"
-"  RENAME CURRENT BUFFER FILE
-"
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
+
+" Merge a tab into a split in the previous window
+function! MergeTabs()
+	if tabpagenr() == 1
+		return
+	endif
+	let bufferName = bufname("%")
+	if tabpagenr("$") == tabpagenr()
+		close!
+	else
+		close!
+		tabprev
+	endif
+	split
+	execute "buffer " . bufferName
 endfunction
-nnoremap <leader>mv :call RenameFile()<cr>
+
+nmap <C-W>u :call MergeTabs()<CR>
+
+" Squash all commits into the first during rebase
+function! SquashAll()
+	normal ggj}klllcf:w
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE (thanks Gary Bernhardt)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+	let old_name = expand('%')
+	let new_name = input('New file name: ', expand('%'), 'file')
+	if new_name != '' && new_name != old_name
+		exec ':saveas ' . new_name
+		exec ':silent !rm ' . old_name
+		redraw!
+	endif
+endfunction
+map <Leader>n :call RenameFile()<cr>
 
 "
 """"""""""""""""""""""""""""""""""""""""
