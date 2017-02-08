@@ -19,11 +19,6 @@ zplug "plugins/kubectl", from:oh-my-zsh
 
 zplug "tmuxinator/tmuxinator", use:"completion/*.zsh"
 
-zplug "knu/z", \
-      use:z.sh, \
-      nice:10
-
-
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "

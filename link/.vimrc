@@ -1,50 +1,59 @@
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
 
 if !has('nvim')
   Plug 'tpope/vim-sensible'
 endif
-
+" Base functionality
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sheerun/vim-polyglot'
+" COMPLETION
+function! DoRemote(arg)
+	UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+Plug 'wellle/tmux-complete.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-abolish'
+Plug 'rizzatti/dash.vim'
+Plug 'kana/vim-smartinput'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'scrooloose/syntastic'
+" UI
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/syntastic'
-Plug 'sheerun/vim-polyglot'
-Plug 'groenewege/vim-less'
-Plug 'ap/vim-css-color'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'elmcast/elm-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'altercation/vim-colors-solarized'
-Plug 'tomasr/molokai'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'rizzatti/dash.vim'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'slashmili/alchemist.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'arnaud-lb/vim-php-namespace'
-Plug 'docteurklein/php-getter-setter.vim'
-Plug 'kana/vim-smartinput'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'carlitux/deoplete-ternjs'
-Plug 'wellle/tmux-complete.vim'
-Plug 'jgdavey/tslime.vim'
-Plug 'vim-scripts/BufOnly.vim'
-Plug 'mileszs/ack.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'mattn/emmet-vim'
-Plug 'elixir-lang/vim-elixir'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'airblade/vim-gitgutter'
+" TESTING
+Plug 'neomake/neomake'
+Plug 'benmills/vimux'
+Plug 'janko-m/vim-test'
+" SEARCH
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" CSS
+Plug 'ap/vim-css-color', { 'for': 'css' }
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+" ELIXIR
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+" ELk
+Plug 'elmcast/elm-vim', { 'for': 'elm' }
+" HTML
+Plug 'mattn/emmet-vim', { 'for': [ 'html', 'erb', 'twig' ] }
+" JAVASCRIPT
+Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
+" LESS
+Plug 'groenewege/vim-less', { 'for': 'less' }
 
 call plug#end()
 
@@ -57,10 +66,7 @@ set fillchars=vert:│
 
 let mapleader=" "
 set number
-set ignorecase
 set noswapfile
-"set completeopt=longest,menuone
-set completeopt+=noinsert
 
 "  THEME OPTIONS
 " Molokai
@@ -73,10 +79,33 @@ colorscheme molokai
 se foldmethod=syntax
 se foldlevel=4
 
+"  SEARCH
+se showmatch
+se ignorecase
+se smartcase
+se gdefault
+se tags+=vendor.tags
+
 "  SCROLLING
 se scrolljump=3
 se scrolloff=3
-"
+
+"  AUTOCOMPLETION
+se wildcharm=<tab>
+se wildmode=full
+se completeopt+=noinsert
+inoremap <c-l> <c-x><c-l>
+let g:deoplete#enable_at_startup = 1
+let g:alchemist_tag_stack_map = '<C-Q>'
+
+"  WRAPPING
+se wrap
+se linebreak
+se textwidth=100
+se colorcolumn=100
+"se formatprg=par
+"se formatoptions+=tca
+
 "+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 "|
 "|  > CUSTOM MAPPINGS
@@ -93,7 +122,7 @@ endif
 " General overridings
 inoremap jk <esc>
 inoremap <esc> <nop>
-"nnoremap Y y$
+nnoremap Y y$
 
 " Dash
 nnoremap <leader>d :Dash<cr>
@@ -136,7 +165,6 @@ nnoremap <leader>wo :on<cr>
 nnoremap <leader>w= <c-w>=
 nnoremap <leader>w0 <c-w>\|
 nnoremap <leader>w- <c-w>_
-
 nnoremap <leader>wk <c-w>K
 nnoremap <leader>wh <c-w>H
 nnoremap <c-h> <c-w>h
@@ -144,6 +172,11 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-x> <c-w>x
+tnoremap <c-h> <c-\><c-n><c-w>h
+tnoremap <c-j> <c-\><c-n><c-w>j
+tnoremap <c-k> <c-\><c-n><c-w>k
+tnoremap <c-l> <c-\><c-n><c-w>l
+tnoremap <c-x> <c-\><c-n><c-w>x
 
 " Movement tuning
 nnoremap j     gj
@@ -209,34 +242,11 @@ nnoremap <leader>grm :Gremove<cr>
 nnoremap <leader>gmv :Gmove<cr>
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
+"  FZF
+nnoremap <c-t> :FZF<cr>
 
 " Ack
 nnoremap <expr><leader>a ":Ack! "
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsListSnippets = '<c-tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
-" CTRLP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_max_height = 15
-let g:ctrlp_open_multi = '1v'
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.git|\.hg|\.svn|vendor|node_modules|_build)$',
-    \ 'file': '\v\.(exe|so|dll)$',
-    \ 'link': 'some_bad_symbolic_links',
-    \ }
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_match_window_bottom = 1
-let g:ctrlp_match_window_reversed = 0
-
-" Startify
-let g:startify_bookmarks = [ {'c': '~/.vimrc'}, '~/.zshrc' ]
-let g:startify_files_number = 5
 
 " Tabular
 nnoremap <leader><tab><tab> :Tab /
@@ -248,32 +258,13 @@ vnoremap <leader><tab>= :Tab /=<cr>
 vnoremap <leader><tab>: :Tab /:\zs<cr>
 vnoremap <leader><tab>> :Tab /=><cr>
 
-" Easymotion
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-
 " Nerdtree
 map <C-\> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 24
 let g:NERDTreeMinimalUI = 1
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -296,17 +287,47 @@ nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 " https://github.com/christoomey/vim-tmux-navigator#it-doesnt-work-in-neovim-specifically-c-h
 nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
-" Elm
-let g:polyglot_disabled = ['elm']
-let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
-let g:elm_syntastic_show_warnings = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:elm_syntastic_show_warnings = 1
-let g:elm_format_autosave = 1
+"  EASYMOTION
+let g:EasyMotion_leader_key='t'
 
-" PHP
+"  NEOMAKE
+function! NeomakeCredoErrorType(entry)
+    if a:entry.type ==# 'W'
+        let a:entry.type = 'W'
+    else
+        let a:entry.type = 'I'
+    endif
+endfunction
+let g:neomake_elixir_credo_maker = {
+    \ 'exe': 'mix',
+    \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
+    \ 'errorformat': '[%t] %. %f:%l:%c %m',
+    \ 'postprocess': function('NeomakeCredoErrorType')
+    \ }
+
+let g:neomake_elixir_enabled_makers = ['mix', 'credo']
+
+"  VIMUX
+nnoremap <leader>vr :VimuxPromptCommand<cr>
+nnoremap <leader>vl :VimuxRunLastCommand<cr>
+nnoremap <leader>vc :VimuxCloseRunner<cr>
+
+"  TESTS
+nmap <silent> <leader>tt :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tg :TestVisit<CR>
+let test#strategy = "make"
+
+" POLYGLOT
+let g:polyglot_disabled = ['elm']
+
+" Elm
+let g:elm_format_autosave = 0
+let g:elm_setup_keybindings = 0
+
+" php
 let g:php_folding=1
 let php_noShortTags = 1
 
@@ -354,6 +375,9 @@ let g:neocomplcache_omni_patterns.behat = '\(When\|Then\|Given\|And\)\s.*$'
 "|
 "|
 """"""""""""""""""""""""""""""""""""""""
+
+":command Thtml :%!tidy -q -i --show-errors 0
+":command Txml  :%!tidy -q -i --show-errors 0 -xml
 
 " Merge a tab into a split in the previous window
 function! MergeTabs()
@@ -438,6 +462,8 @@ augroup vimrc_autocmd
 
         " Autocalls
         au BufWrite * :call <sid>MkdirsIfNotExists(expand('<afile>:h'))
+				au BufWritePost,BufEnter * Neomake
+				au BufWritePost *.elm ElmFormat
     endif
 augroup END
 

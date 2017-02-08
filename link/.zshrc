@@ -30,3 +30,5 @@ fi
 
 # The next line enables shell command completion for gcloud.
 #source '/Users/astead/Dropbox/Mackup/Downloads/google-cloud-sdk/completion.zsh.inc'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

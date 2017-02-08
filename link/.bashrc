@@ -26,3 +26,5 @@ if [ -d $HOME/dotfiles/rc.d ]; then
     source $file
   done
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
