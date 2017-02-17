@@ -43,6 +43,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'alvan/vim-closetag', { 'for': [ 'html', 'phtml', 'eruby' ] }
+Plug 'vim-scripts/utl.vim'
+Plug 'dietsche/vim-lastplace'
 
 " BROWSING
 Plug 'vim-airline/vim-airline'
@@ -94,8 +96,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color', { 'for': [ 'css', 'less', 'sass' ] }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+" elixir
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
+" phoenix
+Plug 'c-brenn/phoenix.vim'
+Plug 'tpope/vim-projectionist' " required for some navigation features
+" elm
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'mattn/emmet-vim', { 'for': [ 'html', 'eruby', 'twig' ] }
 Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript', 'do': 'npm install -g tern' }
@@ -128,7 +135,7 @@ filetype plugin indent on             " try to recognise filetype and load plugi
 " interface
 set background=dark                   " tell vim what the background color looks like
 set colorcolumn=100                   " show a column at 100 chars
-set cursorline                        " highlight current line
+" set cursorline                        " highlight current line
 set laststatus=2                      " enable airline on open
 set noshowmode                        " don't show mode as airline already does
 set number                            " show line numbers
@@ -156,13 +163,14 @@ set list                              " show invisible characters
 set listchars=tab:>·,trail:·,nbsp:¬   " but only show useful chaaracters
 "  text wrapping
 se wrap                               " wrap long lines
-se linebreak
 se textwidth=100                      " wrap at column 100
 " interaction
 set backspace=2                       " make backspace work like most other apps
+set mouse=""                          " turn of the mouse
 set mousehide                         " hide the mouse cursor while typing
 set whichwrap=b,s,h,l,<,>,[,]         " backspace and cursor keys wrap too
-
+" text selection
+set iskeyword+=-                      " Makes foo-bar considered one word
 " searching
 set hlsearch                          " highlight search matches
 set ignorecase                        " set case insensitive searching
@@ -172,7 +180,7 @@ set smartcase                         " case sensitive searching when not all lo
 " background processes
 set autoread                          " update file when changed outside of vim
 set autoindent                        " copy indentation from the previous line for new line
-set history=200                       " store last 200 commands as history
+set history=1000                       " store last 200 commands as history
 set lazyredraw                        " no unneeded redraws
 set nobackup                          " don't save backups
 set noerrorbells                      " no error bells please
@@ -210,7 +218,6 @@ se completeopt=menuone,preview
 " set complete=.,w,b,u,t
 set complete-=i
 inoremap <c-l> <c-x><c-l>
-let g:alchemist_tag_stack_map = '<C-Q>'
 
 
 "se formatprg=par
@@ -474,11 +481,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-x> <c-w>x
-tnoremap <c-h> <c-\><c-n><c-w>h
-tnoremap <c-j> <c-\><c-n><c-w>j
-tnoremap <c-k> <c-\><c-n><c-w>k
-tnoremap <c-l> <c-\><c-n><c-w>l
-tnoremap <c-x> <c-\><c-n><c-w>x
 
 " Movement tuning
 nnoremap j     gj
@@ -668,53 +670,37 @@ let g:splitjoin_join_mapping = ''
 nnoremap gss :SplitjoinSplit<cr>
 nnoremap gsj :SplitjoinJoin<cr>
 
-" ----------------------------------------------------------------------------
-" vim-emoji :dog: :cat: :rabbit:!
-" ----------------------------------------------------------------------------
-function! s:replace_emojis() range
-	for lnum in range(a:firstline, a:lastline)
-		let line = getline(lnum)
-		let subs = substitute(line,
-					\ ':\([^:]\+\):', '\=emoji#for(submatch(1), submatch(0))', 'g')
-		if line != subs
-			call setline(lnum, subs)
-		endif
-	endfor
-endfunction
-command! -range EmojiReplace <line1>,<line2>call s:replace_emojis()
-
 "" ----------------------------------------------------------------------------
 " vim-airline/vim-airline
 " ----------------------------------------------------------------------------
 let g:airline#extensions#syntastic#enabled = 0
-let g:airline_theme='molokai'
+let g:airline_theme='luna'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 " unicode symbols
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_left_sep = '»'
+let g:airline_left_sep = ' '
+let g:airline_right_sep = '«'
+let g:airline_right_sep = ' '
+let g:airline_symbols.branch = ''
+let g:airline_symbols.paste = ''
+let g:airline_symbols.whitespace = ''
 
 "" ----------------------------------------------------------------------------
 " ale
 "" ----------------------------------------------------------------------------
+" wait a bit before checking syntax in a file, if typing
+let g:ale_lint_delay = 5000
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
 "" ----------------------------------------------------------------------------
 " close-tag
 "" ----------------------------------------------------------------------------
-let g:closetag_filenames = "*.html,*.jsx"
-
+let g:closetag_filenames = "*.html,*.erb"
 
 "" ----------------------------------------------------------------------------
 " Ack
@@ -739,7 +725,6 @@ vnoremap <leader><tab>> :Tab /=><cr>
 map <C-\> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 24
 let g:NERDTreeMinimalUI = 1
-
 
 " ----------------------------------------------------------------------------
 " syntastic
@@ -802,13 +787,23 @@ let test#strategy = "make"
 "" ----------------------------------------------------------------------------
 " POLYGLOT
 "" ----------------------------------------------------------------------------
-let g:polyglot_disabled = ['elm']
+let g:polyglot_disabled = ['elm', 'elixir']
+
+"" ----------------------------------------------------------------------------
+" Alchemist
+"" ----------------------------------------------------------------------------
+let g:alchemist_tag_stack_map = '<C-Q>'
 
 "" ----------------------------------------------------------------------------
 " Elm
 "" ----------------------------------------------------------------------------
-let g:elm_format_autosave = 0
-let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 1
+let g:elm_detailed_complete = 1
+let g:elm_syntastic_show_warnings = 1
+let g:elm_format_fail_silently = 1
+let g:elm_browser_command = 'open'
+let g:elm_make_show_warnings = 1
+let g:elm_setup_keybindings = 1
 
 "" ----------------------------------------------------------------------------
 " php
@@ -826,10 +821,18 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#max_list = 5
-let g:deoplete#omni#functions = {}
 let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['file', 'neosnippet']
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#input_patterns = {}
+" jsx
 let g:deoplete#omni#functions.javascript = ['tern#complete']
 let g:deoplete#sources['javascript.jsx'] = ['buffer', 'ternjs']
+" Elm support
+" h/t https://github.com/ElmCast/elm-vim/issues/52#issuecomment-264161975
+let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
+let g:deoplete#omni#functions.elm = ['elm#Complete']
+let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
 
 "" ----------------------------------------------------------------------------
 " Markdown
@@ -1002,6 +1005,24 @@ let g:python3_host_prog = $HOME."/.pyenv/versions/neovim3/bin/python"
 " ============================================================================
 " AUTOCMD {{{
 " ============================================================================
+
+augroup elixir
+  autocmd!
+  " autocmd BufWritePre *.ex call Indent()
+  " autocmd BufWritePre *.exs call Indent()
+  "
+  " Sadly, I can't enable auto-indent for elixir because it messes up my heredoc
+  " indentation for code sections and it has a couple of other issues :(
+  autocmd BufNewFile,BufRead *.ex setlocal formatoptions=tcrq
+  autocmd BufNewFile,BufRead *.exs setlocal formatoptions=tcrq
+augroup END
+
+augroup markdown
+  autocmd!
+  autocmd FileType markdown setlocal textwidth=80
+  autocmd FileType markdown setlocal formatoptions=tcrq
+  autocmd FileType markdown setlocal spell spelllang=en
+augroup END
 
 augroup vimrc
 	au BufWritePost vimrc,.vimrc nested if expand('%') !~ 'fugitive' | source % | endif
