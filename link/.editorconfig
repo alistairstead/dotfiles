@@ -9,6 +9,9 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[*.elm]
+indent_size = 4
+
 [*.{php,xml,phtml}]
 indent_size = 4
 
