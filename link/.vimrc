@@ -217,6 +217,8 @@ se wildmode=full
 se completeopt=menuone,preview
 " set complete=.,w,b,u,t
 set complete-=i
+" enable omni syntax completion
+set omnifunc=syntaxcomplete#Complete
 inoremap <c-l> <c-x><c-l>
 
 
@@ -693,7 +695,7 @@ let g:airline_symbols.whitespace = ''
 " ale
 "" ----------------------------------------------------------------------------
 " wait a bit before checking syntax in a file, if typing
-let g:ale_lint_delay = 5000
+" let g:ale_lint_delay = 5000
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
@@ -833,6 +835,7 @@ let g:deoplete#sources['javascript.jsx'] = ['buffer', 'ternjs']
 let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
 let g:deoplete#omni#functions.elm = ['elm#Complete']
 let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
+let g:deoplete#disable_auto_complete = 1
 
 "" ----------------------------------------------------------------------------
 " Markdown
