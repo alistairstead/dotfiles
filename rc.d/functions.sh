@@ -1,15 +1,9 @@
-# Shortcut for searching commands history.
-# hist git
-function hist() {
-  history | grep "$@"
-}
-
 # Opens file in EDITOR.
 function e() {
   if [ $# -eq 0 ]; then
 		$EDITOR
 	else
-		$EDITOR "$@"
+		$EDITOR $argv
 	fi;
 }
 
@@ -19,7 +13,7 @@ function o() {
 	if [ $# -eq 0 ]; then
 		open .;
 	else
-		open "$@";
+		open $argv
 	fi;
 }
 
@@ -244,29 +238,29 @@ redis_stop() {
 
 vim() {
     if [ -s /usr/local/bin/nvim ]; then
-      nvim "$@"
+      nvim $argv
     else
-      vim "$@"
+      vim $argv
     fi
 }
 
 nvm() {
     unset -f nvm
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    nvm "$@"
+    nvm $argv
 }
 
 node() {
     unset -f node
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    node "$@"
+    node $argv
 }
 
 npm() {
     unset -f npm
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
     source <(npm completion)
-    npm "$@"
+    npm $argv
 }
 
 docker-clean() {
