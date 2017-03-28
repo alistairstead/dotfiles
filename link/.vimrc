@@ -166,7 +166,7 @@ se wrap                               " wrap long lines
 se textwidth=100                      " wrap at column 100
 " interaction
 set backspace=2                       " make backspace work like most other apps
-set mouse=""                          " turn of the mouse
+set mouse=""                          " turn off the mouse
 set mousehide                         " hide the mouse cursor while typing
 set whichwrap=b,s,h,l,<,>,[,]         " backspace and cursor keys wrap too
 " text selection
@@ -824,7 +824,7 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#max_list = 5
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['file', 'neosnippet']
+let g:deoplete#sources._ = ['buffer', 'file', 'neosnippet']
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#input_patterns = {}
 " jsx
@@ -832,10 +832,10 @@ let g:deoplete#omni#functions.javascript = ['tern#complete']
 let g:deoplete#sources['javascript.jsx'] = ['buffer', 'ternjs']
 " Elm support
 " h/t https://github.com/ElmCast/elm-vim/issues/52#issuecomment-264161975
-let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
+let g:deoplete#sources.elm = ['buffer', 'omni'] + g:deoplete#sources._
 let g:deoplete#omni#functions.elm = ['elm#Complete']
 let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
-let g:deoplete#disable_auto_complete = 1
+" let g:deoplete#disable_auto_complete = 1
 
 "" ----------------------------------------------------------------------------
 " Markdown
@@ -1027,6 +1027,13 @@ augroup markdown
   autocmd FileType markdown setlocal spell spelllang=en
 augroup END
 
+augroup git
+  autocmd!
+	autocmd FileType markdown setlocal spell spelllang=en
+  autocmd FileType gitcommit setlocal textwidth=72
+  autocmd FileType gitcommit setlocal colorcolumn=+1
+augroup END
+
 augroup vimrc
 	au BufWritePost vimrc,.vimrc nested if expand('%') !~ 'fugitive' | source % | endif
 
@@ -1056,10 +1063,6 @@ augroup vimrc
 
 	" Included syntax
 	" au FileType,ColorScheme * call <SID>file_type_handler()
-
-	" Clojure
-	au FileType clojure xnoremap <buffer> <Enter> :Eval<CR>
-	au FileType clojure nmap <buffer> <Enter> cpp
 
 	" Fugitive
 	au FileType gitcommit nnoremap <buffer> <silent> cd :<C-U>Gcommit --amend --date="$(date)"<CR>
