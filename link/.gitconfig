@@ -135,6 +135,9 @@
 
   updatehooks = !rm -rf $(git rev-parse --git-dir)/hooks && cp -a ~/dotfiles/git/templates/hooks $(git rev-parse --git-dir) && chmod +x $(git rev-parse --git-dir)/hooks/*
 
+[commit]
+  template = ~/dotfiles/git/templates/commit-template
+
 [include]
   # For username / github token / etc
   path = ~/.gitconfig.local
