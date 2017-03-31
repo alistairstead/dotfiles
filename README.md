@@ -20,11 +20,16 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/alistairstead/dotfiles/m
 * Connect Dropbox
 * Restore [makckup](https://github.com/lra/mackup)
 
+## Fonts and terminal
+
+* Install commercial font
+* Manually type `screen-256color` into the terminal type field in iTerm
+
 # License and Author
 
-Author:: Alistair Stead (alistair.stead@designdisclosure.com)
+Author:: Alistair Stead
 
-Copyright 2012, Alistair Stead
+Copyright 2017, Alistair Stead
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
