@@ -43,61 +43,61 @@ brew_tap_kegs
 
 # Homebrew recipes
 recipes=(
+  ack
+  ag
   awk
-  awscli
   aws-shell
+  awscli
   bash
   bash-completion2
-  wget --enable-iri
-  vim --override-system-vi
-  neovim/neovim/neovim
-  gpg
-  # https://github.com/pstadler/keybase-gpg-github
+  binutils
+  chromedriver
+  coreutils
+  diffutils
+  docker-completion
+  docker-compose-completion
+  elm
+  elm-format
+  findutils
   gh
-  hub
-  #mtr - ping & traceroute. best.
-  mtr
-  ack
   git
   git-extras
-  tree
-  ssh-copy-id
-  zsh
-  heroku-toolbelt
-  trash
-  findutils
   gnu-sed --with-default-names
   gnu-tar --with-default-names
   gnu-which --with-default-names
   gnutls --with-default-names
+  gpg
   grep
-  coreutils
-  moreutils
-  binutils
-  diffutils
   gzip
-  watch
-  tmux
+  heroku-toolbelt
+  htop
+  hub
+  jet
+  jmeter
+  kubernetes-cli
+  launchctl-completion
+  mackup
+  mix-completion
+  moreutils
+  mtr
+  neovim/neovim/neovim
   nmap
   nvm
-  htop
-  selenium-server-standalone
-  chromedriver
-  jmeter
-  mackup
-  reattach-to-user-namespace
-  jet
-  kubernetes-cli
-  terminal-notifier
-  postgres
-  tmuxinator-completion
-  mix-completion
-  docker-completion
-  docker-compose-completion
-  launchctl-completion
   open-completion
-  elm
-  elm-format
+  postgres
+  rbenv
+  reattach-to-user-namespace
+  selenium-server-standalone
+  ssh-copy-id
+  terminal-notifier
+  tmux
+  tmuxinator-completion
+  trash
+  tree
+  vim --override-system-vi
+  watch
+  wget --enable-iri
+  zsh
 )
 
 brew_install_recipes
