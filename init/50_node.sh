@@ -8,7 +8,7 @@ mkdir $HOME/.nvm
 
 nvm install stable
 
-npm install -g diff-so-fancy tern nsp snyk
+npm install -g diff-so-fancy tern nsp snyk elm elm-format elm-oracle
 
 
 
