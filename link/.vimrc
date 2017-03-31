@@ -10,6 +10,8 @@ let s:darwin = has('mac')
 " VIM-PLUG BLOCK {{{
 " ============================================================================
 
+let g:ale_emit_conflict_warnings = 0 " Resolve conflic with neomake
+
 silent! if plug#begin('~/.vim/plugged')
 
 if !has('nvim')
@@ -47,7 +49,7 @@ Plug 'vim-scripts/utl.vim'
 Plug 'dietsche/vim-lastplace'
 
 " BROWSING
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/indentLine', { 'on': 'IndentLinesEnable' }
 autocmd! User indentLine doautocmd indentLine Syntax
 
@@ -63,7 +65,7 @@ augroup nerd_loader
         \| endif
 augroup END
 
-" Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
@@ -203,7 +205,6 @@ if has("persistent_undo")
 endif
 
 "  THEME OPTIONS
-" Molokai
 let g:rehash256=1
 colorscheme molokai
 
@@ -1022,7 +1023,8 @@ augroup END
 
 augroup markdown
   autocmd!
-  autocmd FileType markdown setlocal textwidth=80
+  autocmd FileType markdown setlocal textwidth=100
+  autocmd FileType gitcommit setlocal colorcolumn=+1
   autocmd FileType markdown setlocal formatoptions=tcrq
   autocmd FileType markdown setlocal spell spelllang=en
 augroup END
