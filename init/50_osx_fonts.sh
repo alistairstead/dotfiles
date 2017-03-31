@@ -38,6 +38,7 @@ brew_tap_kegs
 
 # Homebrew recipes
 fonts=(
+  font-anonymouspro-nerd-font-mono
   font-awesome-terminal-fonts
 )
 
