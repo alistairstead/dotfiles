@@ -59,9 +59,6 @@ alias la="ls -l | awk '
 # List only directories
 alias lsd='ls -l | grep "^d"'
 
-# use the correct term for ssh
-alias ssh="TERM=xterm-256color ssh"
-
 # `cat` with beautiful colors. requires Pygments installed.
 # 							   sudo easy_install -U Pygments
 alias c='pygmentize -O style=monokai -f console256 -g'
