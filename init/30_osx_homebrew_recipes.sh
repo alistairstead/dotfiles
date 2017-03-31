@@ -56,8 +56,6 @@ recipes=(
   diffutils
   docker-completion
   docker-compose-completion
-  elm
-  elm-format
   findutils
   gh
   git
