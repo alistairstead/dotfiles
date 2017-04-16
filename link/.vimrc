@@ -96,6 +96,7 @@ Plug 'junegunn/fzf.vim'
 
 " LANG
 Plug 'sheerun/vim-polyglot'
+Plug 'hashivim/vim-terraform'
 Plug 'ap/vim-css-color', { 'for': [ 'css', 'less', 'sass' ] }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 " elixir
@@ -154,7 +155,7 @@ set wildmenu                          " enable wildmenu
 set wildmode=longest:full,full        " configure wildmenu
 
 " whitespace
-set noexpandtab                       " use spaces instead of tabs
+set expandtab                         " use spaces instead of tabs
 set shiftwidth=2                      " soft tab width
 set nojoinspaces                      " use one space, not two, after punctuation
 set softtabstop=2                     " appearance of tabs
@@ -216,10 +217,8 @@ se foldlevel=99
 se wildcharm=<tab>
 se wildmode=full
 se completeopt=menuone,preview
-" set complete=.,w,b,u,t
-set complete-=i
-" enable omni syntax completion
-set omnifunc=syntaxcomplete#Complete
+set complete-=i                             " set complete=.,w,b,u,t
+set omnifunc=syntaxcomplete#Complete        " enable omni syntax completion
 inoremap <c-l> <c-x><c-l>
 
 
@@ -785,13 +784,16 @@ nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ta :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tg :TestVisit<CR>
-let test#strategy = "make"
+let test#strategy = "neoterm"       " run tests in neoterm
 
 "" ----------------------------------------------------------------------------
 " POLYGLOT
 "" ----------------------------------------------------------------------------
 let g:polyglot_disabled = ['elm', 'elixir']
-
+"" ----------------------------------------------------------------------------
+" TERRAFORM
+"" ----------------------------------------------------------------------------
+let g:terraform_align=1
 "" ----------------------------------------------------------------------------
 " Alchemist
 "" ----------------------------------------------------------------------------
@@ -825,18 +827,18 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#max_list = 5
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['buffer', 'file', 'neosnippet']
+let g:deoplete#sources._ = ['file', 'neosnippet']
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#input_patterns = {}
 " jsx
 let g:deoplete#omni#functions.javascript = ['tern#complete']
-let g:deoplete#sources['javascript.jsx'] = ['buffer', 'ternjs']
+let g:deoplete#sources['javascript.jsx'] = ['ternjs']
 " Elm support
 " h/t https://github.com/ElmCast/elm-vim/issues/52#issuecomment-264161975
-let g:deoplete#sources.elm = ['buffer', 'omni'] + g:deoplete#sources._
+let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
 let g:deoplete#omni#functions.elm = ['elm#Complete']
 let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
-" let g:deoplete#disable_auto_complete = 1
+let g:deoplete#disable_auto_complete = 1
 
 "" ----------------------------------------------------------------------------
 " Markdown
@@ -1021,6 +1023,12 @@ augroup elixir
   autocmd BufNewFile,BufRead *.exs setlocal formatoptions=tcrq
 augroup END
 
+augroup elm
+  autocmd!
+  autocmd FileType elm let g:deoplete#disable_auto_complete = 1
+  autocmd BufWritePost *.elm ElmFormat
+augroup END
+
 augroup markdown
   autocmd!
   autocmd FileType markdown setlocal textwidth=100
@@ -1079,7 +1087,6 @@ augroup vimrc
   " Autocalls
   au BufWrite * :call <sid>MkdirsIfNotExists(expand('<afile>:h'))
   au BufWritePost,BufEnter * Neomake
-  au BufWritePost *.elm ElmFormat
 
   " Close preview window
 	if exists('##CompleteDone')
