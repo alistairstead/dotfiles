@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
+# /usr/bin/env bash
 
-# because I use a lazy loading strategy for nvm I need to source this file
-# or the command check will fail witin the execution of install_dotfiles
-source $DOTFILES/rc.d/functions.sh
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 mkdir $HOME/.nvm
 
 nvm install stable
+nvm alias default stable
 
-npm install -g diff-so-fancy tern nsp snyk elm elm-format elm-oracle
+npm install -g diff-so-fancy tern nsp snyk elm elm-format elm-live elm-oracle
 
 
 
