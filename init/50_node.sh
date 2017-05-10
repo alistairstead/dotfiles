@@ -8,7 +8,7 @@ mkdir $HOME/.nvm
 nvm install stable
 nvm alias default stable
 
-npm install -g diff-so-fancy tern nsp snyk elm elm-format elm-live elm-oracle
+npm install -g diff-so-fancy yarn tern nsp snyk elm elm-format elm-live elm-oracle
 
 
 
