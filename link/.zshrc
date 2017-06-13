@@ -25,6 +25,9 @@ if [ -d ${ZDOTDIR:-$HOME}/dotfiles/rc.d ]; then
   done
 fi
 
+if [ -f ~/.config/exercism/exercism_completion.zsh ]; then
+  . ~/.config/exercism/exercism_completion.zsh
+fi
 # The next line updates PATH for the Google Cloud SDK.
 #source '/Users/astead/Dropbox/Mackup/Downloads/google-cloud-sdk/path.zsh.inc'
 

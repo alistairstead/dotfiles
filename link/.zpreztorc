@@ -31,10 +31,8 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'spectrum' \
   'utility' \
-  'node' \
   'directory' \
   'terminal' \
-  'tmux' \
   'syntax-highlighting' \
   'prompt'
 

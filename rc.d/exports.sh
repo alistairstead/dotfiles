@@ -2,11 +2,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 
-# Prefer UK English and use UTF-8
-export LC_ALL="en_GB.UTF-8"
-export LANG='en_GB.UTF-8'
-export LC_CTYPE='en_GB.UTF-8'
-
 export TERM='screen-256color'
 export TERM_PROGRAM='iTerm.app'
 
