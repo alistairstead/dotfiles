@@ -244,25 +244,6 @@ vim() {
     fi
 }
 
-nvm() {
-    unset -f nvm
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    nvm $argv
-}
-
-node() {
-    unset -f node
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    node $argv
-}
-
-npm() {
-    unset -f npm
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    source <(npm completion)
-    npm $argv
-}
-
 docker-clean() {
   docker volume rm $(docker volume ls -qf dangling=true)
 }

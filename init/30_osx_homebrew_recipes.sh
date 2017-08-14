@@ -56,6 +56,8 @@ recipes=(
   diffutils
   docker-completion
   docker-compose-completion
+  editorconfig
+  ffmpeg --with-libvpx --with-libvorbis --with-fdk-aacc
   findutils
   gh
   git
