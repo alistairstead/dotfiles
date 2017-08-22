@@ -317,3 +317,5 @@ alias ssh-tunnel-disable='echo -n > ~/.ssh/config && cat ~/.ssh/hosts.*.config >
 
 alias composer="docker run -it --rm -u $UID -v $PWD:/app composer/composer"
 alias php7='docker run -it --rm -v "$PWD:/app" -w /app php:7 php'
+
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
