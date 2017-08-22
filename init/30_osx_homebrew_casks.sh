@@ -62,7 +62,6 @@ casks=(
   evernote
   fantastical
   firefox
-  gitter
   google-chrome
   google-chrome-canary
   grammarly
@@ -72,13 +71,11 @@ casks=(
   iterm2
   java
   kaleidoscope
+  kap
   keybase
-  licecap
   limechat
   little-snitch
   miro-video-converter
-  omnifocus-beta
-  omnifocus-clip-o-tron
   omnigraffle
   skype
   slack
@@ -87,19 +84,6 @@ casks=(
   transmission
   vlc
   webkit-nightly
-  #Collection of Quicklook extensions
-  animated-gif-quicklook
-  qlimagesize
-  betterzipql
-  qlcolorcode
-  qlmarkdown
-  qlprettypatch
-  qlstephen
-  quicklook-csv
-  quicklook-json
-  quicknfo
-  suspicious-package
-  webpquicklook
 )
 
 # Install Homebrew casks.
