@@ -1,4 +1,4 @@
-language: objective-c
+os: osx
 sudo: true
 pre_install:
   - make clean
