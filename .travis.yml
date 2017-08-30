@@ -1,0 +1,8 @@
+language: objective-c
+sudo: true
+pre_install:
+  - make clean
+install:
+  - make install
+script:
+  - make test
