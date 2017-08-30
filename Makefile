@@ -1,9 +1,13 @@
 EMACS ?= emacs
 CASK ?= cask
 BASH ?= bash
+GIT ?= git
 
 test:
 	${EMACS} --version
+
+submodules:
+	${GIT} submodule update --init --force --remote
 
 install: clean
 	${MAKE} install-homebrew
