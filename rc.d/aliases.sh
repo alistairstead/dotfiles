@@ -19,9 +19,6 @@ alias src="cd ~/src"
 
 alias rm="rm -i"
 
-# i <3 u cask
-alias cask='brew cask'
-
 # sometimes i forget
 alias where=which
 
@@ -37,9 +34,9 @@ hash gls >/dev/null 2>&1 || alias gls="ls"
 
 # Detect which `ls` flavor is in use
 if gls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
+  colorflag="--color"
 else # OS X `ls`
-	colorflag="-G"
+  colorflag="-G"
 fi
 
 # ls options: F = put `/` after folders, h = byte unit suffixes, color! (even with piping to awk)
@@ -60,7 +57,7 @@ alias la="ls -l | awk '
 alias lsd='ls -l | grep "^d"'
 
 # `cat` with beautiful colors. requires Pygments installed.
-# 							   sudo easy_install -U Pygments
+#                  sudo easy_install -U Pygments
 alias c='pygmentize -O style=monokai -f console256 -g'
 
 # GIT STUFF
@@ -99,7 +96,7 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "$method"="lwp-request -m '$method'"
+  alias "$method"="lwp-request -m '$method'"
 done
 
 # alias divers
@@ -294,7 +291,7 @@ alias map="xargs -n1"
 
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "$method"="lwp-request -m '$method'"
+  alias "$method"="lwp-request -m '$method'"
 done
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
