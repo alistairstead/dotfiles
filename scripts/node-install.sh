@@ -14,6 +14,6 @@ nvm install stable
 nvm alias default stable
 
 npm install -g yarn
-yarn install -g diff-so-fancy tern nsp snyk elm elm-format elm-live elm-oracle
+yarn global add diff-so-fancy tern nsp snyk elm elm-format elm-live elm-oracle
 
 e_success "All global node packages installed."
