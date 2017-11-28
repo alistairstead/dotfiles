@@ -1,20 +1,20 @@
 # Opens file in EDITOR.
 function e() {
   if [ $# -eq 0 ]; then
-		$EDITOR
-	else
-		$EDITOR $argv
-	fi;
+    $EDITOR
+  else
+    $EDITOR $argv
+  fi;
 }
 
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
 function o() {
-	if [ $# -eq 0 ]; then
-		open .;
-	else
-		open $argv
-	fi;
+  if [ $# -eq 0 ]; then
+    open .;
+  else
+    open $argv
+  fi;
 }
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
@@ -22,7 +22,7 @@ function o() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
 # Execute commands for each file in current directory.
@@ -88,104 +88,104 @@ cp_p () {
 
 # Create a new directory and enter it
 function mkd() {
-	mkdir -p "$@" && cd "$_";
+  mkdir -p "$@" && cd "$_";
 }
 
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+  cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
 # Extract archives - use: extract <file>
 # Based on http://dotfiles.org/~pseup/.bashrc
 # function extract() {
-# 	if [ -f "$1" ] ; then
-# 		local filename=$(basename "$1")
-# 		local foldername="${filename%%.*}"
-# 		local fullpath=`perl -e 'use Cwd "abs_path";print abs_path(shift)' "$1"`
-# 		local didfolderexist=false
-# 		if [ -d "$foldername" ]; then
-# 			didfolderexist=true
-# 			read -p "$foldername already exists, do you want to overwrite it? (y/n) " -n 1
-# 			echo
-# 			if [[ $REPLY =~ ^[Nn]$ ]]; then
-# 				return
-# 			fi
-# 		fi
-# 		mkdir -p "$foldername" && cd "$foldername"
-# 		case $1 in
-# 			*.tar.bz2) tar xjf "$fullpath" ;;
-# 			*.tar.gz) tar xzf "$fullpath" ;;
-# 			*.tar.xz) tar Jxvf "$fullpath" ;;
-# 			*.tar.Z) tar xzf "$fullpath" ;;
-# 			*.tar) tar xf "$fullpath" ;;
-# 			*.taz) tar xzf "$fullpath" ;;
-# 			*.tb2) tar xjf "$fullpath" ;;
-# 			*.tbz) tar xjf "$fullpath" ;;
-# 			*.tbz2) tar xjf "$fullpath" ;;
-# 			*.tgz) tar xzf "$fullpath" ;;
-# 			*.txz) tar Jxvf "$fullpath" ;;
-# 			*.zip) unzip "$fullpath" ;;
-# 			*) echo "'$1' cannot be extracted via extract()" && cd .. && ! $didfolderexist && rm -r "$foldername" ;;
-# 		esac
-# 	else
-# 		echo "'$1' is not a valid file"
-# 	fi
+#   if [ -f "$1" ] ; then
+#     local filename=$(basename "$1")
+#     local foldername="${filename%%.*}"
+#     local fullpath=`perl -e 'use Cwd "abs_path";print abs_path(shift)' "$1"`
+#     local didfolderexist=false
+#     if [ -d "$foldername" ]; then
+#       didfolderexist=true
+#       read -p "$foldername already exists, do you want to overwrite it? (y/n) " -n 1
+#       echo
+#       if [[ $REPLY =~ ^[Nn]$ ]]; then
+#         return
+#       fi
+#     fi
+#     mkdir -p "$foldername" && cd "$foldername"
+#     case $1 in
+#       *.tar.bz2) tar xjf "$fullpath" ;;
+#       *.tar.gz) tar xzf "$fullpath" ;;
+#       *.tar.xz) tar Jxvf "$fullpath" ;;
+#       *.tar.Z) tar xzf "$fullpath" ;;
+#       *.tar) tar xf "$fullpath" ;;
+#       *.taz) tar xzf "$fullpath" ;;
+#       *.tb2) tar xjf "$fullpath" ;;
+#       *.tbz) tar xjf "$fullpath" ;;
+#       *.tbz2) tar xjf "$fullpath" ;;
+#       *.tgz) tar xzf "$fullpath" ;;
+#       *.txz) tar Jxvf "$fullpath" ;;
+#       *.zip) unzip "$fullpath" ;;
+#       *) echo "'$1' cannot be extracted via extract()" && cd .. && ! $didfolderexist && rm -r "$foldername" ;;
+#     esac
+#   else
+#     echo "'$1' is not a valid file"
+#   fi
 # }
 
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
-	local tmpFile="${@%/}.tar";
-	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
+  local tmpFile="${@%/}.tar";
+  tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
 
-	size=$(
-		stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
-		stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
-	);
+  size=$(
+    stat -f"%z" "${tmpFile}" 2> /dev/null; # OS X `stat`
+    stat -c"%s" "${tmpFile}" 2> /dev/null # GNU `stat`
+  );
 
-	local cmd="";
-	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
-		# the .tar file is smaller than 50 MB and Zopfli is available; use it
-		cmd="zopfli";
-	else
-		if hash pigz 2> /dev/null; then
-			cmd="pigz";
-		else
-			cmd="gzip";
-		fi;
-	fi;
+  local cmd="";
+  if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
+    # the .tar file is smaller than 50 MB and Zopfli is available; use it
+    cmd="zopfli";
+  else
+    if hash pigz 2> /dev/null; then
+      cmd="pigz";
+    else
+      cmd="gzip";
+    fi;
+  fi;
 
-	echo "Compressing .tar using \`${cmd}\`…";
-	"${cmd}" -v "${tmpFile}" || return 1;
-	[ -f "${tmpFile}" ] && rm "${tmpFile}";
-	echo "${tmpFile}.gz created successfully.";
+  echo "Compressing .tar using \`${cmd}\`…";
+  "${cmd}" -v "${tmpFile}" || return 1;
+  [ -f "${tmpFile}" ] && rm "${tmpFile}";
+  echo "${tmpFile}.gz created successfully.";
 }
 
 # Create a data URL from a file
 function dataurl() {
-	local mimeType=$(file -b --mime-type "$1");
-	if [[ $mimeType == text/* ]]; then
-		mimeType="${mimeType};charset=utf-8";
-	fi
-	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+  local mimeType=$(file -b --mime-type "$1");
+  if [[ $mimeType == text/* ]]; then
+    mimeType="${mimeType};charset=utf-8";
+  fi
+  echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
 # Create a git.io short URL
 function gitio() {
-	if [ -z "${1}" -o -z "${2}" ]; then
-		echo "Usage: \`gitio slug url\`";
-		return 1;
-	fi;
-	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
+  if [ -z "${1}" -o -z "${2}" ]; then
+    echo "Usage: \`gitio slug url\`";
+    return 1;
+  fi;
+  curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
 }
 
 # Start a PHP server from a directory, optionally specifying the port
 # (Requires PHP 5.4.0+.)
 function phpserver() {
-	local port="${1:-4000}";
-	local ip=$(ipconfig getifaddr en1);
-	sleep 1 && open "http://${ip}:${port}/" &
-	php -S "${ip}:${port}";
+  local port="${1:-4000}";
+  local ip=$(ipconfig getifaddr en1);
+  sleep 1 && open "http://${ip}:${port}/" &
+  php -S "${ip}:${port}";
 }
 
 # Freshen up your brew.

@@ -1,80 +1,80 @@
 [alias]
 
-	a   = commit --amend
-	br  = branch
-	c   = commit
-	commit = commit --verbose
-	ca  = !git add -A && git commit -av             # Commit all changes
-	co  = checkout
-	cp  = cherry-pick
-	dc  = diff --cached
-	g   = log --graph --pretty=custom               # Show custom graph
-	l   = log --pretty=custom                       # Show custom log
-	lc  = shortlog --summary --numbered             # List contributors
-	rlc = !git reset --hard HEAD~1                  # Remove last commit
-	s 	= status -s
-	st  = status
-	ulc = reset --soft HEAD~1                       # Undo last commit
+  a   = commit --amend
+  br  = branch
+  c   = commit
+  commit = commit --verbose
+  ca  = !git add -A && git commit -av             # Commit all changes
+  co  = checkout
+  cp  = cherry-pick
+  dc  = diff --cached
+  g   = log --graph --pretty=custom               # Show custom graph
+  l   = log --pretty=custom                       # Show custom log
+  lc  = shortlog --summary --numbered             # List contributors
+  rlc = !git reset --hard HEAD~1                  # Remove last commit
+  s   = status -s
+  st  = status
+  ulc = reset --soft HEAD~1                       # Undo last commit
 
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+  # Show the diff between the latest commit and the current state
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
+  # Pull in remote changes for the current repository and all its submodules
+  p = !"git pull; git submodule foreach git pull origin master"
 
-	# Switch to a branch, creating it if necessary
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+  # Switch to a branch, creating it if necessary
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v
 
-	# Amend the currently staged files to the latest commit
-	amend = commit --amend --reuse-message=HEAD
+  # Amend the currently staged files to the latest commit
+  amend = commit --amend --reuse-message=HEAD
 
-	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+  # Credit an author on the latest commit
+  credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
-	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
+  # Interactive rebase with the given number of latest commits
+  reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# Remove the old tag with this name and tag the latest commit with it.
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+  # Remove the old tag with this name and tag the latest commit with it.
+  retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 
-	# Find branches containing commit
-	fb = "!f() { git branch -a --contains $1; }; f"
+  # Find branches containing commit
+  fb = "!f() { git branch -a --contains $1; }; f"
 
-	# Find tags containing commit
-	ft = "!f() { git describe --always --contains $1; }; f"
+  # Find tags containing commit
+  ft = "!f() { git describe --always --contains $1; }; f"
 
-	# Find commits by source code
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+  # Find commits by source code
+  fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
 
-	# Find commits by commit message
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+  # Find commits by commit message
+  fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 
-	# Remove branches that have already been merged with master
-	# a.k.a. ‘delete merged’
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  # Remove branches that have already been merged with master
+  # a.k.a. ‘delete merged’
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
-	# List contributors with number of commits
-	contributors = shortlog --summary --numbered
+  # List contributors with number of commits
+  contributors = shortlog --summary --numbered
 
-	# Merge GitHub pull request on top of the `master` branch
-	mpr = "!f() { \
-		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-			git fetch origin refs/pull/$1/head:pr/$1 && \
-			git rebase master pr/$1 && \
-			git checkout master && \
-			git merge pr/$1 && \
-			git branch -D pr/$1 && \
-			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-		fi \
-	}; f"
+  # Merge GitHub pull request on top of the `master` branch
+  mpr = "!f() { \
+    if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+      git fetch origin refs/pull/$1/head:pr/$1 && \
+      git rebase master pr/$1 && \
+      git checkout master && \
+      git merge pr/$1 && \
+      git branch -D pr/$1 && \
+      git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+    fi \
+  }; f"
 
   cnv = commit --no-verify
 
@@ -103,145 +103,18 @@
   # rebase the current branch with changes from upstream remote
   update = !git fetch upstream && git rebase upstream/`git rev-parse --abbrev-ref HEAD`
 
-  # grep commands
-
-  # 'diff grep'
-  dg = "!sh -c 'git ls-files -m | grep $1 | xargs git diff' -"
-  # diff grep changes between two commits
-  dgc = "!sh -c 'git ls-files | grep $1 | xargs git diff $2 $3 -- ' -"
-  # 'checkout grep'
-  cg = "!sh -c 'git ls-files -m | grep $1 | xargs git checkout ' -"
-  # add grep
-  ag = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs git add' -"
-
-  done = fetch && git rebase origin/master && git checkout master && git merge @{-1}
-
-  # Other useful aliases:
-  unstage = reset HEAD
-  staged = diff --cached
-  unstaged = diff
-  track = checkout -t
-  head = !git l -1
-  h = !git head
-  hp = "!source ~/dotfiles/git/functions/log && show_git_head"
-  r = !git l -30
-  ra = !git r --all
-  l = "!source ~/dotfiles/git/functions/log && pretty_git_log"
-  la = !git l --all
-  # git changelog 0.4.5...0.5.3 using tags or tree-ish references
-  whatchanged = log --pretty=oneline --no-merges
-  cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
-  rmb = !sh -c 'git branch -D $1 && git push origin :$1' -
-
-  updatehooks = !rm -rf $(git rev-parse --git-dir)/hooks && cp -a ~/dotfiles/git/templates/hooks $(git rev-parse --git-dir) && chmod +x $(git rev-parse --git-dir)/hooks/*
 
 [commit]
   template = ~/dotfiles/git/templates/commit-template
 
-[include]
-  # For username / github token / etc
-  path = ~/.gitconfig.local
-
-[core]
-	quotepath = false
-  excludesfile = ~/.gitignore-global
-	pager = diff-so-fancy | less --tabs=4 -RFX
-
-  # Treat spaces before tabs and all kinds of trailing whitespace as an error
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-
-	# Make `git rebase` safer on OS X
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
-
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-	precomposeunicode = false
-
-[color]
-
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = auto
-
-[color "branch"]
-
-	current = green reverse
-	local = cyan
-	remote = magenta
-
-[color "diff"]
-
-	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
-
-[color "status"]
-
-	added = green
-	changed = yellow
-	untracked = cyan
-
-[apply]
-
-	# Detect whitespace errors when applying a patch
-	whitespace = fix
-
-[help]
-
-	# Automatically correct and execute mistyped commands
-	autocorrect = 1
-
-[status]
-
-  submodule = 1
-
 [pretty]
-	# custom = "%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset"
+  # custom = "%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset"
   custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
   #                     │        │            │            │             └─ author name
   #                     │        │            │            └─ message
   #                     │        │            └─ date (relative)
   #                     │        └─ decorations (branch, heads or tags)
   #                     └─ hash (abbreviated)
-
-[push]
-
-	# Use the Git 1.x.x default to avoid errors on machines with old Git
-	# installations. To use `simple` instead, add this to your `~/.extra` file:
-	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = current
-	# Make `git push` push relevant annotated tags when pushing branches out.
-	followTags = true
-
-[pack]
-
-  threads = 0
-
-# URL shorthands
-
-[url "git@github.com:"]
-
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
-
-[url "git://github.com/"]
-
-	insteadOf = "github:"
-
-[url "git@gist.github.com:"]
-
-	insteadOf = "gst:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
-
-[url "git://gist.github.com/"]
-
-	insteadOf = "gist:"
 
 [init]
 
@@ -253,44 +126,26 @@
 
 [difftool "Kaleidoscope"]
 
-	cmd = ksdiff --partial-changeset --relative-path $MERGED -- $LOCAL $REMOTE
+  cmd = ksdiff --partial-changeset --relative-path $MERGED -- $LOCAL $REMOTE
 
 [diff]
 
   # Detect copies as well as renames
-	renames = copies
-	tool = Kaleidoscope
+  renames = copies
+  tool = Kaleidoscope
 
 [difftool]
 
-	prompt = false
+  prompt = false
 
-[mergetool "Kaleidoscope"]
-
-	cmd = ksdiff --merge --output $MERGED --base $BASE -- $LOCAL --snapshot $REMOTE --snapshot
-	trustExitCode = true
-
-[mergetool]
-
-	prompt = false
-
-[merge]
-
-  # Include summaries of merged commits in newly created merge commit messages
-	log = true
-	tool = Kaleidoscope
-
-[hub]
-
-  protocol = https
-
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
 [user]
-	email = alistair_stead@me.com
-	name = Alistair Stead
-	signingkey = C4FE2AAA
+  email = alistair_stead@me.com
+  name = Alistair Stead
+  signingkey = C4FE2AAA
+
 [commit]
-	gpgsign = true
+  gpgsign = true
+
+[github]
+  user = alistairstead
+  oauth-token = 14b04bc533ea2c466f44c14ade69ffefc63a55c714b04bc533ea2c466f44c14ade69ffefc63a55c

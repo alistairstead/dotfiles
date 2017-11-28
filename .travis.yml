@@ -1,8 +1,18 @@
-os: osx
-sudo: true
-pre_install:
-  - make clean
-install:
-  - make install
-script:
-  - make test
+language: ruby
+rvm:
+  - 2.0.0
+
+os:
+  - linux
+  - osx
+
+install: |
+  if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+    sudo apt-get update >/dev/null
+    sudo apt-get install -y zsh
+  else
+    brew update >/dev/null
+    brew install zsh
+  fi
+
+script: make ci

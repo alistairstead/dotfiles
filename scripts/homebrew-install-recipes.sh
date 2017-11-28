@@ -14,6 +14,7 @@ kegs=(
   homebrew/command-not-found
   homebrew/completions
   homebrew/devel-only
+  d12frosted/emacs-plus
 )
 
 brew_tap_kegs
@@ -36,7 +37,7 @@ recipes=(
   docker-compose-completion
   docmacs
   editorconfig
-  emacs --HEAD --use-git-head --with-cocoa --with-gnutls --with-rsvg --with-imagemagick
+  emacs-plus --HEAD --with-natural-title-bars
   fasd
   ffmpeg --with-libvpx --with-libvorbis --with-fdk-aacc
   findutils
