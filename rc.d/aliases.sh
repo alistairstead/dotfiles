@@ -9,7 +9,6 @@ alias .....="cd ../../../.."
 alias src="cd ~/src"
 
 #typos
-alias brwe=brew
 
 # be nice
 alias please='sudo '
@@ -25,22 +24,7 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 # alias divers
 alias services='sudo netstat -tulpn'
 
-# Some OS X-only stuff.
-if [[ "$OSTYPE" == darwin* ]]; then
-  # Short-cuts for copy-paste.
-  alias c='pbcopy'
-  alias p='pbpaste'
 
-  # Remove all items safely, to Trash (`brew install trash`).
-  alias rm='trash'
-
-  # Lock current session and proceed to the login screen.
-  alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
-fi
-
-alias :w='fail'
-alias :q='fail'
-alias :wq='fail'
 
 # Git short-cuts.
 alias ga='git add'
@@ -60,27 +44,27 @@ alias gdisc='git discard'
 function g() {
   args=$@
   if [[ $# -eq 0 ]]; then
-    git status --short
+	git status --short
   else
-    git $args
+	git $args
   fi
 }
 
 function gc() {
   args=$@
   if [[ $# -eq 0 ]]; then
-    git commit -v
+	git commit -v
   else
-    git commit -m "$args"
+	git commit -m "$args"
   fi
 }
 
 function gcnv() {
   args=$@
   if [[ $# -eq 0 ]]; then
-    git commit --no-verify -v
+	git commit --no-verify -v
   else
-    git commit --no-verify -m "$args"
+	git commit --no-verify -m "$args"
   fi
 }
 

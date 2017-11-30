@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 alias npis='npm install --save'
 alias npisd='npm install --save-dev'
