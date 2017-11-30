@@ -15,5 +15,11 @@ check:
 		--ignore 'vim/vim.symlink/bundle/**/*' \
 		--ignore 'docker/completion.zsh'
 
-ci: check
+docker_build:
+	docker build -t dotfiles .
+
+docker_run:
+	docker run -it dotfiles
+
+test: check
 	./script/test

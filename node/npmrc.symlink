@@ -1,1 +1,3 @@
 prefix = ~/.npm
+save=true
+save-exact=true

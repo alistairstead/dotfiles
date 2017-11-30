@@ -15,4 +15,4 @@ install: |
     brew install zsh
   fi
 
-script: make ci
+script: make test

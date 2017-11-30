@@ -143,8 +143,8 @@
   name = Alistair Stead
   signingkey = C4FE2AAA
 
-[commit]
-  gpgsign = true
+#[commit]
+#  gpgsign = true
 
 [github]
   user = alistairstead

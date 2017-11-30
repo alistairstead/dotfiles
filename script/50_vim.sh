@@ -24,7 +24,7 @@ PYTHON3_PATH=$(pyenv which python)
 # of what env is currently active.  Repeat this pattern for other
 # packages that provide cli programs that are used in Neovim.
 pip install flake8
-ln -s `pyenv which flake8` ~/bin/flake8
+ln -s $(pyenv which flake8) ~/bin/flake8
 
 nvim -c ":PlugInstall"
 nvim -c ":UpdateRemotePlugins"
