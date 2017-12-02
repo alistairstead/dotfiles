@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # modern make
 if which mmake >/dev/null 2>&2; then
 	alias make='mmake'

@@ -1,5 +1,6 @@
+#!/bin/sh
+
 # init according to man page
-if (( $+commands[rbenv] ))
-then
+if (($ + commands[rbenv])); then
   eval "$(rbenv init -)"
 fi

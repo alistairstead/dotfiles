@@ -2,7 +2,7 @@
 
 export PORT=8080
 export NODE_ENV=development
-export DEBUG=express:*
+export DEBUG="express:*"
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY_FILE=~/.node_history
 # Allow 32³ entries; the default is 1000.

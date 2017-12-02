@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/sh
+
 export LSCOLORS='exfxcxdxbxegedabagacad'
 export CLICOLOR=true
 
