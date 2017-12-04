@@ -27,7 +27,7 @@ gi() {
 }
 
 function g() {
-  args=$*
+  args=$@
   if [[ $# -eq 0 ]]; then
     git status --short
   else
@@ -36,7 +36,7 @@ function g() {
 }
 
 function gc() {
-  args=$*
+  args=$@
   if [[ $# -eq 0 ]]; then
     git commit -v
   else
@@ -45,7 +45,7 @@ function gc() {
 }
 
 function gcnv() {
-  args=$*
+  args=$@
   if [[ $# -eq 0 ]]; then
     git commit --no-verify -v
   else
@@ -54,7 +54,7 @@ function gcnv() {
 }
 
 function gca() {
-  args=$*
+  args=$@
   git commit --amend -m "$args"
 }
 
@@ -66,6 +66,6 @@ function gb() {
 alias gp='git push'
 
 function gcp() {
-  args=$*
+  args=$@
   git commit -a -m "$args" && git push -u origin
 }
