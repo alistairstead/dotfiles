@@ -9,7 +9,7 @@ config keyboardLayout qwerty
 
 # App Aliases
 alias browser 'Google Chrome'
-alias editor 'Code'
+alias editor 'Emacs'
 alias terminal 'iTerm2'
 
 # Positions aliases
@@ -19,7 +19,7 @@ alias left-half         move screenOriginX;screenOriginY                        
 alias right-half        move screenOriginX+screenSizeX*0.5;screenOriginY               screenSizeX*0.5;screenSizeY
 
 # Hyper key
-alias hyper ctrl;alt;cmd
+alias hyper ctrl;cmd
 
 # Location Bindings
 bind m:${hyper} ${full}
