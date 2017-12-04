@@ -155,7 +155,6 @@ cask 'caskroom/fonts/font-fira-code'
 
 
 # MacApp Store Apps
-mas "Evernote", id: 406056744
 mas "Kindle", id: 405399194
 mas "Pages", id: 409201541
 mas "Trello", id: 1278508951
