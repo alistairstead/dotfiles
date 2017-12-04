@@ -26,6 +26,7 @@ alias services='sudo netstat -tulpn'
 # Create a data URL from a file
 dataurl() {
 	mimeType=$(file -b --mime-type "$1")
+	# shellcheck disable=SC2039
 	if [[ "$mimeType" == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8"
 	fi

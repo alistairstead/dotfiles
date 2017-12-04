@@ -5,15 +5,12 @@ fmt:
 
 check:
 	@curl -sL https://git.io/shcheck | bash -f -s -- \
-		--ignore 'script/test' \
-		--ignore 'vim/vim.symlink/**/*' \
-		--ignore 'zsh/config.zsh' \
-		--ignore 'zsh/completion.zsh' \
-		--ignore 'zsh/prompt.zsh' \
-		--ignore 'zsh/fpath.zsh' \
-		--ignore 'atom.symlink/packages/**/*' \
-		--ignore 'vim/vim.symlink/bundle/**/*' \
-		--ignore 'docker/completion.zsh'
+		--ignore 'zshrc.d/config.zsh' \
+		--ignore 'zshrc.d/completion.zsh' \
+		--ignore 'zshrc.d/prompt.zsh' \
+		--ignore 'zshrc.d/window.zsh' \
+		--ignore 'zshrc.d/fpath.zsh' \
+		--ignore 'script/test'
 
 docker_build:
 	docker build -t dotfiles .
