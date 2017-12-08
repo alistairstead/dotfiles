@@ -11,7 +11,6 @@ echo "Copying public key to clipboard. Paste it into your Github account ..."
 [ -f "${HOME}/.ssh/id_rsa.pub" ] cat ${HOME}/.ssh/id_rsa.pub | pbcopy
 successfully open https://github.com/account/ssh
 
-
 # Don't ask ssh password all the time
 if [ "$(uname -s)" = "Darwin" ]; then
 	git config --global credential.helper osxkeychain

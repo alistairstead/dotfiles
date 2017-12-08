@@ -22,32 +22,32 @@ alias push='git push'
 alias pull='git pull'
 
 gi() {
-  curl -s "https://www.gitignore.io/api/$*"
+	curl -s "https://www.gitignore.io/api/$*"
 }
 
 g() {
-  args=$@
-  if [[ $# -eq 0 ]]; then
-    git status --short
-  else
-    git $args
-  fi
+	args=$@
+	if [[ $# -eq 0 ]]; then
+		git status --short
+	else
+		git $args
+	fi
 }
 
 gc() {
-  args=$@
-  if [[ $# -eq 0 ]]; then
-    git commit -v
-  else
-    git commit -m "$args"
-  fi
+	args=$@
+	if [[ $# -eq 0 ]]; then
+		git commit -v
+	else
+		git commit -m "$args"
+	fi
 }
 
 gcnv() {
-  args=$@
-  if [[ $# -eq 0 ]]; then
-    git commit --no-verify -v
-  else
-    git commit --no-verify -m "$args"
-  fi
+	args=$@
+	if [[ $# -eq 0 ]]; then
+		git commit --no-verify -v
+	else
+		git commit --no-verify -m "$args"
+	fi
 }
