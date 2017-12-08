@@ -6,7 +6,6 @@ alias glga="glg --all"
 alias gp='git push origin HEAD'
 alias gpa='git push origin --all'
 alias gd='git diff'
-alias gc='git commit'
 alias gca='git commit -a'
 alias gco='git checkout'
 alias gb='git branch -v'
@@ -26,7 +25,7 @@ gi() {
   curl -s "https://www.gitignore.io/api/$*"
 }
 
-function g() {
+g() {
   args=$@
   if [[ $# -eq 0 ]]; then
     git status --short
@@ -35,7 +34,7 @@ function g() {
   fi
 }
 
-function gc() {
+gc() {
   args=$@
   if [[ $# -eq 0 ]]; then
     git commit -v
@@ -44,28 +43,11 @@ function gc() {
   fi
 }
 
-function gcnv() {
+gcnv() {
   args=$@
   if [[ $# -eq 0 ]]; then
     git commit --no-verify -v
   else
     git commit --no-verify -m "$args"
   fi
-}
-
-function gca() {
-  args=$@
-  git commit --amend -m "$args"
-}
-
-function gb() {
-  local branch=$1
-  git checkout -b $branch origin/$branch
-}
-
-alias gp='git push'
-
-function gcp() {
-  args=$@
-  git commit -a -m "$args" && git push -u origin
 }
