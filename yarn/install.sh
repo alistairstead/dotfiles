@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-yarn global add diff-so-fancy tern nsp snyk elm elm-format elm-live elm-oracle
+packages=(diff-so-fancy tern nsp snyk elm elm-format elm-live elm-oracle)
+
+for package in "${packages[@]}"; do
+	if test ! $(which "${package}"); then
+		yarn global add "${package}"
+	fi
+done

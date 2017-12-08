@@ -1,15 +1,13 @@
 #!/bin/sh
 
-successfully() {
-	"$*" || (echo "failed" 1>&2 && exit 1)
-}
-
 echo "Checking for SSH key, generating one if it doesn't exist ..."
 [ -f "${HOME}/.ssh/id_rsa.pub" ] || ssh-keygen -t rsa
 
 echo "Copying public key to clipboard. Paste it into your Github account ..."
-[ -f "${HOME}/.ssh/id_rsa.pub" ] cat ${HOME}/.ssh/id_rsa.pub | pbcopy
-successfully open https://github.com/account/ssh
+if [ -f "${HOME}/.ssh/id_rsa.pub" ] && [ "$(uname -s)" = "Darwin" ]; then
+	pbcopy <"${HOME}/.ssh/id_rsa.pub"
+	open https://github.com/settings/keys
+fi
 
 # Don't ask ssh password all the time
 if [ "$(uname -s)" = "Darwin" ]; then
