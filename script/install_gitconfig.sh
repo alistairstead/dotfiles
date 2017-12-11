@@ -56,14 +56,34 @@ setup_gitconfig() {
 		# otherwise this gitconfig was already made by the dotfiles
 		info "already managed by dotfiles"
 	fi
+
+	if [ -z "$(git config --global --get github.user)" ]; then
+		user ' - What is your github username?'
+		read -r username
+		git config --global github.user "$username"
+	fi
+	if [ -z "$(git config --global --get github.oauth-token)" ]; then
+		user ' - What is your github oauth-token?'
+		read -r token
+		git config --global github.oauth-token "$token"
+	fi
 	# include the gitconfig.local file
 	git config --global include.path ~/.gitconfig.local
 	# finally make git knows this is a managed config already, preventing later
 	# overrides by this script
 	git config --global dotfiles.managed true
-	success 'gitconfig'
+
+	info "Checking for SSH key, generating one if it doesn't exist ..."
+	[ -f "${HOME}/.ssh/id_rsa.pub" ] || ssh-keygen -t rsa
+
+	info "Copying public key to clipboard. Paste it into your Github account ..."
+	if [ -f "${HOME}/.ssh/id_rsa.pub" ] && [ "$(uname -s)" = "Darwin" ]; then
+		pbcopy <"${HOME}/.ssh/id_rsa.pub"
+		open https://github.com/settings/keys
+	fi
+
+
+	success 'gitconfig intalled!'
 }
 
 setup_gitconfig
-
-echo '  All installed!'
