@@ -7,11 +7,13 @@ tap 'homebrew/services'
 tap 'homebrew/completions'
 tap 'homebrew/devel-only'
 tap 'homebrew/command-not-found'
+tap "homebrew/php"
 tap 'eqnxio/ngrok'
 tap 'd12frosted/emacs-plus'
 tap 'homebrew/dupes'
 tap 'getantibody/tap'
 tap 'neovim/neovim'
+tap "heroku/brew"
 
 brew 'ack'
 brew 'ag'
@@ -21,6 +23,8 @@ brew 'aspell', args: ['--with-lang-en']
 brew 'awscli'
 brew 'aws-elasticbeanstalk'
 brew 'cairo'
+brew 'composer'
+brew 'curl', args: ["with-openssl"]
 brew 'diff-so-fancy'
 brew 'editorconfig'
 brew 'elixir'
@@ -44,13 +48,17 @@ brew 'harfbuzz'
 brew 'heroku'
 brew 'htop-osx'
 brew 'imagemagick@6'
+brew 'ispell'
 brew 'jq'
 brew 'libcroco'
 brew 'librsvg'
 brew 'mackup'
 brew 'mas'
 brew 'neovim'
+brew 'nmap'
+brew 'node'
 brew 'nvm'
+brew 'openssl'
 brew 'packer'
 brew 'pango'
 brew 'pinentry-mac'
@@ -65,12 +73,14 @@ brew 'ssh-copy-id'
 brew 'terminal-notifier'
 brew 'terraform'
 brew 'terraform-docs'
+brew 'thefuck'
 brew 'trash'
 brew 'tree'
 brew 'the_silver_searcher'
 brew 'unrar'
 brew 'vim', args: ['--override-system-vi']
 brew 'wget'
+brew 'wifi-password'
 brew 'yarn'
 brew 'zsh'
 
@@ -122,17 +132,18 @@ cask 'kap'
 cask 'keybase'
 cask 'kitematic'
 cask 'limechat'
+cask 'postman'
 cask 'rescuetime'
 cask 'skype'
 cask 'slack'
 cask 'slate'
 cask 'spotify'
+cask 'teamviewer'
 cask 'telegram'
 cask 'transmit'
 cask 'transmission'
 cask 'the-unarchiver'
 cask 'tunnelbear'
-cask 'viscosity'
 cask 'visual-studio-code'
 cask 'vlc'
 
@@ -147,6 +158,7 @@ cask 'quicklook-csv'
 cask 'quicklook-json'
 cask 'suspicious-package'
 cask 'webpquicklook'
+cask 'qlvideo'
 
 # fonts
 cask 'caskroom/fonts/font-anonymouspro-nerd-font-mono'
@@ -156,6 +168,8 @@ cask 'caskroom/fonts/font-fira-code'
 
 # MacApp Store Apps
 mas "Kindle", id: 405399194
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Trello", id: 1278508951
 mas "iStat Mini", id: 927292435
@@ -167,3 +181,4 @@ mas "Newton", id: 1059655371
 mas "Monodraw", id: 920404675
 mas "kset", id: 847496013
 mas "Tweetbot", id: 557168941
+mas "Xcode", id: 497799835
