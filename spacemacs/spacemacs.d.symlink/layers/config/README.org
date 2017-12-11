@@ -1,0 +1,67 @@
+#+TITLE: Config Layer
+
+* Description
+
+This layer houses ~dotspacemacs/user-config~ updates and
+~dotspacemacs/additional/packages~. The local package ~org-config~ houses my
+org-mode updates.
+
+Language specific configuration is hosted in the ~langs~ layer.
+
+Display updates, theming and my several ~pretty~ packages are hosted in the
+~display~ layer.
+
+Personal packages not display related are hosted in the ~personal~ layer.
+
+Features are best understood by seeing the utilized packages in
+~config-packages~. The following tables contain all keybindings.
+
+* Keybindings
+** Evil and Core
+
+| Key Binding | Function               |
+|-------------+------------------------|
+| ~Q~         | config/execute-q-macro |
+| ~H~         | evil-first-non-blank   |
+| ~L~         | evil-end-of-line       |
+| ~0~         | evil-jump-item         |
+| ~s~         | avy-goto-char-timer    |
+| ~C-SPC~     | hippie-expand              |
+
+** Navigation and Windows
+
+| Key Binding | Function                   |
+|-------------+----------------------------|
+| ~C-h~       | avy-pop-mark               |
+| ~C-l~       | evil-avy-goto-line         |
+| ~C-e~       | config/shell-pop-eshell    |
+| ~M-d~       | spacemacs/delete-window    |
+| ~M-TAB~     | spacemacs/alternate-buffer |
+| ~M-p~       | neotree-find-project-root  |
+| ~M-f~       | winum-select-window-0      |
+
+** Outlines
+
+| Key Binding | Function                         |
+|-------------+----------------------------------|
+| ~g h~       | outline-up-heading               |
+| ~g j~       | outline-forward-same-level       |
+| ~g k~       | outline-backward-same-level      |
+| ~g l~       | outline-next-visible-heading     |
+| ~g u~       | outline-previous-visible-heading |
+| ~SPC n j~   | outline-move-subtree-down        |
+| ~SPC n k~   | outline-move-subtree-up          |
+| ~SPC n h~   | outline-promote                  |
+| ~SPC n l~   | outline-demote                   |
+| ~SPC n n~   | outshine-narrow-to-subtree       |
+| ~SPC n w~   | widen                           |
+| ~M-RET~     | outshine-insert-heading          |
+| ~<backtab>~ | outshine-cycle-buffer            |
+
+
+
+** Misc
+
+| Key Binding | Function                            |
+|-------------+-------------------------------------|
+| ~SPC w o~   | olivetti (distraction-free editing) |
