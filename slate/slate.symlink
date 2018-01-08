@@ -11,6 +11,7 @@ config keyboardLayout qwerty
 alias browser 'Google Chrome'
 alias editor 'Emacs'
 alias terminal 'iTerm2'
+alias im 'Slack'
 
 # Positions aliases
 alias full              move screenOriginX;screenOriginY                               screenSizeX;screenSizeY
@@ -24,10 +25,11 @@ alias hyper ctrl;cmd
 # Location Bindings
 bind m:${hyper} ${full}
 bind c:${hyper} ${center}
-bind left:${hyper} ${left-half}
-bind right:${hyper} ${right-half}
+bind h:${hyper} ${left-half}
+bind l:${hyper} ${right-half}
 
 # Application Bindings
 bind b:${hyper} focus ${browser}
 bind e:${hyper} focus ${editor}
 bind t:${hyper} focus ${terminal}
+bind i:${hyper} focus ${im}
