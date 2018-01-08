@@ -14,6 +14,8 @@ gpg --import ~/keybase.secret.key
 # Update the trust level to don't show warning messages
 # gpg --edit-key {username}@keybase.io trust quit
 
+# see https://github.com/pstadler/keybase-gpg-github
+
 git config --global user.signingkey "$(git config --get user.email)"
 git config --global commit.gpgsign true
 git config --global gpg.program "$(which gpg)"
