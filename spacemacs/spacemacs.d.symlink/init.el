@@ -66,7 +66,6 @@ you should place your code here."
 
 (defvar dotspacemacs/layers/local
   '((macros :location local)    ; All local layers inherit these macros
-
      (config :location local)    ; Org, Avy, Evil, Misc... config
      (display :location local)   ; Pretty-eshell/code/outlines... pkgs
      (langs :location local)     ; Language config
@@ -89,19 +88,20 @@ you should place your code here."
        git-variable-example nil )
      semantic
      ( syntax-checking :variables
-       syntax-checking-use-original-bitmaps t
-       syntax-checking-enable-by-default t )
+       syntax-checking-enable-tooltips nil )
      spell-checking
      theming
      ( auto-completion :variables
        auto-completion-return-key-behavior 'complete
-       auto-completion-tab-key-behavior 'complete
-       auto-completion-enable-snippets-in-popup t
-       auto-completion-enable-help-tooltip 'manual )
+       auto-completion-tab-key-behavior 'cycle
+       auto-completion-complete-with-key-sequence nil
+       auto-completion-complete-with-key-sequence-delay 0.1
+       auto-completion-private-snippets-directory nil
+       auto-completion-enable-snippets-in-popup t )
      ( helm :variables
        helm-mode-fuzzy-match t
-       ;; helm-completion-in-region-fuzzy-match t
-       helm-candidate-number-limit 10)
+       helm-completion-in-region-fuzzy-match t
+       helm-candidate-number-limit 10 )
      ( org :variables
        org-enable-reveal-js-support t
        org-enable-bootstrap-support t
@@ -124,13 +124,8 @@ you should place your code here."
 ;;;; Language Support
 
 (defvar dotspacemacs/layers/langs
-  '(( elm :variables
-       elm-sort-imports-on-save t )
-     elixir
-     erlang
-     emacs-lisp
-     ( html :packages
-       ( not pug-mode slim-mode ) )
+  '(     erlang
+     html
      javascript
      markdown
      php
@@ -141,27 +136,19 @@ you should place your code here."
      ( shell-scripts :packages
        ( not fish-mode ) )
      terraform
-     vimscript
      yaml
      )
   "Programming and markup language layers")
-
 ;;;; Extra
 
 (defvar dotspacemacs/layers/extra
   '(dash
-     ;; fasd
-     restclient
-     imenu-list
-     emoji
      docker
      ;; ( github :packages
      ;;   ( not magit-gh-pulls )
      ;;   :variables gist-view-gist t )
-     graphviz
-     ranger
-     ( ibuffer :variables
-       ibuffer-group-buffers-by 'projects )
+     ;; ( ibuffer :variables
+     ;;   ibuffer-group-buffers-by 'projects )
      )
   "Miscellaneous layers")
 
@@ -208,7 +195,8 @@ values."
     ;; wrapped in a layer. If you need some configuration for these
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
-    dotspacemacs-additional-packages '(evil-surround
+    dotspacemacs-additional-packages '(solarized-theme
+                                        nord-theme
                                         editorconfig)
     ;; A list of packages that will not be installed and loaded.
     dotspacemacs-excluded-packages '(fringe)
@@ -277,7 +265,9 @@ values."
 
 (defun dotspacemacs/init/display ()
   (setq-default
-    dotspacemacs-themes '(( atom-material :location local )
+    dotspacemacs-themes '(solarized-dark
+                           nord
+                           ( atom-material :location local )
                            lush
                            material
                            molokai
@@ -285,7 +275,7 @@ values."
                            sanityinc-solarized-dark
                            sanityinc-tomorrow-blue)
     dotspacemacs-default-font `("Operator Mono XLight 14"
-                                 :powerline-scale 1.3)
+                                 :powerline-scale 1.5)
     ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
     ;; (Emacs 24.4+ only)
     dotspacemacs-fullscreen-at-startup (if is-linuxp nil t)
@@ -492,15 +482,20 @@ values."
   "Spacemacs toggles not intended to be put into layers."
   (spacemacs/toggle-highlight-long-lines-globally-on)
   (spacemacs/toggle-mode-line-minor-modes-off)
-  (spacemacs/toggle-aggressive-indent-globally-on)
-  (global-highlight-parentheses-mode 1)
-  (setq-default evil-escape-delay 0.3)
-  (add-hook 'prog-mode-hook 'rainbow-mode))
+  ;; (spacemacs/toggle-aggressive-indent-globally-on)
+  (global-highlight-parentheses-mode t)
+  (global-company-mode t)
+  (editorconfig-mode t)
+  (fringe-mode '(12 . 8))
+  (add-hook 'prog-mode-hook 'rainbow-mode)
+  )
 
 ;;;; Experiments
 
 (defun dotspacemacs/user-config/experiments ()
+  "Space for trying out configuration updates."
+  (setq nord-comment-brightness 15)
+  (setq nord-uniform-mode-lines t)
 
-  (when (configuration-layer/package-usedp 'olivetti)
-    (spacemacs/set-leader-keys "wo" 'olivetti))
+  (setq tab-always-indent 'complete)
   )

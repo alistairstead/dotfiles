@@ -29,7 +29,7 @@
 
 (defun config/post-init-evil ()
   (setq evil-escape-key-sequence "jk")
-  (setq-default evil-escape-delay 0.1))
+  (setq-default evil-escape-delay 0.4))
 
 ;;; Org-config
 
