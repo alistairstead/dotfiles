@@ -1,51 +1,66 @@
-(require 'dash)
+;;; -*- lexical-binding: t -*-
+
+
 (require 'prettify-utils)
+(require 'macros)
 
 (provide 'pretty-code)
 
 ;;; Config
 
-(defvar pretty-options
+(defvar pretty-code-choices
   (-flatten
     (prettify-utils-generate
-    ;; Functional
+      ;; Functional
+      (:lambda      "λ")
+      (:def         "ƒ")
+      (:composition "∘")
 
-    ;; Types
+      ;; Types
+      (:null        "∅")
+      (:true        "𝕋") (:false       "𝔽")
+      (:int         "ℤ") (:float       "ℝ")
+      (:str         "𝕊")
+      (:bool        "𝔹")
+      ;; Comparison
+      (:not-equal           "≠")
+      (:equal               "⩵")
+      ;; Flow
+      (:not         "￢")
+      (:in          "∈") (:not-in      "∉")
+      (:and         "∧") (:or          "∨")
+      (:for         "∀")
+      (:some        "∃")
+      (:return     "⟼") (:yield      "⟻")
+      (:arrow-right         "→")
+      (:arrow-left          "←")
+      (:hashrocket-right    "⇒")
+      (:hashrocket-le       "⇐")
 
-    ;; Comparison
-    (:not-equal           "≠")
-    (:equal               "⩵")
-
-    ;; Flow
-    (:arrow-right         "→")
-    (:arrow-left          "←")
-    (:hashrocket-right    "⇒")
-    (:hashrocket-le       "⇐")
-
-    ;; Other
-    (:pipe-right          "▷")
-    (:pipe-left           "◁")
-
-    ))
+      ;; Other
+      (:pipe-right          "▷")
+      (:pipe-left           "◁")
+      ;; Other
+      (:tuple       "⨂")
+      (:pipe        "")
+      ))
   "Options plist for `pretty-code-get-pairs'.")
 
 ;;; Core
 
 ;;;###autoload
-(defun pretty-code-get-pairs (KWDS)
+(defun pretty-code-get-pairs (kwds)
   "Build an alist for prettify-symbols-alist from components from KWDS."
   (-non-nil
-   (--map (when-let (major-mode-sym (plist-get KWDS it))
-           `(,major-mode-sym
-             ,(plist-get pretty-options it)))
-         pretty-options)))
+    (--map (when-let (major-mode-symbol (plist-get kwds it))
+            (list major-mode-symbol
+              (plist-get pretty-code-choices it)))
+      pretty-code-choices)))
 
 ;;;###autoload
-(defun pretty-code-set-pairs (HOOK-PAIRS-ALIST)
+(defun pretty-code-set-pairs (hook-pairs-alist)
   "Add hooks setting `prettify-symbols-alist' for many modes"
-  (mapc (lambda (x)
-          (lexical-let ((pretty-pairs (cadr x)))
-            (add-hook (car x)
-                      (lambda ()
-                        (setq prettify-symbols-alist pretty-pairs)))))
-        HOOK-PAIRS-ALIST))
+  (-each hook-pairs-alist
+    (-lambda ((hook pretty-pairs))
+      (add-hook hook
+        (lambda () (setq prettify-symbols-alist pretty-pairs))))))

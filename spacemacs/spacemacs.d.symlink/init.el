@@ -8,8 +8,17 @@
 ;;
 ;; All configuration is housed in personal layers
 
-(setq is-linuxp (eq system-type 'gnu/linux))
-(defun os-path (x) (if is-linuxp x (expand-file-name x "c:")))
+(defvar linux? (eq system-type 'gnu/linux)
+    "Are we on a gnu/linux machine?")
+
+(defvar desktop? (= 1440 (display-pixel-height))
+    "Am I on my desktop? For determining font size.")
+
+(defun os-path (path)
+  "Prepend drive label to PATH if on windows machine."
+  (if linux?
+    path
+    (expand-file-name path "c:")))
 
 ;;;; Spacemacs Initialization
 
@@ -28,16 +37,18 @@ values."
   (dotspacemacs/init/layouts)
   (dotspacemacs/init/misc)
   (dotspacemacs/init/packages)
-  (dotspacemacs/init/startup))
+  (dotspacemacs/init/startup)
+  )
 
 ;;;; Spacemacs Layers
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
-values."
+ values."
   (dotspacemacs/layers/config)
-  (dotspacemacs/layers/packages))
+  (dotspacemacs/layers/packages)
+  )
 
 ;;;; Spacemacs User Initialization
 
@@ -65,7 +76,8 @@ you should place your code here."
 ;;;; Local
 
 (defvar dotspacemacs/layers/local
-  '((macros :location local)    ; All local layers inherit these macros
+  '(
+     (macros :location local)    ; All local layers inherit these macros
      (config :location local)    ; Org, Avy, Evil, Misc... config
      (display :location local)   ; Pretty-eshell/code/outlines... pkgs
      (langs :location local)     ; Language config
@@ -83,59 +95,21 @@ you should place your code here."
      ;; ----------------------------------------------------------------
      ;; helm
      ;; better-defaults
-     ( git :variables
-       git-magit-status-fullscreen t
-       git-variable-example nil )
-     semantic
-     ( syntax-checking :variables
-       syntax-checking-enable-tooltips nil )
-     spell-checking
-     theming
-     ( auto-completion :variables
-       auto-completion-return-key-behavior 'complete
-       auto-completion-tab-key-behavior 'cycle
-       auto-completion-complete-with-key-sequence nil
-       auto-completion-complete-with-key-sequence-delay 0.1
-       auto-completion-private-snippets-directory nil
-       auto-completion-enable-snippets-in-popup t )
-     ( helm :variables
-       helm-mode-fuzzy-match t
-       helm-completion-in-region-fuzzy-match t
-       helm-candidate-number-limit 10 )
-     ( org :variables
-       org-enable-reveal-js-support t
-       org-enable-bootstrap-support t
-       org-enable-github-support t
-       org-want-todo-bindings t
-       :packages ( not org-present ) )
-     ( shell :variables
-       shell-default-term-shell "/usr/local/bin/zsh"
-       shell-default-shell 'multi-term
-       comint-scroll-show-maximum-output nil
-       comint-move-point-for-output nil )
-     ( version-control :variables
-       version-control-global-margin t
-       version-control-diff-tool 'git-gutter+ )
-     ( osx :variables
-       osx-use-option-as-meta nil )
+     git
+     auto-completion
+     ivy
+
      )
   "Layers I consider core to Spacemacs")
 
 ;;;; Language Support
 
 (defvar dotspacemacs/layers/langs
-  '(     erlang
+  '(
      html
      javascript
      markdown
-     php
-     react
      ruby
-     ruby-on-rails
-     rust
-     ( shell-scripts :packages
-       ( not fish-mode ) )
-     terraform
      yaml
      )
   "Programming and markup language layers")
@@ -144,11 +118,10 @@ you should place your code here."
 (defvar dotspacemacs/layers/extra
   '(dash
      docker
-     ;; ( github :packages
-     ;;   ( not magit-gh-pulls )
-     ;;   :variables gist-view-gist t )
-     ;; ( ibuffer :variables
-     ;;   ibuffer-group-buffers-by 'projects )
+     ( github :variables
+       gist-view-gist t )
+     ( ibuffer :variables
+       ibuffer-group-buffers-by 'projects )
      )
   "Miscellaneous layers")
 
@@ -178,10 +151,13 @@ you should place your code here."
     ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
     dotspacemacs-configuration-layer-path `(,(os-path "~/.spacemacs.d/layers/"))
     ;; List of configuration layers to load.
-    dotspacemacs-configuration-layers (append dotspacemacs/layers/core
-                                        dotspacemacs/layers/langs
-                                        dotspacemacs/layers/extra
-                                        dotspacemacs/layers/local)
+    dotspacemacs-configuration-layers
+    (append
+      dotspacemacs/layers/core
+      dotspacemacs/layers/langs
+      dotspacemacs/layers/extra
+      dotspacemacs/layers/local
+      )
     ))
 
 ;;;; Layers/packages
@@ -196,10 +172,11 @@ values."
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages '(solarized-theme
+                                        yaml-mode
                                         nord-theme
                                         editorconfig)
     ;; A list of packages that will not be installed and loaded.
-    dotspacemacs-excluded-packages '(fringe)
+    dotspacemacs-excluded-packages '()
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
     ;; Defines the behaviour of Spacemacs when installing packages.
@@ -252,7 +229,7 @@ values."
     ;;                       text-mode
     ;;   :size-limit-kb 1000)
     ;; (default nil)
-    dotspacemacs-line-numbers t
+    dotspacemacs-line-numbers 'relative
     ;; delete whitespace while saving buffer. possible values are `all'
     ;; to aggressively delete empty line and long sequences of whitespace,
     ;; `trailing' to delete only the whitespace at end of lines, `changed'to
@@ -265,20 +242,23 @@ values."
 
 (defun dotspacemacs/init/display ()
   (setq-default
-    dotspacemacs-themes '(solarized-dark
-                           nord
-                           ( atom-material :location local )
-                           lush
-                           material
-                           molokai
-                           monokai
-                           sanityinc-solarized-dark
-                           sanityinc-tomorrow-blue)
-    dotspacemacs-default-font `("Operator Mono XLight 14"
-                                 :powerline-scale 1.5)
+    dotspacemacs-themes
+    '(
+       ( atom-material :location local )
+      solarized-dark
+      nord
+    )
+    dotspacemacs-default-font
+    `(
+       "Operator Mono Medium"
+       :size ,(cond ((not linux?) 16)
+                (desktop? 18)
+                (t 20))
+       :powerline-scale 1.5
+       )
     ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
     ;; (Emacs 24.4+ only)
-    dotspacemacs-fullscreen-at-startup (if is-linuxp nil t)
+    dotspacemacs-fullscreen-at-startup (if linux? nil t)
     ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
     ;; Use to disable fullscreen animations in OSX. (default nil)
     dotspacemacs-fullscreen-use-non-native nil
@@ -403,18 +383,18 @@ values."
     ;; (default nil)
     dotspacemacs-persistent-server t
     ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
-    dotspacemacs-helm-resize nil
+    ;; dotspacemacs-helm-resize nil
     ;; if non nil, the helm header is hidden when there is only one source.
     ;; (default nil)
-    dotspacemacs-helm-no-header nil
+    ;; dotspacemacs-helm-no-header nil
     ;; define the position to display `helm', options are `bottom', `top',
     ;; `left', or `right'. (default 'bottom)
-    dotspacemacs-helm-position 'bottom
+    ;; dotspacemacs-helm-position 'bottom
     ;; Controls fuzzy matching in helm. If set to `always', force fuzzy matching
     ;; in all non-asynchronous sources. If set to `source', preserve individual
     ;; source settings. Else, disable fuzzy matching in all sources.
     ;; (default 'always)
-    dotspacemacs-helm-use-fuzzy 'always
+    ;; dotspacemacs-helm-use-fuzzy 'always
     ))
 
 ;;;; Packages
@@ -466,7 +446,7 @@ values."
     ;; List sizes may be nil, in which case
     ;; `spacemacs-buffer-startup-lists-length' takes effect.
     dotspacemacs-startup-lists '((projects . 10)
-                                  (recents . 5))
+                                  (recents . 10))
     ;; True if the home buffer should respond to resize events.
     dotspacemacs-startup-buffer-responsive t
     ;; If non nil a progress bar is displayed when spacemacs is loading. This
@@ -485,17 +465,12 @@ values."
   ;; (spacemacs/toggle-aggressive-indent-globally-on)
   (global-highlight-parentheses-mode t)
   (global-company-mode t)
-  (editorconfig-mode t)
-  (fringe-mode '(12 . 8))
-  (add-hook 'prog-mode-hook 'rainbow-mode)
+  (fringe-mode '(20 . 20))
   )
 
 ;;;; Experiments
 
 (defun dotspacemacs/user-config/experiments ()
   "Space for trying out configuration updates."
-  (setq nord-comment-brightness 15)
-  (setq nord-uniform-mode-lines t)
-
   (setq tab-always-indent 'complete)
   )
