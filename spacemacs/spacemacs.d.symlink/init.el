@@ -174,6 +174,8 @@ values."
     dotspacemacs-additional-packages '(solarized-theme
                                         yaml-mode
                                         nord-theme
+                                        all-the-icons
+                                        prettier-js
                                         editorconfig)
     ;; A list of packages that will not be installed and loaded.
     dotspacemacs-excluded-packages '()
@@ -244,9 +246,17 @@ values."
   (setq-default
     dotspacemacs-themes
     '(
-       ( atom-material :location local )
-      solarized-dark
-      nord
+       ;; ( atom-material :location local )
+       sanityinc-tomorrow-eighties
+       twilight-anti-bright
+       darktooth
+       spacemacs-dark
+       spacemacs-light
+       solarized-dark
+       solarized-light
+       leuven
+       monokai
+       zenburn
     )
     dotspacemacs-default-font
     `(
@@ -276,6 +286,7 @@ values."
     dotspacemacs-inactive-transparency 70
     ;; If non nil unicode symbols are displayed in the mode line. (default t)
     dotspacemacs-mode-line-unicode-symbols t
+    dotspacemacs-mode-line-theme '(all-the-icons :separator arrow :separator-scale 1.5)
     ))
 
 ;;;; Evil
@@ -438,7 +449,7 @@ values."
     ;; directory. A string value must be a path to an image format supported
     ;; by your Emacs build.
     ;; If the value is nil then no banner is displayed. (default 'official)
-    dotspacemacs-startup-banner 'random
+    dotspacemacs-startup-banner 'official
     ;; List of items to show in startup buffer or an association list of
     ;; the form `(list-type . list-size)`. If nil then it is disabled.
     ;; Possible values for list-type are:
@@ -471,6 +482,15 @@ values."
 ;;;; Experiments
 
 (defun dotspacemacs/user-config/experiments ()
-  "Space for trying out configuration updates."
-  (setq tab-always-indent 'complete)
-  )
+   "Space for trying out configuration updates."
+   (setq tab-always-indent 'complete)
+   (add-hook 'js2-mode-hook 'prettier-js-mode)
+   (add-hook 'web-mode-hook 'prettier-js-mode)
+   (exec-path-from-shell-copy-env "PATH")
+   (set-frame-parameter nil 'background-mode 'light)
+   (set-terminal-parameter nil 'background-mode 'light)
+   (add-hook 'alchemist-mode-hook 'company-mode)
+   (add-hook 'elixir-mode-hook
+     (function (lambda ()
+                 (setq evil-shift-width elixir-smie-indent-basic))))
+   )
