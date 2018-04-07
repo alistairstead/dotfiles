@@ -6,8 +6,9 @@
         all-the-icons
         all-the-icons-ivy
         all-the-icons-dired
-        pretty-mode
+        spaceline
         spaceline-all-the-icons
+        pretty-mode
         (prettify-utils :location (recipe :fetcher github
                                           :repo "Ilazki/prettify-utils.el"))
         hlinum
@@ -18,6 +19,36 @@
         (pretty-magit :location local)
         (pretty-outlines :location local)
         ))
+
+(defun display/init-spaceline ()
+  (use-package spaceline-config
+    :ensure spaceline
+    :config
+    (setq-default
+     powerline-height 24
+     spaceline-flycheck-bullet "❖ %s"
+     spaceline-separator-dir-left '(right . right)
+     spaceline-separator-dir-right '(left . left)
+     )
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state
+          spaceline-minor-modes-separator " · "
+          powerline-default-separator nil)
+    (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
+    (set-face-attribute 'spaceline-evil-insert nil :background "#a6e22e")
+    (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff")
+    (set-face-attribute 'spaceline-evil-normal nil :background "#5fd7ff")
+    (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
+    (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
+
+    ;; Automatically recompile separators
+    (advice-add 'load-theme :after #'(lambda (&rest _) (spaceline-compile)))))
+
+(defun display/init-spaceline-all-the-icons ()
+  (use-package spaceline-all-the-icons
+    :after spaceline
+    :config (progn
+              (spaceline-all-the-icons-theme)
+              (setq spaceline-all-the-icons-separator-type 'slant))))
 
 ;;; Locals
 ;;;; Pretty-code
@@ -289,7 +320,7 @@
       (add-to-list 'all-the-icons-mode-icon-alist
                    all-the-icons-mode-icon-graphviz))))
 
-;;;; All-the-icons-ivy
+;; All-the-icons-ivy
 
 (defun display/init-all-the-icons-ivy ()
   (use-package all-the-icons-ivy
@@ -330,42 +361,42 @@
 
 ;;;; Spaceline-all-the-icons
 
-(defun display/init-spaceline-all-the-icons ()
-  (use-package spaceline-all-the-icons
-    :after spaceline
-    :config
-    (progn
-      (spaceline-all-the-icons-theme)
+;; (defun display/init-spaceline-all-the-icons ()
+;;   (use-package spaceline-all-the-icons
+;;     :after spaceline
+;;     :config
+;;     (progn
+;;       (spaceline-all-the-icons-theme)
 
-      (setq
-       spaceline-highlight-face-func
-       'spaceline-highlight-face-default
+;;       (setq
+;;        spaceline-highlight-face-func
+;;        'spaceline-highlight-face-default
 
-       spaceline-all-the-icons-icon-set-modified
-       'chain
+;;        spaceline-all-the-icons-icon-set-modified
+;;        'chain
 
-       spaceline-all-the-icons-icon-set-window-numbering
-       'square
+;;        spaceline-all-the-icons-icon-set-window-numbering
+;;        'square
 
-       spaceline-all-the-icons-separator-type
-       'none
+;;        spaceline-all-the-icons-separator-type
+;;        'none
 
-       spaceline-all-the-icons-primary-separator
-       "")
+;;        spaceline-all-the-icons-primary-separator
+;;        "")
 
-      ;; Buffer Segments
-      (spaceline-toggle-all-the-icons-buffer-size-off)
-      (spaceline-toggle-all-the-icons-buffer-position-off)
+;;       ;; Buffer Segments
+;;       (spaceline-toggle-all-the-icons-buffer-size-off)
+;;       (spaceline-toggle-all-the-icons-buffer-position-off)
 
-      ;; Git Segments
-      (spaceline-toggle-all-the-icons-git-status-on)
-      (spaceline-toggle-all-the-icons-vc-icon-on)
-      (spaceline-toggle-all-the-icons-vc-status-on)
+;;       ;; Git Segments
+;;       (spaceline-toggle-all-the-icons-git-status-on)
+;;       (spaceline-toggle-all-the-icons-vc-icon-on)
+;;       (spaceline-toggle-all-the-icons-vc-status-on)
 
-      ;; Misc Segments
-      (spaceline-toggle-all-the-icons-eyebrowse-workspace-off)
-      (spaceline-toggle-all-the-icons-flycheck-status-on)
-      (spaceline-toggle-all-the-icons-time-on))))
+;;       ;; Misc Segments
+;;       (spaceline-toggle-all-the-icons-eyebrowse-workspace-off)
+;;       (spaceline-toggle-all-the-icons-flycheck-status-on)
+;;       (spaceline-toggle-all-the-icons-time-on))))
 
 (defun display/init-hlinum ()
   (use-package hlinum

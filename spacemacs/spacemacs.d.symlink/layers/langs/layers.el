@@ -15,7 +15,8 @@
      ( html :packages
        ( not pug-mode slim-mode )
        )
-     javascript
+     ( javascript :variables
+       node-add-modules-path t )
      markdown
      php
      react

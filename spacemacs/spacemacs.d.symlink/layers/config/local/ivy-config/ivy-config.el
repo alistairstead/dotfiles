@@ -3,13 +3,20 @@
 
 (provide 'ivy-config)
 
+(setq confirm-nonexistent-file-or-buffer t)
+
+(setq ivy-initial-inputs-alist nil)
 
 (setq ivy-format-function
       'ivy-format-function-arrow)
 (setq ivy-height
-      20)
+      10)
 (setq completion-in-region-function
       'ivy-completion-in-region)
+
+(setq ivy-re-builders-alist
+  '((ivy-switch-buffer . ivy--regex-plus)
+     (t . ivy--regex-fuzzy)))
 
 ;; Resume last ivy session
 (spacemacs/set-leader-keys

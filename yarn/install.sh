@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-packages=(diff-so-fancy tern nsp snyk elm elm-format elm-live elm-oracle elm-test)
+packages=(diff-so-fancy tern nsp snyk elm elm-format elm-live elm-oracle elm-test prettier)
 
 for package in "${packages[@]}"; do
 	if test ! $(which "${package}"); then

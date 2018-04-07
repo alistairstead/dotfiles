@@ -3,16 +3,20 @@
      ;; Personal Layers
      macros
 
+     emoji
      ;; Core Config layers
      ( git :variables
        git-magit-status-fullscreen t
        git-variable-example nil )
+     ( github :variables
+       gist-view-gist t )
      semantic
      ( syntax-checking :variables
        syntax-checking-use-original-bitmaps t
        syntax-checking-enable-by-default t
        syntax-checking-enable-tooltips nil )
      spell-checking
+     smex
      theming
      ( auto-completion :variables
        auto-completion-return-key-behavior 'complete
@@ -26,6 +30,7 @@
      ;;   helm-completion-in-region-fuzzy-match t
      ;;   helm-candidate-number-limit 10 )
      (ivy :variables
+       ivy-enable-advanced-buffer-information t
        ivy-extra-directories nil)
      ( org :variables
        org-enable-reveal-js-support t
@@ -43,5 +48,6 @@
       version-control-diff-tool 'git-gutter+ )
      ( osx :variables
        osx-use-option-as-meta nil )
-     neotree
+     ( ibuffer :variables
+       ibuffer-group-buffers-by 'projects )
      ))

@@ -8,7 +8,7 @@
 (setq evil-escape-unordered-key-sequence
       "true")
 (setq-default evil-escape-delay
-      0.4)
+      0.1)
 
 
 (defun evil-scroll-to-center-advice (&rest args)
@@ -26,11 +26,13 @@
   (evil-execute-macro 1 "@q"))
 
 (evil-global-set-keys
- '(normal visual motion)
- "H" 'evil-first-non-blank
- "L" (lambda () (interactive) (evil-end-of-line))
- "0" 'evil-jump-item)
+  '(normal visual motion)
+  "H" 'evil-first-non-blank
+  "L" (lambda () (interactive) (evil-end-of-line))
+  "0" 'evil-jump-item
+  )
 
 (evil-global-set-key
- 'normal
- "Q" 'evil-execute-q-macro)
+  'normal
+  "Q" 'evil-execute-q-macro
+  )

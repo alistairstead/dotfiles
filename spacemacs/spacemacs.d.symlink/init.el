@@ -472,7 +472,7 @@ values."
 (defun dotspacemacs/user-config/toggles ()
   "Spacemacs toggles not intended to be put into layers."
   (spacemacs/toggle-highlight-long-lines-globally-on)
-  (spacemacs/toggle-mode-line-minor-modes-off)
+  ;; (spacemacs/toggle-mode-line-minor-modes-off)
   ;; (spacemacs/toggle-aggressive-indent-globally-on)
   (global-highlight-parentheses-mode t)
   (global-company-mode t)

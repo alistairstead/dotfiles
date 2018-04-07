@@ -6,10 +6,10 @@
      ispell
      projectile
      yasnippet
-     neotree
+     magit
      magithub
      editorconfig
-
+     neotree
 
      ;; Elsehwere-owned packages
      (avy-config      :location local)
@@ -33,7 +33,17 @@
     'native))
 
 (defun config/pre-init-yasnippet ()
-  (global-set-key (kbd "C-SPC") 'hippie-expand))
+  (spacemacs|use-package-add-hook yasnippet
+    :post-init
+    (global-set-key (kbd "C-SPC") 'hippie-expand)
+    ))
+
+(defun config/pre-init-magit ()
+  (spacemacs|use-package-add-hook magit
+    :post-init
+    (setq magit-repository-directories '("~/src/"))
+    ))
+
 
 (defun config/init-magithub ()
   (use-package magithub
@@ -42,19 +52,23 @@
     :config (magithub-feature-autoinject t)))
 
 (defun config/init-editorconfig ()
-  (editorconfig-mode t)
-  )
+  (use-package editorconfig
+    :config
+    (editorconfig-mode t)
+    ))
 
-(defun config/post-init-neotree ()
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-  (setq projectile-switch-project-action 'neotree-projectile-action)
-  (setq neo-smart-open t)
+(defun config/pre-init-neotree()
+  (spacemacs|use-package-add-hook neotree
+    :post-init
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+    (setq projectile-switch-project-action 'neotree-projectile-action)
+    (setq neo-smart-open t)
 
-  (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-  (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
-  (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-  )
+    (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+    (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+    (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+    ))
 
 
 ;;; Local Config
