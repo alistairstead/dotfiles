@@ -159,9 +159,9 @@ cask 'qlvideo'
 cask 'caskroom/fonts/font-anonymouspro-nerd-font-mono'
 cask 'caskroom/fonts/font-awesome-terminal-fonts'
 cask 'caskroom/fonts/font-fira-code'
-cask 'caskroom/fonts/font-symbola
-cask 'caskroom/fonts/font-fontawesome
-cask 'caskroom/fonts/font-material-icons
+cask 'caskroom/fonts/font-symbola'
+cask 'caskroom/fonts/font-fontaweSome'
+cask 'caskroom/fonts/font-material-icons'
 
 
 # MacApp Store Apps
