@@ -222,16 +222,16 @@ values."
     ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
     ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
     ;; This variable can also be set to a property list for finer control:
-    ;; '(:relative nil
-    ;;   :disabled-for-modes dired-mode
-    ;;                       doc-view-mode
-    ;;                       markdown-mode
-    ;;                       org-mode
-    ;;                       pdf-view-mode
-    ;;                       text-mode
-    ;;   :size-limit-kb 1000)
+    dotspacemacs-line-numbers '(:relative nil
+      :disabled-for-modes dired-mode
+                          doc-view-mode
+                          markdown-mode
+                          org-mode
+                          pdf-view-mode
+                          text-mode
+      :size-limit-kb 1000)
     ;; (default nil)
-    dotspacemacs-line-numbers 'relative
+    ;; dotspacemacs-line-numbers 't
     ;; delete whitespace while saving buffer. possible values are `all'
     ;; to aggressively delete empty line and long sequences of whitespace,
     ;; `trailing' to delete only the whitespace at end of lines, `changed'to
@@ -484,8 +484,6 @@ values."
 (defun dotspacemacs/user-config/experiments ()
    "Space for trying out configuration updates."
    (setq tab-always-indent 'complete)
-   (add-hook 'js2-mode-hook 'prettier-js-mode)
-   (add-hook 'web-mode-hook 'prettier-js-mode)
    (exec-path-from-shell-copy-env "PATH")
    (set-frame-parameter nil 'background-mode 'light)
    (set-terminal-parameter nil 'background-mode 'light)
