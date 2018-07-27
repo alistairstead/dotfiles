@@ -4,7 +4,7 @@ cd ~
 
 git clone https://github.com/alistairstead/dotfiles ./dotfiles
 
-cs ./dotfiles
+cd ./dotfiles
 
 ./bin/dotfiles install
 ./bin/dotfiles symlinks
