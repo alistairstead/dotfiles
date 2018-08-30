@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+set -ev
+
 cd ~
 
-git clone https://github.com/alistairstead/dotfiles ./dotfiles
+git clone https://github.com/alistairstead/dotfiles .dotfiles
 
-cd ./dotfiles
+cd .dotfiles
 
 ./bin/dotfiles install
 ./bin/dotfiles symlinks
