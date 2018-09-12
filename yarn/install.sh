@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-packages=(diff-so-fancy tern nsp snyk elm elm-format \
+packages=(tern nsp snyk elm elm-format \
 						elm-live elm-oracle elm-test \
 						prettier prettier-plugin-elm husky)
 
