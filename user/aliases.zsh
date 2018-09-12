@@ -6,7 +6,18 @@ alias cd..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias src="cd ~/src"
+alias src="cd ~/githubj"
+
+
+alias cat='bat'
+alias ping='prettyping --nolegend'
+# alias preview="fzf --preview 'bat --color \"always\" {}'"
+alias preview="fzf --height 40% --preview 'if file -i {}|grep -q binary; then file -b {}; else bat --color \"always\" --line-range :40 {}; fi'"
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+
+alias top="sudo htop" # alias top and fix high sierra bug
+
+alias help='tldr'
 
 #typos
 
