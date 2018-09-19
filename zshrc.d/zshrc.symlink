@@ -3,8 +3,8 @@
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="$HOME/.dotfiles"
 
-# your project folder that we can `c [tab]` to
-export PROJECTS="$HOME/src"
+# your project folder that we can `t [tab]` to
+export PROJECTS="$HOME/github"
 
 # all of our zsh files
 typeset -U config_files
@@ -31,6 +31,11 @@ for file in ${(M)config_files:#*/completion.zsh}; do
   . "$file"
 done
 
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}; do
+  source "$file"
+done
+
 unset config_files updated_at
 
 [ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
@@ -47,3 +52,6 @@ typeset -ag precmd_functions;
 if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
   precmd_functions+=_direnv_hook;
 fi
+
+# welcome!
+hash ponysay &>2 && ponysay -o
