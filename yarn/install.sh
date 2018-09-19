@@ -2,7 +2,7 @@
 
 packages=(tern nsp snyk elm elm-format \
 						elm-live elm-oracle elm-test \
-						prettier prettier-plugin-elm husky)
+						prettier prettier-plugin-elm husky bash-language-server)
 
 for package in "${packages[@]}"; do
 	if test ! $(which "${package}"); then
