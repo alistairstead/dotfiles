@@ -15,6 +15,9 @@ install: |
     brew install zsh
   fi
 
+before_script:
+  - "rm ~/.gemrc"
+
 script:
   - "./bin/dotfiles symlinks"
   - "./bin/dotfiles install"
