@@ -3,7 +3,7 @@ rvm:
   - 2.0.0
 
 os:
-  - linux
+  # - linux
   - osx
 
 install: |
