@@ -2,10 +2,6 @@
 
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="$HOME/.dotfiles"
-
-# your project folder that we can `t [tab]` to
-export PROJECTS="$HOME/github"
-
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/*/*.zsh)
@@ -52,6 +48,3 @@ typeset -ag precmd_functions;
 if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
   precmd_functions+=_direnv_hook;
 fi
-
-# welcome!
-hash ponysay &>2 && ponysay -o

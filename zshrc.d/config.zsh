@@ -7,10 +7,6 @@ fpath=($DOTFILES/functions $fpath)
 
 autoload -U "$DOTFILES"/functions/*(:t)
 
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-
 # don't nice background tasks
 setopt NO_BG_NICE
 setopt NO_HUP
@@ -19,27 +15,21 @@ setopt NO_LIST_BEEP
 setopt LOCAL_OPTIONS
 # allow functions to have local traps
 setopt LOCAL_TRAPS
-# share history between sessions ???
-setopt SHARE_HISTORY
-# add timestamps to history
-setopt EXTENDED_HISTORY
+
 setopt PROMPT_SUBST
 setopt CORRECT
-setopt COMPLETE_IN_WORD
-# adds history
-setopt APPEND_HISTORY
-# adds history incrementally and share it across sessions
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
-# don't record dupes in history
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_VERIFY
-setopt HIST_EXPIRE_DUPS_FIRST
+setopt IGNORE_EOF
+
+zle -N newtab
+
 # dont ask for confirmation in rm globs*
 setopt RM_STAR_SILENT
+
+setopt autocd                   # change to dirs without cd
+setopt pushd_to_home            # Push to home directory when no argument is given.
+setopt auto_pushd               # Push the old directory onto the stack on cd.
+setopt auto_name_dirs           # Auto add variable-stored paths to ~ list.
+setopt pushd_ignore_dups        # Do not store duplicates in the stack.
 
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
@@ -64,3 +54,41 @@ zle -N globalias
 bindkey " " globalias
 bindkey "^ " magic-space           # control-space to bypass completion
 bindkey -M isearch " " magic-space # normal space during searches
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+# Aliases and functions
+ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
+
+# Commands and builtins
+ZSH_HIGHLIGHT_STYLES[command]="fg=green"
+ZSH_HIGHLIGHT_STYLES[hashed-command]="fg=green,bold"
+ZSH_HIGHLIGHT_STYLES[builtin]="fg=green,bold"
+ZSH_HIGHLIGHT_STYLES[precommand]="fg=green,underline"
+ZSH_HIGHLIGHT_STYLES[commandseparator]="none"
+
+# Paths
+ZSH_HIGHLIGHT_STYLES[path]='fg=white,underline'
+
+# Globbing
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=yellow,bold'
+
+# Options and arguments
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=red'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=red'
+
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]="fg=green"
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="fg=green"
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]="fg=green"
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]="fg=green"
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]="fg=green"
+
+# Patterns
+ZSH_HIGHLIGHT_PATTERNS+=('mv *' 'fg=white,bold,bg=red')
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+ZSH_HIGHLIGHT_PATTERNS+=('sudo ' 'fg=white,bold,bg=red')
+
+# Report CPU usage for commands running longer than 10 seconds.
+export TIMEFMT="%U user %S system %P cpu %*E total, running %J"
+REPORTTIME=10
