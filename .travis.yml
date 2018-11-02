@@ -20,6 +20,6 @@ before_script:
 
 script:
   - "./bin/dotfiles symlinks"
+  - "./bin/dotfiles brew"
   - "./bin/dotfiles install"
   - "./bin/dotfiles antibody"
-  - "./bin/dotfiles update"
