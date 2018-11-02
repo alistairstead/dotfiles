@@ -113,3 +113,35 @@ function tre() {
 base64() {
   openssl base64 < "$1" | tr -d '\n' | pbcopy
 }
+
+# Execute commands for each file in current directory.
+function each() {
+  for dir in *; do
+    echo "${dir}:"
+    cd $dir
+    $@
+    cd ..
+  done
+}
+
+# Find files and exec commands at them.
+# $ find-exec .coffee cat | wc -l
+# # => 9762
+function find-exec() {
+  find . -type f -iname "*${1:-}*" -exec "${2:-file}" '{}' \;
+}
+
+# $ git log --no-merges --pretty=format:"%ae" | stats
+# # => 514 a@example.com
+# # => 200 b@example.com
+function stats() {
+  sort | uniq -c | sort -r
+}
+
+# $ retry ping google.com
+function retry() {
+  echo Retrying "$@"
+  $@
+  sleep 1
+  retry $@
+}
