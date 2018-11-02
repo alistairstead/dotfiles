@@ -21,6 +21,5 @@ before_script:
 script:
   - "./bin/dotfiles symlinks"
   - "./bin/dotfiles install"
-  - "./bin/dotfiles gitconfig"
   - "./bin/dotfiles antibody"
   - "./bin/dotfiles update"
