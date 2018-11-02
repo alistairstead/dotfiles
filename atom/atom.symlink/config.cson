@@ -1,0 +1,171 @@
+"*":
+  "advanced-open-file":
+    createDirectories: true
+    defaultInputValue: "Project root"
+    fuzzyMatch: true
+  "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnSave: true
+    "atom-ide-datatip":
+      datatipDebounceDelay: 100
+      datatipInteractedWithDebounceDelay: 700
+    "atom-ide-debugger":
+      showDebuggerOnBpSet: false
+    "atom-ide-diagnostics-ui":
+      showDiagnosticTraces: true
+    "atom-ide-outline-view": {}
+    "atom-ide-terminal":
+      fontFamily: "Dank Mono"
+      lineHeight: 1.8
+    use:
+      "atom-ide-code-actions": "always"
+      "atom-ide-code-format": "always"
+      "atom-ide-code-highlight": "always"
+      "atom-ide-console": "always"
+      "atom-ide-datatip": "always"
+      "atom-ide-debugger": "always"
+      "atom-ide-definitions": "always"
+      "atom-ide-diagnostics": "always"
+      "atom-ide-diagnostics-ui": "always"
+      "atom-ide-find-references": "always"
+      "atom-ide-global": "always"
+      "atom-ide-outline-view": "always"
+      "atom-ide-refactor": "always"
+      "atom-ide-signature-help": "always"
+      "atom-ide-terminal": "always"
+      hyperclick: "always"
+  "atom-material-ui":
+    colors:
+      abaseColor: "#2e7df6"
+      accentColor: "#b2caef"
+      genAccent: true
+      paintCursor: true
+    fonts: {}
+    tabs: {}
+    ui:
+      panelContrast: true
+      panelShadows: true
+  "atom-yarn": {}
+  "autocomplete-paths":
+    enableHtmlSupport: true
+    ignoreSubmodules: true
+  "autocomplete-ruby":
+    rsensePath: "/Users/alistairstead/.rbenv/shims/rsense"
+  build:
+    scrollOnError: true
+    stealFocus: false
+  core:
+    closeDeletedFileTabs: true
+    debugLSP: true
+    disabledPackages: [
+      "whitespace"
+      "xml-formatter"
+      "about"
+      "background-tips"
+      "linter"
+      "ide-standardjs"
+    ]
+    restorePreviousWindowsOnStart: "no"
+    telemetryConsent: "limited"
+    themes: [
+      "one-light-ui"
+      "one-light-syntax"
+    ]
+    titleBar: "custom"
+    uriHandlerRegistration: "always"
+    useTreeSitterParsers: true
+  "css-declaration-sorter":
+    formatOnSave: false
+    sortOrder: "concentric-css"
+  editor:
+    fontFamily: "Dank Mono, Operator Mono, monospace"
+    fontSize: 16
+    lineHeight: 1.6
+    scrollPastEnd: true
+  "elm-format": {}
+  elmjutsu:
+    autocompleteFuzzyFilteringEnabled: true
+    autocompleteMaxSuggestions: 10
+    autocompleteSnippetsEnabled: true
+    cacheDirectory: "/var/folders/k8/831c1sbs5dz5dl7bxjjkgnf80000gn/T/elmjutsu62637GuzKQv0A3GUt"
+    globalAutocompleteEnabled: true
+    inferExpectedTypeAtCursorOnTheFly: true
+    inferTypeOfSelectionOnTheFly: true
+    showTypesInTooltip: true
+  "exception-reporting":
+    userId: "c473c66b-c8ca-47e9-bf99-f446c10febf9"
+  "file-icons": {}
+  "gist-it":
+    newGistsDefaultToPrivate: true
+    openAfterCreate: true
+  "git-blame":
+    colorCommitAuthors: true
+    columnWidth: 426
+    showHash: false
+  "git-plus":
+    general:
+      enableStatusBarIcon: false
+      splitPane: "Right"
+  github:
+    gitDiagnostics: true
+    viewChangesForCurrentFileDiffPaneSplitDirection: "right"
+  "highlight-line":
+    enableBackgroundColor: false
+  "ide-html":
+    gohtmlSupport: false
+    mustacheSupport: false
+  "ide-java":
+    errors:
+      incompleteClasspathSeverity: "ignore"
+    virtualMachine: {}
+  "ide-php":
+    phpPath: "/usr/local/bin/php"
+  "ide-typescript": {}
+  "language-elm":
+    autocompleteEnabled: false
+  "linter-elm-make": {}
+  "linter-ui-default":
+    gutterPosition: "Left"
+    panelHeight: 300
+    showStatusBar: false
+  "markdown-preview":
+    useGitHubStyle: true
+  pigments:
+    autocompleteSuggestionsFromValue: true
+    dismissableReloadNotifications: false
+    extendAutocompleteToColorValue: true
+    extendAutocompleteToVariables: true
+    groupPaletteColors: "by file"
+  "platformio-ide-terminal":
+    style: {}
+  "prettier-atom":
+    formatOnSaveOptions:
+      enabled: true
+    prettierEslintOptions:
+      prettierLast: true
+    prettierOptions:
+      semi: true
+    useEditorConfig: true
+  "regex-railroad-diagram": {}
+  "status-bar":
+    selectionCountFormat: "[%L, %C]"
+  tabs:
+    enableVcsColoring: true
+  "tree-view":
+    alwaysOpenExisting: true
+    autoReveal: true
+    squashDirectoryNames: true
+  "vim-mode-plus":
+    autoSelectPersistentSelectionOnOperate: false
+    statusBarModeStringStyle: "long"
+  wakatime:
+    apikey: "Saved in your ~/.wakatime.cfg file"
+  welcome:
+    showOnStartup: false
+  "which-key": {}
+  whitespace:
+    ensureSingleTrailingNewline: false
+    ignoreWhitespaceOnCurrentLine: false
+    removeTrailingWhitespace: false
+  zentabs:
+    neverCloseUnsaved: true
