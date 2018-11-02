@@ -163,18 +163,16 @@ cask 'caskroom/fonts/font-material-icons'
 
 
 # MacApp Store Apps
-mas "Kindle", id: 405399194
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Trello", id: 1278508951
-mas "iStat Mini", id: 927292435
-mas "1Password", id: 443987910
-mas "zik-manager", id: 1050660598
-mas "Marked 2", id: 890031187
-mas "Todoist", id: 585829637
-mas "Newton", id: 1059655371
-mas "Monodraw", id: 920404675
-mas "kset", id: 847496013
-mas "Tweetbot", id: 557168941
-mas "Xcode", id: 497799835
+# mas "Kindle", id: 405399194
+# mas "Keynote", id: 409183694
+# mas "Numbers", id: 409203825
+# mas "Pages", id: 409201541
+# mas "iStat Mini", id: 927292435
+# mas "1Password", id: 443987910
+# mas "Marked 2", id: 890031187
+# mas "Todoist", id: 585829637
+# mas "Newton", id: 1059655371
+# mas "Monodraw", id: 920404675
+# mas "kset", id: 847496013
+# mas "Tweetbot", id: 557168941
+# mas "Xcode", id: 497799835
