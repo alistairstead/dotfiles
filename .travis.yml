@@ -15,4 +15,9 @@ install: |
     brew install zsh
   fi
 
-script: make test
+script:
+  - "./bin/dotfiles symlinks"
+  - "./bin/dotfiles install"
+  - "./bin/dotfiles gitconfig"
+  - "./bin/dotfiles antibody"
+  - "./bin/dotfiles update"
