@@ -11,29 +11,12 @@
       datatipInteractedWithDebounceDelay: 700
     "atom-ide-debugger":
       showDebuggerOnBpSet: false
-    "atom-ide-diagnostics-ui":
-      showDiagnosticTraces: true
+    "atom-ide-diagnostics-ui": {}
     "atom-ide-outline-view": {}
     "atom-ide-terminal":
       fontFamily: "Dank Mono"
       lineHeight: 1.8
-    use:
-      "atom-ide-code-actions": "always"
-      "atom-ide-code-format": "always"
-      "atom-ide-code-highlight": "always"
-      "atom-ide-console": "always"
-      "atom-ide-datatip": "always"
-      "atom-ide-debugger": "always"
-      "atom-ide-definitions": "always"
-      "atom-ide-diagnostics": "always"
-      "atom-ide-diagnostics-ui": "always"
-      "atom-ide-find-references": "always"
-      "atom-ide-global": "always"
-      "atom-ide-outline-view": "always"
-      "atom-ide-refactor": "always"
-      "atom-ide-signature-help": "always"
-      "atom-ide-terminal": "always"
-      hyperclick: "always"
+    use: {}
   "atom-material-ui":
     colors:
       abaseColor: "#2e7df6"
@@ -59,17 +42,15 @@
     debugLSP: true
     disabledPackages: [
       "whitespace"
-      "xml-formatter"
       "about"
       "background-tips"
       "linter"
-      "ide-standardjs"
     ]
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "limited"
     themes: [
-      "one-light-ui"
-      "one-light-syntax"
+      "one-dark-ui"
+      "atom-ide-dark-syntax"
     ]
     titleBar: "custom"
     uriHandlerRegistration: "always"
@@ -79,19 +60,22 @@
     sortOrder: "concentric-css"
   editor:
     fontFamily: "Dank Mono, Operator Mono, monospace"
-    fontSize: 16
+    fontSize: 19
     lineHeight: 1.6
     scrollPastEnd: true
+    showCursorOnSelection: false
   "elm-format": {}
   elmjutsu:
     autocompleteFuzzyFilteringEnabled: true
     autocompleteMaxSuggestions: 10
     autocompleteSnippetsEnabled: true
-    cacheDirectory: "/var/folders/k8/831c1sbs5dz5dl7bxjjkgnf80000gn/T/elmjutsu62637GuzKQv0A3GUt"
+    enhancedElmMakeMessages: false
     globalAutocompleteEnabled: true
     inferExpectedTypeAtCursorOnTheFly: true
     inferTypeOfSelectionOnTheFly: true
+    showScopeBar: true
     showTypesInTooltip: true
+    typeAwareAutocompleteEnabled: true
   "exception-reporting":
     userId: "c473c66b-c8ca-47e9-bf99-f446c10febf9"
   "file-icons": {}
@@ -112,15 +96,18 @@
   "highlight-line":
     enableBackgroundColor: false
   "ide-html":
+    additionalGrammars: [
+      "text.hbs"
+    ]
     gohtmlSupport: false
-    mustacheSupport: false
   "ide-java":
     errors:
       incompleteClasspathSeverity: "ignore"
     virtualMachine: {}
   "ide-php":
     phpPath: "/usr/local/bin/php"
-  "ide-typescript": {}
+  "ide-typescript":
+    returnTypeInAutocomplete: "right"
   "language-elm":
     autocompleteEnabled: false
   "linter-elm-make": {}
@@ -162,7 +149,9 @@
     apikey: "Saved in your ~/.wakatime.cfg file"
   welcome:
     showOnStartup: false
-  "which-key": {}
+  "which-key":
+    keystrokesFormat: "symbol"
+    showPackageNamesInCommands: false
   whitespace:
     ensureSingleTrailingNewline: false
     ignoreWhitespaceOnCurrentLine: false
