@@ -19,5 +19,5 @@ docker_build:
 docker_run:
 	docker run -it dotfiles
 
-test: check
-	./script/test
+test:
+	./script/test.sh

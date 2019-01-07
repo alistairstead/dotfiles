@@ -7,13 +7,13 @@ if [ ! -z "$TRAVIS_JOB_ID" ]; then
 fi
 
 # link to ~ and cd to it
-cd ..
-cp -rf dotfiles ~/.dotfiles
-cd ~/.dotfiles
+# cd ..
+# cp -rf dotfiles ~/.dotfiles
+# cd ~/.dotfiles
 
 # bootstrap the mighty
-./bin/dotfiles install
 ./bin/dotfiles symlinks
+./bin/dotfiles install
 ./bin/dotfiles gitconfig
 ./bin/dotfiles antibody
 ./bin/dotfiles update

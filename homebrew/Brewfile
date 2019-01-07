@@ -2,15 +2,9 @@ cask_args appdir: '/Applications'
 
 tap 'homebrew/core'
 tap 'homebrew/bundle'
-tap 'homebrew/versions'
 tap 'homebrew/services'
-tap 'homebrew/completions'
-tap 'homebrew/devel-only'
-tap 'homebrew/command-not-found'
-tap "homebrew/php"
 tap 'eqnxio/ngrok'
 tap 'd12frosted/emacs-plus'
-tap 'homebrew/dupes'
 tap 'getantibody/tap'
 tap 'neovim/neovim'
 tap "heroku/brew"
@@ -43,7 +37,6 @@ brew 'git'
 brew 'glib'
 brew 'gobject-introspection'
 brew 'gpg'
-brew 'gpg-agent'
 brew 'grc'
 brew 'grep'
 brew 'gzip'
@@ -74,7 +67,6 @@ brew 'ruby-build'
 brew 'shellcheck'
 brew 'shfmt'
 brew 'ssh-copy-id'
-brew 'terminal-notifier'
 brew 'terraform'
 brew 'terraform-docs'
 brew 'thefuck'
@@ -147,7 +139,6 @@ cask 'virtualbox'
 cask 'vlc'
 
 # https://github.com/sindresorhus/quick-look-plugins
-cask 'betterzipql'
 cask 'qlcolorcode'
 cask 'qlimagesize'
 cask 'qlmarkdown'
@@ -169,18 +160,16 @@ cask 'caskroom/fonts/font-material-icons'
 
 
 # MacApp Store Apps
-mas "Kindle", id: 405399194
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Trello", id: 1278508951
-mas "iStat Mini", id: 927292435
-mas "1Password", id: 443987910
-mas "zik-manager", id: 1050660598
-mas "Marked 2", id: 890031187
-mas "Todoist", id: 585829637
-mas "Newton", id: 1059655371
-mas "Monodraw", id: 920404675
-mas "kset", id: 847496013
-mas "Tweetbot", id: 557168941
-mas "Xcode", id: 497799835
+# mas "Kindle", id: 405399194
+# mas "Keynote", id: 409183694
+# mas "Numbers", id: 409203825
+# mas "Pages", id: 409201541
+# mas "iStat Mini", id: 927292435
+# mas "1Password", id: 443987910
+# mas "Marked 2", id: 890031187
+# mas "Todoist", id: 585829637
+# mas "Newton", id: 1059655371
+# mas "Monodraw", id: 920404675
+# mas "kset", id: 847496013
+# mas "Tweetbot", id: 557168941
+# mas "Xcode", id: 497799835
