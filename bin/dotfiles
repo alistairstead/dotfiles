@@ -62,7 +62,6 @@ sub_update () {
 sub_clean () {
     if which brew >/dev/null 2>&1; then
       brew cleanup
-      brew cask cleanup
     fi
     if which npm >/dev/null 2>&1; then
       npm cache clean --force

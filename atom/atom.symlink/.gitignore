@@ -1,0 +1,12 @@
+blob-store
+compile-cache
+dev
+storage
+.apm
+.node-gyp
+.npm
+git-time-machine
+local-history
+packages
+recovery
+split-diff

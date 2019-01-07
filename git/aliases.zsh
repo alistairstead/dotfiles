@@ -1,5 +1,7 @@
 #!/bin/sh
 
+eval "$(hub alias -s)"
+
 alias gl='git pull --prune'
 alias glg="git log --graph --decorate --oneline --abbrev-commit"
 alias glga="glg --all"
@@ -16,7 +18,6 @@ alias gcam='git commit -a -m'
 alias gs='git status -sb'
 alias gcl='git clone'
 alias gcb='git-copy-branch-name'
-alias gpr='gp && git pr'
 
 alias push='git push'
 alias pull='git pull'
@@ -40,14 +41,5 @@ gc() {
 		git commit -v
 	else
 		git commit -m "$args"
-	fi
-}
-
-gcnv() {
-	args=$@
-	if [[ $# -eq 0 ]]; then
-		git commit --no-verify -v
-	else
-		git commit --no-verify -m "$args"
 	fi
 }

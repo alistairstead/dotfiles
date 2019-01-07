@@ -1,0 +1,131 @@
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed and saved.
+ *
+ * Add your own CSS or Less to fully customize Atom.
+ * If you are unfamiliar with Less, you can read more about it here:
+ * http://lesscss.org
+ */
+
+@import "ui-variables";
+
+/*
+ * Examples
+ * (To see them, uncomment and save)
+ */
+
+// style the background color of the tree view
+.tree-view {
+  // background-color: whitesmoke;
+}
+
+// style the background and foreground colors on the atom-text-editor-element itself
+atom-text-editor {
+  // color: white;
+  // background-color: hsl(180, 24%, 12%);
+}
+
+// style UI elements inside atom-text-editor
+atom-text-editor .cursor {
+  // border-color: red;
+}
+
+atom-overlay .easy-motion-redux-letter {
+  position: absolute;
+  // z-index: 1;
+  background-color: lighten(@app-background-color, 25%) !important;
+  border-radius: 3px;
+  color: hsl(
+    hue(@text-color-warning),
+    100% - saturation(@app-background-color),
+    60% - lightness(@app-background-color) * 0.2
+  );
+}
+
+/******************  VIM MODE STATUS BAR ****************************************/
+
+@normal-bg: rgb(7, 193, 242);
+@insert-bg: rgb(105, 238, 103);
+@visual-bg: rgb(255, 206, 98);
+
+// change the current cursor-line background color
+// based on vim mode
+atom-text-editor.is-focused.editor {
+  .cursor-line {
+    // background: rgba(64, 64, 37, 5);
+    background: fadeout(@normal-bg, 80%);
+  }
+  &.insert-mode {
+    .cursor-line {
+      background: fadeout(@insert-bg, 90%);
+    }
+  }
+}
+
+// vim mode in the status bar at the bottom
+// make it nice and big so you can see it out of the corner of your eye
+// without thinking about it.
+.status-bar-vim-mode-plus-normal,
+.status-bar-vim-mode-plus-insert,
+.status-bar-vim-mode-plus-visual {
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 20rem;
+}
+
+.status-bar-vim-mode-plus-normal {
+  background: @normal-bg;
+  color: rgb(255, 255, 255);
+}
+
+.status-bar-vim-mode-plus-insert {
+  background: @insert-bg;
+  color: white;
+}
+
+.status-bar-vim-mode-plus-visual {
+  background: @visual-bg;
+  color: rgb(168, 117, 5);
+}
+
+// change cursor color in normal mode
+atom-text-editor.vim-mode-plus.normal-mode.is-focused.editor {
+  .cursor {
+    background-color: @normal-bg;
+  }
+}
+
+// visual mode and selected text
+atom-text-editor.editor .selection .region {
+  background-color: fadeout(@visual-bg, 75%);
+}
+
+.vim-mode-plus-status(@color) {
+  color: contrast(@color);
+  background: @color;
+  border-radius: 2px;
+  line-height: 1em;
+  padding: 5px 12px;
+}
+
+atom-workspace {
+  .status-bar-vim-mode-plus-insert {
+    .vim-mode-plus-status(@background-color-success);
+  }
+
+  .status-bar-vim-mode-plus-normal {
+    .vim-mode-plus-status(@background-color-info);
+  }
+
+  .status-bar-vim-mode-plus-visual {
+    .vim-mode-plus-status(@background-color-warning);
+  }
+
+  .status-bar-vim-mode-plus-operator-pending::after {
+    content: "...";
+    .vim-mode-plus-status(@background-color-error);
+  }
+}

@@ -16,8 +16,6 @@
 .DS_Store
 .\#*
 .atom
-.atom/.apm
-.atom/blob-store
 .c2/
 .cask/
 .cask/

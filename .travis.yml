@@ -3,7 +3,7 @@ rvm:
   - 2.0.0
 
 os:
-  - linux
+  # - linux
   - osx
 
 install: |
@@ -15,4 +15,11 @@ install: |
     brew install zsh
   fi
 
-script: make test
+before_script:
+  - "rm ~/.gemrc"
+
+script:
+  - "./bin/dotfiles symlinks"
+  - "./bin/dotfiles brew"
+  - "./bin/dotfiles install"
+  - "./bin/dotfiles antibody"
