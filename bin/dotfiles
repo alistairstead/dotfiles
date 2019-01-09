@@ -37,6 +37,7 @@ sub_edit() {
 }
 
 sub_update () {
+    set -e
     echo "› system update"
     sudo softwareupdate -i -a
 
@@ -93,7 +94,7 @@ sub_brew () {
 }
 
 sub_antibody () {
-    . "$DOTFILES_DIR/install/install_antibody.sh"
+    . "$DOTFILES_DIR/script/install_antibody.sh"
     echo -e "${GREEN}$ARROW Success! Antibody command finished.${NC}"
 }
 
