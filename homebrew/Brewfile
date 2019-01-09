@@ -7,9 +7,11 @@ tap 'eqnxio/ngrok'
 tap 'd12frosted/emacs-plus'
 tap 'getantibody/tap'
 tap 'neovim/neovim'
-tap "heroku/brew"
+tap 'heroku/brew'
+tap 'semaphoreci/tap'
 
 brew 'ack'
+brew 'adr-tools'
 brew 'ag'
 brew 'ansible'
 brew 'antibody'
@@ -19,12 +21,12 @@ brew 'aws-elasticbeanstalk'
 brew 'bat'
 brew 'cairo'
 brew 'composer'
-brew 'curl', args: ["with-openssl"]
+brew 'curl', args: ['with-openssl']
 brew 'diff-so-fancy'
 brew 'direnv'
 brew 'editorconfig'
 brew 'elixir'
-brew 'emacs-plus', args: ["--HEAD", "--with-natural-title-bars"]
+brew 'emacs-plus', args: ['--HEAD', '--with-natural-title-bars']
 brew 'eqnxio/ngrok/ngrok'
 brew 'exa'
 brew 'fd'
@@ -66,7 +68,7 @@ brew 'prettyping'
 brew 'rbenv'
 brew 'roundup'
 brew 'ruby-build'
-brew 'semaphoreci/tap/sem'
+brew 'sem'
 brew 'shellcheck'
 brew 'shfmt'
 brew 'ssh-copy-id'
@@ -75,6 +77,7 @@ brew 'terraform-docs'
 brew 'thefuck'
 brew 'tldr'
 brew 'trash'
+brew 'travis'
 brew 'tree'
 brew 'the_silver_searcher'
 brew 'unrar'
@@ -162,16 +165,18 @@ cask 'caskroom/fonts/font-material-icons'
 
 
 # MacApp Store Apps
+mas "iStatistica", id: 1025822138
 mas "Kindle", id: 405399194
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 # mas "iStat Mini", id: 927292435
-mas "1Password", id: 443987910
+mas "1Password 7  ", id: 1333542190
 mas "Marked 2", id: 890031187
 mas "Todoist", id: 585829637
 # mas "Newton", id: 1059655371
 mas "Monodraw", id: 920404675
+mas "Moom", id: 419330170
 mas "kset", id: 847496013
 # mas "Tweetbot", id: 557168941
 mas "Xcode", id: 497799835
