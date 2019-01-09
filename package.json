@@ -1,0 +1,8 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alistairstead/dotfiles",
+  "author": "Alistair Stead <alistair_stead@me.com>",
+  "license": "MIT"
+}
