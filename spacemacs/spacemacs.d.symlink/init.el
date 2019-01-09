@@ -98,7 +98,6 @@ you should place your code here."
      git
      auto-completion
      ivy
-
      )
   "Layers I consider core to Spacemacs")
 
@@ -118,10 +117,6 @@ you should place your code here."
 (defvar dotspacemacs/layers/extra
   '(dash
      docker
-     ( github :variables
-       gist-view-gist t )
-     ( ibuffer :variables
-       ibuffer-group-buffers-by 'projects )
      )
   "Miscellaneous layers")
 
@@ -472,7 +467,10 @@ values."
 (defun dotspacemacs/user-config/toggles ()
   "Spacemacs toggles not intended to be put into layers."
   (spacemacs/toggle-highlight-long-lines-globally-on)
+<<<<<<< Updated upstream
   ;; (spacemacs/toggle-mode-line-minor-modes-off)
+=======
+>>>>>>> Stashed changes
   ;; (spacemacs/toggle-aggressive-indent-globally-on)
   (global-highlight-parentheses-mode t)
   (global-company-mode t)
@@ -481,9 +479,17 @@ values."
 
 ;;;; Experiments
 
+<<<<<<< Updated upstream
 (defun dotspacemacs/user-config/experiments ()
    "Space for trying out configuration updates."
    (setq tab-always-indent 'complete)
+=======
+((defun dotspacemacs/user-config/experiments ()
+   "Space for trying out configuration updates."
+   (setq tab-always-indent 'complete)
+   (add-hook 'js2-mode-hook 'prettier-js-mode)
+   (add-hook 'web-mode-hook 'prettier-js-mode)
+>>>>>>> Stashed changes
    (exec-path-from-shell-copy-env "PATH")
    (set-frame-parameter nil 'background-mode 'light)
    (set-terminal-parameter nil 'background-mode 'light)
@@ -491,4 +497,8 @@ values."
    (add-hook 'elixir-mode-hook
      (function (lambda ()
                  (setq evil-shift-width elixir-smie-indent-basic))))
+<<<<<<< Updated upstream
    )
+=======
+   ))
+>>>>>>> Stashed changes
