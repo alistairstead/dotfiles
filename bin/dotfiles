@@ -38,6 +38,11 @@ sub_edit() {
 
 sub_update () {
     set -e
+    echo "> update dotfiles"
+    cd ~/.dotfiles
+    git stash
+    git pull
+    git stash pop
     echo "› system update"
     sudo softwareupdate -i -a
 
