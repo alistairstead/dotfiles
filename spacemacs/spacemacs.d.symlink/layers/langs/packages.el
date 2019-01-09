@@ -2,6 +2,7 @@
 
 
 (setq langs-packages
+<<<<<<< Updated upstream
   '(
      prettier-js
      elm-yasnippets
@@ -20,3 +21,6 @@
 
 (defun langs/init-elixir-yasnippets ()
   (use-package elixir-yasnippets))
+=======
+  '())
+>>>>>>> Stashed changes
