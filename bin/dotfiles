@@ -42,7 +42,6 @@ sub_update () {
     cd ~/.dotfiles
     git stash
     git pull
-    git stash pop
     echo "› system update"
     sudo softwareupdate -i -a
 
