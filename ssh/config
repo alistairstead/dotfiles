@@ -1,4 +1,7 @@
 Host *
   ServerAliveInterval 60
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa
 
 Include ~/.ssh/config.local
