@@ -151,7 +151,7 @@
     showOnStartup: false
   "which-key":
     keystrokesFormat: "symbol"
-    showPackageNamesInCommands: false
+    useMetaForAlt: false
   whitespace:
     ensureSingleTrailingNewline: false
     ignoreWhitespaceOnCurrentLine: false
