@@ -87,9 +87,19 @@
     columnWidth: 426
     showHash: false
   "git-plus":
+    commits:
+      verboseCommits: true
+    diffs:
+      useSplitDiff: true
+      wordDiff: true
+    experimental:
+      autoFetch: 60
+      autoFetchNotify: true
     general:
       enableStatusBarIcon: false
       splitPane: "Right"
+    tags:
+      signTags: true
   github:
     gitDiagnostics: true
     viewChangesForCurrentFileDiffPaneSplitDirection: "right"
