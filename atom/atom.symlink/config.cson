@@ -46,13 +46,14 @@
       "background-tips"
       "linter"
     ]
+    followSymlinks: false
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
       "atom-ide-dark-syntax"
     ]
-    titleBar: "custom"
+    titleBar: "hidden"
     uriHandlerRegistration: "always"
     useTreeSitterParsers: true
   "css-declaration-sorter":
@@ -101,7 +102,7 @@
     tags:
       signTags: true
   github:
-    gitDiagnostics: true
+    showDiffIconGutter: true
     viewChangesForCurrentFileDiffPaneSplitDirection: "right"
   "highlight-line":
     enableBackgroundColor: false
