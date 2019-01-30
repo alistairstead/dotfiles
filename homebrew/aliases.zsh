@@ -7,7 +7,7 @@ if which brew >/dev/null 2>&1; then
 			(cd "$(brew --repo)" && git prune && git gc)
 			command brew cleanup
 			command brew cask cleanup
-			command brew prune
+			command brew cleanup
 			rm -rf "$(brew --cache)"
 			;;
 		bump)
@@ -45,5 +45,4 @@ freshbrew() {
 	brew update
 	brew upgrade
 	brew cleanup
-	brew prune
 }
