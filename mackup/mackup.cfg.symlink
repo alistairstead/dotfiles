@@ -6,8 +6,6 @@ aws
 bartender
 caffeine
 dash
-DefaultKeyBinding
-docker
 fantastical
 gnupg
 heroku
@@ -15,9 +13,7 @@ iterm2
 kaleidoscope
 keybase
 macosx
-messages
 moom
 sketch
-ssh
 xcode
 ngrok2
