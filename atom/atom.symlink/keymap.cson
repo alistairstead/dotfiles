@@ -133,7 +133,7 @@
   'space g h i': 'open-on-github:issues'
   'space g h p': 'open-on-github:pull-requests'
   'space g h b': 'open-on-github:branch-compare'
-  'space g g y': 'open-on-github:copy-url'
+  'space g h y': 'open-on-github:copy-url'
   # +help
   'space h w': 'dash:shortcut'
   'space h s': 'ask-stack:ask-question'

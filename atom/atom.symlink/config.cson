@@ -144,6 +144,9 @@
       semi: true
     useEditorConfig: true
   "regex-railroad-diagram": {}
+  "split-diff":
+    ignoreWhitespace: true
+    syncHorizontalScroll: true
   "status-bar":
     selectionCountFormat: "[%L, %C]"
   tabs:
