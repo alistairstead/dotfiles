@@ -121,6 +121,7 @@
   'space g b': 'git-plus:new-branch'
   'space g B': 'git-blame:toggle'
   'space g c': 'github:toggle-expanded-commit-message-editor'
+  'space g C': 'github:commit'
   'space g d': 'git-plus:rm'
   'space g f': 'github:fetch'
   'space g F': 'github:pull'
