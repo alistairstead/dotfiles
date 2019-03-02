@@ -139,10 +139,11 @@
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
+      respectEslintignore: false
     prettierEslintOptions:
       prettierLast: true
     prettierOptions:
-      semi: true
+      semi: false
     useEditorConfig: true
   "regex-railroad-diagram": {}
   "split-diff":
@@ -155,6 +156,7 @@
   "tree-view":
     alwaysOpenExisting: true
     autoReveal: true
+    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   "vim-mode-plus":
     autoSelectPersistentSelectionOnOperate: false
