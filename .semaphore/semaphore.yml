@@ -13,3 +13,4 @@ blocks:
           commands:
             - checkout
             - ./bin/dotfiles symlinks
+            - ./bin/dotfiles install ssh
