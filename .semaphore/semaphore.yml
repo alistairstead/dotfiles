@@ -1,0 +1,15 @@
+version: v1.0
+name: Dotfiles
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: macos-mojave
+
+blocks:
+  - name: "Build"
+    task:
+      jobs:
+        - name: Install
+          commands:
+            - checkout
+            - ./bin/dotfiles symlinks
