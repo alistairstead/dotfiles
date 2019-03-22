@@ -14,6 +14,26 @@ NC='\033[0m'
 export DOTFILES_DIR EXTRA_DIR
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 
+# Run all dotfiles installers.
+run_install_files() {
+	# find the installers and run them iteratively
+	for file in $(find -H "$DOTFILES_DIR" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
+		installer="${file}"
+		echo "› ${installer}..."
+		bash "$installer"
+	done
+}
+
+run_install_topic() {
+	# find the installers and run them iteratively
+	for file in $(find -H "${DOTFILES_DIR}/${SUB_COMMAND_NAME}" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
+		installer="${file}"
+		echo "› ${installer}..."
+		bash "$installer"
+    exit 0
+	done
+}
+
 sub_help () {
     echo -e "$ARROW Usage: ${YELLOW}$BIN_NAME <command>${NC}"
     echo
@@ -23,10 +43,10 @@ sub_help () {
     echo "   update              Update packages and pkg managers (antibody, OS, brew, yarn)"
     echo "   clean               Clean up caches (brew, npm, yarn)"
     echo "   symlinks            Run symlinks script to link all the dotfile config"
-    echo "   install             Run install script to install topic dependencies"
+    echo "   install all         Run all topci install scripts"
+    echo "   install {topic}     Run selected topic install"
     echo "   gitconfig           Run gitconfigscript to deploy local config"
     echo "   brew                Run brew script to install all brews and casks"
-    echo "   antibody            Run antibody script to install and cache sources"
     echo "   defaults            Run MacOS defaults script"
     echo "   dock                Run MacOS dock script"
 }
@@ -83,6 +103,16 @@ sub_symlinks () {
 }
 
 sub_install () {
+  echo "${COMMAND_NAME} ${SUB_COMMAND_NAME}"
+  case $SUB_COMMAND_NAME in
+      "")
+          run_install_files
+          ;;
+      *)
+          run_install_topic
+          ;;
+  esac
+
   . "$DOTFILES_DIR/script/install_topics.sh"
   echo -e "${GREEN}$ARROW Success! Install command finished.${NC}"
 }
@@ -95,11 +125,6 @@ sub_gitconfig () {
 sub_brew () {
     . "$DOTFILES_DIR/script/install_brews.sh"
     echo -e "${GREEN}$ARROW Success! Brew command finished.${NC}"
-}
-
-sub_antibody () {
-    . "$DOTFILES_DIR/script/install_antibody.sh"
-    echo -e "${GREEN}$ARROW Success! Antibody command finished.${NC}"
 }
 
 sub_defaults () {
