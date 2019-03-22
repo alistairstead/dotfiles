@@ -1,4 +1,5 @@
 #!/bin/sh
+mkdir ~/.ssh
 test -L ~/.ssh/config || {
 	mv ~/.ssh/config ~/.ssh/config.local
 	ln -s "$DOTFILES"/ssh/config ~/.ssh/config
