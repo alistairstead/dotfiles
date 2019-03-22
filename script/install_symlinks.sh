@@ -125,7 +125,7 @@ link_symlinks
 
 zsh="$(find_zsh)"
 
-test -z "$TRAVIS_JOB_ID" &&
+test -z "$CI" &&
 	which chsh >/dev/null 2>&1 &&
 	chsh -s "$zsh" &&
 	success "set $("$zsh" --version) at $zsh as default shell"
