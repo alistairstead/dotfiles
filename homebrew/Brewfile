@@ -25,7 +25,6 @@ brew 'curl', args: ['with-openssl']
 brew 'diff-so-fancy'
 brew 'direnv'
 brew 'editorconfig'
-brew 'elixir'
 brew 'emacs-plus', args: ['--HEAD', '--with-natural-title-bars']
 brew 'eqnxio/ngrok/ngrok'
 brew 'exa'
