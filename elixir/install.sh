@@ -4,4 +4,6 @@ brew install elixir
 
 mix local.hex --force
 
+mix local.rebar --force
+
 mix archive.install hex phx_new 1.4.2 --force
