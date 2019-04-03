@@ -14,4 +14,4 @@ blocks:
             - checkout
             - ./bin/dotfiles symlinks
             - ./bin/dotfiles install ssh
-            - ./bin/dotfiles install fzf
+            # - ./bin/dotfiles install fzf
