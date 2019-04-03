@@ -14,4 +14,5 @@ blocks:
             - checkout
             - ./bin/dotfiles symlinks
             - ./bin/dotfiles install ssh
+            - ./bin/dotfiles install elixir
             # - ./bin/dotfiles install fzf
