@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sudo -v
+
 if [ "$(uname -s)" = "Darwin" ]; then
 
 	# Some tools look for XCode, even though they don't need it.
@@ -8,4 +10,6 @@ if [ "$(uname -s)" = "Darwin" ]; then
 	if [ ! -d "$('xcode-select' -print-path 2>/dev/null)" ]; then
 		sudo xcode-select -switch /usr/bin
 	fi
+
+	sudo xcodebuild -license accept
 fi
