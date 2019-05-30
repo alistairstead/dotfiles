@@ -35,6 +35,8 @@ done
 unset config_files updated_at
 
 [ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
+[ -f $(brew --prefix asdf)/asdf.sh ] && . $(brew --prefix asdf)/asdf.sh
+[ -f $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash ] && . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
