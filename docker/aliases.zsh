@@ -21,6 +21,10 @@ postgres_stop() {
 	docker rm postgres -f
 }
 
+ubuntu_here() {
+  docker run -it -v $(pwd):/opt ubuntu /bin/bash
+}
+
 redis_start() {
 	docker run --name redis -d --restart=unless-stopped -p 6379:6379 redis
 }
