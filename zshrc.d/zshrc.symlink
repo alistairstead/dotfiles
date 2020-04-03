@@ -36,7 +36,6 @@ unset config_files updated_at
 
 [ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
 [ -f /usr/local/opt/asdf/asdf.sh ] && . /usr/local/opt/asdf/asdf.sh
-[ -f /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash ] && . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
