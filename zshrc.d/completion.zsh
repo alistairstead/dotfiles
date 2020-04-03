@@ -1,4 +1,6 @@
 #!/bin/sh
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 setopt completealiases         # complete alisases
 setopt extendedglob            # weird & wacky pattern matching - yay zsh!
 setopt nolisttypes             # show types in completion
