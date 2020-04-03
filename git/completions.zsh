@@ -3,7 +3,7 @@
 # tosses it, at least).
 completion='/usr/local/share/zsh/site-functions/_git'
 
-if test -f $completion
-then
-  source $completion
-fi
+# if test -f $completion
+# then
+#   source $completion
+# fi
