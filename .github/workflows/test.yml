@@ -13,3 +13,13 @@ jobs:
         run: ./bin/dotfiles install antibody
       - name: Install - asdf
         run: ./bin/dotfiles install asdf
+      - name: Install - docker
+        run: ./bin/dotfiles install docker
+      - name: Install - elixir
+        run: ./bin/dotfiles install elixir
+      - name: Install - fzf
+        run: ./bin/dotfiles install fzf
+      - name: Install - git
+        run: ./bin/dotfiles install git
+      - name: Install - homebrew
+        run: ./bin/dotfiles install homebrew
