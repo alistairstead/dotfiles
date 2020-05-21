@@ -41,10 +41,10 @@ sub_help () {
     echo "Commands:"
     echo "   -e, --edit, edit    Open dotfiles directory for editing"
     echo "   -h, --help, help    This help message"
-    echo "   update              Update packages and pkg managers (antibody, OS, brew, yarn)"
+    echo "   update              Update packages and pkg managers (antibody, OS, brew, npm)"
     echo "   clean               Clean up caches (brew, npm, yarn)"
     echo "   symlinks            Run symlinks script to link all the dotfile config"
-    echo "   install all         Run all topci install scripts"
+    echo "   install all         Run all topic install scripts"
     echo "   install {topic}     Run selected topic install"
     echo "   gitconfig           Run gitconfigscript to deploy local config"
     echo "   brew                Run brew script to install all brews and casks"
@@ -66,8 +66,8 @@ sub_update () {
     echo "› system update"
     sudo softwareupdate -i -a
 
-    if which yarn >/dev/null 2>&1; then
-      echo "› yarn update"
+    if which npm >/dev/null 2>&1; then
+      echo "› npm upgrade -g"
       yarn global upgrade
     fi
 
@@ -92,9 +92,6 @@ sub_clean () {
     if which npm >/dev/null 2>&1; then
       npm cache clean --force
     fi
-    if which yarn >/dev/null 2>&1; then
-      yarn cache clean
-    fi
     echo -e "${GREEN}$ARROW Success! Clean command finished.${NC}"
 }
 
@@ -106,7 +103,7 @@ sub_symlinks () {
 sub_install () {
   echo "${COMMAND_NAME} ${SUB_COMMAND_NAME}"
   case $SUB_COMMAND_NAME in
-      "")
+      "all")
           run_install_files
           ;;
       *)
