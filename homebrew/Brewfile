@@ -25,7 +25,6 @@ brew 'curl', args: ['with-openssl']
 brew 'diff-so-fancy'
 brew 'direnv'
 brew 'editorconfig'
-brew 'emacs-plus', args: ['--HEAD', '--with-natural-title-bars']
 brew 'eqnxio/ngrok/ngrok'
 brew 'exa'
 brew 'fd'
@@ -54,22 +53,16 @@ brew 'mas'
 brew 'mkcert'
 brew 'neovim'
 brew 'nmap'
-brew 'node'
-brew 'nvm'
 brew 'openssl'
 brew 'packer'
 brew 'pango'
 brew 'pinentry-mac'
 brew 'pixman'
 brew 'ponysay'
-brew 'postgres'
 brew 'prettyping'
-brew 'rbenv'
 brew 'roundup'
-brew 'ruby-build'
 brew 'sem'
 brew 'shellcheck'
-brew 'shfmt'
 brew 'ssh-copy-id'
 brew 'terraform'
 brew 'terraform-docs'
@@ -83,9 +76,8 @@ brew 'unrar'
 brew 'vim', args: ['--override-system-vi']
 brew 'wget'
 brew 'wifi-password'
-brew 'yarn'
 brew 'zsh'
-
+brew 'nektos/tap/act'
 # gnu stuff
 brew 'coreutils'
 brew 'findutils'
@@ -97,83 +89,65 @@ brew 'gnu-indent'
 brew 'gnu-getopt'
 
 # casks
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
+unless ENV["CI"]
+  tap 'caskroom/cask'
+  tap 'caskroom/fonts'
+  tap 'caskroom/versions'
 
-cask '1password-cli'
-cask 'alfred'
-cask 'atom'
-cask 'atom-beta'
-cask 'backblaze'
-cask 'bartender'
-cask 'caffeine'
-cask 'cheatsheet'
-cask 'cleanmymac'
-cask 'dash'
-cask 'docker'
-cask 'dropbox'
-cask 'duet'
-cask 'encryptme'
-cask 'fantastical'
-cask 'firefox'
-cask 'google-chrome'
-cask 'google-chrome-canary'
-cask 'google-cloud-sdk'
-cask 'grammarly'
-cask 'gyazo'
-cask 'imagealpha'
-cask 'imageoptim'
-cask 'iterm2'
-cask 'kaleidoscope'
-cask 'java' unless system "/usr/libexec/java_home --failfast"
-cask 'kap'
-cask 'keybase'
-cask 'postman'
-cask 'rocket'
-cask 'sketch'
-cask 'skyfonts'
-cask 'skype'
-cask 'slack'
-cask 'transmit'
-cask 'the-unarchiver'
-cask 'tunnelbear'
-cask 'virtualbox'
-cask 'vlc'
-
-# https://github.com/sindresorhus/quick-look-plugins
-cask 'qlcolorcode'
-cask 'qlimagesize'
-cask 'qlmarkdown'
-cask 'qlprettypatch'
-cask 'qlstephen'
-cask 'quicklook-csv'
-cask 'quicklook-json'
-cask 'suspicious-package'
-cask 'webpquicklook'
-cask 'qlvideo'
+  cask '1password-cli'
+  cask 'alfred'
+  cask 'backblaze'
+  cask 'bartender'
+  cask 'caffeine'
+  cask 'cheatsheet'
+  cask 'cleanmymac'
+  cask 'dash'
+  cask 'docker'
+  cask 'dropbox'
+  cask 'fantastical'
+  cask 'google-chrome'
+  cask 'google-cloud-sdk'
+  cask 'grammarly'
+  cask 'imageoptim'
+  cask 'iterm2'
+  cask 'kaleidoscope'
+  cask 'kap'
+  cask 'keybase'
+  cask 'postman'
+  cask 'sketch'
+  cask 'skyfonts'
+  cask 'skype'
+  cask 'slack'
+  cask 'transmit'
+  cask 'the-unarchiver'
+  cask 'vlc'
+  cask 'muzzle'
+end
 
 # fonts
-cask 'caskroom/fonts/font-anonymouspro-nerd-font-mono'
-cask 'caskroom/fonts/font-awesome-terminal-fonts'
-cask 'caskroom/fonts/font-fira-code'
-cask 'caskroom/fonts/font-symbola'
-cask 'caskroom/fonts/font-fontaweSome'
-cask 'caskroom/fonts/font-material-icons'
-
+unless ENV["CI"]
+  cask 'caskroom/fonts/font-anonymouspro-nerd-font-mono'
+  cask 'caskroom/fonts/font-awesome-terminal-fonts'
+  cask 'caskroom/fonts/font-fira-code'
+  cask 'caskroom/fonts/font-symbola'
+  cask 'caskroom/fonts/font-fontaweSome'
+  cask 'caskroom/fonts/font-material-icons'
+end
 
 # MacApp Store Apps
-mas "iStatistica", id: 1025822138
-mas "Kindle", id: 405399194
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "1Password 7", id: 1333542190
-mas "Marked 2", id: 890031187
-mas "Todoist", id: 585829637
-mas "Monodraw", id: 920404675
-mas "Moom", id: 419330170
-mas "Newton", id: 1059655371
-mas "Deckset", id: 847496013
-mas "Xcode", id: 497799835
-mas "Bear", id: 1091189122
+unless ENV["CI"]
+  mas "iStatistica", id: 1025822138
+  mas "Kindle", id: 405399194
+  mas "Keynote", id: 409183694
+  mas "Numbers", id: 409203825
+  mas "Pages", id: 409201541
+  mas "1Password 7", id: 1333542190
+  mas "Marked 2", id: 890031187
+  mas "Todoist", id: 585829637
+  mas "Monodraw", id: 920404675
+  mas "Moom", id: 419330170
+  mas "Spark", id: 1176895641
+  mas "Deckset", id: 847496013
+  mas "Xcode", id: 497799835
+  mas "Bear", id: 1091189122
+end
