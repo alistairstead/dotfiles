@@ -32,6 +32,7 @@ run_install_topic() {
 		bash "$installer"
     exit 0
 	done
+  exit 1
 }
 
 sub_help () {
