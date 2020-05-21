@@ -23,6 +23,8 @@ jobs:
         run: ./bin/dotfiles install git
       - name: Install - homebrew
         run: ./bin/dotfiles install homebrew
+      - name: Install - keybase
+        run: ./bin/dotfiles install keybase
       - name: Install - macos
         run: ./bin/dotfiles install macos
       - name: Install - nodejs
@@ -33,3 +35,13 @@ jobs:
         run: ./bin/dotfiles install vim
       - name: Install - xcode
         run: ./bin/dotfiles install xcode
+
+  functional:
+    needs: test
+    runs-on: macos-latest
+    steps:
+      - name: Run install
+        run: |
+          bash -c "$(curl -fsSL \
+          https://raw.githubusercontent.com/alistairstead/dotfiles/master/install.sh)" \
+          && source ~/.zshrc
