@@ -8,6 +8,8 @@ if test ! $(which asdf); then
 	asdf plugin-add erlang
 	asdf plugin-add elixir
 	asdf plugin-add nodejs
+	asdf plugin-add ruby
+	asdf plugin-add postgres
 
 	brew install \
 	  coreutils automake autoconf openssl \
