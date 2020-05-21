@@ -10,6 +10,6 @@ jobs:
       - name: Symlinks
         run: ./bin/dotfiles symlinks
       - name: Install - antibody
-        run: ./bin/dotfiles install antibod
+        run: ./bin/dotfiles install antibody
       - name: Install - asdf
         run: ./bin/dotfiles install asdf
