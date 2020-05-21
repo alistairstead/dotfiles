@@ -1,10 +1,12 @@
+# Dotfiles
+
+![Tests](https://github.com/alistairstead/dotfiles/workflows/Tests/badge.svg)
 
 # Requirements
 
 ## Platform
 
-* Mac OS X
-
+- Mac OS X
 
 # Install Dotfiles
 
@@ -15,15 +17,15 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/alistairstead/dotfiles/m
 
 ## Install OS X configuration
 
-* Connect to iCloud
-* Connect 1Password
-* Connect Dropbox
-* Restore [makckup](https://github.com/lra/mackup)
+- Connect to iCloud
+- Connect 1Password
+- Connect Dropbox
+- Restore [makckup](https://github.com/lra/mackup)
 
 ## Fonts and terminal
 
-* Install commercial font
-* Manually type `screen-256color` into the terminal type field in iTerm
+- Install commercial font
+- Manually type `screen-256color` into the terminal type field in iTerm
 
 # License and Author
 
