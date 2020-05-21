@@ -27,3 +27,9 @@ jobs:
         run: ./bin/dotfiles install macos
       - name: Install - nodejs
         run: ./bin/dotfiles install nodejs
+      - name: Install - ssh
+        run: ./bin/dotfiles install ssh
+      - name: Install - vim
+        run: ./bin/dotfiles install vim
+      - name: Install - xcode
+        run: ./bin/dotfiles install xcode
