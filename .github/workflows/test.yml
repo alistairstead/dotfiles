@@ -1,0 +1,11 @@
+name: Tests
+on:
+  push:
+    branches: [master]
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Symlinks
+        run: ./bin/dotfiles symlinks
