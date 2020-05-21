@@ -23,3 +23,7 @@ jobs:
         run: ./bin/dotfiles install git
       - name: Install - homebrew
         run: ./bin/dotfiles install homebrew
+      - name: Install - macos
+        run: ./bin/dotfiles install macos
+      - name: Install - nodejs
+        run: ./bin/dotfiles install nodejs
