@@ -17,7 +17,7 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 # Run all dotfiles installers.
 run_install_files() {
 	# find the installers and run them iteratively
-	for file in $(find -H "$DOTFILES_DIR" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
+	for file in $(find -H "$DOTFILES_DIR/src/" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
 		installer="${file}"
 		echo "› ${installer}..."
 		bash "$installer"
@@ -26,7 +26,7 @@ run_install_files() {
 
 run_install_topic() {
 	# find the installers and run them iteratively
-	for file in $(find -H "${DOTFILES_DIR}/${SUB_COMMAND_NAME}" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
+	for file in $(find -H "${DOTFILES_DIR}/src/${SUB_COMMAND_NAME}" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
 		installer="${file}"
 		echo "› ${installer}..."
 		bash "$installer"
@@ -49,8 +49,6 @@ sub_help () {
     echo "   antibidy            Run antibody to install plugins"
     echo "   gitconfig           Run gitconfigscript to deploy local config"
     echo "   brew                Run brew script to install all brews and casks"
-    echo "   defaults            Run MacOS defaults script"
-    echo "   dock                Run MacOS dock script"
 }
 
 sub_edit() {
@@ -117,7 +115,7 @@ sub_install () {
 }
 
 sub_antibody () {
-  antibody bundle < ~/.dotfiles/antibody/bundles.txt > ~/.zsh_plugins.sh
+  antibody bundle < ~/.dotfiles/src/antibody/bundles.txt > ~/.zsh_plugins.sh
   echo -e "${GREEN}$ARROW Success! antibody command finished.${NC}"
 }
 
@@ -129,16 +127,6 @@ sub_gitconfig () {
 sub_brew () {
     . "$DOTFILES_DIR/script/install_brews.sh"
     echo -e "${GREEN}$ARROW Success! Brew command finished.${NC}"
-}
-
-sub_defaults () {
-    . "$DOTFILES_DIR/macos/set-defaults.sh"
-    echo -e "${GREEN}$ARROW Success! MacOS defaults command finished.${NC}"
-}
-
-sub_dock () {
-    . "$DOTFILES_DIR/macos/dock.sh"
-    echo -e "${GREEN}$ARROW Success! MacOS dock command finished.${NC}"
 }
 
 case $COMMAND_NAME in
