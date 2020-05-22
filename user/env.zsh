@@ -5,3 +5,4 @@ export PROJECTS="$HOME/github"
 
 # export EDITOR=/usr/local/bin/code
 export EDITOR='subl -w'
+export GIT_EDITOR='vim'
