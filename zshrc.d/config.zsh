@@ -1,94 +1,53 @@
 #!/bin/sh
 
-export LSCOLORS='exfxcxdxbxegedabagacad'
-export CLICOLOR=true
-
 fpath=($DOTFILES/functions $fpath)
 
 autoload -U "$DOTFILES"/functions/*(:t)
+autoload bashcompinit && bashcompinit
 
-# don't nice background tasks
+# change to dirs without cd
+setopt autocd
+# push to home directory when no argument is given.
+setopt pushd_to_home
+# push the old directory onto the stack on cd.
+setopt auto_pushd
+# do not store duplicates in the stack.
+setopt pushd_ignore_dups
+
+# do not run all background jobs at a lower priority.
 setopt NO_BG_NICE
+# do not send the HUP signal to running jobs when the shell exits.
+# allows background tasks to keep running when we close the shell.
 setopt NO_HUP
-setopt NO_LIST_BEEP
-# allow functions to have local options
-setopt LOCAL_OPTIONS
-# allow functions to have local traps
-setopt LOCAL_TRAPS
 
+# ensure parameter expansion, command substitution and arithmetic
+# expansion are performed in prompts.
 setopt PROMPT_SUBST
+# do not beep on an ambiguous completion.
+setopt NO_LIST_BEEP
+# try to correct the spelling of commands.
 setopt CORRECT
+# do not exit on end-of-file.
+# Require the use of exit or logout instead.
 setopt IGNORE_EOF
 
-zle -N newtab
 
-# dont ask for confirmation in rm globs*
-setopt RM_STAR_SILENT
 
-setopt autocd                   # change to dirs without cd
-setopt pushd_to_home            # Push to home directory when no argument is given.
-setopt auto_pushd               # Push the old directory onto the stack on cd.
-setopt auto_name_dirs           # Auto add variable-stored paths to ~ list.
-setopt pushd_ignore_dups        # Do not store duplicates in the stack.
 
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey "$terminfo[cuu1]" history-substring-search-up
-bindkey "$terminfo[cud1]" history-substring-search-down
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^?' backward-delete-char
 
-globalias() {
-   if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
-     zle _expand_alias
-   fi
-   zle self-insert
+# keybindings
+bindkey '^f' forward-word
+bindkey '^b' backward-word
+
+# Last command timer if command took longer than 5 seconds
+function preexec() { timer=${timer:-$SECONDS} }
+function precmd() {
+        if [ $timer ]; then
+                timer_show=$(($SECONDS - $timer))
+                unset timer
+                if [ $timer_show -ge 5 ]; then
+                        print -rP '%BTook ${timer_show}s%f'
+                fi
+        fi
 }
 
-zle -N globalias
-
-bindkey " " globalias
-bindkey "^ " magic-space           # control-space to bypass completion
-bindkey -M isearch " " magic-space # normal space during searches
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
-
-# Aliases and functions
-ZSH_HIGHLIGHT_STYLES[alias]='fg=blue,bold'
-ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
-
-# Commands and builtins
-ZSH_HIGHLIGHT_STYLES[command]="fg=green"
-ZSH_HIGHLIGHT_STYLES[hashed-command]="fg=green,bold"
-ZSH_HIGHLIGHT_STYLES[builtin]="fg=green,bold"
-ZSH_HIGHLIGHT_STYLES[precommand]="fg=green,underline"
-ZSH_HIGHLIGHT_STYLES[commandseparator]="none"
-
-# Paths
-ZSH_HIGHLIGHT_STYLES[path]='fg=white,underline'
-
-# Globbing
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=yellow,bold'
-
-# Options and arguments
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=red'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=red'
-
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]="fg=green"
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="fg=green"
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]="fg=green"
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]="fg=green"
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]="fg=green"
-
-# Patterns
-ZSH_HIGHLIGHT_PATTERNS+=('mv *' 'fg=white,bold,bg=red')
-ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
-ZSH_HIGHLIGHT_PATTERNS+=('sudo ' 'fg=white,bold,bg=red')
-
-# Report CPU usage for commands running longer than 10 seconds.
-export TIMEFMT="%U user %S system %P cpu %*E total, running %J"
-REPORTTIME=10
