@@ -12,7 +12,6 @@ then
 fi
 
 # all of our zsh files
-typeset -U config_files
 config_files=($DOTFILES/**/*.zsh)
 
 # load antibody plugins
@@ -34,12 +33,4 @@ do
   . "$file"
 done
 
-unset config_files updated_at
-
-_direnv_hook() {
-  eval "$("/usr/local/bin/direnv" export zsh)";
-}
-typeset -ag precmd_functions;
-if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
-  precmd_functions+=_direnv_hook;
-fi
+unset config_files
