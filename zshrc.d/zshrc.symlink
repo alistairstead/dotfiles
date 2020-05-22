@@ -1,46 +1,40 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="$HOME/.dotfiles"
+
+# Stash your environment variables in ~/.localrc. This means they'll stay out
+# of your main dotfiles repository (which may be public, like this one), but
+# you'll have access to them in your scripts.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
 # all of our zsh files
 typeset -U config_files
-config_files=($DOTFILES/*/*.zsh)
+config_files=($DOTFILES/**/*.zsh)
 
 # load antibody plugins
 . ~/.zsh_plugins.sh
 
 # load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
+for file in ${config_files:#*/(completion|path).zsh}
+do
   . "$file"
 done
 
-autoload -Uz compinit
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
-  compinit -C -i
-fi
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}; do
+for file in ${(M)config_files:#*/completion.zsh}
+do
   . "$file"
-done
-
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}; do
-  source "$file"
 done
 
 unset config_files updated_at
-
-[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
-[ -f /usr/local/opt/asdf/asdf.sh ] && . /usr/local/opt/asdf/asdf.sh
-
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-# shellcheck disable=SC1090
-[ -f ~/.localrc ] && . ~/.localrc
 
 _direnv_hook() {
   eval "$("/usr/local/bin/direnv" export zsh)";
