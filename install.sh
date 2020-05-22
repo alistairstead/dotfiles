@@ -15,5 +15,3 @@ test -z "$CI" &&
 	./bin/dotfiles gitconfig
 ./bin/dotfiles antibody
 ./bin/dotfiles brew
-
-sudo xcodebuild -license accept
