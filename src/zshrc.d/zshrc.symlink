@@ -14,9 +14,6 @@ fi
 # all of our zsh files
 config_files=($DOTFILES/**/*.zsh)
 
-# load antibody plugins
-. ~/.zsh_plugins.sh
-
 # load everything but the path and completion files
 for file in ${config_files:#*/(completion|path).zsh}
 do
