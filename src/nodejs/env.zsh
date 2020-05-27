@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-export PORT=8080
 export NODE_ENV=development
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY_FILE=~/.node_history
