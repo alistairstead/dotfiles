@@ -1,3 +1,3 @@
 #!/usr/local/env zsh
 
-[ -f "~/.shopify-app-cli/shopify.sh" ] && source "~/.shopify-app-cli/shopify.sh"
+[ -f "$HOME/.shopify-app-cli/shopify.sh" ] && source "$HOME/.shopify-app-cli/shopify.sh"
