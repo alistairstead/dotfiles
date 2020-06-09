@@ -78,8 +78,6 @@ brew 'gnu-getopt'
 
 # casks
 unless ENV["CI"]
-  tap 'homebrew/cask-cask'
-  tap 'homebrew/cask-fonts'
   tap 'homebrew/cask-versions'
 
   cask '1password-cli'
@@ -110,16 +108,6 @@ unless ENV["CI"]
   cask 'the-unarchiver'
   cask 'vlc'
   cask 'muzzle'
-end
-
-# fonts
-unless ENV["CI"]
-  cask 'caskroom/fonts/font-anonymouspro-nerd-font-mono'
-  cask 'caskroom/fonts/font-awesome-terminal-fonts'
-  cask 'caskroom/fonts/font-fira-code'
-  cask 'caskroom/fonts/font-symbola'
-  cask 'caskroom/fonts/font-fontawesome'
-  cask 'caskroom/fonts/font-material-icons'
 end
 
 # MacApp Store Apps
