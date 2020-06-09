@@ -14,5 +14,6 @@ git pull
 ./bin/dotfiles install
 test -z "$CI" &&
 	./bin/dotfiles gitconfig
-./bin/dotfiles antibody
+
 ./bin/dotfiles brew
+./bin/dotfiles antibody
