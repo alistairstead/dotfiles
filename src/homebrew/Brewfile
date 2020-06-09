@@ -78,9 +78,9 @@ brew 'gnu-getopt'
 
 # casks
 unless ENV["CI"]
-  tap 'caskroom/cask'
-  tap 'caskroom/fonts'
-  tap 'caskroom/versions'
+  tap 'homebrew/cask-cask'
+  tap 'homebrew/cask-fonts'
+  tap 'homebrew/cask-versions'
 
   cask '1password-cli'
   cask 'alfred'
