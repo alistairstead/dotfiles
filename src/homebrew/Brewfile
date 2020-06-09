@@ -17,7 +17,6 @@ brew 'act'
 brew 'adr-tools'
 brew 'ag'
 brew 'antibody'
-brew 'aspell', args: ['with-lang-en']
 brew 'awscli'
 brew 'aws-elasticbeanstalk'
 brew 'bat'
