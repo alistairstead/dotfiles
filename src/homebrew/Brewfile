@@ -20,7 +20,7 @@ brew 'antibody'
 brew 'awscli'
 brew 'aws-elasticbeanstalk'
 brew 'bat'
-brew 'curl', args: ['with-openssl']
+brew 'curl'
 brew 'diff-so-fancy'
 brew 'direnv'
 brew 'editorconfig'
