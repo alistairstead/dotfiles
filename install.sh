@@ -7,6 +7,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 cd ~
 git clone https://github.com/alistairstead/dotfiles .dotfiles
 cd .dotfiles
+git pull
 
 ./bin/dotfiles symlinks
 ./bin/dotfiles install homebrew
