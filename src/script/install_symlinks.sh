@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 cd "$(dirname "$0")/.."
-DOTFILES_ROOT=$(pwd -P)/src
+DOTFILES_ROOT=$(pwd -P)
 
 set -e
 
