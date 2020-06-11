@@ -91,23 +91,33 @@ unless ENV["CI"]
   cask 'docker'
   cask 'dropbox'
   cask 'fantastical'
+  cask 'figma'
   cask 'google-chrome'
   cask 'google-cloud-sdk'
   cask 'grammarly'
+  cask 'graphiql'
+  cask 'iconjar'
   cask 'imageoptim'
   cask 'iterm2'
   cask 'kaleidoscope'
   cask 'kap'
   cask 'keybase'
+  cask 'little-snitch'
+  cask 'mongodb-compass'
+  cask 'muzzle'
+  cask 'postico'
   cask 'postman'
+  cask 'sizzy'
   cask 'sketch'
   cask 'skyfonts'
   cask 'skype'
   cask 'slack'
+  cask 'sublime-merge-dev'
+  cask 'sublime-text-dev'
   cask 'transmit'
+  cask 'tuple'
   cask 'the-unarchiver'
   cask 'vlc'
-  cask 'muzzle'
 end
 
 # MacApp Store Apps
@@ -122,6 +132,7 @@ unless ENV["CI"]
   mas "Todoist", id: 585829637
   mas "Monodraw", id: 920404675
   mas "Moom", id: 419330170
+  mas "NordVPN", id: 1116599239
   mas "Spark", id: 1176895641
   mas "Deckset", id: 847496013
   mas "Xcode", id: 497799835
