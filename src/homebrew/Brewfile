@@ -105,6 +105,7 @@ unless ENV["CI"]
   cask 'little-snitch'
   cask 'mongodb-compass'
   cask 'muzzle'
+  cask 'nordvpn'
   cask 'postico'
   cask 'postman'
   cask 'sizzy'
@@ -132,7 +133,6 @@ unless ENV["CI"]
   mas "Todoist", id: 585829637
   mas "Monodraw", id: 920404675
   mas "Moom", id: 419330170
-  mas "NordVPN", id: 1116599239
   mas "Spark", id: 1176895641
   mas "Deckset", id: 847496013
   mas "Xcode", id: 497799835
