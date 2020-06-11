@@ -17,7 +17,7 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 # Run all dotfiles installers.
 run_install_files() {
 	# find the installers and run them iteratively
-	for file in $(find -H "$DOTFILES_DIR/src/" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
+	for file in $(find -H "$DOTFILES_DIR/" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
 		installer="${file}"
 		echo "› ${installer}..."
 		bash "$installer"
@@ -26,7 +26,7 @@ run_install_files() {
 
 run_install_topic() {
 	# find the installers and run them iteratively
-	for file in $(find -H "${DOTFILES_DIR}/src/${SUB_COMMAND_NAME}" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
+	for file in $(find -H "${DOTFILES_DIR}/${SUB_COMMAND_NAME}" -maxdepth 2 -name 'install.sh' -not -path '*.git*'); do
 		installer="${file}"
 		echo "› ${installer}..."
 		bash "$installer"
