@@ -4,6 +4,6 @@
 
 set -e
 
-cd "$(dirname "$0")"/../src/homebrew
+cd "$(dirname "$0")"/../homebrew
 
 brew bundle
