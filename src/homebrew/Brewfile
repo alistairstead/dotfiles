@@ -94,6 +94,7 @@ unless ENV["CI"]
   cask 'figma'
   cask 'google-chrome'
   cask 'google-cloud-sdk'
+  cask 'google-drive-file-stream'
   cask 'grammarly'
   cask 'graphiql'
   cask 'iconjar'
