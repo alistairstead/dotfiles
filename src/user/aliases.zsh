@@ -80,4 +80,6 @@ done
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
-alias tw="fswatch -o {lib,test} | xargs -n1 -I{} mix test --stale"
+alias tw="fswatch -o {lib,test,src} | xargs -n1 -I{} mix test --stale"
+
+alias dc="docker-compose "
