@@ -82,4 +82,4 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 
 alias tw="fswatch -o {lib,test,src} | xargs -n1 -I{} mix test --stale"
 
-alias dc="docker-compose "
+alias dc="docker compose "
