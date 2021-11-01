@@ -3,7 +3,6 @@
 fpath=($DOTFILES/functions $fpath)
 
 autoload -U "$DOTFILES"/functions/*(:t)
-autoload bashcompinit && bashcompinit
 
 # change to dirs without cd
 setopt autocd
@@ -50,4 +49,3 @@ function precmd() {
                 fi
         fi
 }
-

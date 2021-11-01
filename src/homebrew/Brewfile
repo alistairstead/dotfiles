@@ -4,11 +4,9 @@ tap 'homebrew/core'
 tap 'homebrew/bundle'
 tap 'homebrew/services'
 tap 'eqnxio/ngrok'
-tap 'd12frosted/emacs-plus'
 tap 'getantibody/tap'
 tap 'neovim/neovim'
 tap 'heroku/brew'
-tap 'semaphoreci/tap'
 tap 'nektos/tap'
 
 
@@ -52,7 +50,6 @@ brew 'pango'
 brew 'pinentry-mac'
 brew 'prettyping'
 brew 'roundup'
-brew 'sem'
 brew 'ssh-copy-id'
 brew 'terraform'
 brew 'terraform-docs'
@@ -63,7 +60,6 @@ brew 'tree'
 brew 'unrar'
 brew 'vim'
 brew 'wget'
-brew 'wifi-password'
 brew 'zsh'
 
 # gnu stuff
@@ -80,16 +76,13 @@ brew 'gnu-getopt'
 unless ENV["CI"]
   tap 'homebrew/cask-versions'
 
-  cask '1password-cli'
   cask 'alfred'
   cask 'backblaze'
   cask 'bartender'
   cask 'caffeine'
-  cask 'cheatsheet'
   cask 'cleanmymac'
   cask 'dash'
   cask 'docker'
-  cask 'dropbox'
   cask 'fantastical'
   cask 'figma'
   cask 'google-chrome'
@@ -98,44 +91,26 @@ unless ENV["CI"]
   cask 'grammarly'
   cask 'graphiql'
   cask 'iconjar'
-  cask 'imageoptim'
   cask 'iterm2'
-  cask 'kaleidoscope'
   cask 'kap'
   cask 'keybase'
   cask 'little-snitch'
-  cask 'mongodb-compass'
-  cask 'muzzle'
   cask 'nordvpn'
-  cask 'postico'
-  cask 'postman'
   cask 'sizzy'
-  cask 'sketch'
-  cask 'skyfonts'
-  cask 'skype'
   cask 'slack'
   cask 'sublime-merge-dev'
   cask 'sublime-text-dev'
-  cask 'transmit'
-  cask 'tuple'
   cask 'the-unarchiver'
-  cask 'vlc'
 end
 
 # MacApp Store Apps
 unless ENV["CI"]
-  mas "iStatistica", id: 1025822138
   mas "Kindle", id: 405399194
   mas "Keynote", id: 409183694
   mas "Numbers", id: 409203825
   mas "Pages", id: 409201541
-  mas "1Password 7", id: 1333542190
+  mas "1Password", id: 1333542190
   mas "Marked 2", id: 890031187
   mas "Todoist", id: 585829637
-  mas "Monodraw", id: 920404675
-  mas "Moom", id: 419330170
-  mas "Spark", id: 1176895641
-  mas "Deckset", id: 847496013
-  mas "Xcode", id: 497799835
   mas "Bear", id: 1091189122
 end

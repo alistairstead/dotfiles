@@ -26,9 +26,7 @@ setopt SHARE_HISTORY
 # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
-setopt HIST_EXPIRE_DUPS_FIRST
 
 # Lists the ten most used commands.
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"

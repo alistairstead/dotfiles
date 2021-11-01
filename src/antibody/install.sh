@@ -10,6 +10,7 @@ echo 'Starting install of antibody'
 
 # Run antibody to install and cache source
 run_install_antibody() {
+	rm ~/.zsh_plugins.sh
 	antibody bundle <"${DOTFILES_ROOT}/antibody/bundles.txt" >~/.zsh_plugins.sh
 	antibody update
 }
@@ -22,8 +23,8 @@ if test ! $(which antibody); then
 		curl -sL https://git.io/antibody | sh -s
 	fi
 
-	run_install_antibody
 fi
 
+run_install_antibody
 
 echo 'Completed install of antibody'

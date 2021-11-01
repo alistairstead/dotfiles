@@ -91,9 +91,6 @@ defaults write -g AppleLocale -string "en_GB@currency=GBP"
 defaults write -g AppleMeasurementUnits -string "Centimeters"
 defaults write -g AppleMetricUnits -bool true
 
-# Show language menu in the top right corner of the boot screen
-sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
-
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
 sudo systemsetup -settimezone "Europe/London" > /dev/null
 

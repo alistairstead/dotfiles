@@ -2,7 +2,10 @@ mafredri/zsh-async
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
-sindresorhus/pure
+spaceship-prompt/spaceship-prompt
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
+
+ohmyzsh/ohmyzsh path:plugins/docker
+ohmyzsh/ohmyzsh path:plugins/docker-compose
