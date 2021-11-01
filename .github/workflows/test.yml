@@ -9,6 +9,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Symlinks
         run: ./bin/dotfiles symlinks
+      - name: Install - homebrew
+        run: ./bin/dotfiles install homebrew
       - name: Install - antibody
         run: ./bin/dotfiles install antibody
       - name: Install - asdf
@@ -21,20 +23,10 @@ jobs:
         run: ./bin/dotfiles install fzf
       - name: Install - git
         run: ./bin/dotfiles install git
-      - name: Install - homebrew
-        run: ./bin/dotfiles install homebrew
-      - name: Install - keybase
-        run: ./bin/dotfiles install keybase
       - name: Install - macos
         run: ./bin/dotfiles install macos
-      - name: Install - nodejs
-        run: ./bin/dotfiles install nodejs
       - name: Install - ssh
         run: ./bin/dotfiles install ssh
-      - name: Install - vim
-        run: ./bin/dotfiles install vim
-      - name: Install - xcode
-        run: ./bin/dotfiles install xcode
 
   functional:
     needs: test

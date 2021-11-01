@@ -11,9 +11,17 @@ git pull
 
 ./bin/dotfiles symlinks
 ./bin/dotfiles install homebrew
-./bin/dotfiles install
+
+./bin/dotfiles brew
+
+./bin/dotfiles install antibody
+./bin/dotfiles install asdf
+./bin/dotfiles install docker
+./bin/dotfiles install elixir
+./bin/dotfiles install fzf
+./bin/dotfiles install git
 test -z "$CI" &&
 	./bin/dotfiles gitconfig
 
-./bin/dotfiles brew
-./bin/dotfiles antibody
+
+git remote set-url origin git@github.com:alistairstead/dotfiles.git

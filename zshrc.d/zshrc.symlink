@@ -11,6 +11,8 @@ then
   source ~/.localrc
 fi
 
+. $DOTFILES/zshrc.d/fpath.zsh
+
 # all of our zsh files
 config_files=($DOTFILES/**/*.zsh)
 
