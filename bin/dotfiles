@@ -46,7 +46,7 @@ sub_help () {
     echo "   symlinks            Run symlinks script to link all the dotfile config"
     echo "   install all         Run all topic install scripts"
     echo "   install {topic}     Run selected topic install"
-    echo "   antibidy            Run antibody to install plugins"
+    echo "   antibody            Run antibody to install plugins"
     echo "   gitconfig           Run gitconfigscript to deploy local config"
     echo "   brew                Run brew script to install all brews and casks"
 }
@@ -115,7 +115,7 @@ sub_install () {
 }
 
 sub_antibody () {
-  antibody bundle < ~/.dotfiles/src/antibody/bundles.txt > ~/.zsh_plugins.sh
+  antibody bundle < ~/.dotfiles/antibody/bundles.txt > ~/.zsh_plugins.sh
   echo -e "${GREEN}$ARROW Success! antibody command finished.${NC}"
 }
 

@@ -23,21 +23,6 @@ alias brwe=brew
 
 # Freshen up your brew.
 freshbrew() {
-  me="$(whoami)"
-
-  file1="$(stat /usr/local/bin | awk '{ print $5 }')"
-  file2="$(stat /usr/local/share | awk '{ print $5 }')"
-
-  if [ "$me" != "$file1" ]; then
-    echo "Need to chown /usr/local/bin"
-    sudo chown -R "$(whoami)":admin /usr/local/bin
-  fi
-
-  if [ "$me" != "$file2" ]; then
-    echo "Need to chown /usr/local/share"
-    sudo chown -R "$(whoami)":admin /usr/local/share
-  fi
-
   brew bump
   brew cleanup
   brew doctor

@@ -9,11 +9,11 @@ git clone https://github.com/alistairstead/dotfiles .dotfiles
 cd .dotfiles
 git pull
 
-./src/bin/dotfiles symlinks
-./src/bin/dotfiles install homebrew
-./src/bin/dotfiles install
+./bin/dotfiles symlinks
+./bin/dotfiles install homebrew
+./bin/dotfiles install
 test -z "$CI" &&
-	./src/bin/dotfiles gitconfig
+	./bin/dotfiles gitconfig
 
-./src/bin/dotfiles brew
-./src/bin/dotfiles antibody
+./bin/dotfiles brew
+./bin/dotfiles antibody

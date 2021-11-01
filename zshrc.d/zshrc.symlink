@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # shortcut to this dotfiles path is $DOTFILES
-export DOTFILES="$HOME/.dotfiles/src"
+export DOTFILES="$HOME/.dotfiles"
 autoload -U +X compinit && compinit
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -35,3 +35,5 @@ compinit
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
