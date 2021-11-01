@@ -15,7 +15,7 @@ if [ ! -f ~/.gnupg/gpg-agent.conf ]; then
 	{
 		echo "default-cache-ttl 3600"
 		echo "max-cache-ttl 3600"
-		echo "pinentry-program /usr/local/bin/pinentry-mac"
+		echo "pinentry-program $(brew --prefix pinentry-mac)/bin/pinentry-mac"
 	} > ~/.gnupg/gpg-agent.conf
 fi
 

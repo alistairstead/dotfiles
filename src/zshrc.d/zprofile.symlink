@@ -7,3 +7,4 @@ export DOTFILES="$HOME/.dotfiles/src"
 for file in $DOTFILES/**/(path|env).zsh; do
   . "$file"
 done
+eval "$(/opt/homebrew/bin/brew shellenv)"

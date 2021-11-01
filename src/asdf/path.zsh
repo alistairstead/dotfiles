@@ -1,3 +1,3 @@
 #!/bin/sh
 
-. /usr/local/opt/asdf/asdf.sh
+. $(brew --prefix asdf)/libexec/asdf.sh

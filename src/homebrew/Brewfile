@@ -57,8 +57,6 @@ brew 'thefuck'
 brew 'tldr'
 brew 'trash'
 brew 'tree'
-brew 'unrar'
-brew 'vim'
 brew 'wget'
 brew 'zsh'
 
@@ -79,7 +77,9 @@ unless ENV["CI"]
   cask 'alfred'
   cask 'backblaze'
   cask 'bartender'
+  cask 'brave-browser'
   cask 'caffeine'
+  cask 'choosy'
   cask 'cleanmymac'
   cask 'dash'
   cask 'docker'
@@ -87,7 +87,6 @@ unless ENV["CI"]
   cask 'figma'
   cask 'google-chrome'
   cask 'google-cloud-sdk'
-  cask 'google-drive-file-stream'
   cask 'grammarly'
   cask 'graphiql'
   cask 'iconjar'
@@ -101,16 +100,5 @@ unless ENV["CI"]
   cask 'sublime-merge-dev'
   cask 'sublime-text-dev'
   cask 'the-unarchiver'
-end
-
-# MacApp Store Apps
-unless ENV["CI"]
-  mas "Kindle", id: 405399194
-  mas "Keynote", id: 409183694
-  mas "Numbers", id: 409203825
-  mas "Pages", id: 409201541
-  mas "1Password", id: 1333542190
-  mas "Marked 2", id: 890031187
-  mas "Todoist", id: 585829637
-  mas "Bear", id: 1091189122
+  cask 'visual-studio-code'
 end
