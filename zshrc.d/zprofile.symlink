@@ -3,8 +3,13 @@
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES="$HOME/.dotfiles"
 
-# load the path files
-for file in $DOTFILES/**/(path|env).zsh; do
+# export PATH="/opt/homebrew/bin:$PATH"
+
+for file in $DOTFILES/**/(path).zsh; do
   . "$file"
 done
-eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# load the path files
+for file in $DOTFILES/**/(env).zsh; do
+  . "$file"
+done
