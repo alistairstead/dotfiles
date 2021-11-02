@@ -12,8 +12,6 @@ nnoremap Y y$
 "  HIGHLIGHTING
 "
 syntax on
-set background=dark
-colorscheme ThemerVim
 se cursorline
 se listchars=tab:▸\ ,trail:□,eol:¬
 se t_ZH=[3m
