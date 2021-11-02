@@ -27,6 +27,8 @@ jobs:
         run: ./bin/dotfiles install macos
       - name: Install - ssh
         run: ./bin/dotfiles install ssh
+      - name: Install - vim
+        run: ./bin/dotfiles install vim
 
   functional:
     needs: test
