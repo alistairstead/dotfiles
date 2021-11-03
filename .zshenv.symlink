@@ -3,5 +3,5 @@
 export DOTFILES="$HOME/.dotfiles"
 
 for file in $DOTFILES/**/(path|env).zsh; do
-  . "$file"
+  source "$file"
 done

@@ -158,5 +158,3 @@ vnoremap <s-h>   <nop>
 vnoremap <s-j>   <nop>
 vnoremap <s-k>   <nop>
 vnoremap <s-l>   <nop>
-
-

@@ -103,12 +103,14 @@ link_file() {
 }
 
 link_symlinks() {
-	info 'installing dotfiles'
+	info 'creating links to managed files'
 
 	local overwrite_all=false backup_all=false skip_all=false
 
-	for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*'); do
-		dst="$HOME/.$(basename "${src%.*}")"
+	for src in $(find -H "$DOTFILES_ROOT" -name '*.symlink' -not -path '*.git/*'); do
+		dstPath="${src#$DOTFILES_ROOT/}"
+		dst="$HOME/${dstPath%.*}"
+		# echo "linking $src to $dst"
 		link_file "$src" "$dst"
 	done
 }
