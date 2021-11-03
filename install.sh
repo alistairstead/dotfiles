@@ -9,7 +9,7 @@ git clone https://github.com/alistairstead/dotfiles .dotfiles
 cd .dotfiles
 git pull
 
-.test -z "$CI" &&
+test -z "$CI" &&
 	./bin/dotfiles symlinks
 ./bin/dotfiles install homebrew # install homebrew
 ./bin/dotfiles brew # install brew packages
