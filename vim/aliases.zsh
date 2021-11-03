@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 vim() {
     if [ -s /usr/local/bin/nvim ]; then

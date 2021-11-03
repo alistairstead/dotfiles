@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 # the cursor stays where it was and completion is done from both ends.
 setopt COMPLETE_IN_WORD

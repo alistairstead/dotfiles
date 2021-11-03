@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 # modern make
 if which mmake >/dev/null 2>&2; then

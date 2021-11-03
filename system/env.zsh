@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 export TERM='screen-256color'
 export TERM_PROGRAM='iTerm.app'

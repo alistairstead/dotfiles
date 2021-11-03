@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 fpath=($DOTFILES/functions $fpath)
 

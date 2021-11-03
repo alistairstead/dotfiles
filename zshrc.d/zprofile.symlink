@@ -1,15 +1,1 @@
-#!/bin/sh
-
-# shortcut to this dotfiles path is $DOTFILES
-export DOTFILES="$HOME/.dotfiles"
-
-# export PATH="/opt/homebrew/bin:$PATH"
-
-for file in $DOTFILES/**/(path).zsh; do
-  . "$file"
-done
-
-# load the path files
-for file in $DOTFILES/**/(env).zsh; do
-  . "$file"
-done
+#!/usr/local/env zsh

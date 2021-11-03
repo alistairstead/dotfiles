@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 # add support for ctrl+o to open selected file in the system editor
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(atom-beta {})+abort'"

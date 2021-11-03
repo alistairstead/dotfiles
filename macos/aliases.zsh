@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 # Some OS X-only stuff.
 if [[ "$OSTYPE" == darwin* ]]; then

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 # your project folder that we can `t [tab]` to
 export PROJECTS="$HOME/github"

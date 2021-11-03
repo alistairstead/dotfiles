@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 # history size
 HISTFILE=~/.zsh_history

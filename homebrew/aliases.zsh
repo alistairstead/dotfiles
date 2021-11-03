@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 if which brew >/dev/null 2>&1; then
   brew() {

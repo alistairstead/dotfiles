@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 # https://github.com/spaceship-prompt/spaceship-prompt/blob/master/docs/options.md
 

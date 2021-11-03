@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/env zsh
 
 if [ -f /usr/local/bin/npm ]; then
   source <(npm completion)

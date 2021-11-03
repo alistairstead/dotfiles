@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/local/env zsh
 
 export NODE_ENV=development
 # Enable persistent REPL history for `node`.
