@@ -1,3 +1,4 @@
 #!/usr/local/env zsh
 
-[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
+test -z "$CI" &&
+  [ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
