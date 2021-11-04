@@ -15,10 +15,8 @@ brew 'act'
 brew 'adr-tools'
 brew 'ag'
 brew 'antibody'
-test -z "$CI" &&
-  brew 'awscli'
-test -z "$CI" &&
-  brew 'aws-vault'
+brew 'awscli' unless system "bash test -z ${CI}"
+brew 'aws-vault' unless system "bash test -z ${CI}"
 brew 'bat'
 brew 'cmake'
 brew 'curl'
