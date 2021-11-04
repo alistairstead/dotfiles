@@ -9,8 +9,7 @@ git clone https://github.com/alistairstead/dotfiles .dotfiles
 cd .dotfiles
 git pull
 
-test -z "$CI" &&
-	./bin/dotfiles symlinks
+test -z "$CI" && ./bin/dotfiles symlinks
 ./bin/dotfiles install homebrew # install homebrew
 ./bin/dotfiles brew # install brew packages
 
@@ -18,15 +17,13 @@ test -z "$CI" &&
 ./bin/dotfiles install asdf
 ./bin/dotfiles install docker
 ./bin/dotfiles install elixir
-./bin/dotfiles install fzf
+.test -z "$CI" && /bin/dotfiles install fzf
 ./bin/dotfiles install git
 ./bin/dotfiles install keybase
-test -z "$CI" &&
-	./bin/dotfiles install macos
+test -z "$CI" && ./bin/dotfiles install macos
 ./bin/dotfiles install ssh
 ./bin/dotfiles install vim
-test -z "$CI" &&
-	./bin/dotfiles gitconfig
+test -z "$CI" && ./bin/dotfiles gitconfig
 
 
 git remote set-url origin git@github.com:alistairstead/dotfiles.git
