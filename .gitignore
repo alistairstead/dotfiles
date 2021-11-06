@@ -22,7 +22,6 @@
 .composer/auth.json
 .composer/cache
 .composer/vendor
-.config
 .emacs.desktop
 .emacs.desktop.lock
 .litable-lists.el

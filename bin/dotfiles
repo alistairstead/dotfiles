@@ -65,12 +65,12 @@ sub_update () {
     echo "› system update"
     sudo softwareupdate -i -a
 
-    if which npm >/dev/null 2>&1; then
+    if test $(which npm); then
       echo "› npm upgrade -g"
       yarn global upgrade
     fi
 
-    if which brew >/dev/null 2>&1; then
+    if test $(which brew); then
       echo "› brew update"
       brew update
       brew upgrade
@@ -85,10 +85,10 @@ sub_update () {
 }
 
 sub_clean () {
-    if which brew >/dev/null 2>&1; then
+    if test $(which brew); then
       brew cleanup
     fi
-    if which npm >/dev/null 2>&1; then
+    if test $(which npm); then
       npm cache clean --force
     fi
     echo -e "${GREEN}$ARROW Success! Clean command finished.${NC}"

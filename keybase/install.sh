@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if test $(which brew); then
+	brew install gpg || brew upgrade gpg
+	brew install pinentry-mac || brew upgrade pinentry-mac
+fi
+
 # add the use-agent line to ~/.gnupg/gpg.conf
 GPG_USE_AGENT=$(grep -e "#use-agent" ~/.gnupg/gpg.conf)
 if [ "x$GPG_USE_AGENT" != "x" ]; then

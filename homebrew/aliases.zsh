@@ -1,6 +1,6 @@
 #!/usr/local/env zsh
 
-if which brew >/dev/null 2>&1; then
+if test $(which brew); then
   brew() {
     case "$1" in
     cleanup)

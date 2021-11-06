@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if test $(which brew); then
+	brew install git || brew upgrade git
+	brew install diff-so-fancy || brew upgrade diff-so-fancy
+	brew install hub || brew upgrade hub
+fi
+
 # Don't ask ssh password all the time
 if [ "$(uname -s)" = "Darwin" ]; then
 	git config --global credential.helper osxkeychain

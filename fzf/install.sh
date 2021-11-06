@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if test ! $(which fzf); then
-	if which brew >/dev/null 2>&1; then
-		brew install fzf
-		$(brew --prefix)/opt/fzf/install --all
+	if test $(which brew); then
+		brew install fzf || brew upgrade fzf
+		$(brew --prefix fzf)/install --all
 	fi
 fi

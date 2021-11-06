@@ -1,9 +1,5 @@
 #!/usr/local/env zsh
 
-if [ -f /usr/local/bin/npm ]; then
+if test $(which npm); then
   source <(npm completion)
-fi
-if [ -f /usr/local/bin/pm2 ]; then
-  #statements
-  source <(pm2 completion)
 fi
