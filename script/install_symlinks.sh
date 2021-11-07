@@ -107,6 +107,10 @@ link_symlinks() {
 
 	local overwrite_all=false backup_all=false skip_all=false
 
+    # create folders for deep symlinks
+    mkdir -p "$HOME/.config/nvim"
+    mkdir -p "$HOME/.ssh"
+
 	for src in $(find -H "$DOTFILES_ROOT" -name '*.symlink' -not -path '*.git/*'); do
 		dstPath="${src#$DOTFILES_ROOT/}"
 		dst="$HOME/${dstPath%.*}"
