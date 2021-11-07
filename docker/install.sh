@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if test $(which brew); then
+	brew install docker || brew upgrade docker
+fi
+
 mkdir -p "$HOME/.docker/completions"
 
 if which docker-compose >/dev/null 2>&1; then

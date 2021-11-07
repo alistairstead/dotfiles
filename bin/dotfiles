@@ -65,18 +65,13 @@ sub_update () {
     echo "› system update"
     sudo softwareupdate -i -a
 
-    if test $(which npm); then
-      echo "› npm upgrade -g"
-      yarn global upgrade
-    fi
-
     if test $(which brew); then
       echo "› brew update"
       brew update
       brew upgrade
     fi
 
-    if which antibody >/dev/null 2>&1; then
+    if test $(which antibody); then
       echo "› antibody update"
       antibody update
     fi

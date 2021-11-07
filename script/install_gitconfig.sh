@@ -33,16 +33,18 @@ fail() {
 
 setup_gitconfig() {
 	info 'setup gitconfig'
-	# if there is no user.email, we'll assume it's a new machine/setup and ask it
-	if [ -z "$(git config --global --get user.email)" ]; then
-		user ' - What is your github author name?'
-		read -r user_name
-		user ' - What is your github author email?'
-		read -r user_email
+	if [ "$(git config --global --get dotfiles.managed)" != "true" ]; then
+        # if there is no user.email, we'll assume it's a new machine/setup and ask it
+	    if [ -z "$(git config --global --get user.email)" ]; then
+            user ' - What is your github author name?'
+            read -r user_name
+            user ' - What is your github author email?'
+            read -r user_email
 
-		git config --global user.name "$user_name"
-		git config --global user.email "$user_email"
-	elif [ "$(git config --global --get dotfiles.managed)" != "true" ]; then
+            git config --global user.name "$user_name"
+            git config --global user.email "$user_email"
+        fi
+
 		# if user.email exists, let's check for dotfiles.managed config. If it is
 		# not true, we'll backup the gitconfig file and set previous user.email and
 		# user.name in the new one
@@ -52,35 +54,43 @@ setup_gitconfig() {
 		success "moved ~/.gitconfig to ~/.gitconfig.backup"
 		git config --global user.name "$user_name"
 		git config --global user.email "$user_email"
+
+        if [ -z "$(git config --global --get github.user)" ]; then
+            user ' - What is your github username?'
+            read -r username
+            git config --global github.user "$username"
+        fi
+        if [ -z "$(git config --global --get github.oauth-token)" ]; then
+            user ' - What is your github oauth-token?'
+            read -r token
+            git config --global github.oauth-token "$token"
+        fi
+
+        info "Checking for SSH key, generating one if it doesn't exist ..."
+        if [ -f "${HOME}/.ssh/id_rsa.pub" ]; then
+            info 'public key already exists'
+        else
+            ssh-keygen -t rsa
+            success 'generated public key'
+        fi
+
+        info "Copying public key to clipboard. Paste it into your Github account ..."
+        if [ -f "${HOME}/.ssh/id_rsa.pub" ] && [ "$(uname -s)" = "Darwin" ]; then
+            pbcopy <"${HOME}/.ssh/id_rsa.pub"
+            open https://github.com/settings/keys
+        fi
+
+        # include the gitconfig.local file
+        git config --global include.path ~/.gitconfig.local
+        # finally make git knows this is a managed config already, preventing later
+        # overrides by this script
+        git config --global dotfiles.managed true
+        success 'git config managed by dotfiles'
 	else
 		# otherwise this gitconfig was already made by the dotfiles
 		info "already managed by dotfiles"
 	fi
 
-	if [ -z "$(git config --global --get github.user)" ]; then
-		user ' - What is your github username?'
-		read -r username
-		git config --global github.user "$username"
-	fi
-	if [ -z "$(git config --global --get github.oauth-token)" ]; then
-		user ' - What is your github oauth-token?'
-		read -r token
-		git config --global github.oauth-token "$token"
-	fi
-	# include the gitconfig.local file
-	git config --global include.path ~/.gitconfig.local
-	# finally make git knows this is a managed config already, preventing later
-	# overrides by this script
-	git config --global dotfiles.managed true
-
-	info "Checking for SSH key, generating one if it doesn't exist ..."
-	[ -f "${HOME}/.ssh/id_rsa.pub" ] || ssh-keygen -t rsa
-
-	info "Copying public key to clipboard. Paste it into your Github account ..."
-	if [ -f "${HOME}/.ssh/id_rsa.pub" ] && [ "$(uname -s)" = "Darwin" ]; then
-		pbcopy <"${HOME}/.ssh/id_rsa.pub"
-		open https://github.com/settings/keys
-	fi
 
 
 	success 'gitconfig intalled!'

@@ -18,7 +18,8 @@ run_install_antibody() {
 
 if test ! $(which antibody); then
 	if test $(which brew); then
-		brew install getantibody/tap/antibody || brew upgrade antibody
+	    brew tap getantibody/tap
+		brew install antibody || brew upgrade antibody
 	else
 		curl -sL https://git.io/antibody | sh -s
 	fi
