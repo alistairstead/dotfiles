@@ -33,6 +33,7 @@ brew 'nmap'
 brew 'openssl'
 brew 'prettyping'
 brew 'roundup'
+brew 'starship'
 brew 'thefuck'
 brew 'tldr'
 brew 'trash'
@@ -53,7 +54,9 @@ brew 'gnu-getopt'
 # casks
 unless ENV["CI"]
   tap 'homebrew/cask-versions'
+  tap 'homebrew/cask-fonts'
 
+  cask 'font-hack-nerd-font'
   cask 'alfred'
   cask 'bartender'
   cask 'brave-browser'

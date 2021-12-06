@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+# create a new tmp branch
+git checkout $(git main)
+git branch -D tmp || true
+git checkout -b tmp
