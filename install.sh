@@ -22,8 +22,10 @@ test -z "$CI" && ./bin/dotfiles symlinks
 ./bin/dotfiles install keybase
 test -z "$CI" && ./bin/dotfiles install macos
 ./bin/dotfiles install ssh
-./bin/dotfiles install vim
+./bin/dotfiles install neovim
 test -z "$CI" && ./bin/dotfiles gitconfig
+
+touch ~/.hushlogin
 
 
 git remote set-url origin git@github.com:alistairstead/dotfiles.git
