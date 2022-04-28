@@ -12,15 +12,6 @@ endfunction
 " Plugins will be downloaded under the specified directory.
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
-" Declare the list of plugins.
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-abolish'
-Plug 'prettier/vim-prettier'
-Plug 'ryanoasis/vim-devicons'
-Plug 'machakann/vim-highlightedyank'
 " use normal easymotion when in vim mode
 Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
 " use vscode easymotion when in vscode mode
@@ -33,18 +24,7 @@ Plug 'airblade/vim-rooter'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" Yank to clipboard
-if has("clipboard")
-  set clipboard=unnamed " copy to the system clipboard
 
-  if has("unnamedplus") " X11 support
-    set clipboard+=unnamedplus
-  endif
-endif
-
-" Make splits open in more natuural locations
-set splitbelow
-set splitright
 
 " Now make navigating between splits a little easier. Just use leader h,j,k,l
 
