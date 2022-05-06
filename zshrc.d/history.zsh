@@ -1,9 +1,11 @@
 #!/usr/local/env zsh
 
+HIST_STAMPS="yyyy-mm-dd"
+
 # history size
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=$HISTSIZE
 
 # whenever the user enters a line with history expansion, don't
 # execute the line directly; instead, perform history expansion and
@@ -24,8 +26,10 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 # don't record dupes in history
+setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 
 # Lists the ten most used commands.

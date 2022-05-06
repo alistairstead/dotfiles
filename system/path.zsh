@@ -1,3 +1,3 @@
 #!/usr/local/env zsh
 
-export PATH="$PATH:$DOTFILES/bin"
+export PATH="$DOTFILES/bin:$PATH"

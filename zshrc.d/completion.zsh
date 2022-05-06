@@ -53,6 +53,7 @@ zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*:default' list-prompt'%S%M matches%s'
 zstyle ':completion:*:prefix:*' add-space true
+
 # I really like the kill|all autocomplete functionality of zsh.
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $(whoami) -o pid,%cpu,tty,cputime,cmd'

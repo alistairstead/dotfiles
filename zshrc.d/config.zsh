@@ -1,9 +1,5 @@
 #!/usr/local/env zsh
 
-fpath=($DOTFILES/functions $fpath)
-
-autoload -U "$DOTFILES"/functions/*(:t)
-
 # change to dirs without cd
 setopt autocd
 # push to home directory when no argument is given.
@@ -29,8 +25,6 @@ setopt CORRECT
 # do not exit on end-of-file.
 # Require the use of exit or logout instead.
 setopt IGNORE_EOF
-
-
 
 
 

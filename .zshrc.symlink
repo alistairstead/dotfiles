@@ -29,3 +29,7 @@ do
 done
 
 unset config_files
+
+for file in $DOTFILES/**/(path|env).zsh; do
+  source "$file"
+done
