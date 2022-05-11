@@ -13,7 +13,6 @@ test -z "$CI" && ./bin/dotfiles symlinks
 ./bin/dotfiles install homebrew # install homebrew
 ./bin/dotfiles brew # install brew packages
 
-./bin/dotfiles install antibody
 ./bin/dotfiles install asdf
 ./bin/dotfiles install docker
 ./bin/dotfiles install elixir

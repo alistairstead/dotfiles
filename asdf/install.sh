@@ -10,6 +10,7 @@ if test ! $(which asdf); then
 	asdf plugin-add nodejs
 	asdf plugin-add postgres
 	asdf plugin-add php https://github.com/asdf-community/asdf-php.git
+    asdf plugin-add direnv
 
 
 	brew install \
