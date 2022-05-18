@@ -3,7 +3,7 @@ local map = vim.api.nvim_set_keymap
 
 map('n', '<leader>f', ':Format<cr>', {noremap = true, silent = true})
 
-local prettier = function()
+local formatter_prettier = function()
   return {
     exe = "prettier",
     args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
@@ -21,6 +21,11 @@ end
 
 formatter.setup {
   filetype = {
+    javascript = formatter_prettier,
+    javascriptreact = formatter_prettier,
+    typescript = formatter_prettier,
+    typescriptreact = formatter_prettier,
+    json = formatter_prettier,
     javascript = { prettier },
     typescript = { prettier },
     typescriptreact = { prettier },

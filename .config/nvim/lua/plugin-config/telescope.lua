@@ -1,4 +1,10 @@
+require("telescope").setup{
+  defaults = {
+    file_ignore_patters = { "yarn.lock" }
+  }
+}
 require('telescope').load_extension('fzf')
+
 local map = vim.api.nvim_set_keymap
 
 map('n', '<c-t>', ':Telescope find_files<cr>', {noremap = true})
