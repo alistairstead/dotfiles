@@ -1,5 +1,6 @@
 # -*- mode: gitignore; -*-
 
-.config/nvim.symlink/plugin
-.config/gh/hosts.yml
+**/*/nvim/plugin
+**/*/hosts.yml
+**/*/hosts.json
 *.zwc

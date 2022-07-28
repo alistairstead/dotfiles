@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
   use {
     "folke/tokyonight.nvim"
   }
+  use "ghifarit53/tokyonight-vim"
   use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
@@ -30,6 +31,10 @@ return require('packer').startup(function(use)
     'neovim/nvim-lspconfig',
     requires = {{'hrsh7th/cmp-nvim-lsp'}},
     config = function() require('plugin-config.lspconfig') end
+  }
+  use {
+    'williamboman/nvim-lsp-installer',
+    config = function() require('plugin-config.lsp-installer') end
   }
 
   -- Snippets

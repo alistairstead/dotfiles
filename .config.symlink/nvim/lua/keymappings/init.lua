@@ -3,6 +3,7 @@ local map = vim.api.nvim_set_keymap
 vim.g.mapleader = ' '
 map('i', 'jk', '<esc>', {noremap = true})
 map('n', '<leader><leader>', ':nohlsearch<cr>', {noremap = true, silent = true})
+map("n", "<esc>", ":nohlsearch<CR>", {noremap = true, silent = true})
 
 -- Keep visual selection after move
 map('v', '<', '<gv', {noremap = true})
