@@ -3,11 +3,14 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+
   -- UI
+  use "dracula/vim"
   use {
     "folke/tokyonight.nvim"
   }
   use "ghifarit53/tokyonight-vim"
+
   use {
     'kyazdani42/nvim-tree.lua',
     requires = 'kyazdani42/nvim-web-devicons',
@@ -24,17 +27,16 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
     config = function() require('plugin-config.treesitter') end
   }
-  use "pantharshit00/vim-prisma"
 
   -- Language servers
+  use {
+    'williamboman/nvim-lsp-installer',
+    config = function() require('plugin-config.lsp-installer') end
+  }
   use {
     'neovim/nvim-lspconfig',
     requires = {{'hrsh7th/cmp-nvim-lsp'}},
     config = function() require('plugin-config.lspconfig') end
-  }
-  use {
-    'williamboman/nvim-lsp-installer',
-    config = function() require('plugin-config.lsp-installer') end
   }
 
   -- Snippets
@@ -44,17 +46,18 @@ return require('packer').startup(function(use)
   }
 
   -- Completions
-  use { 'hrsh7th/nvim-cmp',
-  requires = {
-    {'hrsh7th/cmp-buffer'},
-    {'hrsh7th/cmp-path'},
-    {'dcampos/cmp-snippy'},
-    {'hrsh7th/cmp-nvim-lua'},
-    {'onsails/lspkind-nvim'},
-    {'saadparwaiz1/cmp_luasnip'},
-    {'L3MON4D3/LuaSnip'}
-  },
-  config = function() require('plugin-config.cmp') end }
+  -- Autocompletion
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'dcampos/cmp-snippy'},
+      {'hrsh7th/cmp-nvim-lua'},
+      {'onsails/lspkind-nvim'},
+    },
+    config = function() require('plugin-config.cmp') end
+  }
   use {
     "github/copilot.vim",
     config = function() require('plugin-config.copilot') end

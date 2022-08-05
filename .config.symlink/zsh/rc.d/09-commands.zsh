@@ -11,6 +11,14 @@
 # shell complaining about the pasted prompt symbol.
 alias %= \$=
 
+alias cp='cp -v'
+alias mv='mv -v'
+alias ln='ln -v'
+alias rm='rm -v'
+
+alias tn='tmux new -s ${PWD##*/}'
+alias ta='tmux at -t'
+alias tls='tmux list-sessions'
 
 # zmv lets you batch rename (or copy or link) files by using pattern matching.
 # https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#index-zmv
