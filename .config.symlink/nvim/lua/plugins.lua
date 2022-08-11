@@ -39,12 +39,6 @@ return require('packer').startup(function(use)
     config = function() require('plugin-config.lspconfig') end
   }
 
-  -- Snippets
-  use {
-    'dcampos/nvim-snippy',
-    config = function() require('plugin-config.snippy') end
-  }
-
   -- Completions
   -- Autocompletion
   use {
@@ -78,8 +72,6 @@ return require('packer').startup(function(use)
         requires = { 'nvim-lua/plenary.nvim' },
         config = function() require('plugin-config.vgit') end }
 
-  -- Spacing
-  use 'editorconfig/editorconfig-vim'
 
   -- Formatter
   use {
@@ -88,11 +80,6 @@ return require('packer').startup(function(use)
   }
 
 
-  -- Change quotes and parentheses
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-sensible'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-abolish'
 
 
 end)
