@@ -17,7 +17,7 @@ window:
   # Values for `decorations`:
   #     - full: Borders and title bar
   #     - none: Neither borders nor title bar
-  decorations: full
+  decorations: none
 
   # When true, alacritty starts maximized.
   # start_maximized: false
@@ -35,15 +35,15 @@ font:
   #   family: SFMono Nerd Font
   #   style: Regular
   normal:
-    family: FiraCode Nerd Font
-    style: Light
+    family: OperatorMono Nerd Font
+    style: Extra Light
   bold:
-    family: FiraCode Nerd Font
-    style: Regular
+    family: OperatorMono Nerd Font
+    style: Book
   italic:
-    family: FiraCode Nerd Font Mono
-    tyle: Italic
-  size: 17.0
+    family: OperatorMono Nerd Font
+    style: Extra Light Italic
+  size: 18.0
   offset:
     x: 0
     y: 5
@@ -58,8 +58,8 @@ draw_bold_text_with_bright_colors: false
 colors:
   # Default colors
   primary:
-    background: "0x22212c"
-    foreground: "0xf8f8f2"
+    background: '0x22212c'
+    foreground: '0xf8f8f2'
 
     # Bright and dim foreground colors
     #
@@ -74,8 +74,8 @@ colors:
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
   cursor:
-    text: "0x454158"
-    cursor: "0xf8f8f2"
+    text: '0x454158'
+    cursor: '0xf8f8f2'
 
   # Selection colors
   #
@@ -83,30 +83,30 @@ colors:
   # background is unset, selection color will be the inverse of the cell colors.
   # If only text is unset the cell text color will remain the same.
   selection:
-    text: "0xf8f8f2"
-    background: "0x454158"
+    text: '0xf8f8f2'
+    background: '0x454158'
 
   # Normal colors
   normal:
-    black: "0x22212c"
-    red: "0xff9580"
-    green: "0x8aff80"
-    yellow: "0xffff80"
-    blue: "0x9580ff"
-    magenta: "0xff80bf"
-    cyan: "0x80ffea"
-    white: "0xf8f8f2"
+    black: '0x22212c'
+    red: '0xff9580'
+    green: '0x8aff80'
+    yellow: '0xffff80'
+    blue: '0x9580ff'
+    magenta: '0xff80bf'
+    cyan: '0x80ffea'
+    white: '0xf8f8f2'
 
   # Bright colors
   bright:
-    black: "0x22212c"
-    red: "0xffaa99"
-    green: "0xa2ff99"
-    yellow: "0xffff99"
-    blue: "0xaa99ff"
-    magenta: "0xff99cc"
-    cyan: "0x99ffee"
-    white: "0xffffff"
+    black: '0x22212c'
+    red: '0xffaa99'
+    green: '0xa2ff99'
+    yellow: '0xffff99'
+    blue: '0xaa99ff'
+    magenta: '0xff99cc'
+    cyan: '0x99ffee'
+    white: '0xffffff'
 
 cursor:
   # Cursor style
