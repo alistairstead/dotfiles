@@ -74,6 +74,7 @@ local function plugins(use)
 			vim.g.did_load_filetype = 1
 		end,
 	})
+	-- /Performance
 	-- Load only when require
 	use({ "nvim-lua/plenary.nvim", module = "plenary" })
 
@@ -93,6 +94,7 @@ local function plugins(use)
 		config = function()
 			require("config.notify").setup()
 		end,
+		disable = true,
 	})
 
 	-- Better icons
@@ -156,6 +158,7 @@ local function plugins(use)
 		config = function()
 			vim.g.vista_default_executive = "nvim_lsp"
 		end,
+		disable = true,
 	})
 	use({
 		"sidebar-nvim/sidebar.nvim",
@@ -163,6 +166,7 @@ local function plugins(use)
 		config = function()
 			require("sidebar-nvim").setup({ open = false })
 		end,
+		disable = true,
 	})
 	use({
 		"stevearc/aerial.nvim",
@@ -185,6 +189,7 @@ local function plugins(use)
 				},
 			})
 		end,
+		disable = true,
 	})
 
 	-- Smooth scrolling
@@ -210,8 +215,6 @@ local function plugins(use)
 		end,
 	})
 
-	use({ "tyru/open-browser.vim", event = "BufReadPre" })
-
 	-- Legendary
 	use({
 		"mrjones2014/legendary.nvim",
@@ -233,73 +236,6 @@ local function plugins(use)
 		-- keys = { [[<leader>]] },
 		config = function()
 			require("config.whichkey").setup()
-		end,
-	})
-
-	-- Todo
-	use({
-		"folke/todo-comments.nvim",
-		config = function()
-			require("config.todocomments").setup()
-		end,
-		cmd = { "TodoQuickfix", "TodoTrouble", "TodoTelescope" },
-	})
-
-	-- Task runner
-	use({
-		"stevearc/overseer.nvim",
-		opt = true,
-		cmd = {
-			"OverseerToggle",
-			"OverseerOpen",
-			"OverseerRun",
-			"OverseerBuild",
-			"OverseerClose",
-			"OverseerLoadBundle",
-			"OverseerSaveBundle",
-			"OverseerDeleteBundle",
-			"OverseerRunCmd",
-			"OverseerQuickAction",
-			"OverseerTaskAction",
-		},
-		config = function()
-			require("overseer").setup()
-		end,
-	})
-
-	-- Test
-	use({
-		"nvim-neotest/neotest",
-		opt = true,
-		wants = {
-			"plenary.nvim",
-			"nvim-treesitter",
-			"FixCursorHold.nvim",
-			"neotest-plenary",
-			"neotest-jest",
-			"neotest-vim-test",
-			"vim-test",
-			"overseer.nvim",
-		},
-		requires = {
-			"vim-test/vim-test",
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"antoinemadec/FixCursorHold.nvim",
-			"nvim-neotest/neotest-plenary",
-			"haydenmeade/neotest-jest",
-			"nvim-neotest/neotest-vim-test",
-		},
-		module = { "neotest", "neotest.async" },
-		cmd = {
-			"TestNearest",
-			"TestFile",
-			"TestSuite",
-			"TestLast",
-			"TestVisit",
-		},
-		config = function()
-			require("config.neotest").setup()
 		end,
 	})
 
@@ -358,18 +294,12 @@ local function plugins(use)
 		opt = true,
 		event = "BufReadPre",
 		run = ":TSUpdate",
-		config = function()
-			require("config.treesitter").setup()
-		end,
-		requires = {
-			{ "nvim-treesitter/nvim-treesitter-textobjects", event = "BufReadPre" },
-			{ "windwp/nvim-ts-autotag", event = "InsertEnter" },
-			{ "JoosepAlviste/nvim-ts-context-commentstring", event = "BufReadPre" },
-			{ "p00f/nvim-ts-rainbow", event = "BufReadPre" },
-			{ "RRethy/nvim-treesitter-textsubjects", event = "BufReadPre" },
-			-- { "nvim-treesitter/nvim-treesitter-context", event = "BufReadPre" },
-			-- { "yioneko/nvim-yati", event = "BufReadPre" },
-		},
+	})
+
+	-- editorconfig
+	use({
+		"gpanders/editorconfig.nvim",
+		event = "BufReadPre",
 	})
 
 	-- AI completion
@@ -696,7 +626,6 @@ local function plugins(use)
 		config = function()
 			require("config.dap").setup()
 		end,
-		disable = true,
 	})
 
 	-- Git
@@ -725,19 +654,6 @@ local function plugins(use)
 		end,
 	})
 	use({
-		"pwntester/octo.nvim",
-		cmd = "Octo",
-		wants = { "telescope.nvim", "plenary.nvim", "nvim-web-devicons" },
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"kyazdani42/nvim-web-devicons",
-		},
-		config = function()
-			require("octo").setup()
-		end,
-	})
-	use({
 		"akinsho/git-conflict.nvim",
 		cmd = {
 			"GitConflictChooseTheirs",
@@ -753,60 +669,21 @@ local function plugins(use)
 		end,
 	})
 	use({
-		"ldelossa/gh.nvim",
-		opt = true,
-		wants = { "litee.nvim" },
-		requires = { { "ldelossa/litee.nvim" } },
-		event = "BufReadPre",
-		cmd = { "GHOpenPR" },
-		config = function()
-			require("litee.lib").setup()
-			require("litee.gh").setup()
-		end,
-		disable = true,
-	})
-	use({
-		"tanvirtin/vgit.nvim",
-		config = function()
-			require("vgit").setup()
-		end,
-		cmd = { "VGit" },
-	})
-	use({
 		"knsh14/vim-github-link",
 		cmd = { "GetCommitLink", "GetCurrentBranchLink", "GetCurrentCommitLink" },
 	})
+
+	-- Diffview
+	use({
+		"sindrets/diffview.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles" },
+	})
+
+	-- Code screen shots
 	use({
 		"segeljakt/vim-silicon",
 		cmd = { "Silicon" },
-	})
-	use({
-		"mattn/vim-gist",
-		opt = true,
-		requires = { "mattn/webapi-vim" },
-		cmd = { "Gist" },
-	})
-
-	-- Session
-	use({
-		"rmagatti/auto-session",
-		opt = true,
-		cmd = { "SaveSession", "RestoreSession" },
-		requires = { "rmagatti/session-lens" },
-		wants = { "telescope.nvim", "session-lens" },
-		config = function()
-			require("bad_practices").setup()
-		end,
-	})
-
-	-- Practice
-	use({
-		"antonk52/bad-practices.nvim",
-		event = "BufReadPre",
-		config = function()
-			require("bad_practices").setup()
-		end,
-		disable = true,
 	})
 
 	-- Bootstrap Neovim
