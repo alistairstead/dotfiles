@@ -5,10 +5,10 @@
 #
 
 # your project folder that we can `t [tab]` to
-export PROJECTS="$HOME/github"
+export PROJECTS="$HOME/code"
 
 # export EDITOR=/usr/local/bin/code
-export EDITOR='code -w -r'
+export EDITOR='vim'
 # export GIT_EDITOR='vim'
 
 export NODE_ENV=development
@@ -24,8 +24,8 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-export TERM='screen-256color'
-export TERM_PROGRAM='iTerm.app'
+export TERM='xterm-256color'
+export TERM_PROGRAM='Alacritty.app'
 export CLICOLOR=true
 export CLICOLOR_FORCE=true
 
