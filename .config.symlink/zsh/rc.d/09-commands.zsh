@@ -159,8 +159,6 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 
 alias top="sudo htop" # alias top and fix high sierra bug
 
-alias help='tldr'
-
 alias hosts='sudo $EDITOR /etc/hosts' # yes I occasionally 127.0.0.1 twitter.com ;)
 
 # alias divers
