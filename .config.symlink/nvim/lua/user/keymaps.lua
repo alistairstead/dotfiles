@@ -27,7 +27,6 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
@@ -39,24 +38,20 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Clear search highlight
-keymap('n', '<leader><leader>', ':nohlsearch<cr>', opts)
+keymap("n", "<leader><leader>", ":nohlsearch<cr>", opts)
 keymap("n", "<esc>", ":nohlsearch<CR>", opts)
 
 -- Edit or reload config
-keymap('n', '<leader>ve', ':edit ~/.config/nvim<cr>', opts)
-keymap('n', '<leader>vr', ':source ~/.config/nvim/init.lua <cr>', opts)
+keymap("n", "<leader>ve", ":edit ~/.config/nvim<cr>", opts)
+keymap("n", "<leader>vr", ":source ~/.config/nvim/init.lua <cr>", opts)
 
 -- Telescope
--- keymap(" ", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
-
--- Comment
-keymap("n", "gcc", "<cmd>lua require('Comment').toggle()<CR>", opts)
+keymap("n", "<C-p>", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<C-t>", "<cmd>Telescope<CR>", opts)
+keymap("n", "<C-f>", "<cmd>Telescope live_grep<CR>", opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
--- keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
 -- Insert --
 -- Press jk fast to enter
@@ -75,7 +70,7 @@ keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Comment
-keymap("v", "gc", ":lua require(\"Comment.api\").gc(vim.fn.visualmode())<cr>", opts)
+-- keymap("v", "gc", ":lua require(\"Comment.api\").gc(vim.fn.visualmode())<cr>", opts)
 
 -- Visual Block --
 -- Move text up and down
