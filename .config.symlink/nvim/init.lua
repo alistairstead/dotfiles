@@ -1,6 +1,2 @@
-require("user.options")
 require("utils")
 require("plugins")
-require("user.keymaps")
-require("user.colorscheme")
-require("user.autocommands")

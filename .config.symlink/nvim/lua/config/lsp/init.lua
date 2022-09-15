@@ -64,30 +64,6 @@ local servers = {
 	},
 	tsserver = {
 		disable_formatting = true,
-		settings = {
-			javascript = {
-				inlayHints = {
-					includeInlayEnumMemberValueHints = true,
-					includeInlayFunctionLikeReturnTypeHints = true,
-					includeInlayFunctionParameterTypeHints = true,
-					includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-					includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-					includeInlayPropertyDeclarationTypeHints = true,
-					includeInlayVariableTypeHints = true,
-				},
-			},
-			typescript = {
-				inlayHints = {
-					includeInlayEnumMemberValueHints = true,
-					includeInlayFunctionLikeReturnTypeHints = true,
-					includeInlayFunctionParameterTypeHints = true,
-					includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-					includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-					includeInlayPropertyDeclarationTypeHints = true,
-					includeInlayVariableTypeHints = true,
-				},
-			},
-		},
 	},
 	vimls = {},
 	tailwindcss = {},
@@ -161,39 +137,10 @@ function M.on_attach(client, bufnr)
 		require("jdtls.dap").setup_dap_main_class_configs()
 		vim.lsp.codelens.refresh()
 	end
-
-	-- aerial.nvim
-	require("aerial").on_attach(client, bufnr)
-
-	-- nvim-navic
-	if client.server_capabilities.documentSymbolProvider then
-		local navic = require("nvim-navic")
-		navic.attach(client, bufnr)
-	end
-
-	-- inlay-hints
-	local ih = require("inlay-hints")
-	ih.on_attach(client, bufnr)
 end
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.foldingRange = {
-	dynamicRegistration = false,
-	lineFoldingOnly = true,
-}
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = {
-		"documentation",
-		"detail",
-		"additionalTextEdits",
-	},
-}
-M.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities) -- for nvim-cmp
 
 local opts = {
 	on_attach = M.on_attach,
-	capabilities = M.capabilities,
 	flags = {
 		debounce_text_changes = 150,
 	},
@@ -208,9 +155,6 @@ function M.setup()
 
 	-- Installer
 	require("config.lsp.installer").setup(servers, opts)
-
-	-- Inlay hints
-	-- require("config.lsp.inlay-hints").setup()
 end
 
 local diagnostics_active = true

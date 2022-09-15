@@ -533,52 +533,25 @@ local function plugins(use)
 		opt = true,
 		event = { "BufReadPre" },
 		wants = {
-			-- "nvim-lsp-installer",
 			"mason.nvim",
 			"mason-lspconfig.nvim",
 			"mason-tool-installer.nvim",
 			"cmp-nvim-lsp",
 			"lua-dev.nvim",
-			"vim-illuminate",
 			"null-ls.nvim",
 			"schemastore.nvim",
-			"typescript.nvim",
-			"nvim-navic",
-			"inlay-hints.nvim",
-			-- "goto-preview",
 		},
 		config = function()
 			require("config.lsp").setup()
 		end,
 		requires = {
-			-- { "lvimuser/lsp-inlayhints.nvim", branch = "readme" },
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"neovim/nvim-lspconfig",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"folke/lua-dev.nvim",
-			"RRethy/vim-illuminate",
 			"jose-elias-alvarez/null-ls.nvim",
-			{
-				"j-hui/fidget.nvim",
-				config = function()
-					require("fidget").setup({})
-				end,
-			},
 			"b0o/schemastore.nvim",
-			"jose-elias-alvarez/typescript.nvim",
-			{
-				"SmiteshP/nvim-navic",
-				config = function()
-					require("nvim-navic").setup({})
-				end,
-				module = { "nvim-navic" },
-			},
-			{
-				"simrat39/inlay-hints.nvim",
-				config = function()
-					require("inlay-hints").setup()
-				end,
-			},
 			{
 				"zbirenbaum/neodim",
 				event = "LspAttach",

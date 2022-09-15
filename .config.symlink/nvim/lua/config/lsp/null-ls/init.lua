@@ -32,7 +32,6 @@ local sources = {
 	-- diagnostics
 	b.diagnostics.write_good,
 	-- b.diagnostics.markdownlint,
-	b.diagnostics.eslint_d,
 	-- b.diagnostics.flake8.with { extra_args = { "--max-line-length=120" } },
 	b.diagnostics.tsc,
 	-- b.diagnostics.selene,
@@ -49,7 +48,6 @@ local sources = {
 	b.code_actions.gitsigns.with({
 		disabled_filetypes = { "NeogitCommitMessage" },
 	}),
-	b.code_actions.eslint_d,
 	b.code_actions.gitrebase,
 	b.code_actions.refactoring,
 	b.code_actions.proselint,

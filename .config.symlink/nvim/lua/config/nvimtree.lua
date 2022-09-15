@@ -18,10 +18,11 @@ function M.setup()
 		hijack_netrw = true,
 		reload_on_bufenter = true,
 		filters = {
-			custom = { ".git", "node_modules", ".build", ".vscode" },
+			dotfiles = false,
+			custom = { "node_modules", ".vscode" },
 		},
 		git = {
-			ignore = true,
+			ignore = false,
 		},
 		view = {
 			width = 28,
@@ -37,7 +38,7 @@ function M.setup()
 			},
 		},
 		renderer = {
-			add_trailing = true,
+			add_trailing = false,
 			highlight_git = false,
 			full_name = true,
 			highlight_opened_files = "all",
@@ -55,7 +56,7 @@ function M.setup()
 					file = true,
 					folder = true,
 					folder_arrow = false,
-					git = true,
+					git = false,
 				},
 				glyphs = {
 					git = {

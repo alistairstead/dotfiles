@@ -1,5 +1,6 @@
 env:
-  TERM: alacritty
+  # TERM: alacritty
+  TERM: xterm-256color
 
 window:
   # opacity: 1.0
@@ -32,26 +33,32 @@ mouse:
 
 font:
   # normal:
-  #   family: SFMono Nerd Font
+  #   family: DankMono Nerd Font
   #   style: Regular
+  # bold:
+  #   family: DankMono Nerd Font
+  #   style: Bold
+  # italic:
+  #   family: DankMono Nerd Font
+  #   style: Italic
   normal:
-    family: OperatorMono Nerd Font
-    style: Extra Light
+    family: OperatorMonoLig Nerd Font
+    style: Light
   bold:
-    family: OperatorMono Nerd Font
+    family: OperatorMonoLig Nerd Font
     style: Book
   italic:
-    family: OperatorMono Nerd Font
-    style: Extra Light Italic
+    family: OperatorMonoLig Nerd Font
+    style: Light Italic
   size: 18.0
   offset:
     x: 0
-    y: 5
+    y: 8
   glyph_offset:
     x: 0
     y: 0
   use_thin_strokes: true
-
+alt_send_esc: false
 draw_bold_text_with_bright_colors: false
 
 # Colors (Dracula PRO)
