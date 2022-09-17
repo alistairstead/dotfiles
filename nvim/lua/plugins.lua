@@ -106,15 +106,6 @@ local function plugins(use)
 		end,
 	})
 
-	-- Buffer line
-	use({
-		"akinsho/nvim-bufferline.lua",
-		event = "BufReadPre",
-		wants = "nvim-web-devicons",
-		config = function()
-			require("config.bufferline").setup()
-		end,
-	})
 
 	-- nvim-tree
 	use({
@@ -295,15 +286,15 @@ local function plugins(use)
 		event = "BufReadPre",
 		run = ":TSUpdate",
 	})
-  use {
-    "narutoxy/dim.lua",
-    requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
-    config = function()
-      require('dim').setup({
-        disable_lsp_decorations = true
-      })
-    end
-  }
+	use({
+		"narutoxy/dim.lua",
+		requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
+		config = function()
+			require("dim").setup({
+				disable_lsp_decorations = true,
+			})
+		end,
+	})
 
 	-- editorconfig
 	use({
@@ -548,7 +539,7 @@ local function plugins(use)
 			"cmp-nvim-lsp",
 			"lua-dev.nvim",
 			"null-ls.nvim",
-      "typescript.nvim",
+			"typescript.nvim",
 			"schemastore.nvim",
 		},
 		config = function()
@@ -561,7 +552,7 @@ local function plugins(use)
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"folke/lua-dev.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
-      "jose-elias-alvarez/typescript.nvim",
+			"jose-elias-alvarez/typescript.nvim",
 			"b0o/schemastore.nvim",
 			{
 				"zbirenbaum/neodim",
