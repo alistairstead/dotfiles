@@ -54,7 +54,6 @@ unless ENV["CI"]
   tap 'homebrew/cask-versions'
   tap 'homebrew/cask-fonts'
 
-  cask 'alacritty'
   cask 'alfred'
   cask 'bartender'
   cask 'choosy'
@@ -63,6 +62,7 @@ unless ENV["CI"]
   cask 'figma'
   cask 'google-chrome'
   cask 'kap'
+  cask 'kitty'
   cask 'little-snitch'
   cask 'nordvpn'
   cask 'rocket'
