@@ -13,7 +13,8 @@ else
 	git config --global credential.helper cache
 fi
 
-git config --global core.excludesfile "${HOME}/.gitignore"
+git config --global core.excludesfile "${HOME}/.gitignore_global"
+git config --global include.path "${HOME}/.gitconfig_local"
 
 # better diffs
 if test $(which diff-so-fancy); then

@@ -33,9 +33,9 @@ ln -s $DOTFILES/tmux $HOME/.config/tmux
 
 # ln -sf $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
 
-# ln -sf $DOTFILES/git/gitconfig $HOME/.gitconfig
+ln -sf $DOTFILES/git/gitconfig_local $HOME/.gitconfig_local
+ln -sf $DOTFILES/git/gitignore_global $HOME/.gitignore_global
 
-# ln -sf $DOTFILES/gitignore_global $HOME/.gitignore_global
 
 echo "Done!"
 

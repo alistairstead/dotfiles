@@ -1,6 +1,0 @@
-# -*- mode: gitignore; -*-
-
-**/*/nvim/plugin
-**/*/hosts.yml
-**/*/hosts.json
-*.zwc
