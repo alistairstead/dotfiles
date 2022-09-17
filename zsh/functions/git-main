@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+# print name of main branch, e.g. "main" :) or "master" :(
+git remote show origin|grep HEAD|sed 's/.* //'

@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# ZSH
+rm -rf $HOME/.config/zsh
+ln -s $DOTFILES/zsh $HOME/.config/zsh
+ln -sf $DOTFILES/.zshenv $HOME/.zshenv
+
+# neovim
+rm -rf $HOME/.config/nvim
+ln -s $DOTFILES/nvim $HOME/.config/nvim
+
+# kitty terminal
+rm -rf $HOME/.config/kitty
+ln -s $DOTFILES/kitty $HOME/.config/kitty
+
+# skhd
+rm -rf $HOME/.config/skhd
+ln -s $DOTFILES/skhd $HOME/.config/skhd
+
+# spacebar
+rm -rf $HOME/.config/spacebar
+ln -s $DOTFILES/spacebar $HOME/.config/spacebar
+
+# yabai
+rm -rf $HOME/.config/yabai
+ln -s $DOTFILES/yabai $HOME/.config/yabai
+
+# tmux
+rm -rf $HOME/.config/tmux
+ln -s $DOTFILES/tmux $HOME/.config/tmux
+
+# ln -sf $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+
+# ln -sf $DOTFILES/git/gitconfig $HOME/.gitconfig
+
+# ln -sf $DOTFILES/gitignore_global $HOME/.gitignore_global
+
+echo "Done!"
+
