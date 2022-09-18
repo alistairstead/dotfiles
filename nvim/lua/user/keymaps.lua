@@ -67,8 +67,7 @@ keymap("n", "<C-t>", "<cmd>Telescope<CR>", default_opts)
 keymap("n", "<C-f>", "<cmd>Telescope live_grep<CR>", default_opts)
 
 -- Nvimtree
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", default_opts)
-
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", default_opts)
 
 -- Comment
 -- keymap("v", "gc", ":lua require(\"Comment.api\").gc(vim.fn.visualmode())<cr>", opts)

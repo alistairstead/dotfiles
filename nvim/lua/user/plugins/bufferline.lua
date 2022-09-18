@@ -19,7 +19,7 @@ require('bufferline').setup({
     custom_areas = {
       left = function()
         return {
-          { text = '    ', fg = '#8fff6d' },
+          { text = '  ', fg = '#8fff6d' },
         }
       end,
     },
@@ -77,3 +77,10 @@ require('bufferline').setup({
     },
   },
 })
+
+-- Shorten function name
+local keymap = vim.keymap.set
+local default_opts = { noremap = true, silent = true }
+
+keymap("n", "<leader>b", ":BufferLinePick<CR>", default_opts)
+
