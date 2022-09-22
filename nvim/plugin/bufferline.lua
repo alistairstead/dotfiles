@@ -1,25 +1,35 @@
-require('bufferline').setup({
+local status_ok, bufferline = pcall(require, 'bufferline')
+if not status_ok then
+  return
+end
+bufferline.setup({
   options = {
     indicator = {
       icon = ' ',
     },
     show_close_icon = false,
-    tab_size = 0,
-    max_name_length = 25,
     offsets = {
       {
         filetype = 'NvimTree',
         text = '  Files',
+        padding = 1,
         highlight = 'StatusLine',
         text_align = 'left',
       },
+      { filetype = 'neo-tree', text = '', padding = 1 },
+      { filetype = 'Outline', text = '', padding = 1 },
     },
-    separator_style = 'slant',
-    modified_icon = '',
+    buffer_close_icon = '',
+    modified_icon = '●',
+    close_icon = '',
+    max_name_length = 14,
+    max_prefix_length = 13,
+    tab_size = 20,
+    separator_style = 'thin',
     custom_areas = {
       left = function()
         return {
-          { text = '  ', fg = '#8fff6d' },
+          { text = '    ', fg = '#8fff6d' },
         }
       end,
     },
@@ -69,7 +79,7 @@ require('bufferline').setup({
     },
     separator_selected = {
       fg = { attribute = 'bg', highlight = 'StatusLine' },
-      bg = { attribute = 'bg', highlight = 'Normal' }
+      bg = { attribute = 'bg', highlight = 'Normal' },
     },
     separator_visible = {
       fg = { attribute = 'bg', highlight = 'StatusLine' },
@@ -77,10 +87,3 @@ require('bufferline').setup({
     },
   },
 })
-
--- Shorten function name
-local keymap = vim.keymap.set
-local default_opts = { noremap = true, silent = true }
-
-keymap("n", "<leader>b", ":BufferLinePick<CR>", default_opts)
-
