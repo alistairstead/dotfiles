@@ -4,8 +4,8 @@ if not ok then
 end
 
 tint.setup {
-    tint = -30,
-    saturation = 0.6,
+    tint = -50,
+    saturation = 0.4,
     ignore = { "WinBar.*", "WinSeparator", "IndentBlankline.*", "SignColumn", "EndOfBuffer" },
     ignorefunc = function(winid)
         local bufnr = vim.api.nvim_win_get_buf(winid)
