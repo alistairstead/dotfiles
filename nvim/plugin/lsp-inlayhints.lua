@@ -23,12 +23,12 @@ hints.setup {
     inlay_hints = {
         parameter_hints = {
             show = false,
-            -- prefix = "<- ",
+            prefix = "<- ",
             separator = ", ",
         },
         type_hints = {
             -- type and other hints
-            show = true,
+            show = false,
             prefix = "",
             separator = ", ",
             remove_colon_end = false,

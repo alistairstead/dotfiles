@@ -41,7 +41,6 @@ opt.cmdheight = 1
 opt.completeopt = { 'noinsert', 'menuone', 'noselect' }
 opt.pumheight = 10
 opt.numberwidth = 4
-opt.termguicolors = true
 
 local g = vim.g
 -- disable providers that are not being used

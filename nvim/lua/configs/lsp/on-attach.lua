@@ -3,6 +3,7 @@ local lsp_signature = require "lsp_signature"
 local navic = require "nvim-navic"
 local aerial = require "aerial"
 local telescope_lsp = require "configs.telescope.lsp"
+local lsp_format = require "lsp-format"
 
 local function highlight_references()
     local node = ts_utils.get_node_at_cursor()
@@ -164,19 +165,7 @@ return function(client, bufnr)
         navic.attach(client, bufnr)
     end
 
-    if client.server_capabilities.document_formatting then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        desc = 'Auto format before save',
-        pattern = '<buffer>',
-        callback = vim.lsp.buf.format,
-      })
-      vim.api.nvim_buf_create_user_command(
-        bufnr,
-        "Format",
-        function() vim.lsp.buf.formatting() end,
-        { desc = "Format file with LSP" }
-      )
-    end
+    lsp_format.on_attach(client)
 
     aerial.on_attach(client, bufnr)
 end

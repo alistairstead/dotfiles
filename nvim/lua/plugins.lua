@@ -37,12 +37,11 @@ local function packer_init()
   end
 
   -- Autocommand that reloads neovim whenever you save the plugins.lua file
-  vim.cmd([[
-    augroup packer_user_config
-      autocmd!
-      autocmd BufWritePost plugins.lua source <afile> | PackerSync
-    augroup end
-  ]])
+  local packer_grp = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
+  vim.api.nvim_create_autocmd(
+    { "BufWritePost" },
+    { pattern = "plugins.lua", command = "source <afile> | PackerSync", group = packer_grp }
+  )
 end
 
 -- Plugins
@@ -73,14 +72,18 @@ local function plugins(use)
   -- /Performance
 
   -- Lua functions
-  use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
+  use({ 'nvim-lua/plenary.nvim' })
 
   -- Popup API
   use('nvim-lua/popup.nvim')
 
 
-  -- Non-intrusive notifications
-  use("vigoux/notifier.nvim")
+  use({
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end,
+  })
 
   -- Neovim UI Enhancer
   use({
@@ -104,8 +107,7 @@ local function plugins(use)
       },
       "ggandor/leap.nvim",
       "levouh/tint.nvim",
-      "lewis6991/hover.nvim",
-      "lewis6991/satellite.nvim",
+      -- "lewis6991/hover.nvim",
       "luukvbaal/stabilize.nvim",
       { "kevinhwang91/nvim-bqf", ft = "qf", requires = {
           "junegunn/fzf",
@@ -176,17 +178,17 @@ local function plugins(use)
     "tpope/vim-repeat",
     "tpope/vim-surround",
     "tpope/vim-fugitive",
-    "tpope/vim-unimpaired",
+    -- "tpope/vim-unimpaired",
     {
         "tpope/vim-sleuth",
         setup = function()
             vim.g.sleuth_automatic = 0
         end,
     },
-    {
-        "tpope/vim-dispatch",
-        requires = { "radenling/vim-dispatch-neovim" },
-    },
+    -- {
+    --     "tpope/vim-dispatch",
+    --     requires = { "radenling/vim-dispatch-neovim" },
+    -- },
   }
 
   -- Better buffer closing
@@ -252,8 +254,6 @@ local function plugins(use)
   -- Terminal
   use({
     'akinsho/toggleterm.nvim',
-    keys = { [[<C-\>]] },
-    cmd = { 'ToggleTerm', 'TermExec' },
     module = { 'toggleterm', 'toggleterm.terminal' },
   })
 
@@ -272,10 +272,7 @@ local function plugins(use)
       'davidsierradz/cmp-conventionalcommits',
       "petertriho/cmp-git",
       'onsails/lspkind-nvim',
-      {
-        'windwp/nvim-autopairs',
-        -- event = 'InsertEnter',
-      },
+      'windwp/nvim-autopairs',
       {
         'L3MON4D3/LuaSnip',
         requires = { "rafamadriz/friendly-snippets" },
@@ -304,6 +301,7 @@ local function plugins(use)
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'jose-elias-alvarez/null-ls.nvim',
+      'lukas-reineke/lsp-format.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       'jose-elias-alvarez/typescript.nvim',
       'neovim/nvim-lspconfig',
@@ -311,10 +309,10 @@ local function plugins(use)
       'stevearc/aerial.nvim',
       'b0o/SchemaStore.nvim',
       'ray-x/lsp_signature.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
-      'RaafatTurki/mason-null-ls.nvim',
+      -- 'jayp0521/mason-null-ls.nvim',
       'jose-elias-alvarez/typescript.nvim',
       'lvimuser/lsp-inlayhints.nvim',
+      'glepnir/lspsaga.nvim',
       'SmiteshP/nvim-navic',
       "zbirenbaum/neodim",
       'onsails/lspkind.nvim',
@@ -334,7 +332,6 @@ local function plugins(use)
 
   use({
     'AndrewRadev/splitjoin.vim',
-    event = { 'BufRead', 'BufNewFile' },
     keys = { 'gS', 'gJ' },
   })
 
@@ -345,11 +342,21 @@ local function plugins(use)
 
   -- Git
   use ({
-    "rhysd/git-messenger.vim",
+    -- "rhysd/git-messenger.vim",
     "ruifm/gitlinker.nvim",
-    {
-      'lewis6991/gitsigns.nvim',
-      event = 'BufEnter',
+    'lewis6991/gitsigns.nvim',
+    { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  })
+
+  use({
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-plenary",
+      "marilari88/neotest-vitest",
+      "nvim-neotest/neotest-vim-test",
     },
   })
 

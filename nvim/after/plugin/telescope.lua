@@ -1,9 +1,10 @@
-local status_ok, telescope = pcall(require, 'telescope')
-if not status_ok then
+local ok, telescope = pcall(require, "telescope")
+if not ok then
   return
 end
-local actions = require('telescope.actions')
+local actions = require "telescope.actions"
 local telescopeConfig = require('telescope.config')
+
 -- Clone the default Telescope configuration
 local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
 
@@ -12,30 +13,51 @@ table.insert(vimgrep_arguments, '--hidden')
 -- I don't want to search in the `.git` directory.
 table.insert(vimgrep_arguments, '--glob')
 table.insert(vimgrep_arguments, '!.git/*')
+
 -- astronvim.conditional_func(telescope.load_extension, pcall(require, 'notify'), 'notify')
 -- astronvim.conditional_func(telescope.load_extension, pcall(require, 'aerial'), 'aerial')
 
-telescope.setup({
+require("telescope").load_extension("fzf")
+require('telescope').load_extension('project')
+
+telescope.setup {
   defaults = {
     prompt_prefix = ' ',
     selection_caret = '  ',
     path_display = { 'truncate' },
-    selection_strategy = 'reset',
-    sorting_strategy = 'ascending',
-    layout_strategy = 'horizontal',
+    layout_strategy = "horizontal",
     layout_config = {
+      width = 0.95,
+      height = 0.85,
+      -- preview_cutoff = 120,
+      prompt_position = "top",
       horizontal = {
-        prompt_position = 'top',
-        preview_width = 0.55,
-        results_width = 0.8,
+        preview_width = function(_, cols, _)
+          if cols > 200 then
+            return math.floor(cols * 0.4)
+          else
+            return math.floor(cols * 0.6)
+          end
+        end,
       },
+
       vertical = {
-        mirror = false,
+        width = 0.9,
+        height = 0.95,
+        preview_height = 0.5,
       },
-      width = 0.87,
-      height = 0.80,
-      preview_cutoff = 120,
+
+      flex = {
+        horizontal = {
+          preview_width = 0.9,
+        },
+      },
     },
+    color_devicons = true,
+    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+    selection_strategy = "reset",
+    sorting_strategy = "ascending",
+    scroll_strategy = "cycle",
     vimgrep_arguments = vimgrep_arguments,
     file_ignore_patters = { '.git/', 'yarn.lock', 'package-lock.json' },
     mappings = {
@@ -103,41 +125,86 @@ telescope.setup({
   pickers = {
     find_files = {
       hidden = true,
-      -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-      find_command = { 'rg', '--files', '--hidden', '--glob', '!.git/*' },
+      theme = "dropdown",
+      borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+      previewer = false,
     },
     buffers = {
       previewer = false,
-      layout_config = {
-        width = 80,
-      },
+      theme = "dropdown",
+      borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
     },
     lsp_references = {
       previewer = false,
     },
     -- default configuration for builtin pickers goes here:
     -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- now the picker_config_key will be applied every time you call this
-    -- builtin picker
-  },
-  extensions = {
-    media_files = {
-      -- filetypes whitelist
-      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-      filetypes = { 'png', 'webp', 'jpg', 'jpeg', 'pdf', 'mp4', 'webm' },
-      find_cmd = 'rg', -- find command (defaults to `fd`)
+      --   picker_config_key = value,
+      --   ...
+      -- }
+      -- now the picker_config_key will be applied every time you call this
+      -- builtin picker
     },
-    project = {
-      hidden_files = false,
-      theme = 'dropdown',
+    extensions = {
+      project = {
+        base_dirs = {
+          '~/code',
+        },
+        theme = 'dropdown',
+        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+      },
     },
-    -- your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
-  },
-})
+  }
+
+  -- keymaps
+  local keymap = vim.keymap.set
+  local builtin = require('telescope.builtin')
+
+  keymap("n", "<C-t>", function()
+    builtin.builtin()
+  end, { desc = "Telescope" })
+
+  keymap("n", "<C-p>", function()
+    builtin.find_files()
+  end, { desc = "Find files" })
+
+  keymap("n", "<leader>ff", function()
+    builtin.find_files()
+  end, { desc = "Find files" })
+
+  keymap("n", "<leader>fg", function()
+    builtin.live_grep()
+  end, { desc = "Grep files" })
+
+  keymap("n", "<leader>b", function()
+    builtin.buffers()
+  end, { desc = "Select buffers" })
+
+  keymap("n", "<leader>pp", function()
+    telescope.extensions.project.project()
+  end, { desc = "Find Project" })
+
+  -- borderless theme
+  local TelescopePrompt = {
+    TelescopePromptNormal = {
+      bg = '#2d3149',
+    },
+    TelescopePromptBorder = {
+      bg = '#2d3149',
+    },
+    TelescopePromptTitle = {
+      fg = '#2d3149',
+      bg = '#2d3149',
+    },
+    TelescopePreviewTitle = {
+      fg = '#1F2335',
+      bg = '#1F2335',
+    },
+    TelescopeResultsTitle = {
+      fg = '#1F2335',
+      bg = '#1F2335',
+    },
+  }
+  for hl, col in pairs(TelescopePrompt) do
+    vim.api.nvim_set_hl(0, hl, col)
+  end

@@ -53,18 +53,21 @@ keymap('n', '<C-Down>', ':resize -2<CR>', default_opts)
 keymap('n', '<C-Left>', ':vertical resize -2<CR>', default_opts)
 keymap('n', '<C-Right>', ':vertical resize +2<CR>', default_opts)
 
--- Navigate buffers
+-- buffers
 keymap('n', '<S-l>', ':bnext<CR>', default_opts)
 keymap('n', '<S-h>', ':bprevious<CR>', default_opts)
+
+keymap('n', '<leader>w', '<cmd>w<CR>', default_opts)
+keymap('n', '<leader>q', '<cmd>q<CR>', default_opts)
+keymap('n', '<leader>c', '<cmd>Bdelete<cr>', default_opts)
+
+keymap('n', '<C-s>', '<cmd>w!<CR>', default_opts)
+keymap('n', '<C-q>', '<cmd>q!<CR>', default_opts)
 
 -- Clear search highlight
 keymap('n', '<leader><leader>', ':nohlsearch<Bar>:echo<CR>', default_opts)
 keymap('n', '<esc>', ':nohlsearch<Bar>:echo<CR>', default_opts)
 
--- Telescope
-keymap('n', '<C-p>', '<cmd>Telescope find_files<CR>', default_opts)
-keymap('n', '<C-t>', '<cmd>Telescope<CR>', default_opts)
-keymap('n', '<C-f>', '<cmd>Telescope live_grep<CR>', default_opts)
 
 -- Nvimtree
 keymap('n', '<leader>e', '<cmd>Neotree toggle<CR>', default_opts)

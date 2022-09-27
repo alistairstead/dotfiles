@@ -4,7 +4,7 @@ if not ok then
 end
 
 tint.setup {
-    tint = -20,
+    tint = -30,
     saturation = 0.6,
     ignore = { "WinBar.*", "WinSeparator", "IndentBlankline.*", "SignColumn", "EndOfBuffer" },
     ignorefunc = function(winid)

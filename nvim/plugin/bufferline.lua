@@ -25,14 +25,14 @@ bufferline.setup({
     max_name_length = 14,
     max_prefix_length = 13,
     tab_size = 20,
-    separator_style = 'thin',
-    custom_areas = {
-      left = function()
-        return {
-          { text = '    ', fg = '#8fff6d' },
-        }
-      end,
-    },
+    separator_style = 'slant',
+    -- custom_areas = {
+    --   left = function()
+    --     return {
+    --       { text = '    ', fg = '#8fff6d' },
+    --     }
+    --   end,
+    -- },
   },
   highlights = {
     fill = {

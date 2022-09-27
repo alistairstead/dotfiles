@@ -4,10 +4,10 @@ if not ok then
 end
 
 neodim.setup {
-    alpha = 0.5,
+    alpha = 0.4,
     hide = {
         signs = true,
         virtual_text = false,
-        underline = false,
+        underline = true,
     },
 }
