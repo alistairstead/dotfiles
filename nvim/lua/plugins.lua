@@ -72,7 +72,7 @@ local function plugins(use)
   -- /Performance
 
   -- Lua functions
-  use({ 'nvim-lua/plenary.nvim' })
+  use { "nvim-lua/plenary.nvim", module = "plenary" }
 
   -- Popup API
   use('nvim-lua/popup.nvim')
@@ -350,6 +350,15 @@ local function plugins(use)
 
   use({
     "nvim-neotest/neotest",
+    opt = true,
+    wants = {
+      "plenary.nvim",
+      "nvim-treesitter",
+      "FixCursorHold.nvim",
+      "neotest-plenary",
+      "neotest-vitest",
+      "neotest-vim-test",
+    },
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -358,6 +367,10 @@ local function plugins(use)
       "marilari88/neotest-vitest",
       "nvim-neotest/neotest-vim-test",
     },
+    module = { "neotest" },
+    config = function()
+      require("configs.neotest")
+    end,
   })
 
   -- Bootstrap Neovim

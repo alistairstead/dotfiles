@@ -3,6 +3,14 @@ if not ok then
     return
 end
 
+neotest.setup {
+  adapters = {
+    require "neotest-vitest",
+    -- require "neotest-plenary",
+    require "neotest-vim-test",
+  }
+}
+
 local keymap = vim.keymap.set
 keymap("n", "<leader>tn", function()
   neotest.run.run()
