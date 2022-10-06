@@ -63,12 +63,13 @@ cmp.setup {
           luasnip.lsp_expand(args.body)
       end,
   },
-  -- window = {
-  --   documentation = {
-  --     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  --     winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
-  --   },
-  -- },
+  window = {
+    completion = {
+      -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+      -- winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
+    },
+  },
   -- confirm_opts = {
   --   behavior = cmp.ConfirmBehavior.Replace,
   --   select = false,
@@ -76,33 +77,33 @@ cmp.setup {
   mapping = {
       ["<C-d>"] = mapping(mapping.scroll_docs(8), { "i" }),
       ["<C-u>"] = mapping(mapping.scroll_docs(-8), { "i" }),
-      ["<C-k>"] = mapping(function(fallback)
-          if cmp.open_docs_preview() then
-              cmp.close()
-          else
-              fallback()
-          end
-      end),
+      -- ["<C-k>"] = mapping(function(fallback)
+      --     if cmp.open_docs_preview() then
+      --         cmp.close()
+      --     else
+      --         fallback()
+      --     end
+      -- end),
       ["<C-Space>"] = mapping.complete(),
       ["<C-e>"] = mapping.abort(),
       ["<C-c>"] = mapping.abort(),
       ["<CR>"] = mapping.confirm { select = false },
-      ["<C-n>"] = mapping.select_next_item { behavior = types.cmp.SelectBehavior.Select },
-      ["<C-p>"] = mapping.select_prev_item { behavior = types.cmp.SelectBehavior.Select },
+      ["<C-j>"] = mapping.select_next_item { behavior = types.cmp.SelectBehavior.Select },
+      ["<C-k>"] = mapping.select_prev_item { behavior = types.cmp.SelectBehavior.Select },
       ["<Tab>"] = mapping(function(fallback)
           local copilot_keys = vim.fn['copilot#Accept']()
           if cmp.visible() then
-          cmp.select_next_item()
-          elseif luasnip.expandable() then
-          luasnip.expand()
+            cmp.select_next_item()
           elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
-          vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+            vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+          elseif luasnip.expandable() then
+            luasnip.expand()
           elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+            luasnip.expand_or_jump()
           elseif has_words_before() then
-          cmp.complete()
+            cmp.complete()
           else
-          fallback()
+            fallback()
           end
       end, { "i", "s" }),
       ["<S-Tab>"] = mapping(function(fallback)

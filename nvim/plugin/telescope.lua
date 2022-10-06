@@ -56,7 +56,7 @@ telescope.setup {
     sorting_strategy = "ascending",
     scroll_strategy = "cycle",
     vimgrep_arguments = vimgrep_arguments,
-    file_ignore_patters = { '.git/', 'yarn.lock', 'package-lock.json' },
+    file_ignore_patters = { '.git/', 'yarn.lock', 'package-lock.json', 'node_Modules', '.build', '.sst' },
     mappings = {
       i = {
         ['<C-n>'] = actions.cycle_history_next,

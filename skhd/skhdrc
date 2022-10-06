@@ -2,7 +2,7 @@
 
 ####### Shortcut Hotkeys #############
 # open terminal
-alt - t : open -n /Applications/Alacritty.app
+alt - t : open -n /Applications/Kitty.app
 
 # restart Yabi, SpaceBar, and SKHD
 alt + shift - r : \
@@ -71,6 +71,7 @@ cmd + ctrl - 6 : yabai -m window --space 6
 cmd + ctrl - 7 : yabai -m window --space 7
 cmd + ctrl - 8 : yabai -m window --space 8
 cmd + ctrl - 9 : yabai -m window --space 9
+cmd + ctrl - 0 : yabai -m window --space 10
 #alt + shift - 0 : yabai -m window --space 10
 
 # # mirror tree y-axis

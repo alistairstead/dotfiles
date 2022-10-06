@@ -5,7 +5,7 @@ end
 
 neotree.setup {
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-    popup_border_style = "solid",
+    popup_border_style = "rounded",
     use_popups_for_input = true,
     enable_git_status = true,
     enable_diagnostics = true,
@@ -106,10 +106,10 @@ neotree.setup {
             hide_dotfiles = true,
             hide_gitignored = true,
             hide_by_name = {
-                ".DS_Store",
-                "thumbs.db",
             },
             never_show = { -- remains hidden even if visible is toggled to true
+              ".DS_Store",
+              "thumbs.db",
             },
         },
         follow_current_file = true, -- This will find and focus the file in the active buffer every

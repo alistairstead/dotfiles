@@ -7,6 +7,7 @@ end
 require("lsp-format").setup {}
 
 null_ls.setup {
+  debug = true,
   sources = {
     debounce = 150,
     null_ls.builtins.diagnostics.editorconfig_checker.with { command = "editorconfig-checker" },
@@ -21,11 +22,11 @@ null_ls.setup {
     null_ls.builtins.formatting.jq,
     -- null_ls.builtins.formatting.ktlint,
     null_ls.builtins.formatting.markdownlint,
-    null_ls.builtins.formatting.prettierd,
+    -- null_ls.builtins.formatting.prettierd,
     -- null_ls.builtins.formatting.shellharden,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettier.with({
-        filetypes = { "html", "json", "yaml", "markdown", "javascript", "typescript" },
+        filetypes = { "html", "css", "json", "yaml", "markdown", "javascript", "typescript" },
     }),
   },
 }

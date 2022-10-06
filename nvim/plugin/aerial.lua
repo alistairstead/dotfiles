@@ -12,4 +12,4 @@ aerial.setup {
   },
 }
 
-vim.keymap.set("n", "<space>s", "<cmd>AerialToggle<CR>")
+vim.keymap.set("n", "<space>s", "<cmd>AerialToggle<CR>", { desc = "Toggle Aerial" })

@@ -53,11 +53,10 @@ local function plugins(use)
   -- Performance
   use({
     'max397574/better-escape.nvim',
-    -- event = 'InsertCharPre',
+    event = 'InsertCharPre',
   })
   use({
     'antoinemadec/FixCursorHold.nvim',
-    -- event = { 'BufRead', 'BufNewFile' },
     config = function()
       vim.g.cursorhold_updatetime = 100
     end,
@@ -105,7 +104,6 @@ local function plugins(use)
           vim.g.rooter_patterns = {'.git', 'Makefile'}
         end,
       },
-      "ggandor/leap.nvim",
       "levouh/tint.nvim",
       -- "lewis6991/hover.nvim",
       "luukvbaal/stabilize.nvim",
@@ -145,13 +143,12 @@ local function plugins(use)
   -- Status line
   use({
     'feline-nvim/feline.nvim',
+    disable = true,
   })
 
   use({
     'nvim-lualine/lualine.nvim',
-    event = 'BufReadPre',
-    after = 'nvim-treesitter',
-    disable = true,
+    -- disable = true,
   })
 
   -- Start screen
@@ -185,10 +182,10 @@ local function plugins(use)
             vim.g.sleuth_automatic = 0
         end,
     },
-    -- {
-    --     "tpope/vim-dispatch",
-    --     requires = { "radenling/vim-dispatch-neovim" },
-    -- },
+    {
+        "tpope/vim-dispatch",
+        requires = { "radenling/vim-dispatch-neovim" },
+    },
   }
 
   -- Better buffer closing
@@ -226,7 +223,6 @@ local function plugins(use)
     requires = {
       "nvim-treesitter/playground",
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "p00f/nvim-ts-rainbow",
       "JoosepAlviste/nvim-ts-context-commentstring",
       "windwp/nvim-ts-autotag",
     },
@@ -309,7 +305,7 @@ local function plugins(use)
       'stevearc/aerial.nvim',
       'b0o/SchemaStore.nvim',
       'ray-x/lsp_signature.nvim',
-      -- 'jayp0521/mason-null-ls.nvim',
+      'jayp0521/mason-null-ls.nvim',
       'jose-elias-alvarez/typescript.nvim',
       'lvimuser/lsp-inlayhints.nvim',
       'glepnir/lspsaga.nvim',
@@ -350,15 +346,6 @@ local function plugins(use)
 
   use({
     "nvim-neotest/neotest",
-    opt = true,
-    wants = {
-      "plenary.nvim",
-      "nvim-treesitter",
-      "FixCursorHold.nvim",
-      "neotest-plenary",
-      "neotest-vitest",
-      "neotest-vim-test",
-    },
     requires = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -366,11 +353,8 @@ local function plugins(use)
       "nvim-neotest/neotest-plenary",
       "marilari88/neotest-vitest",
       "nvim-neotest/neotest-vim-test",
+      "vim-test/vim-test",
     },
-    module = { "neotest" },
-    config = function()
-      require("configs.neotest")
-    end,
   })
 
   -- Bootstrap Neovim
