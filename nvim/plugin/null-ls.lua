@@ -19,14 +19,38 @@ null_ls.setup {
     -- null_ls.builtins.diagnostics.shellcheck,
     -- null_ls.builtins.diagnostics.yamllint,
     -- null_ls.builtins.formatting.cbfmt,
-    null_ls.builtins.formatting.jq,
+    -- null_ls.builtins.formatting.jq,
     -- null_ls.builtins.formatting.ktlint,
     null_ls.builtins.formatting.markdownlint,
-    -- null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.prettierd.with({
+      filetypes = {
+        "html",
+        "css",
+        "json",
+        "yaml",
+        "markdown",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "graphql",
+      }
+    }),
     -- null_ls.builtins.formatting.shellharden,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettier.with({
-        filetypes = { "html", "css", "json", "yaml", "markdown", "javascript", "typescript" },
+      filetypes = {
+        "html",
+        "css",
+        "json",
+        "yaml",
+        "markdown",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "graphql",
+      }
     }),
   },
 }

@@ -58,8 +58,11 @@ keymap('n', '<S-l>', ':bnext<CR>', default_opts)
 keymap('n', '<S-h>', ':bprevious<CR>', default_opts)
 
 keymap('n', '<leader>w', '<cmd>w<CR>', default_opts)
+keymap('n', '<leader>W', '<cmd>w!<CR>', default_opts)
 keymap('n', '<leader>q', '<cmd>q<CR>', default_opts)
-keymap('n', '<leader>c', '<cmd>Bdelete<cr>', default_opts)
+keymap('n', '<leader>Q', '<cmd>q!<CR>', default_opts)
+keymap('n', '<leader>c', '<cmd>bd<cr>', default_opts)
+keymap('n', '<leader>C', '<cmd>bd!<cr>', default_opts)
 
 keymap('n', '<C-s>', '<cmd>w!<CR>', default_opts)
 keymap('n', '<C-q>', '<cmd>q!<CR>', default_opts)

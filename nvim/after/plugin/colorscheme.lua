@@ -9,4 +9,4 @@ end
 
 -- Example comment in italic type
 cmd("highlight Comment guifg=#7970A9 gui=italic")
-cmd("highlight VertSplit guifg=#22212C guibg=#22212C")
+cmd("highlight VertSplit guifg=#454158 guibg=#22212C")

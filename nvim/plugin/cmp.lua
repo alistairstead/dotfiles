@@ -90,10 +90,16 @@ cmp.setup {
       ["<CR>"] = mapping.confirm { select = false },
       ["<C-j>"] = mapping.select_next_item { behavior = types.cmp.SelectBehavior.Select },
       ["<C-k>"] = mapping.select_prev_item { behavior = types.cmp.SelectBehavior.Select },
+      ["<C-l>"] = mapping(function(fallback)
+          local copilot_keys = vim.fn['copilot#Accept']()
+          if copilot_keys ~= '' and type(copilot_keys) == 'string' then
+            vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+          end
+      end, { "i", "s" }),
       ["<Tab>"] = mapping(function(fallback)
           local copilot_keys = vim.fn['copilot#Accept']()
           if cmp.visible() then
-            cmp.select_next_item()
+            cmp.select_next_item({ behaviour = cmp.SelectBehavior.Insert })
           elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
             vim.api.nvim_feedkeys(copilot_keys, 'i', true)
           elseif luasnip.expandable() then
@@ -108,7 +114,7 @@ cmp.setup {
       end, { "i", "s" }),
       ["<S-Tab>"] = mapping(function(fallback)
           if cmp.visible() then
-              cmp.select_prev_item { behavior = types.cmp.SelectBehavior.Select }
+              cmp.select_prev_item { behavior = types.cmp.SelectBehavior.Insert }
           elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
           else
@@ -134,7 +140,7 @@ cmp.setup.cmdline("/", {
   },
 })
 
-	-- Use cmdline & path source for ':'
+-- Use cmdline & path source for ':'
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({

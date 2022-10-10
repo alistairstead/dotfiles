@@ -51,7 +51,6 @@ telescope.setup {
       },
     },
     color_devicons = true,
-    borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
     selection_strategy = "reset",
     sorting_strategy = "ascending",
     scroll_strategy = "cycle",
@@ -123,13 +122,11 @@ telescope.setup {
     find_files = {
       hidden = true,
       theme = "dropdown",
-      borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
       previewer = false,
     },
     buffers = {
       previewer = false,
       theme = "dropdown",
-      borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
     },
     lsp_references = {
       previewer = false,
@@ -148,32 +145,7 @@ telescope.setup {
           '~/code',
         },
         theme = 'dropdown',
-        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
       },
     },
   }
 
-  -- borderless theme
-  local TelescopePrompt = {
-    TelescopePromptNormal = {
-      bg = '#2d3149',
-    },
-    TelescopePromptBorder = {
-      bg = '#2d3149',
-    },
-    TelescopePromptTitle = {
-      fg = '#2d3149',
-      bg = '#2d3149',
-    },
-    TelescopePreviewTitle = {
-      fg = '#1F2335',
-      bg = '#1F2335',
-    },
-    TelescopeResultsTitle = {
-      fg = '#1F2335',
-      bg = '#1F2335',
-    },
-  }
-  for hl, col in pairs(TelescopePrompt) do
-    vim.api.nvim_set_hl(0, hl, col)
-  end

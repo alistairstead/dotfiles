@@ -115,7 +115,7 @@ local function plugins(use)
   -- Smarter Splits
   use({
     'mrjones2014/smart-splits.nvim',
-    -- module = 'smart-splits',
+    module = 'smart-splits',
   })
 
   -- Icons
