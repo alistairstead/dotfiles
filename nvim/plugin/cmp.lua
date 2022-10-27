@@ -1,17 +1,17 @@
-local ok, cmp = pcall(require, "cmp")
+local ok, cmp = pcall(require, 'cmp')
 if not ok then
-    return
+  return
 end
-local types = require "cmp.types"
-local luasnip = require "luasnip"
+local types = require('cmp.types')
+local luasnip = require('luasnip')
 local mapping = cmp.mapping
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,longest,preview'
 
 local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 local cmp_kinds = {
   Text = '  ',
@@ -41,7 +41,7 @@ local cmp_kinds = {
   TypeParameter = '  ',
 }
 
-cmp.setup {
+cmp.setup({
   experimental = {
     ghost_text = true,
   },
@@ -50,7 +50,7 @@ cmp.setup {
       vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
       return vim_item
     end,
-  },-- formatting = {
+  }, -- formatting = {
   --   fields = { "kind", "abbr", "menu" },
   --   format = require("lspkind").cmp_format({
   --     mode = 'symbol', -- show only symbol annotations
@@ -59,14 +59,14 @@ cmp.setup {
   --   }),
   -- },
   snippet = {
-      expand = function(args)
-          luasnip.lsp_expand(args.body)
-      end,
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
   },
   window = {
     completion = {
       -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-      winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+      winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
       -- winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
     },
   },
@@ -75,77 +75,76 @@ cmp.setup {
   --   select = false,
   -- },
   mapping = {
-      ["<C-d>"] = mapping(mapping.scroll_docs(8), { "i" }),
-      ["<C-u>"] = mapping(mapping.scroll_docs(-8), { "i" }),
-      -- ["<C-k>"] = mapping(function(fallback)
-      --     if cmp.open_docs_preview() then
-      --         cmp.close()
-      --     else
-      --         fallback()
-      --     end
-      -- end),
-      ["<C-Space>"] = mapping.complete(),
-      ["<C-e>"] = mapping.abort(),
-      ["<C-c>"] = mapping.abort(),
-      ["<CR>"] = mapping.confirm { select = false },
-      ["<C-j>"] = mapping.select_next_item { behavior = types.cmp.SelectBehavior.Select },
-      ["<C-k>"] = mapping.select_prev_item { behavior = types.cmp.SelectBehavior.Select },
-      ["<C-l>"] = mapping(function(fallback)
-          local copilot_keys = vim.fn['copilot#Accept']()
-          if copilot_keys ~= '' and type(copilot_keys) == 'string' then
-            vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-          end
-      end, { "i", "s" }),
-      ["<Tab>"] = mapping(function(fallback)
-          local copilot_keys = vim.fn['copilot#Accept']()
-          if cmp.visible() then
-            cmp.select_next_item({ behaviour = cmp.SelectBehavior.Insert })
-          elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
-            vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-          elseif luasnip.expandable() then
-            luasnip.expand()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-      end, { "i", "s" }),
-      ["<S-Tab>"] = mapping(function(fallback)
-          if cmp.visible() then
-              cmp.select_prev_item { behavior = types.cmp.SelectBehavior.Insert }
-          elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-          else
-              fallback()
-          end
-      end, { "i", "s" }),
+    ['<C-d>'] = mapping(mapping.scroll_docs(8), { 'i' }),
+    ['<C-u>'] = mapping(mapping.scroll_docs(-8), { 'i' }),
+    -- ["<C-k>"] = mapping(function(fallback)
+    --     if cmp.open_docs_preview() then
+    --         cmp.close()
+    --     else
+    --         fallback()
+    --     end
+    -- end),
+    ['<C-Space>'] = mapping.complete(),
+    ['<C-e>'] = mapping.abort(),
+    ['<C-c>'] = mapping.abort(),
+    ['<CR>'] = mapping.confirm({ select = false }),
+    ['<C-j>'] = mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
+    ['<C-k>'] = mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
+    ['<C-l>'] = mapping(function(fallback)
+      local copilot_keys = vim.fn['copilot#Accept']()
+      if copilot_keys ~= '' and type(copilot_keys) == 'string' then
+        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+      end
+    end, { 'i', 's' }),
+    ['<Tab>'] = mapping(function(fallback)
+      local copilot_keys = vim.fn['copilot#Accept']()
+      if cmp.visible() then
+        cmp.select_next_item({ behaviour = cmp.SelectBehavior.Insert })
+      elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
+        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+      elseif luasnip.expandable() then
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert })
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
   },
   sources = {
-      { name = "nvim_lsp" },
-      { name = 'nvim_lsp_signature_help' },
-      { name = 'nvim_lua' },
-      { name = "luasnip" },
-      { name = "buffer" },
-      { name = "path" },
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lua' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
   },
-}
+})
 
 --  Use buffer source for `/`
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = "buffer" },
+    { name = 'buffer' },
   },
 })
 
 -- Use cmdline & path source for ':'
-cmp.setup.cmdline(":", {
+cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = "path" },
-    { name = "cmdline" },
+    { name = 'path' },
+    { name = 'cmdline' },
   }),
 })
-

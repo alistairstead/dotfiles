@@ -37,11 +37,8 @@ local function packer_init()
   end
 
   -- Autocommand that reloads neovim whenever you save the plugins.lua file
-  local packer_grp = vim.api.nvim_create_augroup("packer_user_config", { clear = true })
-  vim.api.nvim_create_autocmd(
-    { "BufWritePost" },
-    { pattern = "plugins.lua", command = "source <afile> | PackerSync", group = packer_grp }
-  )
+  local packer_grp = vim.api.nvim_create_augroup('packer_user_config', { clear = true })
+  vim.api.nvim_create_autocmd({ 'BufWritePost' }, { pattern = 'plugins.lua', command = 'source <afile> | PackerSync', group = packer_grp })
 end
 
 -- Plugins
@@ -71,17 +68,17 @@ local function plugins(use)
   -- /Performance
 
   -- Lua functions
-  use { "nvim-lua/plenary.nvim", module = "plenary" }
+  use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
 
   -- Popup API
   use('nvim-lua/popup.nvim')
 
-
   use({
-    "rcarriga/nvim-notify",
+    'rcarriga/nvim-notify',
     config = function()
-      vim.notify = require("notify")
+      vim.notify = require('notify')
     end,
+    disable = true,
   })
 
   -- Neovim UI Enhancer
@@ -98,18 +95,18 @@ local function plugins(use)
 
   -- general UI improvements
   use({
-      {
-        "airblade/vim-rooter",
-        config = function()
-          vim.g.rooter_patterns = {'.git', 'Makefile'}
-        end,
-      },
-      "levouh/tint.nvim",
-      -- "lewis6991/hover.nvim",
-      "luukvbaal/stabilize.nvim",
-      { "kevinhwang91/nvim-bqf", ft = "qf", requires = {
-          "junegunn/fzf",
-      } },
+    {
+      'airblade/vim-rooter',
+      config = function()
+        vim.g.rooter_patterns = { '.git', 'Makefile' }
+      end,
+    },
+    'levouh/tint.nvim',
+    -- "lewis6991/hover.nvim",
+    'luukvbaal/stabilize.nvim',
+    { 'kevinhwang91/nvim-bqf', ft = 'qf', requires = {
+      'junegunn/fzf',
+    } },
   })
 
   -- Smarter Splits
@@ -148,6 +145,12 @@ local function plugins(use)
 
   use({
     'nvim-lualine/lualine.nvim',
+    requires = {
+      'SmiteshP/nvim-navic',
+    },
+    config = function()
+      require('configs.lualine')
+    end,
     -- disable = true,
   })
 
@@ -171,22 +174,22 @@ local function plugins(use)
     },
   })
   -- tpope
-  use {
-    "tpope/vim-repeat",
-    "tpope/vim-surround",
-    "tpope/vim-fugitive",
+  use({
+    'tpope/vim-repeat',
+    'tpope/vim-surround',
+    'tpope/vim-fugitive',
     -- "tpope/vim-unimpaired",
     {
-        "tpope/vim-sleuth",
-        setup = function()
-            vim.g.sleuth_automatic = 0
-        end,
+      'tpope/vim-sleuth',
+      setup = function()
+        vim.g.sleuth_automatic = 0
+      end,
     },
     {
-        "tpope/vim-dispatch",
-        requires = { "radenling/vim-dispatch-neovim" },
+      'tpope/vim-dispatch',
+      requires = { 'radenling/vim-dispatch-neovim' },
     },
-  }
+  })
 
   -- Better buffer closing
   use({
@@ -221,10 +224,10 @@ local function plugins(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     requires = {
-      "nvim-treesitter/playground",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      "windwp/nvim-ts-autotag",
+      'nvim-treesitter/playground',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      'windwp/nvim-ts-autotag',
     },
   })
 
@@ -266,12 +269,12 @@ local function plugins(use)
       'ray-x/cmp-treesitter',
       'saadparwaiz1/cmp_luasnip',
       'davidsierradz/cmp-conventionalcommits',
-      "petertriho/cmp-git",
+      'petertriho/cmp-git',
       'onsails/lspkind-nvim',
       'windwp/nvim-autopairs',
       {
         'L3MON4D3/LuaSnip',
-        requires = { "rafamadriz/friendly-snippets" },
+        requires = { 'rafamadriz/friendly-snippets' },
       },
     },
   })
@@ -286,7 +289,7 @@ local function plugins(use)
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make',
       },
-      "nvim-telescope/telescope-project.nvim",
+      'nvim-telescope/telescope-project.nvim',
     },
   })
 
@@ -310,7 +313,7 @@ local function plugins(use)
       'lvimuser/lsp-inlayhints.nvim',
       'glepnir/lspsaga.nvim',
       'SmiteshP/nvim-navic',
-      "zbirenbaum/neodim",
+      'zbirenbaum/neodim',
       'onsails/lspkind.nvim',
     },
   })
@@ -322,9 +325,9 @@ local function plugins(use)
   })
 
   -- Colours
-  use {
-    "NvChad/nvim-colorizer.lua",
-  }
+  use({
+    'NvChad/nvim-colorizer.lua',
+  })
 
   use({
     'AndrewRadev/splitjoin.vim',
@@ -332,30 +335,51 @@ local function plugins(use)
   })
 
   -- Markdown
-  use {
-    "lukas-reineke/headlines.nvim",
-  }
+  use({
+    'lukas-reineke/headlines.nvim',
+  })
 
   -- Git
-  use ({
+  use({
     -- "rhysd/git-messenger.vim",
-    "ruifm/gitlinker.nvim",
+    'ruifm/gitlinker.nvim',
     'lewis6991/gitsigns.nvim',
-    { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+    {
+      'TimUntersberger/neogit',
+      requires = {
+        'nvim-lua/plenary.nvim',
+      },
+      config = function()
+        require('configs.neogit')
+      end,
+    },
   })
 
   use({
-    "nvim-neotest/neotest",
+    'nvim-neotest/neotest',
     requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-neotest/neotest-plenary",
-      "marilari88/neotest-vitest",
-      "nvim-neotest/neotest-vim-test",
-      "vim-test/vim-test",
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-neotest/neotest-plenary',
+      'marilari88/neotest-vitest',
+      'nvim-neotest/neotest-vim-test',
+      'vim-test/vim-test',
     },
   })
+
+  local colorscheme = 'dracula_pro'
+  local cmd = vim.cmd
+
+  local status_ok, _ = pcall(cmd.colorscheme, colorscheme)
+  if not status_ok then
+    vim.notify('colorscheme ' .. colorscheme .. ' not found!')
+    return
+  end
+
+  -- Example comment in italic type
+  cmd('highlight Comment guifg=#7970A9 gui=italic')
+  cmd('highlight VertSplit guifg=#454158 guibg=#22212C')
 
   -- Bootstrap Neovim
   if PACKER_BOOTSTRAP then
