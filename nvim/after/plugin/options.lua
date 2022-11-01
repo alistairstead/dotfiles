@@ -50,25 +50,38 @@ g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
 
 -- Disable some builtin vim plugins
--- g.do_filetype_lua = 1 -- use filetype.lua
--- g.did_load_filetypes = 0 -- don't use filetype.vim
--- g.highlighturl_enabled = true -- highlight URLs by default
--- g.mapleader = ' ' -- set leader key
--- g.zipPlugin = false -- disable zip
--- g.load_black = false -- disable black
--- g.loaded_2html_plugin = true -- disable 2html
--- g.loaded_getscript = true -- disable getscript
--- g.loaded_getscriptPlugin = true -- disable getscript
--- g.loaded_gzip = true -- disable gzip
--- g.loaded_logipat = true -- disable logipat
--- g.loaded_matchit = true -- disable matchit
--- g.loaded_netrwFileHandlers = true -- disable netrw
--- g.loaded_netrwPlugin = true -- disable netrw
--- g.loaded_netrwSettngs = true -- disable netrw
--- g.loaded_remote_plugins = true -- disable remote plugins
--- g.loaded_tar = true -- disable tar
--- g.loaded_tarPlugin = true -- disable tar
--- g.loaded_zip = true -- disable zip
--- g.loaded_zipPlugin = true -- disable zip
--- g.loaded_vimball = true -- disable vimball
--- g.loaded_vimballPlugin = true -- disable vimball
+g.do_filetype_lua = 1 -- use filetype.lua
+g.did_load_filetypes = 0 -- don't use filetype.vim
+g.highlighturl_enabled = true -- highlight URLs by default
+g.mapleader = ' ' -- set leader key
+g.zipPlugin = false -- disable zip
+g.load_black = false -- disable black
+g.loaded_2html_plugin = true -- disable 2html
+g.loaded_getscript = true -- disable getscript
+g.loaded_getscriptPlugin = true -- disable getscript
+g.loaded_gzip = true -- disable gzip
+g.loaded_logipat = true -- disable logipat
+g.loaded_matchit = true -- disable matchit
+g.loaded_netrwFileHandlers = true -- disable netrw
+g.loaded_netrwPlugin = true -- disable netrw
+g.loaded_netrwSettngs = true -- disable netrw
+g.loaded_remote_plugins = true -- disable remote plugins
+g.loaded_tar = true -- disable tar
+g.loaded_tarPlugin = true -- disable tar
+g.loaded_zip = true -- disable zip
+g.loaded_zipPlugin = true -- disable zip
+g.loaded_vimball = true -- disable vimball
+g.loaded_vimballPlugin = true -- disable vimball
+
+local colorscheme = 'dracula_pro'
+local cmd = vim.cmd
+
+local status_ok, _ = pcall(cmd.colorscheme, colorscheme)
+if not status_ok then
+  vim.notify('colorscheme ' .. colorscheme .. ' not found!')
+  return
+end
+--
+-- Example comment in italic type
+cmd('highlight Comment guifg=#7970A9 gui=italic')
+cmd('highlight VertSplit guifg=#454158 guibg=#22212C')

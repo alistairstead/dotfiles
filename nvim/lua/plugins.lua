@@ -313,7 +313,12 @@ local function plugins(use)
       'lvimuser/lsp-inlayhints.nvim',
       'glepnir/lspsaga.nvim',
       'SmiteshP/nvim-navic',
-      'zbirenbaum/neodim',
+      {
+        'zbirenbaum/neodim',
+        config = function()
+          require('configs.neodim')
+        end,
+      },
       'onsails/lspkind.nvim',
     },
   })
@@ -322,6 +327,7 @@ local function plugins(use)
   use({
     'folke/tokyonight.nvim',
     'projekt0n/github-nvim-theme',
+    'navarasu/onedark.nvim',
   })
 
   -- Colours

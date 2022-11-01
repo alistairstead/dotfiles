@@ -22,12 +22,9 @@ lualine.setup({
     },
   },
   sections = {
-    lualine_b = { 'branch', 'diff', cwd },
+    lualine_b = { 'branch', { 'diagnostics', sources = { 'nvim_diagnostic' } } },
     lualine_c = { navic.get_location },
     lualine_x = {
-      { 'diagnostics', sources = { 'nvim_diagnostic' } },
-      'filesize',
-      'encoding',
       { 'filetype', separator = { right = '' }, right_padding = 0 },
       { attached_clients, separator = { left = '' }, left_padding = 0 },
     },
