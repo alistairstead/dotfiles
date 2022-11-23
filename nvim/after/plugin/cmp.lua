@@ -50,14 +50,7 @@ cmp.setup({
       vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
       return vim_item
     end,
-  }, -- formatting = {
-  --   fields = { "kind", "abbr", "menu" },
-  --   format = require("lspkind").cmp_format({
-  --     mode = 'symbol', -- show only symbol annotations
-  --     preset = 'codicons',
-  --     maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-  --   }),
-  -- },
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -90,7 +83,7 @@ cmp.setup({
     ['<CR>'] = mapping.confirm({ select = false }),
     ['<C-j>'] = mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
     ['<C-k>'] = mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
-    ['<C-l>'] = mapping(function(fallback)
+    ['<C-l>'] = mapping(function(_)
       local copilot_keys = vim.fn['copilot#Accept']()
       if copilot_keys ~= '' and type(copilot_keys) == 'string' then
         vim.api.nvim_feedkeys(copilot_keys, 'i', true)

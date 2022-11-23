@@ -3,6 +3,8 @@ if not ok then
   return
 end
 
+neogit.setup({})
+
 local keymap = vim.keymap.set
 
 keymap('n', '<leader>gs', function()

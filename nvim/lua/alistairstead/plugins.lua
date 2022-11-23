@@ -35,11 +35,15 @@ local function packer_init()
     print('Installing packer close and reopen Neovim...')
     vim.cmd([[packadd packer.nvim]])
   end
-
-  -- Autocommand that reloads neovim whenever you save the plugins.lua file
-  local packer_grp = vim.api.nvim_create_augroup('packer_user_config', { clear = true })
-  vim.api.nvim_create_autocmd({ 'BufWritePost' }, { pattern = 'plugins.lua', command = 'source <afile> | PackerSync', group = packer_grp })
 end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
 
 -- Plugins
 local function plugins(use)
@@ -73,14 +77,6 @@ local function plugins(use)
   -- Popup API
   use('nvim-lua/popup.nvim')
 
-  use({
-    'rcarriga/nvim-notify',
-    config = function()
-      vim.notify = require('notify')
-    end,
-    disable = true,
-  })
-
   -- Neovim UI Enhancer
   use({
     'stevearc/dressing.nvim',
@@ -95,12 +91,6 @@ local function plugins(use)
 
   -- general UI improvements
   use({
-    {
-      'airblade/vim-rooter',
-      config = function()
-        vim.g.rooter_patterns = { '.git', 'Makefile' }
-      end,
-    },
     'levouh/tint.nvim',
     -- "lewis6991/hover.nvim",
     'luukvbaal/stabilize.nvim',
@@ -148,9 +138,6 @@ local function plugins(use)
     requires = {
       'SmiteshP/nvim-navic',
     },
-    config = function()
-      require('configs.lualine')
-    end,
     -- disable = true,
   })
 
@@ -193,9 +180,11 @@ local function plugins(use)
 
   -- Better buffer closing
   use({
-    'famiu/bufdelete.nvim',
-    -- cmd = { 'Bdelete', 'Bwipeout' },
+    'moll/vim-bbye',
   })
+
+  -- Cloak (by laytanl_)
+  use('laytan/cloak.nvim')
 
   use({
     's1n7ax/nvim-window-picker',
@@ -224,6 +213,7 @@ local function plugins(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     requires = {
+      'nvim-treesitter/nvim-treesitter-context',
       'nvim-treesitter/playground',
       'nvim-treesitter/nvim-treesitter-textobjects',
       'JoosepAlviste/nvim-ts-context-commentstring',
@@ -270,7 +260,6 @@ local function plugins(use)
       'saadparwaiz1/cmp_luasnip',
       'davidsierradz/cmp-conventionalcommits',
       'petertriho/cmp-git',
-      'onsails/lspkind-nvim',
       'windwp/nvim-autopairs',
       {
         'L3MON4D3/LuaSnip',
@@ -290,6 +279,8 @@ local function plugins(use)
         run = 'make',
       },
       'nvim-telescope/telescope-project.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
+      'ahmedkhalf/project.nvim',
     },
   })
 
@@ -310,16 +301,9 @@ local function plugins(use)
       'ray-x/lsp_signature.nvim',
       'jayp0521/mason-null-ls.nvim',
       'jose-elias-alvarez/typescript.nvim',
-      'lvimuser/lsp-inlayhints.nvim',
       'glepnir/lspsaga.nvim',
-      'SmiteshP/nvim-navic',
-      {
-        'zbirenbaum/neodim',
-        config = function()
-          require('configs.neodim')
-        end,
-      },
-      'onsails/lspkind.nvim',
+      'zbirenbaum/neodim',
+      'RRethy/vim-illuminate',
     },
   })
 
@@ -355,9 +339,6 @@ local function plugins(use)
       requires = {
         'nvim-lua/plenary.nvim',
       },
-      config = function()
-        require('configs.neogit')
-      end,
     },
   })
 
@@ -373,19 +354,6 @@ local function plugins(use)
       'vim-test/vim-test',
     },
   })
-
-  local colorscheme = 'dracula_pro'
-  local cmd = vim.cmd
-
-  local status_ok, _ = pcall(cmd.colorscheme, colorscheme)
-  if not status_ok then
-    vim.notify('colorscheme ' .. colorscheme .. ' not found!')
-    return
-  end
-
-  -- Example comment in italic type
-  cmd('highlight Comment guifg=#7970A9 gui=italic')
-  cmd('highlight VertSplit guifg=#454158 guibg=#22212C')
 
   -- Bootstrap Neovim
   if PACKER_BOOTSTRAP then

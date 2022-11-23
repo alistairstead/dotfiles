@@ -61,8 +61,8 @@ keymap('n', '<leader>w', '<cmd>w<CR>', default_opts)
 keymap('n', '<leader>W', '<cmd>w!<CR>', default_opts)
 keymap('n', '<leader>q', '<cmd>q<CR>', default_opts)
 keymap('n', '<leader>Q', '<cmd>q!<CR>', default_opts)
-keymap('n', '<leader>c', '<cmd>bd<cr>', default_opts)
-keymap('n', '<leader>C', '<cmd>bd!<cr>', default_opts)
+keymap('n', '<leader>c', ':Bdelete<CR>', default_opts)
+keymap('n', '<leader>C', ':Bdelete<CR>', default_opts)
 
 keymap('n', '<C-s>', '<cmd>w!<CR>', default_opts)
 keymap('n', '<C-q>', '<cmd>q!<CR>', default_opts)
@@ -70,7 +70,6 @@ keymap('n', '<C-q>', '<cmd>q!<CR>', default_opts)
 -- Clear search highlight
 keymap('n', '<leader><leader>', ':nohlsearch<Bar>:echo<CR>', default_opts)
 keymap('n', '<esc>', ':nohlsearch<Bar>:echo<CR>', default_opts)
-
 
 -- Nvimtree
 keymap('n', '<leader>e', '<cmd>Neotree toggle<CR>', default_opts)
@@ -87,7 +86,7 @@ keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 -- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
+keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
+keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
+keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
