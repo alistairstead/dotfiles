@@ -2,7 +2,6 @@ local ok, project = pcall(require, 'project_nvim')
 if not ok then
   return
 end
-local project = require('project_nvim')
 
 project.setup({
   manual_mode = true,
