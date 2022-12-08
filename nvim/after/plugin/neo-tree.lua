@@ -131,20 +131,16 @@ neotree.setup({
   },
 })
 
-require('neo-tree.ui.inputs').confirm = function(message, callback)
-  callback(vim.fn.confirm(message, '&Yes\n&No') == 1)
-end
-
-require('neo-tree.ui.inputs').input = function(message, default_value, callback, options, completion)
-  local input
-  if completion then
-    input = vim.fn.input(message .. ' ', default_value or '', completion)
-  else
-    input = vim.fn.input(message .. ' ', default_value or '')
-  end
-  callback(input)
-end
-
-vim.keymap.set('n', '<leader>b', '<cmd>Neotree toggle show buffers right<cr>')
-vim.keymap.set('n', '<leader>a', '<cmd>Neotree reveal left<cr>')
-vim.keymap.set('n', '<C-n>', '<cmd>Neotree toggle left<cr>')
+-- require('neo-tree.ui.inputs').confirm = function(message, callback)
+--   callback(vim.fn.confirm(message, '&Yes\n&No') == 1)
+-- end
+--
+-- require('neo-tree.ui.inputs').input = function(message, default_value, callback, options, completion)
+--   local input
+--   if completion then
+--     input = vim.fn.input(message .. ' ', default_value or '', completion)
+--   else
+--     input = vim.fn.input(message .. ' ', default_value or '')
+--   end
+--   callback(input)
+-- end

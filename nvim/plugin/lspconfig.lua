@@ -3,6 +3,10 @@ if not status then
   return
 end
 
+local Remap = require('alistairstead.keymap')
+local nnoremap = Remap.nnoremap
+local inoremap = Remap.inoremap
+
 local protocol = require('vim.lsp.protocol')
 
 -- Use an on_attach function to only map the following keys
@@ -20,19 +24,55 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap = true, silent = true }
+  local opts = { buffer = true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- TODO: use vim.keymap.set
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<C-j>', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('i', '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  nnoremap('gd', function()
+    vim.lsp.buf.definition()
+  end, opts)
+  nnoremap('gi', function()
+    vim.lsp.buf.implementation()
+  end, opts)
+  nnoremap('K', function()
+    vim.lsp.buf.hover()
+  end, opts)
+  nnoremap('<leader>vws', function()
+    vim.lsp.buf.workspace_symbol('')
+  end, opts)
+  nnoremap('<leader>vd', function()
+    vim.diagnostic.open_float()
+  end, opts)
+  nnoremap('<C-j>', function()
+    vim.diagnostic.goto_next()
+  end, opts)
+  nnoremap('<C-k>', function()
+    vim.diagnostic.goto_prev()
+  end, opts)
+  nnoremap('<leader>va', function()
+    vim.lsp.buf.code_action()
+  end, opts)
+  nnoremap('<leader>vco', function()
+    vim.lsp.buf.code_action({
+      filter = function(code_action)
+        if not code_action or not code_action.data then
+          return false
+        end
 
+        local data = code_action.data.id
+        return string.sub(data, #data - 1, #data) == ':0'
+      end,
+      apply = true,
+    })
+  end, opts)
+  nnoremap('<leader>vrr', function()
+    vim.lsp.buf.references({})
+  end, opts)
+  nnoremap('<leader>rn', function()
+    vim.lsp.buf.rename()
+  end, opts)
+  inoremap('<c-h>', function()
+    vim.lsp.buf.signature_help()
+  end, opts)
   local status_ok, illuminate = pcall(require, 'illuminate')
   if not status_ok then
     return

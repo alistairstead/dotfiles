@@ -72,7 +72,6 @@ keymap('n', '<leader><leader>', ':nohlsearch<Bar>:echo<CR>', default_opts)
 keymap('n', '<esc>', ':nohlsearch<Bar>:echo<CR>', default_opts)
 
 -- Nvimtree
-keymap('n', '<leader>e', '<cmd>Neotree toggle<CR>', default_opts)
 
 -- Comment
 -- keymap("v", "gc", ":lua require(\"Comment.api\").gc(vim.fn.visualmode())<cr>", opts)

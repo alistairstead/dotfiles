@@ -16,6 +16,7 @@ table.insert(vimgrep_arguments, '!.git/*')
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
+require('telescope').load_extension('git_worktree')
 
 telescope.setup({
   defaults = {
@@ -148,31 +149,3 @@ telescope.setup({
     },
   },
 })
-
--- keymaps
-local keymap = vim.keymap.set
-local builtin = require('telescope.builtin')
-
-keymap('n', '<C-t>', function()
-  builtin.builtin()
-end, { desc = 'Telescope' })
-
-keymap('n', '<C-p>', function()
-  builtin.find_files()
-end, { desc = 'Find files' })
-
-keymap('n', '<leader>ff', function()
-  builtin.find_files()
-end, { desc = 'Find files' })
-
-keymap('n', '<leader>fg', function()
-  builtin.live_grep()
-end, { desc = 'Grep files' })
-
-keymap('n', '<leader>b', function()
-  builtin.buffers()
-end, { desc = 'Select buffers' })
-
-keymap('n', '<leader>pp', function()
-  telescope.extensions.project.project()
-end, { desc = 'Find Project' })
