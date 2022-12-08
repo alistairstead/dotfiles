@@ -13,6 +13,7 @@ local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
+
 local cmp_kinds = {
   Text = '  ',
   Method = '  ',
@@ -39,6 +40,7 @@ local cmp_kinds = {
   Event = '  ',
   Operator = '  ',
   TypeParameter = '  ',
+  Copilot = '  ',
 }
 
 cmp.setup({
@@ -63,10 +65,10 @@ cmp.setup({
       -- winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
     },
   },
-  -- confirm_opts = {
-  --   behavior = cmp.ConfirmBehavior.Replace,
-  --   select = false,
-  -- },
+  confirm_opts = {
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = false,
+  },
   mapping = {
     ['<C-d>'] = mapping(mapping.scroll_docs(8), { 'i' }),
     ['<C-u>'] = mapping(mapping.scroll_docs(-8), { 'i' }),
@@ -80,7 +82,7 @@ cmp.setup({
     ['<C-Space>'] = mapping.complete(),
     ['<C-e>'] = mapping.abort(),
     ['<C-c>'] = mapping.abort(),
-    ['<CR>'] = mapping.confirm({ select = false }),
+    ['<CR>'] = mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
     ['<C-j>'] = mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
     ['<C-k>'] = mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
     ['<C-l>'] = mapping(function(_)
@@ -90,11 +92,11 @@ cmp.setup({
       end
     end, { 'i', 's' }),
     ['<Tab>'] = mapping(function(fallback)
-      local copilot_keys = vim.fn['copilot#Accept']()
-      if cmp.visible() then
-        cmp.select_next_item({ behaviour = cmp.SelectBehavior.Insert })
-      elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
-        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+      -- local copilot_keys = vim.fn['copilot#Accept']()
+      if cmp.visible() and has_words_before() then
+        cmp.select_next_item({ behaviour = cmp.SelectBehavior.Select })
+        -- elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
+        --   vim.api.nvim_feedkeys(copilot_keys, 'i', true)
       elseif luasnip.expandable() then
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
@@ -116,12 +118,13 @@ cmp.setup({
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'nvim_lua' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
+    { name = 'copilot', group_index = 2 },
+    { name = 'nvim_lsp', group_index = 2 },
+    { name = 'nvim_lsp_signature_help', group_index = 2 },
+    { name = 'nvim_lua', group_index = 2 },
+    { name = 'luasnip', group_index = 2 },
+    { name = 'buffer', group_index = 2 },
+    { name = 'path', group_index = 2 },
   },
 })
 

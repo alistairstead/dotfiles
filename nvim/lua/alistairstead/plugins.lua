@@ -178,6 +178,11 @@ local function plugins(use)
     },
   })
 
+  -- Primeagen doesn"t create lodash
+  use('ThePrimeagen/git-worktree.nvim')
+  use('ThePrimeagen/harpoon')
+  use('ThePrimeagen/refactoring.nvim')
+
   -- Better buffer closing
   use({
     'moll/vim-bbye',
@@ -231,14 +236,23 @@ local function plugins(use)
   })
 
   -- AI completion
+  -- use('github/copilot.vim')
+  use('zbirenbaum/copilot.lua')
   use({
-    'github/copilot.vim',
-    setup = function()
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_assume_mapped = true
-      vim.g.copilot_tab_fallback = ''
+    'zbirenbaum/copilot-cmp',
+    after = { 'copilot.lua' },
+    config = function()
+      require('copilot_cmp').setup()
     end,
   })
+  -- use({
+  --   'github/copilot.vim',
+  --   setup = function()
+  --     vim.g.copilot_no_tab_map = true
+  --     vim.g.copilot_assume_mapped = true
+  --     vim.g.copilot_tab_fallback = ''
+  --   end,
+  -- })
 
   -- Terminal
   use({
