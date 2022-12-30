@@ -5,8 +5,9 @@ end
 
 neogit.setup({})
 
-local keymap = vim.keymap.set
+local Remap = require('alistairstead.keymap')
+local nnoremap = Remap.nnoremap
 
-keymap('n', '<leader>gs', function()
+nnoremap('<leader>gs', function()
   neogit.open()
 end, { desc = 'Neogit Open' })

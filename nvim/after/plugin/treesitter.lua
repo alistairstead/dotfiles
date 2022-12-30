@@ -3,33 +3,38 @@ if not ok then
   return
 end
 
-treesitter.setup({
-  ensure_installed = {},
-  ignore_install = { 'haskell', 'phpdoc' },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  indent = { enable = false },
-  autotag = {
-    enable = true,
-    filetypes = { 'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue' },
-  },
-  autopairs = { enable = true },
-  incrental_selection = {
-    enable = true,
-  },
-  rainbow = {
-    enable = true,
-    disable = { 'html' },
-    extended_mode = false,
-    max_file_lines = nil,
-  },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-    config = {
-      javascriptreact = { style_element = '{/*%s*/}' },
+treesitter.setup {
+    -- A list of parser names, or "all"
+    ensure_installed = {
+        'elixir',
+        'html',
+        'markdown',
+        'json',
+        'javascript',
+        'typescript',
+        'sql',
+        'lua',
     },
-  },
-})
+
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+
+    -- Automatically install missing parsers when entering buffer
+    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+    auto_install = true,
+
+    highlight = {
+        -- `false` will disable the whole extension
+        enable = true,
+
+        disable = {},
+
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+    },
+}
+
+

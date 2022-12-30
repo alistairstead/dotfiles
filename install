@@ -2,38 +2,37 @@
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# symlink configs
+mkdir -p ~/.config
 # ZSH
-rm -rf $HOME/.config/zsh
-ln -s $DOTFILES/zsh $HOME/.config/zsh
-ln -sf $DOTFILES/zsh/.zshenv $HOME/.zshenv
+ln -nfs $DOTFILES/zsh $HOME/.config/zsh
+ln -nfs $DOTFILES/zsh/.zshenv $HOME/.zshenv
+
+# alacritty terminal
+ln -nfs $DOTFILES/alacritty $HOME/.config/alacritty
 
 # neovim
-rm -rf $HOME/.config/nvim
-ln -s $DOTFILES/nvim $HOME/.config/nvim
+ln -nfs $DOTFILES/nvim $HOME/.config/nvim
 
 # kitty terminal
-rm -rf $HOME/.config/kitty
-ln -s $DOTFILES/kitty $HOME/.config/kitty
+ln -nfs $DOTFILES/kitty $HOME/.config/kitty
 
 # skhd
-rm -rf $HOME/.config/skhd
-ln -s $DOTFILES/skhd $HOME/.config/skhd
+ln -nfs $DOTFILES/skhd $HOME/.config/skhd
 
 # spacebar
-rm -rf $HOME/.config/spacebar
-ln -s $DOTFILES/spacebar $HOME/.config/spacebar
+ln -nfs $DOTFILES/spacebar $HOME/.config/spacebar
 
 # tmux
-rm -rf $HOME/.config/tmux
-ln -s $DOTFILES/tmux $HOME/.config/tmux
+ln -nfs $DOTFILES/tmux $HOME/.config/tmux
 
 # yabai
-rm -rf $HOME/.config/yabai
-ln -s $DOTFILES/yabai $HOME/.config/yabai
+ln -nfs $DOTFILES/yabai $HOME/.config/yabai
 
 # git
-ln -sf $DOTFILES/git/gitconfig_local $HOME/.gitconfig_local
-ln -sf $DOTFILES/git/gitignore_global $HOME/.gitignore_global
+ln -nfs $DOTFILES/git/gitignore_global $HOME/.gitignore_global
 
+# asdf
+ln -nfs $DOTFILES/asdf/asdfrc $HOME/.asdfrc
 
 echo "Done!"

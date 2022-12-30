@@ -1,21 +1,21 @@
 local ok, gitsigns = pcall(require, "gitsigns")
 if not ok then
-    return
+  return
 end
 
 gitsigns.setup {
-    keymaps = {},
-    current_line_blame = true,
-    current_line_blame_opts = {
-        delay = vim.o.updatetime,
-    },
-    signs = {
-        add = { text = '▎' },
-        change = { text = '▎' },
-        delete = { text = '▎' },
-        topdelete = { text = '契' },
-        changedelete = { text = '▎' },
-    },
+  current_line_blame = false,
+  current_line_blame_opts = {
+    delay = vim.o.updatetime,
+  },
+  signcolumn = true,
+  signs = {
+    add = { text = '▎' },
+    change = { text = '▎' },
+    delete = { text = '▎' },
+    topdelete = { text = '契' },
+    changedelete = { text = '▎' },
+  },
 }
 
 vim.keymap.set("n", "]c", gitsigns.next_hunk)
@@ -28,3 +28,8 @@ vim.keymap.set("n", "<leader>gu", gitsigns.undo_stage_hunk)
 
 vim.keymap.set("o", "ah", gitsigns.select_hunk)
 vim.keymap.set("v", "ah", gitsigns.select_hunk)
+
+-- Fine-tune highlights
+require('alistairstead.colors').inherit_hl('DiffAdd', 'GitSignsAdd', { background = 'none' })
+require('alistairstead.colors').inherit_hl('DiffChange', 'GitSignsChange', { background = 'none' })
+require('alistairstead.colors').inherit_hl('DiffDelete', 'GitSignsDelete', { background = 'none' })

@@ -131,6 +131,12 @@ neotree.setup({
   },
 })
 
+local Remap = require('alistairstead.keymap')
+local nnoremap = Remap.nnoremap
+
+nnoremap('<leader>e', '<cmd>Neotree toggle<CR>', {
+  desc = 'Tree toggle',
+})
 -- require('neo-tree.ui.inputs').confirm = function(message, callback)
 --   callback(vim.fn.confirm(message, '&Yes\n&No') == 1)
 -- end

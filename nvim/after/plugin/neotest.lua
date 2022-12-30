@@ -5,8 +5,8 @@ end
 
 neotest.setup({
   adapters = {
-    -- require("neotest-plenary"),
-    -- require("neotest-vitest"),
+    require("neotest-plenary"),
+    require("neotest-vitest"),
     require('neotest-vim-test'),
   },
 })

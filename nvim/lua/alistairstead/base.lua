@@ -1,87 +1,47 @@
--- :help options
+-- Relative line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-local opt = vim.opt
+-- Indentation
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.expandtab = true
-opt.smartindent = true
-opt.number = true
-opt.relativenumber = true
-opt.title = true
-opt.termguicolors = true
-opt.spell = false
-opt.ignorecase = true
-opt.smartcase = true
-opt.wrap = false
-opt.breakindent = true -- maintain indent when wrapping indented lines
-opt.list = true -- enable the below listchars
-opt.listchars = { tab = '▸ ', trail = '·' }
-opt.fillchars:append({ eob = ' ' }) -- remove the ~ from end of buffer
-opt.mouse = 'a' -- enable mouse for all modes
-opt.splitbelow = true
-opt.splitright = true
-opt.scrolloff = 8
-opt.sidescrolloff = 8
-opt.clipboard = 'unnamedplus' -- Use Linux system clipboard
-opt.confirm = true -- ask for confirmation instead of erroring
-opt.undofile = true -- enable persistent undo
-opt.undodir = os.getenv('HOME') .. '/.vim/undodir' -- where to store undo files
-opt.backup = false
-opt.backupdir:remove('.') -- keep backups out of the current directory
-opt.shortmess:append({ I = true }) -- disable the splash screen
-opt.wildmode = 'longest:full,full' -- complete the longest common match, and allow tabbing the results to fully complete them
-opt.signcolumn = 'yes:2'
-opt.showmode = false
-opt.updatetime = 4001 -- Set updatime to 1ms longer than the default to prevent polyglot from changing it
-opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
-opt.laststatus = 3 -- show a single global status line
-opt.cmdheight = 1
-opt.completeopt = { 'noinsert', 'menuone', 'noselect' }
-opt.pumheight = 10
-opt.numberwidth = 4
-opt.showtabline = 0
+-- Indentation visuals
+vim.opt.listchars = { tab = '▸ ', trail = '·' }
 
-local g = vim.g
--- disable providers that are not being used
-g.loaded_python3_provider = 0
-g.loaded_ruby_provider = 0
-g.loaded_perl_provider = 0
+-- Configure screen scroll jumps
+vim.opt.scrolloff = 4
+vim.opt.signcolumn = 'yes'
+vim.opt.isfname:append('@-@')
 
--- Disable some builtin vim plugins
-g.do_filetype_lua = 1 -- use filetype.lua
-g.did_load_filetypes = 0 -- don't use filetype.vim
-g.highlighturl_enabled = true -- highlight URLs by default
-g.mapleader = ' ' -- set leader key
-g.zipPlugin = false -- disable zip
-g.load_black = false -- disable black
-g.loaded_2html_plugin = true -- disable 2html
-g.loaded_getscript = true -- disable getscript
-g.loaded_getscriptPlugin = true -- disable getscript
-g.loaded_gzip = true -- disable gzip
-g.loaded_logipat = true -- disable logipat
-g.loaded_matchit = true -- disable matchit
-g.loaded_netrwFileHandlers = true -- disable netrw
-g.loaded_netrwPlugin = true -- disable netrw
-g.loaded_netrwSettngs = true -- disable netrw
-g.loaded_remote_plugins = true -- disable remote plugins
-g.loaded_tar = true -- disable tar
-g.loaded_tarPlugin = true -- disable tar
-g.loaded_zip = true -- disable zip
-g.loaded_zipPlugin = true -- disable zip
-g.loaded_vimball = true -- disable vimball
-g.loaded_vimballPlugin = true -- disable vimball
+-- Disable line wrapping
+vim.opt.wrap = false
 
-local colorscheme = 'dracula_pro'
-local cmd = vim.cmd
+-- Configure incremental search
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
-local status_ok, _ = pcall(cmd.colorscheme, colorscheme)
-if not status_ok then
-  vim.notify('colorscheme ' .. colorscheme .. ' not found!')
-  return
-end
---
--- Example comment in italic type
-cmd('highlight Comment guifg=#7970A9 gui=italic')
-cmd('highlight VertSplit guifg=#454158 guibg=#22212C')
+-- Case-insensitive search unless mixed case query used
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Global search-n-replace by default
+vim.opt.gdefault = true
+
+-- Disable swaps and backups
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+-- Enable cross-session undo
+vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.opt.undofile = true
+
+-- Set really short screen refresh
+vim.opt.updatetime = 50
+
+vim.opt.clipboard = 'unnamedplus' -- Use Linux system clipboard
+vim.opt.laststatus = 3 -- show a single global status line
+vim.opt.showtabline = 0

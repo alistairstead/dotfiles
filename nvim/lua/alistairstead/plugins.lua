@@ -1,67 +1,17 @@
-local PACKER_BOOTSTRAP = false
-
--- packer.nvim configuration
-local conf = {
-  max_jobs = 10,
-  profile = {
-    enable = true,
-    threshold = 0.0001,
-  },
-  -- auto_clean = true,
-  -- compile_on_sync = true,
-  -- autoremove = true,
-  display = {
-    open_fn = function()
-      return require('packer.util').float({ border = 'none' })
-    end,
-  },
-}
-
--- Check if packer.nvim is installed
--- Run PackerCompile if there are changes in this file
-local function packer_init()
-  local fn = vim.fn
-  -- Automatically install packer
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
-      'git',
-      'clone',
-      '--depth',
-      '1',
-      'https://github.com/wbthomason/packer.nvim',
-      install_path,
-    })
-    print('Installing packer close and reopen Neovim...')
-    vim.cmd([[packadd packer.nvim]])
-  end
+-- Install packer
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  is_bootstrap = true
+  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.cmd [[packadd packer.nvim]]
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
--- Plugins
-local function plugins(use)
-  -- Plugin manager
+require('packer').startup({ function(use)
+  -- Packer
   use({ 'wbthomason/packer.nvim' })
-  -- Optimiser
-  use({ 'lewis6991/impatient.nvim' })
+
   -- Performance
-  use({
-    'max397574/better-escape.nvim',
-    event = 'InsertCharPre',
-  })
-  use({
-    'antoinemadec/FixCursorHold.nvim',
-    config = function()
-      vim.g.cursorhold_updatetime = 100
-    end,
-  })
   use({ 'dstein64/vim-startuptime', cmd = 'StartupTime' })
   use({
     'nathom/filetype.nvim',
@@ -71,24 +21,6 @@ local function plugins(use)
   })
   -- /Performance
 
-  -- Lua functions
-  use({ 'nvim-lua/plenary.nvim', module = 'plenary' })
-
-  -- Popup API
-  use('nvim-lua/popup.nvim')
-
-  -- Neovim UI Enhancer
-  use({
-    'stevearc/dressing.nvim',
-    -- event = 'VimEnter',
-  })
-
-  -- Smooth scrolling
-  use({
-    'declancm/cinnamon.nvim',
-    -- event = { 'BufRead', 'BufNewFile' },
-  })
-
   -- general UI improvements
   use({
     'levouh/tint.nvim',
@@ -97,12 +29,6 @@ local function plugins(use)
     { 'kevinhwang91/nvim-bqf', ft = 'qf', requires = {
       'junegunn/fzf',
     } },
-  })
-
-  -- Smarter Splits
-  use({
-    'mrjones2014/smart-splits.nvim',
-    module = 'smart-splits',
   })
 
   -- Icons
@@ -129,24 +55,10 @@ local function plugins(use)
 
   -- Status line
   use({
-    'feline-nvim/feline.nvim',
-    disable = true,
-  })
-
-  use({
     'nvim-lualine/lualine.nvim',
     requires = {
       'SmiteshP/nvim-navic',
     },
-    -- disable = true,
-  })
-
-  -- Start screen
-  use({
-    'goolord/alpha-nvim',
-    cmd = 'Alpha',
-    module = 'alpha',
-    disable = true,
   })
 
   use({
@@ -165,17 +77,7 @@ local function plugins(use)
     'tpope/vim-repeat',
     'tpope/vim-surround',
     'tpope/vim-fugitive',
-    -- "tpope/vim-unimpaired",
-    {
-      'tpope/vim-sleuth',
-      setup = function()
-        vim.g.sleuth_automatic = 0
-      end,
-    },
-    {
-      'tpope/vim-dispatch',
-      requires = { 'radenling/vim-dispatch-neovim' },
-    },
+    'tpope/vim-sleuth',
   })
 
   -- Primeagen doesn"t create lodash
@@ -191,11 +93,7 @@ local function plugins(use)
   -- Cloak (by laytanl_)
   use('laytan/cloak.nvim')
 
-  use({
-    's1n7ax/nvim-window-picker',
-    tag = 'v1.*',
-    module = 'window-picker',
-  })
+  use('s1n7ax/nvim-window-picker')
 
   -- File explorer
   use({
@@ -245,41 +143,11 @@ local function plugins(use)
       require('copilot_cmp').setup()
     end,
   })
-  -- use({
-  --   'github/copilot.vim',
-  --   setup = function()
-  --     vim.g.copilot_no_tab_map = true
-  --     vim.g.copilot_assume_mapped = true
-  --     vim.g.copilot_tab_fallback = ''
-  --   end,
-  -- })
 
   -- Terminal
   use({
     'akinsho/toggleterm.nvim',
     module = { 'toggleterm', 'toggleterm.terminal' },
-  })
-
-  -- Completion
-  use({
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lua',
-      'ray-x/cmp-treesitter',
-      'saadparwaiz1/cmp_luasnip',
-      'davidsierradz/cmp-conventionalcommits',
-      'petertriho/cmp-git',
-      'windwp/nvim-autopairs',
-      {
-        'L3MON4D3/LuaSnip',
-        requires = { 'rafamadriz/friendly-snippets' },
-      },
-    },
   })
 
   -- Telescope
@@ -298,28 +166,35 @@ local function plugins(use)
     },
   })
 
-  -- Built-in LSP
-  use({
-    'neovim/nvim-lspconfig',
+  -- Language servers
+  use { 'VonHeikemen/lsp-zero.nvim',
     requires = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
-      'lukas-reineke/lsp-format.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-      'jose-elias-alvarez/typescript.nvim',
-      'neovim/nvim-lspconfig',
-      'folke/lua-dev.nvim',
-      'stevearc/aerial.nvim',
-      'b0o/SchemaStore.nvim',
-      'ray-x/lsp_signature.nvim',
-      'jayp0521/mason-null-ls.nvim',
-      'jose-elias-alvarez/typescript.nvim',
-      'glepnir/lspsaga.nvim',
-      'zbirenbaum/neodim',
-      'RRethy/vim-illuminate',
-    },
-  })
+      -- LSP Support
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
+      { 'lukas-reineke/lsp-format.nvim' },
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'davidsierradz/cmp-conventionalcommits' },
+      { 'petertriho/cmp-git' },
+      -- Snippets
+      { 'L3MON4D3/LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
+      -- UI
+      { 'zbirenbaum/neodim' },
+      -- Useful status updates for LSP
+      { 'j-hui/fidget.nvim' },
+
+      -- Additional lua configuration, makes nvim stuff amazing
+      { 'folke/neodev.nvim' },
+    }
+  }
 
   -- Colorscheme
   use({
@@ -333,20 +208,16 @@ local function plugins(use)
     'NvChad/nvim-colorizer.lua',
   })
 
-  use({
-    'AndrewRadev/splitjoin.vim',
-    keys = { 'gS', 'gJ' },
-  })
-
   -- Markdown
   use({
     'lukas-reineke/headlines.nvim',
+    config = function()
+      require('headlines').setup()
+    end,
   })
 
   -- Git
   use({
-    -- "rhysd/git-messenger.vim",
-    'ruifm/gitlinker.nvim',
     'lewis6991/gitsigns.nvim',
     {
       'TimUntersberger/neogit',
@@ -369,27 +240,41 @@ local function plugins(use)
     },
   })
 
-  -- Bootstrap Neovim
-  if PACKER_BOOTSTRAP then
-    print('Neovim restart is required after installation!')
-    require('packer').sync()
-  end
-end
+end,
+  config = {
+    max_jobs = 10,
+    profile = {
+      enable = true,
+      threshold = 0.0001,
+    },
+    -- auto_clean = true,
+    -- compile_on_sync = true,
+    -- autoremove = true,
+    display = {
+      open_fn = function()
+        return require('packer.util').float({ border = 'none' })
+      end,
+    },
+  }
+})
 
--- Init and start packer
-packer_init()
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, 'packer')
-if not status_ok then
+-- When we are bootstrapping a configuration, it doesn't
+-- make sense to execute the rest of the init.lua.
+--
+-- You'll need to restart nvim, and then it will work.
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
   return
 end
 
--- Performance
-local impatient_ok, impatient = pcall(require, 'impatient')
-if impatient_ok then
-  impatient.enable_profile()
-end
--- pcall(require, "packer_compiled")
-
-packer.init(conf)
-packer.startup(plugins)
+-- Automatically source and re-compile packer whenever you save this file
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+  group = packer_group,
+  pattern = 'plugins.lua',
+})

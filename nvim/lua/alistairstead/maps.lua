@@ -64,17 +64,9 @@ keymap('n', '<leader>Q', '<cmd>q!<CR>', default_opts)
 keymap('n', '<leader>c', ':Bdelete<CR>', default_opts)
 keymap('n', '<leader>C', ':Bdelete<CR>', default_opts)
 
-keymap('n', '<C-s>', '<cmd>w!<CR>', default_opts)
-keymap('n', '<C-q>', '<cmd>q!<CR>', default_opts)
-
 -- Clear search highlight
-keymap('n', '<leader><leader>', ':nohlsearch<Bar>:echo<CR>', default_opts)
+keymap('n', '<leader><space>', ':nohlsearch<Bar>:echo<CR>', default_opts)
 keymap('n', '<esc>', ':nohlsearch<Bar>:echo<CR>', default_opts)
-
--- Nvimtree
-
--- Comment
--- keymap("v", "gc", ":lua require(\"Comment.api\").gc(vim.fn.visualmode())<cr>", opts)
 
 -- Visual Block --
 -- Move text up and down

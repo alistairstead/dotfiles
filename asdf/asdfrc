@@ -1,0 +1,2 @@
+# respect .nvmrc, .ruby-version and others
+legacy_version_file = yes
