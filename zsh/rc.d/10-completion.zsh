@@ -26,3 +26,5 @@ znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-completions
 
 complete -C '/opt/homebrew/bin/aws_completer' aws
+
+eval "$(op completion zsh)"; compdef _op op

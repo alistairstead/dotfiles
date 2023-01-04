@@ -66,20 +66,6 @@ setup_gitconfig() {
             git config --global github.oauth-token "$token"
         fi
 
-        info "Checking for SSH key, generating one if it doesn't exist ..."
-        if [ -f "${HOME}/.ssh/id_rsa.pub" ]; then
-            info 'public key already exists'
-        else
-            ssh-keygen -t rsa
-            success 'generated public key'
-        fi
-
-        info "Copying public key to clipboard. Paste it into your Github account ..."
-        if [ -f "${HOME}/.ssh/id_rsa.pub" ] && [ "$(uname -s)" = "Darwin" ]; then
-            pbcopy <"${HOME}/.ssh/id_rsa.pub"
-            open https://github.com/settings/keys
-        fi
-
         # include the gitconfig.local file
         git config --global include.path ~/.gitconfig.local
         # finally make git knows this is a managed config already, preventing later

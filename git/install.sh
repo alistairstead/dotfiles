@@ -16,6 +16,12 @@ fi
 git config --global core.excludesfile "${HOME}/.gitignore_global"
 git config --global include.path "${HOME}/.gitconfig_local"
 
+# 1Password commit signing
+git config --global user.signingkey $(op item get 'SSH Key' --fields label='public key')
+git config --global gpg.format "ssh"
+git config --global gpg.ssh.program "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+git config --global commit.gpgsign true
+
 # better diffs
 if test $(which diff-so-fancy); then
 	git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"

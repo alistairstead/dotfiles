@@ -10,9 +10,15 @@ local default_opts = { noremap = true, silent = true }
 local expr_opts = { noremap = true, expr = true, silent = true }
 
 --Remap space as leader key
-keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Better escape using jk in insert and terminal mode
 keymap('i', 'jk', '<ESC>', default_opts)
@@ -25,10 +31,6 @@ keymap('t', '<C-l>', '<C-\\><C-n><C-w>l', default_opts)
 -- Center search results
 keymap('n', 'n', 'nzz', default_opts)
 keymap('n', 'N', 'Nzz', default_opts)
-
--- Visual line wraps
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", expr_opts)
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", expr_opts)
 
 -- Better indent
 keymap('v', '<', '<gv', default_opts)

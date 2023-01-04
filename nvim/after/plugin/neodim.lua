@@ -4,7 +4,7 @@ if not ok then
 end
 
 neodim.setup({
-  alpha = 0.4,
+  alpha = 0.5,
   hide = {
     signs = false,
     virtual_text = true,

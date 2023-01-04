@@ -154,41 +154,27 @@ local Remap = require('alistairstead.keymap')
 local nnoremap = Remap.nnoremap
 local builtin = require('telescope.builtin')
 
-nnoremap('<C-t>', function()
-  builtin.builtin()
-end, { desc = 'Telescope' })
+nnoremap('<C-t>', builtin.builtin, { desc = 'Telescope' })
+nnoremap('<C-p>', builtin.git_files, { desc = 'Git files' })
 
-nnoremap('<leader>ps', function()
-  builtin.grep_string()
-end, { desc = 'Grep files' })
+-- See `:help telescope.builtin`
+nnoremap('<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
+nnoremap('<leader>b', builtin.buffers, { desc = '[b] Find existing buffers' })
+nnoremap('<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer]' })
 
-nnoremap('<C-p>', function()
-  builtin.git_files()
-end, { desc = 'Git files' })
-
-nnoremap('<Leader>ff', function()
-  builtin.find_files()
-end, { desc = 'Find files' })
-
-nnoremap('<leader>pw', function()
-  builtin.grep_string({ search = vim.fn.expand('<cword>') })
-end)
-
-nnoremap('<leader>b', function()
-  builtin.buffers()
-end, { desc = 'Select buffers' })
-
-nnoremap('<leader>pp', function()
-  telescope.extensions.project.project()
-end, { desc = 'Select buffers' })
-
-nnoremap('<leader>vh', function()
-  builtin.help_tags()
-end)
-
-nnoremap('<leader>gw', function()
-  telescope.extensions.git_worktree.git_worktrees()
-end)
+nnoremap('<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+nnoremap('<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+nnoremap('<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+nnoremap('<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+nnoremap('<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+nnoremap('<leader>sp', telescope.extensions.project.project, { desc = '[S]earch [P]rojects' })
+nnoremap('<leader>gw', telescope.extensions.git_worktree.git_worktrees, { desc = '[G]it [W]orktrees' })
 
 nnoremap('<leader>gm', function()
   telescope.extensions.git_worktree.create_git_worktree()

@@ -11,16 +11,6 @@ require('packer').startup({ function(use)
   -- Packer
   use({ 'wbthomason/packer.nvim' })
 
-  -- Performance
-  use({ 'dstein64/vim-startuptime', cmd = 'StartupTime' })
-  use({
-    'nathom/filetype.nvim',
-    config = function()
-      vim.g.did_load_filetype = 1
-    end,
-  })
-  -- /Performance
-
   -- general UI improvements
   use({
     'levouh/tint.nvim',
@@ -143,7 +133,7 @@ require('packer').startup({ function(use)
       require('copilot_cmp').setup()
     end,
   })
-
+  use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
   -- Terminal
   use({
     'akinsho/toggleterm.nvim',

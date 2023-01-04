@@ -35,4 +35,6 @@ ln -nfs $DOTFILES/git/gitignore_global $HOME/.gitignore_global
 # asdf
 ln -nfs $DOTFILES/asdf/asdfrc $HOME/.asdfrc
 
-echo "Done!"
+# ssh
+mkdir -p ~/.ssh
+ln -nfs $DOTFILES/.ssh/config $HOME/.ssh/config

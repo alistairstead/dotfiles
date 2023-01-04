@@ -45,3 +45,6 @@ vim.opt.updatetime = 50
 vim.opt.clipboard = 'unnamedplus' -- Use Linux system clipboard
 vim.opt.laststatus = 3 -- show a single global status line
 vim.opt.showtabline = 0
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
