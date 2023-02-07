@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+autoload -U compinit
+compinit -i
+
 # the cursor stays where it was and completion is done from both ends.
 setopt COMPLETE_IN_WORD
 # if a completion is performed with the cursor within a word, and a
@@ -28,3 +31,7 @@ znap source zsh-users/zsh-completions
 complete -C '/opt/homebrew/bin/aws_completer' aws
 
 eval "$(op completion zsh)"; compdef _op op
+
+if [ ! -f /opt/homebrew/share/zsh/site-functions/_gh ]; then
+  gh completion -s zsh > /opt/homebrew/share/zsh/site-functions/_gh
+fi

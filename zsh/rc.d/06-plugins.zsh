@@ -43,6 +43,8 @@ znap source asdf-vm/asdf asdf.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+source ~/.config/op/plugins.sh
+
 # `znap eval <name> '<command>'` is like `eval "$( <command> )"` but with
 # caching and compilation of <command>'s output, making it ~10 times faster.
 znap eval zcolors zcolors   # Extra init code needed for zcolors.
