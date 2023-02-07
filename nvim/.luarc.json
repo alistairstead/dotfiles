@@ -80,6 +80,7 @@
         "/Users/alistairstead/.local/share/nvim/site/pack/packer/start/playground/after",
         "/Users/alistairstead/.local/share/nvim/site/pack/themes/start/dracula_pro/after",
         "/Users/alistairstead/.config/nvim/after",
-        "${3rd}/luassert/library"
+        "${3rd}/luassert/library",
+        "${3rd}/luv/library"
     ]
 }

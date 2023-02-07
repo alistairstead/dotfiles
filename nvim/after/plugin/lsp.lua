@@ -44,6 +44,15 @@ lsp.ensure_installed({
   'sumneko_lua',
 })
 
+lsp.set_preferences({
+  sign_icons = {
+    error = ' ',
+    warn = ' ',
+    hint = '',
+    info = ' ',
+  }
+})
+
 -- Configure Lua LSP to support vim configs
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
@@ -66,17 +75,16 @@ lsp.configure('sumneko_lua', {
   }
 })
 
--- Override default preferences
-lsp.set_preferences({
-  suggest_lsp_servers = false
+lsp.configure('tsserver', {
+  root_dir = require('lspconfig').util.root_pattern('.git')
 })
 
 -- Auto format
-require("lsp-format").setup({})
+-- require("lsp-format").setup({})
 
 -- Set keybinds on LSP attach to the buffer
 lsp.on_attach(function(client, bufnr)
-  require("lsp-format").on_attach(client)
+  -- require("lsp-format").on_attach(client)
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -141,6 +149,55 @@ lsp.setup()
 
 -- Turn on lsp status information
 require('fidget').setup()
+
+local null_ls = require('null-ls')
+local null_opts = lsp.build_options('null-ls', {})
+
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    null_opts.on_attach(client, bufnr)
+
+    local format_cmd = function(input)
+      vim.lsp.buf.format({
+        id = client.id,
+        timeout_ms = 5000,
+        async = input.bang,
+      })
+    end
+
+    local bufcmd = vim.api.nvim_buf_create_user_command
+    bufcmd(bufnr, 'NullFormat', format_cmd, {
+      bang = true,
+      range = true,
+      desc = 'Format using null-ls'
+    })
+  end,
+  sources = {
+    -- You can add tools not supported by mason.nvim
+  }
+})
+
+-- See mason-null-ls.nvim's documentation for more details:
+-- https://github.com/jay-babu/mason-null-ls.nvim#setup
+require('mason-null-ls').setup({
+  ensure_installed = nil,
+  automatic_installation = false, -- You can still set this to `true`
+  automatic_setup = true,
+})
+
+-- Required when `automatic_setup` is true
+require('mason-null-ls').setup_handlers({
+  function(source_name, methods)
+    -- all sources with no handler get passed here
+
+    -- To keep the original functionality of `automatic_setup = true`,
+    -- please add the below.
+    require("mason-null-ls.automatic_setup")(source_name, methods)
+  end,
+  stylua = function(source_name, methods)
+    null_ls.register(null_ls.builtins.formatting.stylua)
+  end,
+})
 
 -- Setup completion keybinds
 local has_words_before = function()

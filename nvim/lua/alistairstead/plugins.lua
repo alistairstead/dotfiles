@@ -38,6 +38,8 @@ require('packer').startup({ function(use)
     end,
   })
 
+  use({ 'glepnir/dashboard-nvim' })
+
   -- Bufferline
   use({
     'akinsho/bufferline.nvim',
@@ -49,10 +51,6 @@ require('packer').startup({ function(use)
     requires = {
       'SmiteshP/nvim-navic',
     },
-  })
-
-  use({
-    'glepnir/dashboard-nvim',
   })
 
   -- Better Commenting
@@ -80,6 +78,10 @@ require('packer').startup({ function(use)
     'moll/vim-bbye',
   })
 
+  use({
+    'knubie/vim-kitty-navigator'
+  })
+
   -- Cloak (by laytanl_)
   use('laytan/cloak.nvim')
 
@@ -89,16 +91,11 @@ require('packer').startup({ function(use)
   use({
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
-    module = 'neo-tree',
-    cmd = 'Neotree',
     requires = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons',
-      { 'MunifTanjim/nui.nvim', module = 'nui' },
+      'MunifTanjim/nui.nvim',
     },
-    setup = function()
-      vim.g.neo_tree_remove_legacy_commands = true
-    end,
   })
 
   -- Syntax highlighting
@@ -164,6 +161,8 @@ require('packer').startup({ function(use)
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
       { 'lukas-reineke/lsp-format.nvim' },
+      { "jose-elias-alvarez/null-ls.nvim" },
+      { "jay-babu/mason-null-ls.nvim" },
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
       { 'hrsh7th/cmp-buffer' },
@@ -264,7 +263,7 @@ end
 -- Automatically source and re-compile packer whenever you save this file
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerSync',
   group = packer_group,
   pattern = 'plugins.lua',
 })

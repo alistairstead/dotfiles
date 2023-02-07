@@ -169,7 +169,13 @@ nnoremap('<leader>/', function()
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
 nnoremap('<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+nnoremap('<leader>s.', function()
+  builtin.find_files({
+    search_dirs = { '~/.dotfiles/' }
+  })
+end, { desc = '[S]earch [.]dotfiles' })
 nnoremap('<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+nnoremap('<leader>sr', builtin.oldfiles, { desc = '[S]earch [R]ecent Files' })
 nnoremap('<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
 nnoremap('<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
 nnoremap('<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
