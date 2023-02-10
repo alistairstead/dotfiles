@@ -20,7 +20,7 @@
   # <1-9> matches any integer that's >= 1 and <= 9.
   local file=
   for file in $ZDOTDIR/rc.d/<->-*.zsh(n); do
-    . $file
+    source $file
   done
 } "$@"
 # $@ expands to all the arguments that were passed to the current context (in

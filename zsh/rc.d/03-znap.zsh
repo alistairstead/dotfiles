@@ -13,4 +13,4 @@ if ! [[ -r $znap ]]; then   # Check if the file exists and can be read.
       https://github.com/marlonrichert/zsh-snap.git
 fi
 
-. $znap     # Load Znap.
+source $znap     # Load Znap.

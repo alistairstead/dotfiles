@@ -26,8 +26,7 @@ setopt MARK_DIRS
 
 # Real-time auto-completion
 # znap source marlonrichert/zsh-autocomplete
-# znap source zsh-users/zsh-completions
-
+znap source zsh-users/zsh-completions
 znap source Aloxaf/fzf-tab
 
 complete -C '/opt/homebrew/bin/aws_completer' aws
