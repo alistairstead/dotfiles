@@ -11,6 +11,8 @@
 # You can use this ~name anywhere you would specify a dir, not just with `cd`!
 hash -d z=$ZDOTDIR
 hash -d g=$gitdir
+hash -d d=$HOME/.dotfiles
+hash -d c=$HOME/code
 
 
 # Change dirs without `cd`. Just type the dir and press enter.

@@ -25,8 +25,10 @@ setopt LIST_PACKED
 setopt MARK_DIRS
 
 # Real-time auto-completion
-znap source marlonrichert/zsh-autocomplete
-znap source zsh-users/zsh-completions
+# znap source marlonrichert/zsh-autocomplete
+# znap source zsh-users/zsh-completions
+
+znap source Aloxaf/fzf-tab
 
 complete -C '/opt/homebrew/bin/aws_completer' aws
 
@@ -35,3 +37,14 @@ eval "$(op completion zsh)"; compdef _op op
 if [ ! -f /opt/homebrew/share/zsh/site-functions/_gh ]; then
   gh completion -s zsh > /opt/homebrew/share/zsh/site-functions/_gh
 fi
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'

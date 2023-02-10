@@ -12,10 +12,11 @@ local -a plugins=(
     marlonrichert/zsh-edit              # Better keyboard shortcuts
     marlonrichert/zsh-hist              # Edit history from the command line.
     marlonrichert/zcolors               # Colors for completions and Git
-    zsh-users/zsh-autosuggestions       # Inline suggestions
+    # zsh-users/zsh-autosuggestions       # Inline suggestions
     zsh-users/zsh-syntax-highlighting   # Command-line syntax highlighting
     zsh-users/zsh-history-substring-search # History search
     ael-code/zsh-colored-man-pages
+    Aloxaf/fzf-tab
 )
 
 # The Zsh Autocomplete plugin sends *a lot* of characters to your terminal.
@@ -50,4 +51,3 @@ source ~/.config/op/plugins.sh
 znap eval zcolors zcolors   # Extra init code needed for zcolors.
 znap eval direnv/direnv "$(direnv hook zsh)"
 znap eval asdf-community/asdf-direnv "asdf exec $( asdf which direnv ) hook zsh"
-znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'

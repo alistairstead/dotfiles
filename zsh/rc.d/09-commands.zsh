@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 ##
-# Commands, funtions and aliases
+# Commands, functions and aliases
 #
 # Always set aliases _last,_ so they don't class with function definitions.
 #
@@ -121,11 +121,6 @@ gc() {
 	fi
 }
 
-alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
-
-alias preview="fzf --height 40% --preview 'if file -i {}|grep -q binary; then file -b {}; else bat --color \"always\" --line-range :40 {}; fi'"
-alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
-
 alias hosts='sudo $EDITOR /etc/hosts' # yes I occasionally 127.0.0.1 twitter.com ;)
 
 alias services='sudo netstat -tulpn'
@@ -224,3 +219,5 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 alias pn=pnpm
+alias code="cd ~/code"
+alias dotfiles="cd ~/.dotfiles"
