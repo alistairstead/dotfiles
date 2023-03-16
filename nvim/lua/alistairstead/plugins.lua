@@ -201,11 +201,14 @@ require('packer').startup({
 
       -- Markdown
       use({
-          'lukas-reineke/headlines.nvim',
-          config = function()
-            require('headlines').setup()
-          end,
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        setup = function()
+          vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
       })
+      use({'lukas-reineke/headlines.nvim'})
 
       -- Git
       use({
