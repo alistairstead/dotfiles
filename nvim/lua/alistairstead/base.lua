@@ -47,4 +47,4 @@ vim.opt.laststatus = 3 -- show a single global status line
 vim.opt.showtabline = 0
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menu,menuone,noselect'
