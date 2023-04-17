@@ -17,8 +17,10 @@ vim.opt.scrolloff = 4
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append('@-@')
 
--- Disable line wrapping
+-- Line wrapping
 vim.opt.wrap = false
+vim.wo.wrap = true
+vim.wo.linebreak = true
 
 -- Configure incremental search
 vim.opt.hlsearch = true

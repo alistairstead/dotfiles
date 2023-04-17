@@ -10,6 +10,7 @@ neotree.setup({
   enable_git_status = true,
   enable_diagnostics = true,
   use_default_mappings = false,
+  respect_gitignore = true,
   default_component_configs = {
     indent = {
       indent_size = 2,
@@ -37,7 +38,7 @@ neotree.setup({
     },
     name = {
       trailing_slash = true,
-      use_git_status_colors = true,
+      use_git_status_colors = false,
     },
     git_status = {
       symbols = {
@@ -55,6 +56,7 @@ neotree.setup({
       },
     },
   },
+  use_libuv_file_watcher = true,
   window = {
     position = 'left',
     width = 40,

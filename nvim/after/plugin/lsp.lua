@@ -19,7 +19,7 @@ local cmp_kinds = {
   Value = '  ',
   Enum = '  ',
   Keyword = '  ',
-  Snippet = '  ',
+  Snippet = ' ',
   Color = '  ',
   File = '  ',
   Reference = '  ',
@@ -103,9 +103,9 @@ lsp.on_attach(function(client, bufnr)
   nmap('<leader>vd', vim.diagnostic.open_float, '[V]iew [D]iognostics')
   -- typescript specific keymaps (e.g. rename file and update imports)
   if client.name == "tsserver" then
-    nmap("<leader>rf", ":TypescriptRenameFile<CR>", '[R]ename [F]ile') -- rename file and update imports
-    nmap("<leader>oi", ":TypescriptOrganizeImports<CR>", '[O]rganise [I]mports') -- organize imports (not in youtube nvim video)
-    nmap("<leader>ru", ":TypescriptRemoveUnused<CR>", '[R]emove [U]nused') -- remove unused variables (not in youtube nvim video)
+    nmap("<leader>rf", ":TypescriptRenameFile<CR>", '[R]ename [F]ile')
+    nmap("<leader>oi", ":TypescriptOrganizeImports<CR>", '[O]rganise [I]mports')
+    nmap("<leader>ru", ":TypescriptRemoveUnused<CR>", '[R]emove [U]nused')
   end
 end)
 
@@ -120,28 +120,18 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 local cmp_config = lsp.defaults.cmp_config({
-  -- experimental = {
-  --   ghost_text = true,
-  -- },
   formatting = {
     format = function(_, vim_item)
       vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
       return vim_item
     end,
   },
-  -- snippet = {
-  --   expand = function(args)
-  --     luasnip.lsp_expand(args.body)
-  --   end,
-  -- },
   window = {
     documentation = {
       winhighlight = 'Normal:Normal,FloatBorder:NonText,CursorLine:Visual,Search:None'
     },
     completion = {
-      -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
       winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
-      -- winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
     },
   },
   confirm_opts = {
@@ -150,7 +140,7 @@ local cmp_config = lsp.defaults.cmp_config({
   },
   mapping = lsp.defaults.cmp_mappings({
     ['<C-d>'] = mapping(mapping.scroll_docs(8), { 'i' }),
-    ['<C-u>'] = mapping(mapping.scroll_docs( -8), { 'i' }),
+    ['<C-u>'] = mapping(mapping.scroll_docs(-8), { 'i' }),
     ['<C-Space>'] = mapping.complete(),
     ['<C-e>'] = mapping.abort(),
     ['<C-c>'] = mapping.abort(),
@@ -173,8 +163,8 @@ local cmp_config = lsp.defaults.cmp_config({
     ['<S-Tab>'] = mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert })
-      elseif luasnip.jumpable( -1) then
-        luasnip.jump( -1)
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
@@ -195,16 +185,15 @@ cmp.setup(cmp_config)
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
-    { name = 'git' },
-  }, {
-    { name = 'buffer' },
-  },
+      { name = 'git' },
+    }, {
+      { name = 'buffer' },
+    },
     { { name = 'conventionalcommits' }, })
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
-  -- mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
   }

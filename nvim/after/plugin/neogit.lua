@@ -4,6 +4,7 @@ if not ok then
 end
 
 neogit.setup({
+  console_timeout = 20000,
   disable_commit_confirmation = true,
   auto_show_console = false,
   disable_insert_on_commit = false,

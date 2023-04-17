@@ -105,7 +105,10 @@ require('packer').startup({
       -- Syntax highlighting
       use({
           'nvim-treesitter/nvim-treesitter',
-          run = ':TSUpdate',
+          run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
           requires = {
               'nvim-treesitter/nvim-treesitter-context',
               'nvim-treesitter/playground',
@@ -208,7 +211,7 @@ require('packer').startup({
         end,
         ft = { "markdown" },
       })
-      use({'lukas-reineke/headlines.nvim'})
+      -- use({'lukas-reineke/headlines.nvim'})
 
       -- Git
       use({
