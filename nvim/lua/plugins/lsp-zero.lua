@@ -1,3 +1,32 @@
+local cmp_kinds = {
+  Text = '  ',
+  Method = '  ',
+  Function = '  ',
+  Constructor = '  ',
+  Field = '  ',
+  Variable = '  ',
+  Class = '  ',
+  Interface = '  ',
+  Module = '  ',
+  Property = '  ',
+  Unit = '  ',
+  Value = '  ',
+  Enum = '  ',
+  Keyword = '  ',
+  Snippet = ' ',
+  Color = '  ',
+  File = '  ',
+  Reference = '  ',
+  Folder = '  ',
+  EnumMember = '  ',
+  Constant = '  ',
+  Struct = '  ',
+  Event = '  ',
+  Operator = '  ',
+  TypeParameter = '  ',
+  Copilot = '  ',
+}
+
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -7,7 +36,7 @@ return {
       -- This is where you modify the settings for lsp-zero
       -- Note: autocompletion settings will not take effect
       require('lsp-zero.settings').preset({})
-    end
+    end,
   },
 
   -- Autocompletion
@@ -16,7 +45,7 @@ return {
     event = 'InsertEnter',
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
-      {'L3MON4D3/LuaSnip'},
+      { 'L3MON4D3/LuaSnip' },
       { 'hrsh7th/nvim-cmp' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
@@ -33,44 +62,12 @@ return {
       -- Here is where you configure the autocompletion settings.
       -- The arguments for .extend() have the same shape as `manage_nvim_cmp`:
       -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#manage_nvim_cmp
-
       require('lsp-zero.cmp').extend()
-
       -- And you can configure cmp even more, if you want to.
       local cmp = require('cmp')
       local types = require('cmp.types')
       local mapping = cmp.mapping
       local cmp_action = require('lsp-zero.cmp').action()
-
-      local cmp_kinds = {
-        Text = '  ',
-        Method = '  ',
-        Function = '  ',
-        Constructor = '  ',
-        Field = '  ',
-        Variable = '  ',
-        Class = '  ',
-        Interface = '  ',
-        Module = '  ',
-        Property = '  ',
-        Unit = '  ',
-        Value = '  ',
-        Enum = '  ',
-        Keyword = '  ',
-        Snippet = ' ',
-        Color = '  ',
-        File = '  ',
-        Reference = '  ',
-        Folder = '  ',
-        EnumMember = '  ',
-        Constant = '  ',
-        Struct = '  ',
-        Event = '  ',
-        Operator = '  ',
-        TypeParameter = '  ',
-        Copilot = '  ',
-      }
-
       cmp.setup({
         preselect = 'item',
         formatting = {
@@ -92,58 +89,53 @@ return {
           ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
         },
         sources = {
-          { name = "nvim_lsp",               priority = 100, keyword_length = 1 },
-          { name = "copilot",                priority = 100,  keyword_length = 1 },
-          { name = "nvim_lsp_signature_help" },
-          { name = "nvim_lua",               priority = 80 },
-          { name = "luasnip",                priority = 50 },
-          { name = "path",                   priority = 5 },
+          { name = 'nvim_lsp', priority = 100, keyword_length = 1 },
+          { name = 'copilot', priority = 100, keyword_length = 1 },
+          { name = 'nvim_lsp_signature_help' },
+          { name = 'nvim_lua', priority = 80 },
+          { name = 'luasnip', priority = 50 },
+          { name = 'path', priority = 5 },
         },
       })
-
       -- Set configuration for specific filetype.
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
-            { name = 'git' },
-          }, {
-            { name = 'buffer' },
-          },
-          { { name = 'conventionalcommits' }, })
+          { name = 'git' },
+        }, {
+          { name = 'buffer' },
+        }, { { name = 'conventionalcommits' } }),
       })
-
       -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline('/', {
         sources = {
-          { name = 'buffer' }
-        }
+          { name = 'buffer' },
+        },
       })
-
       -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(':', {
         sources = {
-          { name = 'path' }
+          { name = 'path' },
         },
         {
           {
-            name = "cmdline",
+            name = 'cmdline',
             option = {
-              ignore_cmds = { "Man", "!" },
+              ignore_cmds = { 'Man', '!' },
             },
           },
-        }
+        },
       })
-    end
+    end,
   },
-
   -- LSP
   {
     'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
-    event = {'BufReadPre', 'BufNewFile'},
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      {'hrsh7th/cmp-nvim-lsp'},
+      { 'hrsh7th/cmp-nvim-lsp' },
       { 'j-hui/fidget.nvim' },
-      {'williamboman/mason-lspconfig.nvim'},
+      { 'williamboman/mason-lspconfig.nvim' },
       {
         'williamboman/mason.nvim',
         build = function()
@@ -164,16 +156,14 @@ return {
         hint = '',
         info = ' ',
       })
-
       -- Always install following servers
       lsp.ensure_installed({
-        'elixirls',
-        'tailwindcss',
-        'emmet_ls',
-        'tsserver',
         'astro',
+        'elixirls',
+        'emmet_ls',
+        'tailwindcss',
+        'tsserver',
       })
-
       -- Set keybinds on LSP attach to the buffer
       lsp.on_attach(function(client, bufnr)
         local nmap = function(keys, func, desc)
@@ -216,10 +206,10 @@ return {
         nmap('gl', vim.diagnostic.open_float, '[G]oto Diagnostic [L]ist')
         nmap('<leader>vd', vim.diagnostic.open_float, '[V]iew [D]iognostics')
         -- typescript specific keymaps (e.g. rename file and update imports)
-        if client.name == "tsserver" then
-          nmap("<leader>rf", ":TypescriptRenameFile<CR>", '[R]ename [F]ile')
-          nmap("<leader>oi", ":TypescriptOrganizeImports<CR>", '[O]rganise [I]mports')
-          nmap("<leader>ru", ":TypescriptRemoveUnused<CR>", '[R]emove [U]nused')
+        if client.name == 'tsserver' then
+          nmap('<leader>rf', ':TypescriptRenameFile<CR>', '[R]ename [F]ile')
+          nmap('<leader>oi', ':TypescriptOrganizeImports<CR>', '[O]rganise [I]mports')
+          nmap('<leader>ru', ':TypescriptRemoveUnused<CR>', '[R]emove [U]nused')
         end
       end)
 
@@ -228,8 +218,8 @@ return {
           timeout_ms = 10000,
         },
         servers = {
-          ['null-ls'] = {'javascript', 'typescript', 'lua', 'php', 'yaml', 'json'},
-        }
+          ['null-ls'] = { 'javascript', 'typescript', 'lua', 'php', 'yaml', 'json' },
+        },
       })
 
       -- (Optional) Configure lua language server for neovim
@@ -237,21 +227,33 @@ return {
       null_ls.setup({
         sources = {
           -- Here you can add tools not supported by mason.nvim
-        }
+        },
       })
 
       -- See mason-null-ls.nvim's documentation for more details:
       -- https://github.com/jay-babu/mason-null-ls.nvim#setup
       require('mason-null-ls').setup({
-        ensure_installed = nil,
-        automatic_installation = false, -- You can still set this to `true`
+        ensure_installed = {
+          'prettier',
+          'eslint',
+          'stylua',
+          'stylelint',
+          'shellcheck',
+          'phpcs',
+          'phpcbf',
+          'phpstan',
+          'markdownlint',
+          'yamllint',
+          'jsonlint',
+        },
+        automatic_installation = true, -- You can still set this to `true`
         handlers = {
-            -- Here you can add functions to register sources.
-            -- See https://github.com/jay-babu/mason-null-ls.nvim#handlers-usage
-            --
-            -- If left empty, mason-null-ls will  use a "default handler"
-            -- to register all sources
-        }
+          -- Here you can add functions to register sources.
+          -- See https://github.com/jay-babu/mason-null-ls.nvim#handlers-usage
+          --
+          -- If left empty, mason-null-ls will  use a "default handler"
+          -- to register all sources
+        },
       })
 
       local lspconfig = require('lspconfig')
@@ -261,25 +263,25 @@ return {
           yaml = {
             keyOrdering = true,
             schemas = {
-              ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-              ["https://json.schemastore.org/github-actions.json"] = "/.github/actions/*"
-            }
-          }
-        }
+              ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
+              ['https://json.schemastore.org/github-actions.json'] = '/.github/actions/*',
+            },
+          },
+        },
       })
 
       lspconfig.intelephense.setup({
         init_options = {
-          licenceKey = '/Users/alistairstead/Documents/intelephense.txt'
-        }
+          licenceKey = '/Users/alistairstead/Documents/intelephense.txt',
+        },
       })
 
       lspconfig.tailwindcss.setup({
         settings = {
           tailwindCSS = {
             emmetCompletions = true,
-          }
-        }
+          },
+        },
       })
 
       lspconfig.emmet_ls.setup({
@@ -289,21 +291,20 @@ return {
               markup = {
                 attributes = {
                   class = 'class',
-                  className = 'class'
-                }
+                  className = 'class',
+                },
               },
               ['markup.attributes'] = {
                 className = 'class',
-                class = 'class'
-              }
-            }
-          }
-        }
+                class = 'class',
+              },
+            },
+          },
+        },
       })
 
       lspconfig.tsserver.setup({
-        root_dir = require("lspconfig").util.root_pattern(".git", "pnpm-workspace.yaml", "pnpm-lock.yaml", "yarn.lock",
-          "package-lock.json", "bun.lockb"),
+        root_dir = require('lspconfig').util.root_pattern('.git', 'pnpm-workspace.yaml', 'pnpm-lock.yaml', 'yarn.lock', 'package-lock.json', 'bun.lockb'),
       })
 
       lsp.setup()
@@ -312,8 +313,8 @@ return {
       require('fidget').setup()
 
       vim.diagnostic.config({
-        virtual_text = true
+        virtual_text = true,
       })
-    end
-  }
+    end,
+  },
 }

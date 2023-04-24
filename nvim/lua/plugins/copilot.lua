@@ -1,18 +1,20 @@
 return {
   {
     'zbirenbaum/copilot.lua',
-    config = function()
-      require('copilot').setup({
-        filetypes = {
-          markdown = true, -- overrides default
-        },
-      })
-    end,
+    cmd = 'Copilot',
+    build = ':Copilot auth',
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true, -- overrides default
+      },
+    },
   },
   {
     'zbirenbaum/copilot-cmp',
-    config = function()
-      require('copilot_cmp').setup()
-    end,
-  }
+    dependencies = {
+      'zbirenbaum/copilot.lua',
+    },
+  },
 }

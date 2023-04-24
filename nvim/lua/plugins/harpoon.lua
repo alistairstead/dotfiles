@@ -3,13 +3,14 @@ return {
   dependencies = {
     'nvim-telescope/telescope.nvim',
   },
-  config = function()
-    require('harpoon').setup {
-      global_settings = {
-        save_on_toggle = true,
-        enter_on_sendcmd = true,
-      },
-    }
+  opts = {
+    global_settings = {
+      save_on_toggle = true,
+      enter_on_sendcmd = true,
+    },
+  },
+  config = function(_, opts)
+    require('harpoon').setup(opts)
     local mark = require('harpoon.mark')
     local ui = require('harpoon.ui')
     local nnoremap = require('alistairstead.keymap').nnoremap

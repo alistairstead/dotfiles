@@ -1,11 +1,11 @@
 return {
   {
     'laytan/cloak.nvim',
-    event = {'BufReadPre', 'BufNewFile'},
+    event = { 'BufReadPre', 'BufNewFile' },
   },
   {
     'editorconfig/editorconfig-vim',
-    event = {'BufReadPre', 'BufNewFile'},
+    event = { 'BufReadPre', 'BufNewFile' },
     init = function()
       vim.g.EditorConfig_max_line_indicator = ''
       vim.g.EditorConfig_preserve_formatoptions = 1
@@ -13,16 +13,15 @@ return {
   },
   -- tpope
   'knubie/vim-kitty-navigator',
-  'tpope/vim-repeat',
-  'tpope/vim-surround',
-  'tpope/vim-fugitive',
-  'tpope/vim-sleuth',
+  { 'tpope/vim-repeat', event = 'VeryLazy' },
+  { 'tpope/vim-surround', event = 'VeryLazy' },
   -- Primeagen doesn"t create lodash
-  'ThePrimeagen/git-worktree.nvim',
-  'ThePrimeagen/refactoring.nvim',
-  'moll/vim-bbye',
+  {
+    'moll/vim-bbye',
+    event = { 'BufReadPre', 'BufNewFile' },
+  },
   {
     'windwp/nvim-autopairs',
-    event = {'BufReadPre', 'BufNewFile'},
-  }
+    event = { 'BufReadPre', 'BufNewFile' },
+  },
 }
