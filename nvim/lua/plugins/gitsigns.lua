@@ -14,6 +14,7 @@ return {
       changedelete = { text = '▎' },
     },
   },
+  event = { 'BufReadPost', 'BufNewFile' },
   config = function(_, opts)
     local gitsigns = require('gitsigns')
     gitsigns.setup(opts)

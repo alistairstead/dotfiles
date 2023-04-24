@@ -1,7 +1,8 @@
 return {
   'krivahtoo/silicon.nvim',
   build = './install.sh build',
-  opt = {
+  event = { 'BufReadPost', 'BufNewFile' },
+  opts = {
     font = 'DankMono Nerd Font=18',
     theme = 'Dracula',
     background = '#87f',

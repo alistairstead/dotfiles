@@ -11,9 +11,35 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+--Remap space as leader key
+vim.g.mapleader = ' '
+
 require('lazy').setup('plugins', {
-  checker = {
-    -- automatically check for plugin updates
-    enabled = true,
+  -- defaults = { lazy = true },
+  install = { colorscheme = { 'tokyonight' } },
+  checker = { enabled = true },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'gzip',
+        'matchit',
+        'matchparen',
+        'netrwPlugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
   },
+  -- debug = true,
+})
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'VeryLazy',
+  callback = function()
+    -- require('alistairstead.base')
+    require('alistairstead.colors').setup()
+    require('alistairstead.maps')
+  end,
 })

@@ -13,6 +13,7 @@ return {
   },
   {
     'zbirenbaum/copilot-cmp',
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       'zbirenbaum/copilot.lua',
     },

@@ -9,30 +9,37 @@ return {
       enter_on_sendcmd = true,
     },
   },
+  keys = {
+    {
+      '<leader>a',
+      function()
+        require('harpoon.mark').add_file()
+      end,
+      desc = 'Harpoon - Add file',
+    },
+    {
+      'C-e',
+      function()
+        require('harpoon.ui').toggle_quick_menu()
+      end,
+      desc = 'Harpoon - Toggle quick menu',
+    },
+    {
+      'C-w',
+      function()
+        require('harpoon.ui').nav_file(2)
+      end,
+      desc = 'Harpoon - File 2',
+    },
+    {
+      'C-q',
+      function()
+        require('harpoon.ui').nav_file(1)
+      end,
+      desc = 'Harpoon - File 1',
+    },
+  },
   config = function(_, opts)
-    require('harpoon').setup(opts)
-    local mark = require('harpoon.mark')
-    local ui = require('harpoon.ui')
-    local nnoremap = require('alistairstead.keymap').nnoremap
-
-    local silent = { silent = true }
-
-    nnoremap('<leader>a', function()
-      mark.add_file()
-    end, silent)
-
-    nnoremap('<C-e>', function()
-      ui.toggle_quick_menu()
-    end, silent)
-
-    nnoremap('<C-w>', function()
-      ui.nav_file(2)
-    end, silent)
-
-    nnoremap('<C-q>', function()
-      ui.nav_file(1)
-    end, silent)
-
-    require("telescope").load_extension "harpoon"
+    require('telescope').load_extension('harpoon')
   end,
 }
