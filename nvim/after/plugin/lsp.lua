@@ -1,8 +1,8 @@
 local lsp = require('lsp-zero')
+local lspconfig = require('lspconfig')
 local cmp = require('cmp')
 local types = require('cmp.types')
 local mapping = cmp.mapping
-local luasnip = require('luasnip')
 
 local cmp_kinds = {
   Text = '  ',
@@ -34,26 +34,73 @@ local cmp_kinds = {
 }
 
 -- Use recommended preset
-lsp.preset('recommended')
+lsp.preset({})
+
+lsp.set_sign_icons({
+  error = ' ',
+  warn = ' ',
+  hint = '',
+  info = ' ',
+})
 
 -- Always install following servers
 lsp.ensure_installed({
   'elixirls',
+  'tailwindcss',
+  'emmet_ls',
   'tsserver',
   'astro',
 })
 
-lsp.set_preferences({
-  sign_icons = {
-    error = ' ',
-    warn = ' ',
-    hint = '',
-    info = ' ',
+lspconfig.yamlls.setup({
+  settings = {
+    yaml = {
+      keyOrdering = true,
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["https://json.schemastore.org/github-actions.json"] = "/.github/actions/*"
+      }
+    }
   }
 })
 
-lsp.configure('tsserver', {
-  root_dir = require("lspconfig").util.root_pattern(".git", "pnpm-workspace.yaml", "pnpm-lock.yaml", "yarn.lock", "package-lock.json", "bun.lockb"),
+lspconfig.intelephense.setup({
+  init_options = {
+    licenceKey = '/Users/alistairstead/Documents/intelephense.txt'
+  }
+})
+
+lspconfig.tailwindcss.setup({
+  settings = {
+    tailwindCSS = {
+      emmetCompletions = true,
+    }
+  }
+})
+
+
+lspconfig.emmet_ls.setup({
+  init_options = {
+    jsx = {
+      options = {
+        markup = {
+          attributes = {
+            class = 'class',
+            className = 'class'
+          }
+        },
+        ['markup.attributes'] = {
+          className = 'class',
+          class = 'class'
+        }
+      }
+    }
+  }
+})
+
+lspconfig.tsserver.setup({
+  root_dir = require("lspconfig").util.root_pattern(".git", "pnpm-workspace.yaml", "pnpm-lock.yaml", "yarn.lock",
+    "package-lock.json", "bun.lockb"),
 })
 
 -- Set keybinds on LSP attach to the buffer
@@ -88,15 +135,11 @@ lsp.on_attach(function(client, bufnr)
   end, '[W]orkspace [L]ist Folders')
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
+    vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
   end, { desc = 'Format current buffer with LSP' })
   -- Formatting
   nmap('<leader>f', function()
-    if vim.lsp.buf.format then
-      vim.lsp.buf.format()
-    elseif vim.lsp.buf.formatting then
-      vim.lsp.buf.formatting()
-    end
+    vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
   end, 'Run formatter')
   -- Navigate diagnostics
   nmap('gl', vim.diagnostic.open_float, '[G]oto Diagnostic [L]ist')
@@ -109,36 +152,30 @@ lsp.on_attach(function(client, bufnr)
   end
 end)
 
+lsp.format_on_save({
+  format_opts = {
+    timeout_ms = 10000,
+  },
+  servers = {
+    ['null-ls'] = {'javascript', 'typescript', 'lua', 'php', 'yaml', 'json'},
+  }
+})
+
 lsp.setup()
 
 -- Turn on lsp status information
 require('fidget').setup()
 
--- Setup completion keybinds
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-end
-local cmp_config = lsp.defaults.cmp_config({
+local cmp_action = require('lsp-zero').cmp_action()
+cmp.setup({
+  preselect = 'item',
   formatting = {
     format = function(_, vim_item)
       vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
       return vim_item
     end,
   },
-  window = {
-    documentation = {
-      winhighlight = 'Normal:Normal,FloatBorder:NonText,CursorLine:Visual,Search:None'
-    },
-    completion = {
-      winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
-    },
-  },
-  confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false,
-  },
-  mapping = lsp.defaults.cmp_mappings({
+  mapping = {
     ['<C-d>'] = mapping(mapping.scroll_docs(8), { 'i' }),
     ['<C-u>'] = mapping(mapping.scroll_docs(-8), { 'i' }),
     ['<C-Space>'] = mapping.complete(),
@@ -147,40 +184,18 @@ local cmp_config = lsp.defaults.cmp_config({
     ['<CR>'] = mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
     ['<C-j>'] = mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
     ['<C-k>'] = mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
-    ['<Tab>'] = mapping(function(fallback)
-      if cmp.visible() and has_words_before() then
-        cmp.select_next_item({ behaviour = cmp.SelectBehavior.Replace })
-      elseif luasnip.expandable() then
-        luasnip.expand({})
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert })
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  }),
+    ['<Tab>'] = cmp_action.tab_complete(),
+    ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+  },
   sources = {
-    { name = "luasnip",                priority = 100 },
-    { name = "nvim_lsp",               priority = 90, keyword_length = 1 },
+    { name = "nvim_lsp",               priority = 100, keyword_length = 1 },
+    { name = "copilot",                priority = 100,  keyword_length = 1 },
     { name = "nvim_lsp_signature_help" },
-    { name = "nvim_lua",               priority = 90 },
-    { name = "copilot",                priority = 80, keyword_length = 3 },
+    { name = "nvim_lua",               priority = 80 },
+    { name = "luasnip",                priority = 50 },
     { name = "path",                   priority = 5 },
   },
 })
-
-cmp.setup(cmp_config)
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
@@ -216,4 +231,26 @@ cmp.setup.cmdline(':', {
 
 vim.diagnostic.config({
   virtual_text = true
+})
+
+local null_ls = require('null-ls')
+
+null_ls.setup({
+  sources = {
+    -- Here you can add tools not supported by mason.nvim
+  }
+})
+
+-- See mason-null-ls.nvim's documentation for more details:
+-- https://github.com/jay-babu/mason-null-ls.nvim#setup
+require('mason-null-ls').setup({
+  ensure_installed = nil,
+  automatic_installation = false, -- You can still set this to `true`
+  handlers = {
+      -- Here you can add functions to register sources.
+      -- See https://github.com/jay-babu/mason-null-ls.nvim#handlers-usage
+      --
+      -- If left empty, mason-null-ls will  use a "default handler"
+      -- to register all sources
+  }
 })

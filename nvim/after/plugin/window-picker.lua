@@ -4,30 +4,31 @@ if not ok then
 end
 
 window_picker.setup({
+  show_prompt = true,
   filter_rules = {
     -- filter using buffer options
     bo = {
       -- if the file type is one of following, the window will be ignored
-      filetype = { 'notify' },
+      filetype = { 'NvimTree', "neo-tree", "notify" },
 
       -- if the buffer type is one of following, the window will be ignored
       buftype = {},
     },
   },
 
-  fg_color = '#111111',
+  fg_color = '#EF87BD',
 
   -- if you have include_current_win == true, then current_win_hl_color will
   -- be highlighted using this background color
-  current_win_hl_color = '#2D4F67',
+  current_win_hl_color = '#454158',
 
   -- all the windows except the curren window will be highlighted using this color
-  other_win_hl_color = '#76946A',
+  other_win_hl_color = '#454158',
 })
 
 vim.keymap.set('n', '-', function()
   local window = window_picker.pick_window({
-    autoselect_one = false,
+    autoselect_one = true,
     include_current_win = true,
   })
   if window then

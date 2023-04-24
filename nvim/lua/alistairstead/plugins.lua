@@ -11,7 +11,6 @@ require('packer').startup({
     function(use)
       -- Packer
       use({ 'wbthomason/packer.nvim' })
-
       -- general UI improvements
       use({
           'levouh/tint.nvim',
@@ -21,13 +20,11 @@ require('packer').startup({
               'junegunn/fzf',
           } },
       })
-
       -- Icons
       use({
           'kyazdani42/nvim-web-devicons',
           -- event = 'VimEnter',
       })
-
       -- trouble.nvim
       use({
           'folke/trouble.nvim',
@@ -38,15 +35,12 @@ require('packer').startup({
             })
           end,
       })
-
       use({ 'glepnir/dashboard-nvim' })
-
       -- Bufferline
       use({
           'akinsho/bufferline.nvim',
       })
 
-      -- Status line
       use { 'windwp/windline.nvim' }
       -- use({
       --     'nvim-lualine/lualine.nvim',
@@ -54,7 +48,6 @@ require('packer').startup({
       --         'SmiteshP/nvim-navic',
       --     },
       -- })
-
       -- Better Commenting
       use({
           'numToStr/Comment.nvim',
@@ -69,28 +62,22 @@ require('packer').startup({
           'tpope/vim-fugitive',
           'tpope/vim-sleuth',
       })
-
       -- Primeagen doesn"t create lodash
       use('ThePrimeagen/git-worktree.nvim')
       use('ThePrimeagen/harpoon')
       use('ThePrimeagen/refactoring.nvim')
-
       -- Better buffer closing
       use({
           'moll/vim-bbye',
       })
-
       -- Use vim keybindings to navigate to kitty windows
       use({
           'knubie/vim-kitty-navigator'
       })
-
       -- Cloak (by laytanl_)
       -- Hide env var values
       use('laytan/cloak.nvim')
-
       use('s1n7ax/nvim-window-picker')
-
       -- File explorer
       use({
           'nvim-neo-tree/neo-tree.nvim',
@@ -101,7 +88,6 @@ require('packer').startup({
               'MunifTanjim/nui.nvim',
           },
       })
-
       -- Syntax highlighting
       use({
           'nvim-treesitter/nvim-treesitter',
@@ -117,7 +103,6 @@ require('packer').startup({
               'windwp/nvim-ts-autotag',
           },
       })
-
       -- Better indentation
       use({
           'editorconfig/editorconfig-vim',
@@ -126,7 +111,6 @@ require('packer').startup({
             vim.g.EditorConfig_preserve_formatoptions = 1
           end,
       })
-
       -- AI completion
       -- use('github/copilot.vim')
       use('zbirenbaum/copilot.lua')
@@ -143,7 +127,6 @@ require('packer').startup({
           'akinsho/toggleterm.nvim',
           module = { 'toggleterm', 'toggleterm.terminal' },
       })
-
       -- Telescope
       use({
           'nvim-telescope/telescope.nvim',
@@ -159,15 +142,22 @@ require('packer').startup({
               'ahmedkhalf/project.nvim',
           },
       })
-      -- formatter
-      use { 'mhartington/formatter.nvim' }
       -- Language servers
       use { 'VonHeikemen/lsp-zero.nvim',
+          branch = 'v2.x',
           requires = {
               -- LSP Support
               { 'neovim/nvim-lspconfig' },
-              { 'williamboman/mason.nvim' },
+              {
+                'williamboman/mason.nvim',
+                run = function()
+                  pcall(vim.cmd, 'MasonUpdate')
+                end,
+              },
               { 'williamboman/mason-lspconfig.nvim' },
+              { 'jay-babu/mason-null-ls.nvim' },
+              { 'lukas-reineke/lsp-format.nvim' },
+              { 'jose-elias-alvarez/null-ls.nvim' },
               -- Autocompletion
               { 'hrsh7th/nvim-cmp' },
               { 'hrsh7th/cmp-buffer' },
@@ -189,19 +179,16 @@ require('packer').startup({
               { 'folke/neodev.nvim' },
           }
       }
-
       -- Colorscheme
       use({
           'folke/tokyonight.nvim',
           'projekt0n/github-nvim-theme',
           'navarasu/onedark.nvim',
       })
-
       -- Colours
       use({
           'NvChad/nvim-colorizer.lua',
       })
-
       -- Markdown
       use({
         "iamcco/markdown-preview.nvim",
@@ -212,7 +199,6 @@ require('packer').startup({
         ft = { "markdown" },
       })
       -- use({'lukas-reineke/headlines.nvim'})
-
       -- Git
       use({
           'lewis6991/gitsigns.nvim',
@@ -223,7 +209,6 @@ require('packer').startup({
               },
           },
       })
-
       use({
           'nvim-neotest/neotest',
           requires = {

@@ -64,7 +64,9 @@ neotree.setup({
       ['l'] = 'open',
       ['<CR>'] = 'open',
       ['o'] = 'open_with_window_picker',
+      ["s"] = "open_split",
       ['v'] = 'vsplit_with_window_picker',
+      ["w"] = "open_with_window_picker",
       ['<C-x>'] = 'split_with_window_picker',
       ['t'] = 'open_tabnew',
       ['T'] = 'open_tabnew',
@@ -85,17 +87,7 @@ neotree.setup({
       ['q'] = 'close_window',
       [']c'] = 'next_git_modified',
       ['[c'] = 'prev_git_modified',
-      -- reset default mappings
-      ['space'] = '',
-      ['<2-LeftMouse>'] = '',
-      [']g'] = '',
-      ['[g'] = '',
-      ['S'] = '',
-      ['s'] = '',
-      ['<bs>'] = '',
-      ['.'] = '',
-      ['A'] = '',
-      ['/'] = '',
+      ["?"] = "show_help",
     },
     mapping_options = {
       nowait = true,
@@ -120,7 +112,7 @@ neotree.setup({
     -- "open_current",  -- netrw disabled, opening a directory opens within the
     -- window like netrw would, regardless of window.position
     -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-    -- use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
+    use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
     -- instead of relying on nvim autocmd events.
   },
   buffers = {
@@ -132,23 +124,3 @@ neotree.setup({
     },
   },
 })
-
-local Remap = require('alistairstead.keymap')
-local nnoremap = Remap.nnoremap
-
-nnoremap('<leader>e', '<cmd>Neotree toggle<CR>', {
-  desc = 'Tree toggle',
-})
--- require('neo-tree.ui.inputs').confirm = function(message, callback)
---   callback(vim.fn.confirm(message, '&Yes\n&No') == 1)
--- end
---
--- require('neo-tree.ui.inputs').input = function(message, default_value, callback, options, completion)
---   local input
---   if completion then
---     input = vim.fn.input(message .. ' ', default_value or '', completion)
---   else
---     input = vim.fn.input(message .. ' ', default_value or '')
---   end
---   callback(input)
--- end
