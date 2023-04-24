@@ -3,7 +3,7 @@ Colors = {}
 function Colors.setup()
   -- Configure colorscheme
   vim.opt.termguicolors = true
-  vim.cmd 'colorscheme dracula_pro'
+  -- vim.cmd 'colorscheme dracula_pro'
 
   -- Italicise comments
   Colors.update_hl('Comment', { fg = '#7970A9', italic = true })
