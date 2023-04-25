@@ -1,20 +1,31 @@
 return {
   'akinsho/bufferline.nvim',
+  version = '*',
+  dependencies = 'nvim-tree/nvim-web-devicons',
+  -- event = { 'BufReadPre', 'BufNewFile' },
+  -- event = 'VimEnter',
+  event = 'VeryLazy',
+  keys = {
+    { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle pin' },
+    { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete non-pinned buffers' },
+  },
   opts = {
     options = {
+      themable = true,
       indicator = {
-        icon = ' ',
+        -- icon = ' ',
+        style = 'underline',
       },
       show_close_icon = false,
+      show_buffer_close_icon = false,
       offsets = {
         {
-          filetype = 'NvimTree',
+          filetype = 'neo-tree',
           text = '  Files',
           padding = 1,
           highlight = 'StatusLine',
           text_align = 'left',
         },
-        { filetype = 'neo-tree', text = '', padding = 1 },
         { filetype = 'Outline', text = '', padding = 1 },
       },
       buffer_close_icon = '',
@@ -23,7 +34,11 @@ return {
       max_name_length = 14,
       max_prefix_length = 13,
       tab_size = 20,
-      separator_style = 'slant',
+      separator_style = 'thin',
+      diagnostics = 'nvim_lsp',
+      color_icons = true,
+      sort_by = 'id',
+      always_show_bufferline = true,
       -- custom_areas = {
       --   left = function()
       --     return {
