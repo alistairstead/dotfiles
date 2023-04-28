@@ -44,19 +44,33 @@ return {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'L3MON4D3/LuaSnip' },
-      { 'hrsh7th/nvim-cmp' },
       { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-path' },
+      { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' },
       { 'davidsierradz/cmp-conventionalcommits' },
       { 'petertriho/cmp-git' },
       { 'rafamadriz/friendly-snippets' },
-      { 'zbirenbaum/neodim' },
       { 'folke/neodev.nvim' },
+      {
+        'zbirenbaum/copilot-cmp',
+        dependencies = {
+          {
+            'zbirenbaum/copilot.lua',
+            cmd = 'Copilot',
+            build = ':Copilot auth',
+            opts = {
+              suggestion = { enabled = false },
+              panel = { enabled = false },
+              filetypes = {
+                markdown = true, -- overrides default
+              },
+            },
+          },
+        },
+      },
     },
     config = function()
       -- Here is where you configure the autocompletion settings.
@@ -89,12 +103,12 @@ return {
           ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
         },
         sources = {
-          { name = 'nvim_lsp', priority = 100, keyword_length = 1 },
-          { name = 'copilot', priority = 100, keyword_length = 1 },
+          { name = 'nvim_lsp' },
+          { name = 'copilot' },
           { name = 'nvim_lsp_signature_help' },
-          { name = 'nvim_lua', priority = 80 },
-          { name = 'luasnip', priority = 50 },
-          { name = 'path', priority = 5 },
+          { name = 'nvim_lua' },
+          { name = 'luasnip' },
+          { name = 'path' },
         },
       })
       -- Set configuration for specific filetype.
@@ -131,17 +145,11 @@ return {
   {
     'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
-    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'j-hui/fidget.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
-      {
-        'williamboman/mason.nvim',
-        build = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
+      { 'williamboman/mason.nvim' },
       { 'jay-babu/mason-null-ls.nvim' },
       { 'lukas-reineke/lsp-format.nvim' },
       { 'jose-elias-alvarez/null-ls.nvim' },
@@ -239,9 +247,6 @@ return {
           'stylua',
           'stylelint',
           'shellcheck',
-          'phpcs',
-          'phpcbf',
-          'phpstan',
           'markdownlint',
           'yamllint',
           'jsonlint',
@@ -305,6 +310,30 @@ return {
 
       lspconfig.tsserver.setup({
         root_dir = require('lspconfig').util.root_pattern('.git', 'pnpm-workspace.yaml', 'pnpm-lock.yaml', 'yarn.lock', 'package-lock.json', 'bun.lockb'),
+        settings = {
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = 'literal',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = false,
+              includeInlayVariableTypeHints = false,
+              includeInlayPropertyDeclarationTypeHints = false,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+          },
+          javascript = {
+            inlayHints = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+          },
+        },
       })
 
       lsp.setup()
@@ -314,6 +343,24 @@ return {
 
       vim.diagnostic.config({
         virtual_text = true,
+      })
+    end,
+  },
+  {
+    'lvimuser/lsp-inlayhints.nvim',
+    event = 'LspAttach',
+    opts = {},
+    config = function(_, opts)
+      require('lsp-inlayhints').setup(opts)
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('LspAttach_inlayhints', {}),
+        callback = function(args)
+          if not (args.data and args.data.client_id) then
+            return
+          end
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          require('lsp-inlayhints').on_attach(client, args.buf)
+        end,
       })
     end,
   },

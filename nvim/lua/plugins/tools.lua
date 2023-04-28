@@ -11,11 +11,18 @@ return {
       vim.g.EditorConfig_preserve_formatoptions = 1
     end,
   },
+  {
+    'knubie/vim-kitty-navigator',
+    keys = {
+      { '<C-h>', '<cmd>KittyNavigateLeft<cr>', desc = 'KittyNavigateLeft' },
+      { '<C-l>', '<cmd>KittyNavigateRight<cr>', desc = 'KittyNavigateRight' },
+      { '<C-j>', '<cmd>KittyNavigateDown<cr>', desc = 'KittyNavigateDown' },
+      { '<C-k>', '<cmd>KittyNavigateUp<cr>', desc = 'KittyNavigateUp' },
+    },
+  },
   -- tpope
-  'knubie/vim-kitty-navigator',
   { 'tpope/vim-repeat', event = 'VeryLazy' },
   { 'tpope/vim-surround', event = 'VeryLazy' },
-  -- Primeagen doesn"t create lodash
   {
     'moll/vim-bbye',
     event = { 'BufReadPre', 'BufNewFile' },

@@ -1,1 +1,2 @@
-require('alistairstead')
+require('config.options')
+require('config.lazy')

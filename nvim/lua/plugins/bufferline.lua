@@ -3,8 +3,8 @@ return {
   version = '*',
   dependencies = 'nvim-tree/nvim-web-devicons',
   -- event = { 'BufReadPre', 'BufNewFile' },
-  -- event = 'VimEnter',
-  event = 'VeryLazy',
+  event = 'VimEnter',
+  -- event = 'VeryLazy',
   keys = {
     { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle pin' },
     { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete non-pinned buffers' },
@@ -12,40 +12,17 @@ return {
   opts = {
     options = {
       themable = true,
-      indicator = {
-        -- icon = ' ',
-        style = 'underline',
-      },
-      show_close_icon = false,
-      show_buffer_close_icon = false,
-      offsets = {
-        {
-          filetype = 'neo-tree',
-          text = '  Files',
-          padding = 1,
-          highlight = 'StatusLine',
-          text_align = 'left',
-        },
-        { filetype = 'Outline', text = '', padding = 1 },
-      },
+      -- indicator = {
+      --   -- icon = ' ',
+      --   style = 'underline',
+      -- },
       buffer_close_icon = '',
       modified_icon = '●',
       close_icon = '',
-      max_name_length = 14,
-      max_prefix_length = 13,
       tab_size = 20,
-      separator_style = 'thin',
-      diagnostics = 'nvim_lsp',
-      color_icons = true,
-      sort_by = 'id',
-      always_show_bufferline = true,
-      -- custom_areas = {
-      --   left = function()
-      --     return {
-      --       { text = '    ', fg = '#8fff6d' },
-      --     }
-      --   end,
-      -- },
+      separator_style = 'slant',
+      -- diagnostics = 'nvim_lsp',
+      color_icons = false,
     },
     highlights = {
       fill = {

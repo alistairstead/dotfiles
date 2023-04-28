@@ -12,6 +12,6 @@ return {
     open_mapping = [[<C-\>]],
   },
   keys = {
-    { '<leader>`', '<cmd>ToggleTerm<cr>', desc = 'ToggleTerm' },
+    { '<C-\\>', '<cmd>ToggleTerm<cr>', desc = 'ToggleTerm' },
   },
 }

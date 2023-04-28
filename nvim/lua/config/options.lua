@@ -48,17 +48,7 @@ vim.opt.clipboard = 'unnamedplus' -- Use Linux system clipboard
 vim.opt.laststatus = 3 -- show a single global status line
 vim.opt.showtabline = 0
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menu,menuone,noselect'
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0

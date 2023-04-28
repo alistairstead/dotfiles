@@ -12,6 +12,7 @@ local expr_opts = { noremap = true, expr = true, silent = true }
 --Remap space as leader key
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -23,10 +24,11 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Better escape using jk in insert and terminal mode
 keymap('i', 'jk', '<ESC>', default_opts)
 keymap('t', 'jk', '<C-\\><C-n>', default_opts)
-keymap('t', '<C-h>', '<C-\\><C-n><C-w>h', default_opts)
-keymap('t', '<C-j>', '<C-\\><C-n><C-w>j', default_opts)
-keymap('t', '<C-k>', '<C-\\><C-n><C-w>k', default_opts)
-keymap('t', '<C-l>', '<C-\\><C-n><C-w>l', default_opts)
+
+-- Add undo break-points
+keymap('i', ',', ',<c-g>u', default_opts)
+keymap('i', '.', '.<c-g>u', default_opts)
+keymap('i', ';', ';<c-g>u', default_opts)
 
 -- Center search results
 keymap('n', 'n', 'nzz', default_opts)
@@ -44,10 +46,11 @@ keymap('v', '<A-k>', ':m .-2<CR>==', default_opts)
 keymap('v', 'p', '"_dP', default_opts)
 
 -- Better window navigation
-keymap('n', '<C-h>', '<C-w>h', opts)
-keymap('n', '<C-j>', '<C-w>j', opts)
-keymap('n', '<C-k>', '<C-w>k', opts)
-keymap('n', '<C-l>', '<C-w>l', opts)
+-- Commented because I'm using KittyNavigate
+-- keymap('n', '<C-h>', '<C-w>h', opts)
+-- keymap('n', '<C-j>', '<C-w>j', opts)
+-- keymap('n', '<C-k>', '<C-w>k', opts)
+-- keymap('n', '<C-l>', '<C-w>l', opts)
 
 -- Resize with arrows
 keymap('n', '<C-Up>', ':resize +2<CR>', default_opts)

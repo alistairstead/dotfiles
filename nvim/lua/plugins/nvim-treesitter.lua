@@ -8,11 +8,8 @@ return {
     'windwp/nvim-ts-autotag',
   },
   build = ':TSUpdate',
-  event = { 'BufReadPost', 'BufNewFile' },
-  keys = {
-    { '<c-space>', desc = 'Increment selection' },
-    { '<bs>', desc = 'Decrement selection', mode = 'x' },
-  },
+  event = 'BufReadPost',
+  main = 'nvim-treesitter.configs',
   opts = {
     -- A list of parser names, or "all"
     ensure_installed = {
@@ -29,6 +26,8 @@ return {
       'python',
       'query',
       'regex',
+      'twig',
+      'php',
       'tsx',
       'typescript',
       'vim',

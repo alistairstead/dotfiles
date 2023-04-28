@@ -18,6 +18,9 @@ require('lazy').setup('plugins', {
   -- defaults = { lazy = true },
   install = { colorscheme = { 'tokyonight' } },
   checker = { enabled = true },
+  dev = {
+    path = "~/code/",
+  },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -38,8 +41,9 @@ require('lazy').setup('plugins', {
 vim.api.nvim_create_autocmd('User', {
   pattern = 'VeryLazy',
   callback = function()
-    -- require('alistairstead.base')
-    require('alistairstead.colors').setup()
-    require('alistairstead.maps')
+    require('config.keymap')
+    require('config.autocmds')
   end,
 })
+
+vim.keymap.set('n', '<leader>z', '<cmd>:Lazy<cr>', { desc = 'Plugin Manager' })
