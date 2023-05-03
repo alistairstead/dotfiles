@@ -1,5 +1,5 @@
 return {
-  'telescope.nvim',
+  'nvim-telescope/telescope.nvim',
   dependencies = {
     'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
@@ -113,13 +113,15 @@ return {
     { '<C-p>', '<cmd>Telescope git_files<CR>', desc = 'git files' },
     { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
     -- find
-    { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = '[b] Find existing buffers' },
-    { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
+    { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = '[fb] Find existing buffers' },
+    { '<leader>bb', '<cmd>Telescope buffers<cr>', desc = '[bb] Find existing buffers' },
+    { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = '[ff] Find Files' },
     { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = '[fr] Find recently opened files' },
     -- git
-    { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = 'commits' },
-    { '<leader>gf', '<cmd>Telescope git_files<CR>', desc = 'git files' },
+    { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = '[gc] Git commits' },
+    { '<leader>gf', '<cmd>Telescope git_files<CR>', desc = '[gf] Git files' },
     -- search
+    { '<leader>s.', '<cmd>Telescope find_files search_dirs=~/.dotfiles<cr>', desc = 'Auto Commands' },
     { '<leader>sa', '<cmd>Telescope autocommands<cr>', desc = 'Auto Commands' },
     { '<leader>sb', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = 'Buffer' },
     { '<leader>sc', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
@@ -132,11 +134,12 @@ return {
     { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'Key Maps' },
     { '<leader>sM', '<cmd>Telescope man_pages<cr>', desc = 'Man Pages' },
     { '<leader>sm', '<cmd>Telescope marks<cr>', desc = 'Jump to Mark' },
+    { '<leader>sr', '<cmd>Telescope oldfiles<cr>', desc = '[fr] Find recently opened files' },
     { '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
     { '<leader>sR', '<cmd>Telescope resume<cr>', desc = 'Resume' },
     { '<leader>sw', '<cmd>Telescope grep_string<cr>', desc = 'Word' },
     {
-      '<leader>uC',
+      '<leader>cc',
       function()
         require('telescope.builtin').colorscheme({ enable_preview = true })
       end,
@@ -144,31 +147,3 @@ return {
     },
   },
 }
-
--- nnoremap('<C-t>', builtin.builtin, { desc = 'Telescope' })
--- nnoremap('<C-p>', builtin.git_files, { desc = 'Git files' })
---
--- -- See `:help telescope.builtin`
--- nnoremap('<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
--- nnoremap('<leader>b', builtin.buffers, { desc = '' })
--- nnoremap('<leader>/', function()
---   -- You can pass additional configuration to telescope to change theme, layout, etc.
---   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
---     winblend = 10,
---     previewer = false,
---   }))
--- end, { desc = '[/] Fuzzily search in current buffer]' })
---
--- nnoremap('<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
--- nnoremap('<leader>s.', function()
---   builtin.find_files({
---     search_dirs = { '~/.dotfiles/' },
---   })
--- end, { desc = '[S]earch [.]dotfiles' })
--- nnoremap('<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
--- nnoremap('<leader>sr', builtin.oldfiles, { desc = '[S]earch [R]ecent Files' })
--- nnoremap('<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
--- nnoremap('<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
--- nnoremap('<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
--- nnoremap('<leader>sp', telescope.extensions.project.project, { desc = '[S]earch [P]rojects' })
---
