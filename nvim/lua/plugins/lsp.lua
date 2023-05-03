@@ -1,32 +1,3 @@
-local cmp_kinds = {
-  Text = '  ',
-  Method = '  ',
-  Function = '  ',
-  Constructor = '  ',
-  Field = '  ',
-  Variable = '  ',
-  Class = '  ',
-  Interface = '  ',
-  Module = '  ',
-  Property = '  ',
-  Unit = '  ',
-  Value = '  ',
-  Enum = '  ',
-  Keyword = '  ',
-  Snippet = ' ',
-  Color = '  ',
-  File = '  ',
-  Reference = '  ',
-  Folder = '  ',
-  EnumMember = '  ',
-  Constant = '  ',
-  Struct = '  ',
-  Event = '  ',
-  Operator = '  ',
-  TypeParameter = '  ',
-  Copilot = '  ',
-}
-
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -39,120 +10,15 @@ return {
     end,
   },
 
-  -- Autocompletion
-  {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-path' },
-      { 'L3MON4D3/LuaSnip' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'davidsierradz/cmp-conventionalcommits' },
-      { 'petertriho/cmp-git' },
-      { 'rafamadriz/friendly-snippets' },
-      { 'folke/neodev.nvim' },
-      {
-        'zbirenbaum/copilot-cmp',
-        dependencies = {
-          {
-            'zbirenbaum/copilot.lua',
-            cmd = 'Copilot',
-            build = ':Copilot auth',
-            opts = {
-              suggestion = { enabled = false },
-              panel = { enabled = false },
-              filetypes = {
-                markdown = true, -- overrides default
-              },
-            },
-          },
-        },
-      },
-    },
-    config = function()
-      -- Here is where you configure the autocompletion settings.
-      -- The arguments for .extend() have the same shape as `manage_nvim_cmp`:
-      -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#manage_nvim_cmp
-      require('lsp-zero.cmp').extend()
-      -- And you can configure cmp even more, if you want to.
-      local cmp = require('cmp')
-      local types = require('cmp.types')
-      local mapping = cmp.mapping
-      local cmp_action = require('lsp-zero.cmp').action()
-      cmp.setup({
-        preselect = 'item',
-        formatting = {
-          format = function(_, vim_item)
-            vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
-            return vim_item
-          end,
-        },
-        mapping = {
-          ['<C-d>'] = mapping(mapping.scroll_docs(8), { 'i' }),
-          ['<C-u>'] = mapping(mapping.scroll_docs(-8), { 'i' }),
-          ['<C-Space>'] = mapping.complete(),
-          ['<C-e>'] = mapping.abort(),
-          ['<C-c>'] = mapping.abort(),
-          ['<CR>'] = mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-          ['<C-j>'] = mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Select }),
-          ['<C-k>'] = mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Select }),
-          ['<Tab>'] = cmp_action.tab_complete(),
-          ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
-        },
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'copilot' },
-          { name = 'nvim_lsp_signature_help' },
-          { name = 'nvim_lua' },
-          { name = 'luasnip' },
-          { name = 'path' },
-        },
-      })
-      -- Set configuration for specific filetype.
-      cmp.setup.filetype('gitcommit', {
-        sources = cmp.config.sources({
-          { name = 'git' },
-        }, {
-          { name = 'buffer' },
-        }, { { name = 'conventionalcommits' } }),
-      })
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline('/', {
-        sources = {
-          { name = 'buffer' },
-        },
-      })
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(':', {
-        sources = {
-          { name = 'path' },
-        },
-        {
-          {
-            name = 'cmdline',
-            option = {
-              ignore_cmds = { 'Man', '!' },
-            },
-          },
-        },
-      })
-    end,
-  },
   -- LSP
   {
     'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
       { 'j-hui/fidget.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
       { 'williamboman/mason.nvim' },
-      { 'jay-babu/mason-null-ls.nvim' },
-      { 'lukas-reineke/lsp-format.nvim' },
-      { 'jose-elias-alvarez/null-ls.nvim' },
     },
     config = function()
       -- This is where all the LSP shenanigans will live
@@ -192,16 +58,16 @@ return {
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
         -- Show * symbols
         nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-        nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+        -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
         -- See `:help K` for why this keymap
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
         nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
         -- Lesser used LSP functionality
-        nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-        nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-        nmap('<leader>wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, '[W]orkspace [L]ist Folders')
+        -- nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+        -- nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+        -- nmap('<leader>wl', function()
+        --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        -- end, '[W]orkspace [L]ist Folders')
         -- Create a command `:Format` local to the LSP buffer
         vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
           vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
@@ -230,43 +96,12 @@ return {
         },
       })
 
-      -- (Optional) Configure lua language server for neovim
-      local null_ls = require('null-ls')
-      null_ls.setup({
-        sources = {
-          -- Here you can add tools not supported by mason.nvim
-        },
-      })
-
-      -- See mason-null-ls.nvim's documentation for more details:
-      -- https://github.com/jay-babu/mason-null-ls.nvim#setup
-      require('mason-null-ls').setup({
-        ensure_installed = {
-          'prettier',
-          'eslint',
-          'stylua',
-          'stylelint',
-          'shellcheck',
-          'markdownlint',
-          'yamllint',
-          'jsonlint',
-        },
-        automatic_installation = true, -- You can still set this to `true`
-        handlers = {
-          -- Here you can add functions to register sources.
-          -- See https://github.com/jay-babu/mason-null-ls.nvim#handlers-usage
-          --
-          -- If left empty, mason-null-ls will  use a "default handler"
-          -- to register all sources
-        },
-      })
-
       local lspconfig = require('lspconfig')
       lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
       lspconfig.yamlls.setup({
         settings = {
           yaml = {
-            keyOrdering = true,
+            keyOrdering = false,
             schemas = {
               ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
               ['https://json.schemastore.org/github-actions.json'] = '/.github/actions/*',

@@ -1,6 +1,7 @@
 return {
   'zbirenbaum/neodim',
-  event = { 'VeryLazy' },
+  -- event = { 'VeryLazy' },
+  event = { 'BufReadPost', 'BufNewFile' },
   opts = {
     alpha = 0.5,
     hide = {

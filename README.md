@@ -22,6 +22,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/alistairstead/dotfiles/m
 - Connect Dropbox
 - Restore [makckup](https://github.com/lra/mackup)
 
+---
+
 ## Fonts and terminal
 
 - Install commercial font

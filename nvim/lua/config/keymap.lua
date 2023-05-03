@@ -66,8 +66,6 @@ keymap('n', '<leader>w', '<cmd>w<CR>', default_opts)
 keymap('n', '<leader>W', '<cmd>w!<CR>', default_opts)
 keymap('n', '<leader>q', '<cmd>q<CR>', default_opts)
 keymap('n', '<leader>Q', '<cmd>q!<CR>', default_opts)
-keymap('n', '<leader>c', ':Bdelete<CR>', default_opts)
-keymap('n', '<leader>C', ':Bdelete<CR>', default_opts)
 
 -- Clear search highlight
 keymap('n', '<leader><space>', ':nohlsearch<Bar>:echo<CR>', default_opts)

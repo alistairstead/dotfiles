@@ -1,7 +1,7 @@
 return {
   {
     'laytan/cloak.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'VeryLazy',
   },
   {
     'editorconfig/editorconfig-vim',
@@ -20,15 +20,65 @@ return {
       { '<C-k>', '<cmd>KittyNavigateUp<cr>', desc = 'KittyNavigateUp' },
     },
   },
-  -- tpope
   { 'tpope/vim-repeat', event = 'VeryLazy' },
-  { 'tpope/vim-surround', event = 'VeryLazy' },
+  {
+    'kylechui/nvim-surround',
+    version = '*', -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+  },
   {
     'moll/vim-bbye',
-    event = { 'BufReadPre', 'BufNewFile' },
+    cmd = { 'Bdelete', 'Bwipeout' },
+    keys = {
+      { '<leader>c', '<cmd>Bdelete<cr>', desc = 'Buffer delete' },
+    },
   },
   {
     'windwp/nvim-autopairs',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { 'InsertEnter' },
+  },
+  { 'pwntester/octo.nvim', opts = {}, cmd = 'Octo' },
+  -- markdown preview
+  {
+    'toppair/peek.nvim',
+    build = 'deno task --quiet build:fast',
+    ft = 'markdown',
+    keys = {
+      {
+        '<leader>op',
+        function()
+          local peek = require('peek')
+          if peek.is_open() then
+            peek.close()
+          else
+            peek.open()
+          end
+        end,
+        desc = 'Peek (Markdown Preview)',
+      },
+    },
+    opts = { theme = 'dark', app = 'browser' },
+  },
+  {
+    'ThePrimeagen/refactoring.nvim',
+    keys = {
+      {
+        '<leader>r',
+        function()
+          require('refactoring').select_refactor()
+        end,
+        mode = 'v',
+        noremap = true,
+        silent = true,
+        expr = false,
+      },
+    },
+  },
+  -- better diffing
+  {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
+    config = true,
+    keys = { { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'DiffView' } },
   },
 }
