@@ -10,11 +10,9 @@ return {
         require('telescope').load_extension('fzf')
       end,
     },
-    -- 'nvim-telescope/telescope-project.nvim',
     {
       'ahmedkhalf/project.nvim',
       opts = {},
-      event = 'VeryLazy',
       config = function(_, opts)
         require('project_nvim').setup(opts)
         require('telescope').load_extension('projects')
@@ -100,6 +98,11 @@ return {
       },
     },
     extensions = {
+      ['ui-select'] = {
+        require('telescope.themes').get_dropdown({
+          -- even more opts
+        }),
+      },
       project = {
         base_dirs = {
           '~/code',

@@ -2,18 +2,19 @@ return {
   {
     'folke/styler.nvim',
     event = 'VeryLazy',
+    enabled = false,
     config = function()
       require('styler').setup({
         themes = {
-          markdown = { colorscheme = 'gruvbox' },
-          help = { colorscheme = 'gruvbox' },
+          markdown = { colorscheme = 'dracula_pro_morbius' },
+          help = { colorscheme = 'dracula_pro_morbius' },
         },
       })
     end,
   },
   {
     'folke/tokyonight.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       colors = {
@@ -24,7 +25,6 @@ return {
         Comment = { italic = true },
         VertSplit = { fg = '#454158', bg = '#282a36' },
       },
-
     },
     config = function(_, opts)
       local tokyonight = require('tokyonight')
@@ -34,53 +34,39 @@ return {
   },
   {
     'navarasu/onedark.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
-  },
-  {
-    'catppuccin/nvim',
-    lazy = false,
-    name = 'catppuccin',
-    priority = 1000,
-  },
-  {
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('gruvbox').setup()
-    end,
   },
   {
     'Mofiqul/dracula.nvim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = true, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
       -- customize dracula color palette
       colors = {
         bg = '#282a36',
         bg_dark = '#21222c',
-      --   fg = '#F8F8F2',
-      --   selection = '#44475A',
-      --   comment = '#6272A4',
-      --   red = '#FF5555',
-      --   orange = '#FFB86C',
-      --   yellow = '#F1FA8C',
-      --   green = '#50fa7b',
-      --   purple = '#BD93F9',
-      --   cyan = '#8BE9FD',
-      --   pink = '#FF79C6',
-      --   bright_red = '#FF6E6E',
-      --   bright_green = '#69FF94',
-      --   bright_yellow = '#FFFFA5',
-      --   bright_blue = '#D6ACFF',
-      --   bright_magenta = '#FF92DF',
-      --   bright_cyan = '#A4FFFF',
-      --   bright_white = '#FFFFFF',
-      --   menu = '#21222C',
-      --   visual = '#3E4452',
-      --   gutter_fg = '#4B5263',
-      --   nontext = '#3B4048',
+        --   fg = '#F8F8F2',
+        --   selection = '#44475A',
+        --   comment = '#6272A4',
+        --   red = '#FF5555',
+        --   orange = '#FFB86C',
+        --   yellow = '#F1FA8C',
+        --   green = '#50fa7b',
+        --   purple = '#BD93F9',
+        --   cyan = '#8BE9FD',
+        --   pink = '#FF79C6',
+        --   bright_red = '#FF6E6E',
+        --   bright_green = '#69FF94',
+        --   bright_yellow = '#FFFFA5',
+        --   bright_blue = '#D6ACFF',
+        --   bright_magenta = '#FF92DF',
+        --   bright_cyan = '#A4FFFF',
+        --   bright_white = '#FFFFFF',
+        --   menu = '#21222C',
+        --   visual = '#3E4452',
+        --   gutter_fg = '#4B5263',
+        --   nontext = '#3B4048',
       },
       -- -- show the '~' characters after the end of buffers
       -- -- show_end_of_buffer = true, -- default false
@@ -92,11 +78,11 @@ return {
       -- italic_comment = true, -- default false
       -- -- overrides the default highlights see `:h synIDattr`
       overrides = {
-      --   -- Examples
-      --   -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
-      --   -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
-      --   Nothing = {}, -- clear highlight of Nothing
-      -- Fine-tune highlights
+        --   -- Examples
+        --   -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
+        --   -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
+        --   Nothing = {}, -- clear highlight of Nothing
+        -- Fine-tune highlights
         DiffAdd = { bg = 'none' },
         GitSignsAdd = { bg = 'none' },
         DiffChange = { bg = 'none' },
@@ -114,7 +100,7 @@ return {
     end,
   },
   {
-    "code/dracula_pro",
+    'code/dracula_pro',
     name = 'dracula_pro',
     dev = true,
     lazy = false,

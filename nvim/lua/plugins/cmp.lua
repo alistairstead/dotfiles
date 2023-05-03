@@ -48,6 +48,19 @@ return {
         'zbirenbaum/copilot-cmp',
         main = 'copilot_cmp',
         opts = {},
+        dependencies = {
+          'zbirenbaum/copilot.lua',
+          build = ':Copilot auth',
+          cmd = 'Copilot',
+          opts = {
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+            filetypes = {
+              gitcommit = true,
+              markdown = true, -- overrides default
+            },
+          },
+        },
       },
       { 'hrsh7th/cmp-path' },
       { 'L3MON4D3/LuaSnip' },
@@ -55,7 +68,6 @@ return {
       { 'davidsierradz/cmp-conventionalcommits' },
       { 'petertriho/cmp-git' },
       { 'rafamadriz/friendly-snippets' },
-      { 'folke/neodev.nvim' },
     },
     config = function()
       local cmp = require('cmp')

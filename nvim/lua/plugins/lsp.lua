@@ -19,9 +19,12 @@ return {
       { 'j-hui/fidget.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
       { 'williamboman/mason.nvim' },
+      {
+        'folke/neodev.nvim',
+        ft = 'lua',
+      },
     },
     config = function()
-      -- This is where all the LSP shenanigans will live
       local lsp = require('lsp-zero')
 
       lsp.set_sign_icons({
@@ -38,24 +41,24 @@ return {
         'tailwindcss',
         'tsserver',
       })
+
       -- Set keybinds on LSP attach to the buffer
       lsp.on_attach(function(client, bufnr)
         local nmap = function(keys, func, desc)
           if desc then
             desc = 'LSP: ' .. desc
           end
-
-          vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+          vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, silent = true })
         end
         -- Code actions
-        nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-        nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
+        nmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ction')
         -- Go *
-        nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-        nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-        nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-        nmap('gT', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
-        nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        nmap('gd', require('telescope.builtin').lsp_definitions, '[g]oto [d]efinition')
+        nmap('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
+        nmap('gi', require('telescope.builtin').lsp_implementations, '[g]oto [i]mplementation')
+        nmap('gt', vim.lsp.buf.type_definition, '[g]oto [t]ype Definition')
+        nmap('gD', vim.lsp.buf.declaration, '[g]oto [D]eclaration')
         -- Show * symbols
         nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
         -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
@@ -75,15 +78,16 @@ return {
         -- Formatting
         nmap('<leader>f', function()
           vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
-        end, 'Run formatter')
+        end, '[f]ormat buffer')
         -- Navigate diagnostics
-        nmap('gl', vim.diagnostic.open_float, '[G]oto Diagnostic [L]ist')
-        nmap('<leader>vd', vim.diagnostic.open_float, '[V]iew [D]iognostics')
+        nmap('gl', vim.diagnostic.open_float, '[g]oto diagnostic [l]ist')
+        nmap('<leader>vd', vim.diagnostic.open_float, '[v]iew [d]iognostics')
         -- typescript specific keymaps (e.g. rename file and update imports)
         if client.name == 'tsserver' then
-          nmap('<leader>rf', ':TypescriptRenameFile<CR>', '[R]ename [F]ile')
-          nmap('<leader>oi', ':TypescriptOrganizeImports<CR>', '[O]rganise [I]mports')
-          nmap('<leader>ru', ':TypescriptRemoveUnused<CR>', '[R]emove [U]nused')
+          nmap('<leader>rf', ':TypescriptRenameFile<CR>', '[r]ename [f]ile')
+          nmap('<leader>oi', ':TypescriptOrganizeImports<CR>', '[o]rganise [i]mports')
+          nmap('<leader>ru', ':TypescriptRemoveUnused<CR>', '[r]emove [u]nused')
+          nmap('<leader>ci', '<cmd>TypescriptAddMissingImports<cr>', '[c]ode actions add [I]mports')
         end
       end)
 
@@ -92,7 +96,7 @@ return {
           timeout_ms = 10000,
         },
         servers = {
-          ['null-ls'] = { 'javascript', 'typescript', 'lua', 'php', 'yaml', 'json' },
+          ['null-ls'] = { 'javascript', 'typescript', 'lua', 'php', 'yaml', 'json', 'markdown' },
         },
       })
 
