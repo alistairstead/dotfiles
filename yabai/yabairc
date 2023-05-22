@@ -1,23 +1,6 @@
-#!/usr/bin/env sh
-
-# the scripting-addition must be loaded manually if
-# you are running yabai on macOS Big Sur. Uncomment
-# the following line to have the injection performed
-# when the config is executed during startup.
-#
-# for this to work you must configure sudo such that
-# it will be able to run the command without password
-#
-# see this wiki page for information:
-#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
-#
-# sudo yabai --load-sa
-# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # bar settings
-yabai -m config top_padding 0
 
 # global settings
 yabai -m config mouse_follows_focus          on
@@ -31,7 +14,6 @@ yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                off
 
 yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.90
 yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
 
@@ -39,25 +21,65 @@ yabai -m config auto_balance                 off
 yabai -m config mouse_modifier               alt
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
+yabai -m mouse_drop_action                   swap
 
 # general space settings
 yabai -m config layout                       bsp
+yabai -m config top_padding                  0
+yabai -m config right_padding                0
 yabai -m config bottom_padding               0
 yabai -m config left_padding                 0
-yabai -m config right_padding                0
 yabai -m config window_gap                   0
 
-# float system preferences
-yabai -m rule --add app='^System Information$' manage=off
-yabai -m rule --add app='^System Preferences$' manage=off
-yabai -m rule --add title='Preferences$' manage=off
-yabai -m rule --add title='1Password$' manage=off
+yabai -m rule --add app='^System Settings' manage=off
+yabai -m rule --add app='^1Password' manage=off
 
-# float settings windows
-yabai -m rule --add title='Settings$' manage=off
+#
+# setup spaces
+#
+for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 6)'); do
+  yabai -m space --destroy 7
+done
 
+function setup_space {
+  local idx="$1"
+  local name="$2"
+  local space=
+  echo "setup space $idx : $name"
+
+  space=$(yabai -m query --spaces --space "$idx")
+  if [ -z "$space" ]; then
+    yabai -m space --create
+  fi
+
+  yabai -m space "$idx" --label "$name"
+}
+
+setup_space 1 neovim
+setup_space 2 web
+setup_space 3 comms
+setup_space 4 social
+setup_space 5 media
+setup_space 6 other
+
+yabai -m rule --add app="^Kitty$" space=1
+yabai -m rule --add app="^Safari$" space=^2
+yabai -m rule --add app="^Google Chrome$" space=^2
+yabai -m rule --add app="^Spark Desktop$" space=3
+yabai -m rule --add app="^Twitter$" space=4
+yabai -m rule --add app="^Slack$" space=4
+yabai -m rule --add app="^Music$" space=6
+
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 # spacebar padding on top screen
-SPACEBAR_HEIGHT=$(spacebar -m config height)
-yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
+SKETCHYBAR_HEIGHT=$(sketchybar --query bar | jq '.height')
+# yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
+
+# add 20 padding to the top and 0 padding to the bottom of every space located on the main display
+yabai -m config external_bar main:20:0
+# add 20 padding to the top and bottom of all spaces regardless of the display it belongs to
+yabai -m config external_bar "all:$SKETCHYBAR_HEIGHT:0"
 
 echo "yabai configuration loaded.."

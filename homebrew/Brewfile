@@ -29,7 +29,6 @@ unless ENV["CI"]
   tap 'homebrew/cask-fonts'
   tap '1password/tap'
 
-  cask 'alacritty'
   cask 'alfred'
   cask 'bartender'
   cask 'choosy'
@@ -43,6 +42,5 @@ unless ENV["CI"]
   cask 'rocket'
   cask 'sublime-merge-dev'
   cask 'sublime-text-dev'
-  cask 'visual-studio-code'
   cask '1password-cli'
 end

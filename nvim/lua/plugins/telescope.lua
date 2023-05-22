@@ -12,7 +12,10 @@ return {
     },
     {
       'ahmedkhalf/project.nvim',
-      opts = {},
+      opts = {
+        manual_mode = true,
+        patterns = { '.git' },
+      },
       config = function(_, opts)
         require('project_nvim').setup(opts)
         require('telescope').load_extension('projects')

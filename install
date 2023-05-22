@@ -23,8 +23,8 @@ ln -nfs $DOTFILES/skhd $HOME/.config/skhd
 # spacebar
 ln -nfs $DOTFILES/spacebar $HOME/.config/spacebar
 
-# tmux
-ln -nfs $DOTFILES/tmux $HOME/.config/tmux
+# sketchybar
+ln -nfs $DOTFILES/sketchybar $HOME/.config/sketchybar
 
 # yabai
 ln -nfs $DOTFILES/yabai $HOME/.config/yabai

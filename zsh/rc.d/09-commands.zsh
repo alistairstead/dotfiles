@@ -27,7 +27,7 @@ alias tls='tmux list-sessions'
 
 # exa is a better ls tool
 if which exa >/dev/null 2>&1; then
-	alias ls='exa'
+  alias ls='exa'
 	alias l='exa -la --git'
 	alias la='exa -laa --git'
 	alias ll='exa -l --git'
@@ -221,3 +221,5 @@ fi
 alias pn=pnpm
 alias code="cd ~/code"
 alias dotfiles="cd ~/.dotfiles"
+
+alias composer='docker run --init --tty --rm -v $(pwd):/p:delegated -v composer_data:/tmp:delegated -w /p -- composer'

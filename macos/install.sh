@@ -22,13 +22,6 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 # Accelerated playback when adjusting the window size.
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-# Set computer name (as done via System Preferences → Sharing)
-test -z "$CI" &&
-	sudo scutil --set ComputerName "wombat"
-	sudo scutil --set HostName "wombat"
-	sudo scutil --set LocalHostName "wombat"
-	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "wombat"
-
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 

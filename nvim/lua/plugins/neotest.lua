@@ -5,15 +5,12 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'marilari88/neotest-vitest',
   },
-  opts = {
-    -- adapters = {
-    --   require('neotest-vitest'),
-    -- },
-  },
   config = function()
     require('neotest').setup({
       adapters = {
-        require('neotest-vitest'),
+        require('neotest-vitest')({
+          vitestCommand = 'pnpm test --',
+        }),
       },
     })
   end,
