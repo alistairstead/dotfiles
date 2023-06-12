@@ -8,6 +8,9 @@ return {
     disable_commit_confirmation = true,
     auto_show_console = false,
     disable_insert_on_commit = false,
+    integrations = {
+      diffview = true,
+    },
   },
   keys = {
     {
