@@ -33,6 +33,7 @@ yabai -m config window_gap                   0
 
 yabai -m rule --add app='^System Settings' manage=off
 yabai -m rule --add app='^1Password' manage=off
+yabai -m rule --add app='^Around' manage=off
 
 #
 # setup spaces

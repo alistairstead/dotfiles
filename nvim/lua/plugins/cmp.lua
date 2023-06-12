@@ -137,14 +137,14 @@ return {
       })
 
       -- Use cmdline & path source for ":" (if you enabled `native_menu`, this won't work anymore)
-      -- cmp.setup.cmdline(':', {
-      --   mapping = cmp.mapping.preset.cmdline(),
-      --   sources = cmp.config.sources({
-      --     { name = 'path' },
-      --   }, {
-      --     { name = 'cmdline' },
-      --   }),
-      -- })
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          { name = 'cmdline' },
+        }),
+      })
 
       -- vim.opt_global.dictionary = { "~/.config/nvim/spell/en.utf-8.add", "/usr/share/dict/words" }
       require('cmp_dictionary').setup({

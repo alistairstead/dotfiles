@@ -96,7 +96,7 @@ return {
           timeout_ms = 10000,
         },
         servers = {
-          ['null-ls'] = { 'javascript', 'typescript', 'lua', 'php', 'yaml', 'json', 'markdown' },
+          ['null-ls'] = { 'javascript', 'typescript', 'lua', 'php', 'yaml', 'json', 'markdown', 'css', 'html' },
         },
       })
 
@@ -121,6 +121,9 @@ return {
       })
 
       lspconfig.tailwindcss.setup({
+        root_dir = function(...)
+          return require('lspconfig.util').root_pattern('.git')(...)
+        end,
         settings = {
           tailwindCSS = {
             emmetCompletions = true,
@@ -148,6 +151,7 @@ return {
       })
 
       lspconfig.tsserver.setup({
+
         root_dir = require('lspconfig').util.root_pattern('.git', 'pnpm-workspace.yaml', 'pnpm-lock.yaml', 'yarn.lock', 'package-lock.json', 'bun.lockb'),
         settings = {
           typescript = {
