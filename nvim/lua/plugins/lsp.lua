@@ -96,7 +96,17 @@ return {
           timeout_ms = 10000,
         },
         servers = {
-          ['null-ls'] = { 'javascript', 'typescript', 'lua', 'php', 'yaml', 'json', 'markdown', 'css', 'html' },
+          ['null-ls'] = {
+            'javascript',
+            'typescript',
+            'lua',
+            'php',
+            'yaml',
+            'json',
+            'markdown',
+            'css',
+            'html',
+          },
         },
       })
 

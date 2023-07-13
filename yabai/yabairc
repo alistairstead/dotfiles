@@ -31,10 +31,6 @@ yabai -m config bottom_padding               0
 yabai -m config left_padding                 0
 yabai -m config window_gap                   0
 
-yabai -m rule --add app='^System Settings' manage=off
-yabai -m rule --add app='^1Password' manage=off
-yabai -m rule --add app='^Around' manage=off
-
 #
 # setup spaces
 #
@@ -62,6 +58,12 @@ setup_space 3 comms
 setup_space 4 social
 setup_space 5 media
 setup_space 6 other
+setup_space 7 other
+setup_space 8 other
+
+yabai -m rule --add app='^System Settings' manage=off
+yabai -m rule --add app='^1Password' manage=off
+yabai -m rule --add app='^Around' manage=off
 
 yabai -m rule --add app="^Kitty$" space=1
 yabai -m rule --add app="^Safari$" space=^2
@@ -74,6 +76,7 @@ yabai -m rule --add app="^Music$" space=6
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+
 # spacebar padding on top screen
 SKETCHYBAR_HEIGHT=$(sketchybar --query bar | jq '.height')
 # yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
