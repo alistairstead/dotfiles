@@ -61,6 +61,7 @@ setup_space 6 other
 setup_space 7 other
 setup_space 8 other
 
+yabai -m rule --add app='^Finder' manage=off
 yabai -m rule --add app='^System Settings' manage=off
 yabai -m rule --add app='^1Password' manage=off
 yabai -m rule --add app='^Around' manage=off

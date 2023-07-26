@@ -1,8 +1,8 @@
 return {
   {
     'pwntester/octo.nvim',
-    -- cmd = 'Octo',
-    event = 'VeryLazy',
+    cmd = 'Octo',
+    -- event = 'VeryLazy',
     opts = {
       gh_env = function()
         -- the 'op.api' module provides the same interface as the CLI
