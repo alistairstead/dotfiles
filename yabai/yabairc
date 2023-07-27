@@ -55,24 +55,32 @@ function setup_space {
 setup_space 1 neovim
 setup_space 2 web
 setup_space 3 comms
-setup_space 4 social
-setup_space 5 media
-setup_space 6 other
-setup_space 7 other
+setup_space 4 tasks
+setup_space 5 social
+setup_space 6 schedule
+setup_space 7 media
 setup_space 8 other
 
 yabai -m rule --add app='^Finder' manage=off
 yabai -m rule --add app='^System Settings' manage=off
 yabai -m rule --add app='^1Password' manage=off
 yabai -m rule --add app='^Around' manage=off
+yabai -m rule --add app='^Messenger' manage=off
+yabai -m rule --add app='^FaceTime' manage=off
+yabai -m rule --add app='^TV' manage=off
+yabai -m rule --add app='^Home' manage=off
 
 yabai -m rule --add app="^Kitty$" space=1
 yabai -m rule --add app="^Safari$" space=^2
 yabai -m rule --add app="^Google Chrome$" space=^2
-yabai -m rule --add app="^Spark Desktop$" space=3
-yabai -m rule --add app="^Twitter$" space=4
-yabai -m rule --add app="^Slack$" space=4
-yabai -m rule --add app="^Music$" space=6
+yabai -m rule --add app="^Spark$" space=3
+yabai -m rule --add app="^Todoist$" space=4
+yabai -m rule --add app="^Twitter$" space=5
+yabai -m rule --add app="^Slack$" space=5
+yabai -m rule --add app="^Discord$" space=5
+yabai -m rule --add app="^Fantastical$" space=6
+yabai -m rule --add app="^Calendar$" space=6
+yabai -m rule --add app="^Music$" space=7
 
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"

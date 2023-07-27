@@ -114,6 +114,7 @@ return {
       },
     },
   },
+  cmd = 'Telescope',
   keys = {
     { '<C-t>', '<cmd>Telescope<cr>', desc = 'Telescope' },
     { '<C-p>', '<cmd>Telescope git_files<CR>', desc = 'git files' },
@@ -135,6 +136,7 @@ return {
     { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Document diagnostics' },
     { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace diagnostics' },
     { '<leader>sg', '<cmd>Telescope live_grep<cr>', desc = 'Grep (root dir)' },
+    { '<leader>/', '<cmd>Telescope live_grep<cr>', desc = 'Grep (root dir)' },
     { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = 'Help Pages' },
     { '<leader>sH', '<cmd>Telescope highlights<cr>', desc = 'Search Highlight Groups' },
     { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'Key Maps' },

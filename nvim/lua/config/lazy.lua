@@ -19,7 +19,7 @@ require('lazy').setup('plugins', {
   install = { colorscheme = { 'tokyonight' } },
   checker = { enabled = true },
   dev = {
-    path = "~/code/",
+    path = '~/code/',
   },
   performance = {
     rtp = {
