@@ -1,3 +1,10 @@
+local diagnostics_icons = {
+  Error = ' ',
+  Warn = ' ',
+  Hint = ' ',
+  Info = ' ',
+}
+
 return {
   -- lspconfig
   {
@@ -6,6 +13,11 @@ return {
     dependencies = {
       { 'folke/neoconf.nvim', cmd = 'Neoconf', config = false, dependencies = { 'nvim-lspconfig' } },
       { 'folke/neodev.nvim', opts = {} },
+      {
+        'j-hui/fidget.nvim',
+        tag = 'legacy',
+        event = 'LspAttach',
+      },
       'mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       {
@@ -35,7 +47,7 @@ return {
       -- Be aware that you also will need to properly configure your LSP server to
       -- provide the inlay hints.
       inlay_hints = {
-        enabled = false,
+        enabled = true,
       },
       -- add any global capabilities here
       capabilities = {},
@@ -43,9 +55,9 @@ return {
       autoformat = true,
       -- Enable this to show formatters used in a notification
       -- Useful for debugging formatter issues
-      format_notify = false,
+      format_notify = true,
       -- options for vim.lsp.buf.format
-      -- `bufnr` and `filter` is handled by the LazyVim formatter,
+      -- `bufnr` and `filter` is handled by the formatter,
       -- but can be also overridden when specified
       format = {
         formatting_options = nil,
@@ -107,15 +119,8 @@ return {
         return ret
       end
 
-      local diagnostics_icons = {
-        Error = ' ',
-        Warn = ' ',
-        Hint = ' ',
-        Info = ' ',
-      }
-
       -- diagnostics
-      for name, icon in diagnostics_icons do
+      for name, icon in pairs(diagnostics_icons) do
         name = 'DiagnosticSign' .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = '' })
       end
@@ -195,6 +200,9 @@ return {
           return not is_deno(root_dir)
         end)
       end
+
+      -- Turn on lsp status information
+      require('fidget').setup()
     end,
   },
 
@@ -202,7 +210,33 @@ return {
   {
     'jose-elias-alvarez/null-ls.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'mason.nvim' },
+    dependencies = {
+      'mason.nvim',
+      {
+        'jay-babu/mason-null-ls.nvim',
+        cmd = { 'LspInfo', 'Mason' },
+        opts = {
+          ensure_installed = {
+            'prettier',
+            'prettierd',
+            'eslint',
+            'stylua',
+            'stylelint',
+            'shellcheck',
+            'yamllint',
+            'jsonlint',
+          },
+          automatic_installation = true, -- You can still set this to `true`
+          handlers = {
+            -- Here you can add functions to register sources.
+            -- See https://github.com/jay-babu/mason-null-ls.nvim#handlers-usage
+            --
+            -- If left empty, mason-null-ls will  use a "default handler"
+            -- to register all sources
+          },
+        },
+      },
+    },
     opts = function()
       local nls = require('null-ls')
       return {

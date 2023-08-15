@@ -94,7 +94,6 @@ function M.get_formatters(bufnr)
   -- check if we have any null-ls formatters for the current filetype
   local null_ls = package.loaded['null-ls'] and require('null-ls.sources').get_available(ft, 'NULL_LS_FORMATTING') or {}
 
-  ---@class LazyVimFormatters
   local ret = {
     ---@type lsp.Client[]
     active = {},

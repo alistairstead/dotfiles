@@ -3,6 +3,7 @@ return {
     'williamboman/mason.nvim',
     opts = function(_, opts)
       table.insert(opts.ensure_installed, 'prettierd')
+      table.insert(opts.ensure_installed, 'prettier')
     end,
   },
   {
@@ -10,6 +11,7 @@ return {
     opts = function(_, opts)
       local nls = require('null-ls')
       table.insert(opts.sources, nls.builtins.formatting.prettierd)
+      table.insert(opts.sources, nls.builtins.formatting.prettier)
     end,
   },
 }
