@@ -1,7 +1,7 @@
 return {
   {
-    'pwntester/octo.nvim',
-    cmd = 'Octo',
+    "pwntester/octo.nvim",
+    cmd = "Octo",
     -- event = 'VeryLazy',
     opts = {
       gh_env = function()
@@ -9,9 +9,9 @@ return {
         -- each subcommand accepts a list of arguments
         -- and returns a list of output lines.
         -- use it to retrieve the GitHub access token from 1Password
-        local github_token = require('op.api').item.get({ 'GitHub', '--fields', 'token' })[1]
-        if not github_token or not vim.startswith(github_token, 'ghp_') then
-          error('Failed to get GitHub token.')
+        local github_token = require("op.api").item.get({ "GitHub", "--fields", "token" })[1]
+        if not github_token or not vim.startswith(github_token, "ghp_") then
+          error("Failed to get GitHub token.")
         end
 
         -- the values in this table will be provided to the
@@ -24,9 +24,9 @@ return {
     },
     dependencies = {
       -- 1Password plugin for Neovim
-      { 'mrjones2014/op.nvim', build = 'make install' },
+      { "mrjones2014/op.nvim", build = "make install" },
       -- another plugin to make the UI a bit nicer
-      'stevearc/dressing.nvim',
+      "stevearc/dressing.nvim",
     },
   },
 }

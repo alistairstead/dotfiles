@@ -4,7 +4,6 @@ function Colors.setup()
   vim.opt.termguicolors = true
 end
 
-
 ---@diagnostic disable-next-line: duplicate-set-field
 function Colors.get_hl(name)
   return vim.api.nvim_get_hl_by_name(name, true)

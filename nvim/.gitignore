@@ -1,3 +1,8 @@
-plugin/packer_compiled.lua
-*.spl
-.netrwhist
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data

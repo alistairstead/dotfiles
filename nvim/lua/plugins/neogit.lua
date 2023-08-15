@@ -1,7 +1,7 @@
 return {
-  'TimUntersberger/neogit',
+  "TimUntersberger/neogit",
   dependencies = {
-    'nvim-lua/plenary.nvim',
+    "nvim-lua/plenary.nvim",
   },
   opts = {
     console_timeout = 20000,
@@ -14,11 +14,11 @@ return {
   },
   keys = {
     {
-      '<leader>gs',
+      "<leader>gg",
       function()
-        require('neogit').open()
+        require("neogit").open()
       end,
-      desc = 'Neogit - Git Status',
+      desc = "Neogit - Git Status",
     },
   },
 }

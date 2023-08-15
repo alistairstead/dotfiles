@@ -1,8 +1,8 @@
 return {
-  'ThePrimeagen/harpoon',
+  "ThePrimeagen/harpoon",
   dependencies = {
     {
-      'nvim-telescope/telescope.nvim',
+      "nvim-telescope/telescope.nvim",
       -- config = function()
       --   require('telescope').load_extension('harpoon')
       -- end,
@@ -17,32 +17,32 @@ return {
   },
   keys = {
     {
-      '<C-a>',
+      "<C-a>",
       function()
-        require('harpoon.mark').add_file()
+        require("harpoon.mark").add_file()
       end,
-      desc = 'Harpoon - Add file',
+      desc = "Harpoon - Add file",
     },
     {
-      '<C-e>',
+      "<C-e>",
       function()
-        require('harpoon.ui').toggle_quick_menu()
+        require("harpoon.ui").toggle_quick_menu()
       end,
-      desc = 'Harpoon - Toggle quick menu',
+      desc = "Harpoon - Toggle quick menu",
     },
     {
-      '<C-w>',
+      "<C-w>",
       function()
-        require('harpoon.ui').nav_file(2)
+        require("harpoon.ui").nav_file(2)
       end,
-      desc = 'Harpoon - File 2',
+      desc = "Harpoon - File 2",
     },
     {
-      '<C-q>',
+      "<C-q>",
       function()
-        require('harpoon.ui').nav_file(1)
+        require("harpoon.ui").nav_file(1)
       end,
-      desc = 'Harpoon - File 1',
+      desc = "Harpoon - File 1",
     },
   },
 }

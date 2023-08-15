@@ -1,51 +1,18 @@
 return {
   {
-    'folke/styler.nvim',
-    event = 'VeryLazy',
-    enabled = false,
-    config = function()
-      require('styler').setup({
-        themes = {
-          markdown = { colorscheme = 'dracula_pro_morbius' },
-          help = { colorscheme = 'dracula_pro_morbius' },
-        },
-      })
-    end,
-  },
-  {
-    'folke/tokyonight.nvim',
-    lazy = true,
-    priority = 1000,
-    opts = {
-      colors = {
-        -- bg = '#282a36',
-        -- bg_dark = '#21222c',
-      },
-      overrides = {
-        Comment = { italic = true },
-        VertSplit = { fg = '#454158', bg = '#282a36' },
-      },
-    },
-    config = function(_, opts)
-      local tokyonight = require('tokyonight')
-      tokyonight.setup(opts)
-      -- tokyonight.load()
-    end,
-  },
-  {
-    'navarasu/onedark.nvim',
+    "navarasu/onedark.nvim",
     lazy = true,
     priority = 1000,
   },
   {
-    'Mofiqul/dracula.nvim',
+    "Mofiqul/dracula.nvim",
     lazy = true, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
       -- customize dracula color palette
       colors = {
-        bg = '#282a36',
-        bg_dark = '#21222c',
+        bg = "#282a36",
+        bg_dark = "#21222c",
         --   fg = '#F8F8F2',
         --   selection = '#44475A',
         --   comment = '#6272A4',
@@ -83,39 +50,45 @@ return {
         --   -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
         --   Nothing = {}, -- clear highlight of Nothing
         -- Fine-tune highlights
-        DiffAdd = { bg = 'none' },
-        GitSignsAdd = { bg = 'none' },
-        DiffChange = { bg = 'none' },
-        GitSignsChange = { bg = 'none' },
-        DiffDelete = { bg = 'none' },
-        GitSignsDelete = { bg = 'none' },
-        Comment = { fg = '#7970A9', italic = true },
-        VertSplit = { fg = '#454158', bg = '#282a36' },
+        DiffAdd = { bg = "none" },
+        GitSignsAdd = { bg = "none" },
+        DiffChange = { bg = "none" },
+        GitSignsChange = { bg = "none" },
+        DiffDelete = { bg = "none" },
+        GitSignsDelete = { bg = "none" },
+        Comment = { fg = "#7970A9", italic = true },
+        VertSplit = { fg = "#454158", bg = "#282a36" },
       },
     },
     config = function(_, opts)
-      local dracula = require('dracula')
+      local dracula = require("dracula")
       dracula.setup(opts)
       -- dracula.load()
     end,
   },
   {
-    'code/dracula_pro',
-    name = 'dracula_pro',
+    "code/dracula_pro",
+    name = "dracula_pro",
     dev = true,
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd('colorscheme dracula_pro')
-      local Colors = require('util.colors')
+      vim.cmd("colorscheme dracula_pro")
+      local Colors = require("util.colors")
       Colors.setup()
       -- Italicise comments
-      Colors.update_hl('Comment', { fg = '#7970A9', italic = true })
-      Colors.update_hl('VertSplit', { fg = '#454158', bg = '#22212C' })
+      Colors.update_hl("Comment", { fg = "#7970A9", italic = true })
+      Colors.update_hl("VertSplit", { fg = "#454158", bg = "#22212C" })
       -- Fine-tune highlights
-      Colors.inherit_hl('DiffAdd', 'GitSignsAdd', { bg = 'none' })
-      Colors.inherit_hl('DiffChange', 'GitSignsChange', { bg = 'none' })
-      Colors.inherit_hl('DiffDelete', 'GitSignsDelete', { bg = 'none' })
+      Colors.inherit_hl("DiffAdd", "GitSignsAdd", { bg = "none" })
+      Colors.inherit_hl("DiffChange", "GitSignsChange", { bg = "none" })
+      Colors.inherit_hl("DiffDelete", "GitSignsDelete", { bg = "none" })
     end,
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "dracula",
+    },
   },
 }
