@@ -3,9 +3,16 @@
 -- Add any additional keymaps here
 
 -- Shorten function name
-local keymap = vim.keymap.set
+local map = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 
 -- Better escape using jk in insert and terminal mode
-keymap("i", "jk", "<ESC>", default_opts)
-keymap("t", "jk", "<C-\\><C-n>", default_opts)
+map("i", "jk", "<ESC>", default_opts)
+map("t", "jk", "<C-\\><C-n>", default_opts)
+
+-- windows
+vim.keymap.del("n", "<leader>w-")
+vim.keymap.del("n", "<leader>w|")
+
+map("n", "<leader>wh", "<C-W>s", { desc = "Split window below", remap = true })
+map("n", "<leader>wv", "<C-W>v", { desc = "Split window right", remap = true })

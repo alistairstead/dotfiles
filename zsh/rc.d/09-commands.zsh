@@ -95,6 +95,8 @@ freshbrew() {
 
 alias ga='git add'
 alias gs='git status -sb'
+alias gco='git co'
+
 
 alias push='git push'
 alias pull='git pull'

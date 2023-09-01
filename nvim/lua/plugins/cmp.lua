@@ -10,6 +10,12 @@ return {
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      { "hrsh7th/cmp-cmdline" },
+      { "hrsh7th/cmp-nvim-lsp-signature-help" },
+      { "davidsierradz/cmp-conventionalcommits" },
+      { "petertriho/cmp-git" },
+    },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local has_words_before = function()
@@ -46,18 +52,22 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<CR>"] = cmp.mapping({
-          i = function(fallback)
-            if cmp.visible() and cmp.get_active_entry() then
-              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-            else
-              fallback()
-            end
-          end,
-          s = cmp.mapping.confirm({ select = true }),
-          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-        }),
+        -- ["<CR>"] = cmp.mapping({
+        --   i = function(fallback)
+        --     if cmp.visible() and cmp.get_active_entry() then
+        --       cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        --     else
+        --       fallback()
+        --     end
+        --   end,
+        --   s = cmp.mapping.confirm({ select = true }),
+        --   c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        -- }),
       })
+
+      -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "nvim_lsp_signature_help" } }))
+      -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "conventionalcommits" } }))
+      -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "git" } }))
     end,
   },
 }

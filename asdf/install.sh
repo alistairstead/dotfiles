@@ -8,6 +8,7 @@ if test ! $(which asdf); then
 	asdf plugin-add erlang
 	asdf plugin-add elixir
 	asdf plugin-add nodejs
+	asdf plugin-add pnpm
 	asdf plugin-add postgres
 	asdf plugin-add php https://github.com/asdf-community/asdf-php.git
     asdf plugin-add direnv

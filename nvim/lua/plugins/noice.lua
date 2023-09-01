@@ -4,6 +4,31 @@ return {
     presets = {
       bottom_search = false,
     },
+    lsp = {
+      progress = {
+        enabled = false,
+      },
+      override = {
+        ["cmp.entry.get_documentation"] = true,
+      },
+    },
+    routes = {
+      {
+        filter = {
+          event = "notify",
+          find = "No information available",
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = "msg_show",
+          kind = "",
+          find = "written",
+        },
+        opts = { skip = true },
+      },
+    },
     cmdline = {
       format = {
         cmdline = { icon = ">_" },

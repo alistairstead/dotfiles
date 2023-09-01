@@ -5,6 +5,7 @@ return {
       "astro",
       "php",
       "twig",
+      "typescript",
     },
   },
 }

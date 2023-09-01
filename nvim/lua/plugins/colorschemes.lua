@@ -1,65 +1,68 @@
 return {
   {
-    "navarasu/onedark.nvim",
-    lazy = true,
-    priority = 1000,
-  },
-  {
-    "Mofiqul/dracula.nvim",
+    "mofiqul/dracula.nvim",
     lazy = true, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
-    opts = {
-      -- customize dracula color palette
-      colors = {
-        bg = "#282a36",
-        bg_dark = "#21222c",
-        --   fg = '#F8F8F2',
-        --   selection = '#44475A',
-        --   comment = '#6272A4',
-        --   red = '#FF5555',
-        --   orange = '#FFB86C',
-        --   yellow = '#F1FA8C',
-        --   green = '#50fa7b',
-        --   purple = '#BD93F9',
-        --   cyan = '#8BE9FD',
-        --   pink = '#FF79C6',
-        --   bright_red = '#FF6E6E',
-        --   bright_green = '#69FF94',
-        --   bright_yellow = '#FFFFA5',
-        --   bright_blue = '#D6ACFF',
-        --   bright_magenta = '#FF92DF',
-        --   bright_cyan = '#A4FFFF',
-        --   bright_white = '#FFFFFF',
-        --   menu = '#21222C',
-        --   visual = '#3E4452',
-        --   gutter_fg = '#4B5263',
-        --   nontext = '#3B4048',
-      },
-      -- -- show the '~' characters after the end of buffers
-      -- -- show_end_of_buffer = true, -- default false
-      -- -- use transparent background
-      -- transparent_bg = false, -- default false
-      -- -- set custom lualine background color
-      -- -- lualine_bg_color = '#44475a', -- default nil
-      -- -- set italic comment
-      -- italic_comment = true, -- default false
-      -- -- overrides the default highlights see `:h synIDattr`
-      overrides = {
-        --   -- Examples
-        --   -- NonText = { fg = dracula.colors().white }, -- set NonText fg to white
-        --   -- NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
-        --   Nothing = {}, -- clear highlight of Nothing
-        -- Fine-tune highlights
-        DiffAdd = { bg = "none" },
-        GitSignsAdd = { bg = "none" },
-        DiffChange = { bg = "none" },
-        GitSignsChange = { bg = "none" },
-        DiffDelete = { bg = "none" },
-        GitSignsDelete = { bg = "none" },
-        Comment = { fg = "#7970A9", italic = true },
-        VertSplit = { fg = "#454158", bg = "#282a36" },
-      },
-    },
+    opts = function()
+      local colors = require("dracula").colors()
+      return {
+        -- customize dracula color palette
+        colors = {
+          bg = "#282a36",
+          bg_dark = "#21222c",
+          fg = "#f8f8f2",
+          selection = "#44475a",
+          comment = "#6272a4", -- #7970a9
+          red = "#ff5555",
+          orange = "#ffb86c",
+          yellow = "#f1fa8c",
+          green = "#50fa7b",
+          purple = "#bd93f9",
+          cyan = "#8be9fd",
+          pink = "#ff79c6",
+          bright_red = "#ff6e6e",
+          bright_green = "#69ff94",
+          bright_yellow = "#ffffa5",
+          bright_blue = "#d6acff",
+          bright_magenta = "#ff92df",
+          bright_cyan = "#a4ffff",
+          bright_white = "#ffffff",
+          menu = "#21222c",
+          visual = "#3e4452",
+          gutter_fg = "#4b5263",
+          nontext = "#3b4048",
+          white = "#abb2bf",
+          black = "#191a21",
+        },
+        -- show the '~' characters after the end of buffers
+        show_end_of_buffer = false, -- default false
+        -- use transparent background
+        transparent_bg = false, -- default false
+        -- set custom lualine background color
+        lualine_bg_color = colors.bg_dark, -- default nil
+        -- set italic comment
+        italic_comment = true, -- default false
+        -- overrides the default highlights see `:h synidattr`
+        overrides = {
+          -- examples
+          -- nontext = { fg = dracula.colors().white }, -- set nontext fg to white
+          -- nvimtreeindentmarker = { link = "nontext" }, -- link to nontext highlight
+          Comment = { fg = colors.comment, italic = true },
+          CursorLine = { bg = colors.bg_dark },
+          CursorLineNr = { fg = colors.yellow },
+          DiffAdd = { bg = "none" },
+          DiffChange = { bg = "none" },
+          DiffDelete = { bg = "none" },
+          GitSignsAdd = { fg = colors.bright_green, bg = "none" },
+          GitSignsChange = { fg = colors.orange, bg = "none" },
+          GitSignsDelete = { fg = colors.red, bg = "none" },
+          Nothing = {}, -- clear highlight of nothing
+          VertSplit = { fg = colors.nontext, bg = colors.bg_dark },
+          WarnLine = { fg = colors.orange },
+          WarningMsg = { fg = colors.orange },
+        },
+      }
+    end,
     config = function(_, opts)
       local dracula = require("dracula")
       dracula.setup(opts)
@@ -68,27 +71,29 @@ return {
   },
   {
     "code/dracula_pro",
+    dependencies = {
+      { "mofiqul/dracula.nvim" },
+    },
     name = "dracula_pro",
     dev = true,
     lazy = false,
     priority = 1000,
     config = function()
       vim.cmd("colorscheme dracula_pro")
-      local Colors = require("util.colors")
-      Colors.setup()
-      -- Italicise comments
-      Colors.update_hl("Comment", { fg = "#7970A9", italic = true })
-      Colors.update_hl("VertSplit", { fg = "#454158", bg = "#22212C" })
-      -- Fine-tune highlights
-      Colors.inherit_hl("DiffAdd", "GitSignsAdd", { bg = "none" })
-      Colors.inherit_hl("DiffChange", "GitSignsChange", { bg = "none" })
-      Colors.inherit_hl("DiffDelete", "GitSignsDelete", { bg = "none" })
+      local colors = require("util.colors")
+      colors.setup()
+      colors.update_hl("Comment", { fg = "#7970a9", italic = true })
+      colors.update_hl("CursorLine", { bg = "#282a36" })
+      colors.inherit_hl("Diffadd", "GitSignsAdd", { bg = "none" })
+      colors.inherit_hl("DiffChange", "GitSignsChange", { bg = "none" })
+      colors.inherit_hl("DiffDelete", "GitSignsDelete", { bg = "none" })
+      colors.update_hl("VertSplit", { fg = "#3b4048", bg = "#21222c" })
     end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "dracula",
+      -- colorscheme = "dracula_pro",
     },
   },
 }

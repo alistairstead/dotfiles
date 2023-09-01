@@ -1,17 +1,30 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    -- cmd = "LspInfo",
     opts = {
+      capabilities = {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true,
+          },
+        },
+      },
+      inlay_hints = {
+        enabled = true,
+      },
       servers = {
+        astro = {},
         eslint = {
-          root_dir = require("lspconfig.util").root_pattern(
-            ".git",
-            "pnpm-workspace.yaml",
-            "pnpm-lock.yaml",
-            "yarn.lock",
-            "package-lock.json",
-            "bun.lockb"
-          ),
+          -- root_dir = require("lspconfig.util").root_pattern(
+          --   ".git",
+          --   "pnpm-workspace.yaml",
+          --   "pnpm-lock.yaml",
+          --   "yarn.lock",
+          --   "package-lock.json",
+          --   "bun.lockb"
+          -- ),
         },
         intelephense = {
           init_options = {
@@ -29,9 +42,9 @@ return {
           },
         },
         tailwindcss = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
+          -- root_dir = function(...)
+          --   -- return require("lspconfig.util").root_pattern(".git")
+          -- end,
           settings = {
             tailwindCSS = {
               emmetCompletions = true,
