@@ -90,7 +90,7 @@ brew tap homebrew/cask-fonts
 brew install font-symbols-only-nerd-font
 
 echo "Installing personal dotfiles..."
-git clone https://github.com/alistairstead/dotfiles.git ~/dotfiles
+git clone git@github.com:alistairstead/dotfiles.git ~/dotfiles
 
 cd ~/dotfiles
 
