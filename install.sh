@@ -50,11 +50,12 @@ brew install git
 brew install jq
 
 brew tap neovim/neovim
-brew install --HEAD neovim || brew reinstall --HEAD neovim
-brew install fzf || brew upgrade fzf
+brew install --HEAD neovim
+brew install fzf
 
 brew install ripgrep
 brew install stow
+brew install ssh-copy-id
 brew install trash
 
 if test ! ENV["CI"]; then
@@ -97,7 +98,63 @@ cd ~/dotfiles
 
 echo "Creating symlinks..."
 
-stow kitty nvim
+stow kitty nvim asdf git
+
+if test ! $(which asdf); then
+  echo "Installing asdf..."
+  brew install asdf
+
+  asdf plugin-add erlang
+  asdf plugin-add elixir
+  asdf plugin-add nodejs
+  asdf plugin-add pnpm
+  asdf plugin-add postgres
+  asdf plugin-add php https://github.com/asdf-community/asdf-php.git
+  asdf plugin-add direnv
+
+
+  brew install \
+    coreutils automake autoconf openssl \
+    libyaml readline libxslt libtool unixodbc \
+    unzip curl gpg
+
+  bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+fi
+
+test -f ~/.ssh/config.local || touch ~/.ssh/config.local
+
+if test $(which brew); then
+	brew install diff-so-fancy || brew upgrade diff-so-fancy
+fi
+
+echo "Configuring git..."
+
+if [ "$(uname -s)" = "Darwin" ]; then
+  # Don't ask ssh password all the time
+  git config --global credential.helper osxkeychain
+  # 1Password commit signing
+  git config --global user.signingkey $(op item get 'SSH Key' --fields label='public key')
+  git config --global gpg.format "ssh"
+  git config --global gpg.ssh.program "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+  git config --global commit.gpgsign true
+else
+  # Don't ask ssh password all the time
+  git config --global credential.helper cache
+fi
+
+git config --global core.excludesfile "${HOME}/.gitignore_global"
+git config --global include.path "${HOME}/.gitconfig_local"
+
+# better diffs
+if test $(which diff-so-fancy); then
+	git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+fi
+
+# use ksdiff as mergetool
+if test $(which ksdiff); then
+	git config --global merge.tool Kaleidoscope
+	git config --global mergetool.vscode.cmd "ksdiff --merge --output $MERGED --base $BASE -- $LOCAL --snapshot $REMOTE --snapshot"
+fi
 
 echo "Done!"
 
