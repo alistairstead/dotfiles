@@ -1,8 +1,40 @@
 return {
   {
+    "ellisonleao/gruvbox.nvim",
+  },
+  {
+    "folke/tokyonight.nvim",
+    opts = { style = "moon" },
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      flavour = "mocha",
+      dim_inactive = {
+        enabled = true, -- dims the background color of inactive window
+        shade = "dark",
+        percentage = 0.15, -- percentage of the shade to apply to the inactive window
+      },
+      styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { "italic" }, -- Change the style of comments
+      },
+      color_overrides = {},
+      custom_highlights = {},
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        notify = true,
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+      },
+    },
+  },
+  {
     "mofiqul/dracula.nvim",
-    lazy = true, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    -- priority = 1000, -- make sure to load this before all the other start plugins
     opts = function()
       local colors = require("dracula").colors()
       return {
@@ -47,26 +79,21 @@ return {
           -- examples
           -- nontext = { fg = dracula.colors().white }, -- set nontext fg to white
           -- nvimtreeindentmarker = { link = "nontext" }, -- link to nontext highlight
-          Comment = { fg = colors.comment, italic = true },
+          -- Comment = { fg = colors.comment, italic = true },
           CursorLine = { bg = colors.bg_dark },
           CursorLineNr = { fg = colors.yellow },
           DiffAdd = { bg = "none" },
           DiffChange = { bg = "none" },
           DiffDelete = { bg = "none" },
-          GitSignsAdd = { fg = colors.bright_green, bg = "none" },
+          GitSignsAdd = { fg = colors.green, bg = "none" },
           GitSignsChange = { fg = colors.orange, bg = "none" },
           GitSignsDelete = { fg = colors.red, bg = "none" },
           Nothing = {}, -- clear highlight of nothing
-          VertSplit = { fg = colors.nontext, bg = colors.bg_dark },
+          -- VertSplit = { fg = colors.nontext, bg = colors.bg_dark },
           WarnLine = { fg = colors.orange },
           WarningMsg = { fg = colors.orange },
         },
       }
-    end,
-    config = function(_, opts)
-      local dracula = require("dracula")
-      dracula.setup(opts)
-      -- dracula.load()
     end,
   },
   {
@@ -76,24 +103,23 @@ return {
     },
     name = "dracula_pro",
     dev = true,
-    lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme dracula_pro")
+      -- vim.cmd("colorscheme dracula_pro")
       local colors = require("util.colors")
       colors.setup()
-      colors.update_hl("Comment", { fg = "#7970a9", italic = true })
-      colors.update_hl("CursorLine", { bg = "#282a36" })
-      colors.inherit_hl("Diffadd", "GitSignsAdd", { bg = "none" })
-      colors.inherit_hl("DiffChange", "GitSignsChange", { bg = "none" })
-      colors.inherit_hl("DiffDelete", "GitSignsDelete", { bg = "none" })
-      colors.update_hl("VertSplit", { fg = "#3b4048", bg = "#21222c" })
+      -- colors.update_hl("Comment", { fg = "#7970a9", italic = true })
+      -- colors.update_hl("CursorLine", { bg = "#282a36" })
+      -- colors.inherit_hl("Diffadd", "GitSignsAdd", { bg = "none" })
+      -- colors.inherit_hl("DiffChange", "GitSignsChange", { bg = "none" })
+      -- colors.inherit_hl("DiffDelete", "GitSignsDelete", { bg = "none" })
+      -- colors.update_hl("VertSplit", { fg = "#3b4048", bg = "#21222c" })
     end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "dracula_pro",
+      colorscheme = "catppuccin",
     },
   },
 }

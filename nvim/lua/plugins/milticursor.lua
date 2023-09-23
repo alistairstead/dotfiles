@@ -12,7 +12,7 @@ return {
   keys = {
     {
       mode = { "v" },
-      "<Leader>m",
+      "m",
       "<cmd>MCstart<cr>",
       desc = "Create a multicursor based on the selection",
     },

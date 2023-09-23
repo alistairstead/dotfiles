@@ -6,6 +6,7 @@ return {
       "php",
       "twig",
       "typescript",
+      "lua",
     },
   },
 }

@@ -24,7 +24,17 @@ return {
     },
   },
   opts = {
+    enable_git_status = true,
+    enable_diagnostics = false,
     sync_root_with_cwd = false,
+    filesystem = {
+      use_libuv_file_watcher = true,
+      follow_current_file = {
+        enabled = false, -- This will find and focus the file in the active buffer every time
+        --               -- the current file is changed while the tree is open.
+        leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+      },
+    },
     update_focused_file = {
       enable = true,
       update_root = false,
@@ -47,7 +57,7 @@ return {
           -- Status type
           untracked = "?",
           ignored = "",
-          unstaged = "M",
+          unstaged = "",
           staged = "",
           conflict = "",
         },
@@ -59,8 +69,9 @@ return {
         ["o"] = "open_with_window_picker",
         ["h"] = "close_node",
         ["S"] = "split_with_window_picker",
-        ["s"] = "vsplit_with_window_picker",
-        ["v"] = "vsplit_with_window_picker",
+        ["s"] = "open_split",
+        ["V"] = "vsplit_with_window_picker",
+        ["v"] = "open_vsplit",
       },
     },
   },

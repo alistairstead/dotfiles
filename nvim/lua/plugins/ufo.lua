@@ -5,6 +5,7 @@ return {
     "kevinhwang91/promise-async",
     "neovim/nvim-lspconfig",
     {
+      enabled = false,
       "luukvbaal/statuscol.nvim",
       config = function()
         local builtin = require("statuscol.builtin")
@@ -21,7 +22,7 @@ return {
   },
   opts = {},
   config = function(_, opts)
-    vim.o.foldcolumn = "1"
+    vim.o.foldcolumn = "0"
     vim.o.foldlevel = 99
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
