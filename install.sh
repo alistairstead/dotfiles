@@ -68,7 +68,7 @@ unless ENV["CI"]
   brew install orbstack
   brew install rocket
 
-
+  # Install op cli
   brew tap 1password/tap
   brew install 1password-cli
 end
@@ -77,7 +77,7 @@ echo "Brew clean up..."
 brew cleanup
 
 echo "Installing fonts..."
-brew tap caskroom/fonts
+brew tap homebrew/cask-fonts
 brew install font-symbols-only-nerd-font
 
 echo "Installing personal dotfiles..."
@@ -85,6 +85,10 @@ git clone https://github.com/alistairstead/dotfiles.git ~/dotfiles
 
 cd dotfiles
 
-echo ""
+
+echo "Creating symlinks..."
+
+stow kitty
+
 echo "Done!"
 
