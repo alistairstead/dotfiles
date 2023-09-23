@@ -98,7 +98,7 @@ cd ~/dotfiles
 
 echo "Creating symlinks..."
 
-stow kitty nvim asdf git
+stow asdf bin git kitty nvim ssh zsh
 
 if test ! $(which asdf); then
   echo "Installing asdf..."
@@ -127,9 +127,8 @@ if test $(which brew); then
 	brew install diff-so-fancy || brew upgrade diff-so-fancy
 fi
 
-echo "Configuring git..."
-
 if [ "$(uname -s)" = "Darwin" ]; then
+  echo "Configuring git for mac-os settings..."
   # Don't ask ssh password all the time
   git config --global credential.helper osxkeychain
   # 1Password commit signing
@@ -138,6 +137,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
   git config --global gpg.ssh.program "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
   git config --global commit.gpgsign true
 else
+  echo "Configuring git for linux..."
   # Don't ask ssh password all the time
   git config --global credential.helper cache
 fi
@@ -155,6 +155,12 @@ if test $(which ksdiff); then
 	git config --global merge.tool Kaleidoscope
 	git config --global mergetool.vscode.cmd "ksdiff --merge --output $MERGED --base $BASE -- $LOCAL --snapshot $REMOTE --snapshot"
 fi
+
+if test "${distro}" = "Darwin"; then
+  echo "Configuring mac-os settings..."
+  bash ./script/mac-settings.sh
+else
+
 
 echo "Done!"
 
