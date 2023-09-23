@@ -11,7 +11,7 @@
 # Install Dotfiles
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/alistairstead/dotfiles/master/install.sh)" && source
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/alistairstead/dotfiles/main/install.sh)" && source
 ~/.zshrc
 ```
 
