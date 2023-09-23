@@ -10,16 +10,13 @@
 # away with the arguments provided and is then discarded.
 # Here, it enables us to use scoped variables in our dotfiles.
 # () {
-#   # `local` sets the variable's scope to this function and its descendendants.
-#   local gitdir=~/Git  # Where to keep repos and plugins
-#
 #   # Load all of the files in rc.d that start with <number>- and end in .zsh
 #   # (n) sorts the results in numerical order.
 #   # <-> is an open-ended range. It matches any non-negative integer.
 #   # <1-> matches any integer >= 1. <-9> matches any integer <= 9.
 #   # <1-9> matches any integer that's >= 1 and <= 9.
 #   local file=
-#   for file in $ZDOTDIR/rc.d/<->-*.zsh(n); do
+#   for file in $HOME/rc.d/<->-*.zsh(n); do
 #     source $file
 #   done
 # } "$@"
@@ -29,24 +26,86 @@
 # It's a good practice to pass "$@" by default. You'd be surprised at all the
 # bugs you avoid this way.
 #
-
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/supercharge"
-plug "zap-zsh/zap-prompt"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "zap-zsh/supercharge"
 plug "zap-zsh/exa"
 plug "zap-zsh/vim"
-plug "wintermi/zsh-fnm"
+plug "zap-zsh/fzf"
 
 alias vim="nvim"
 alias zshrc="vim ~/.zshrc"
-alias zshrcs="source ~/.zshrc"
 alias vimrc="vim ~/.config/nvim"
 alias tmuxrc="vim ~/.tmux.conf"
-alias lksconfig='vim ~/.lks/config.json'
+
+alias pn=pnpm
+alias code="cd ~/code"
+alias dotfiles="cd ~/dotfiles"
+
+# Remove all items safely, to Trash (`brew install trash`).
+if which trash >/dev/null 2>&1; then
+  alias rm='trash'
+fi
+
+if test $(which brew); then
+  brew() {
+    case "$1" in
+    cleanup)
+      (cd "$(brew --repo)" && git prune && git gc)
+      rm -rf "$(brew --cache)"
+      ;;
+    bump)
+      command brew update
+      command brew upgrade
+      brew cleanup
+      ;;
+    *)
+      command brew "$@"
+      ;;
+    esac
+  }
+fi
+
+# Freshen up your brew.
+freshbrew() {
+  brew bump
+  brew cleanup
+  brew doctor
+}
+
+alias ga='git add'
+alias gs='git status -sb'
+alias gco='git co'
+
+
+alias push='git push'
+alias pull='git pull'
+
+gi() {
+	curl -s "https://www.gitignore.io/api/$*"
+}
+
+g() {
+	args=$@
+	if [[ $# -eq 0 ]]; then
+		git status --short
+	else
+		git $args
+	fi
+}
+
+gc() {
+	args=$@
+	if [[ $# -eq 0 ]]; then
+		git commit -v
+	else
+		git commit -m "$args"
+	fi
+}
+
 
 alias dockerps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
 
@@ -62,16 +121,8 @@ function runr() {
     xargs -o npm run
 }
 alias cb='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'
-alias yarntest="yarn ui:build && lerna run test && yarn jest && yarn coverage:collect"
-alias weather="curl -4 wttr.in/nashville"
-alias rob="say 'How many Lowes could Rob Lowe rob if Rob Lowe could rob Lowes?'"
-# npm i play-sound-cli -g
-alias yo='play-sound ~/manorisms/mp3s/hour_chime.mp3'
-alias tada='play-sound ~/manorisms/mp3s/tada.mp3'
-# npm i -g node-notifier-cli
+
 alias alert='notify -t "Status" -m "Finished" -s Glass'
-alias python=/usr/local/bin/python3.9
-alias hollywood='docker run --rm -it bcbcarl/hollywood'
 
 # https://gist.github.com/reegnz/b9e40993d410b75c2d866441add2cb55
 function jqf() {
@@ -126,7 +177,6 @@ local dev_commands=(
 )
 alias dev='printf "%s\n" "${dev_commands[@]}" | fzf --height 20% --header Commands | bash'
 
-bindkey "^f" "tmux-sessionizer\n"
 # bindkey -s ^f "zellij-switch\n"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -137,7 +187,6 @@ autoload -Uz compinit
 compinit
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-# eval "$(/usr/local/bin/brew shellenv)"
-eval "$(fnm env --use-on-cd --log-level=quiet)"
 eval "$(zoxide init zsh)"
-eval "$(github-copilot-cli alias -- "$0")"
+eval "$(starship init zsh)"
+

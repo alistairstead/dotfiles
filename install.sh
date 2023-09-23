@@ -54,9 +54,11 @@ brew install --HEAD neovim
 brew install fzf
 
 brew install ripgrep
-brew install stow
 brew install ssh-copy-id
+brew install starship
+brew install stow
 brew install trash
+brew install zoxide
 
 if test ! ENV["CI"]; then
   echo "Installing GUI apps..."
@@ -87,9 +89,6 @@ echo "Installing fonts..."
 brew tap homebrew/cask-fonts
 brew install font-symbols-only-nerd-font
 
-echo "Install zap..."
-# zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-
 echo "Installing personal dotfiles..."
 git clone https://github.com/alistairstead/dotfiles.git ~/dotfiles
 
@@ -99,6 +98,10 @@ cd ~/dotfiles
 echo "Creating symlinks..."
 
 stow asdf bin git kitty nvim ssh zsh
+
+echo "Install zap..."
+
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 
 if test ! $(which asdf); then
   echo "Installing asdf..."
