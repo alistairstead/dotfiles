@@ -132,10 +132,12 @@ if [ "$(uname -s)" = "Darwin" ]; then
   # Don't ask ssh password all the time
   git config --global credential.helper osxkeychain
   # 1Password commit signing
-  git config --global user.signingkey $(op item get 'SSH Key' --fields label='public key')
-  git config --global gpg.format "ssh"
-  git config --global gpg.ssh.program "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-  git config --global commit.gpgsign true
+  if test ! ENV["CI"]; then
+    git config --global user.signingkey $(op item get 'SSH Key' --fields label='public key')
+    git config --global gpg.format "ssh"
+    git config --global gpg.ssh.program "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+    git config --global commit.gpgsign true
+  fi
 else
   echo "Configuring git for linux..."
   # Don't ask ssh password all the time
@@ -147,20 +149,13 @@ git config --global include.path "${HOME}/.gitconfig_local"
 
 # better diffs
 if test $(which diff-so-fancy); then
-	git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-fi
-
-# use ksdiff as mergetool
-if test $(which ksdiff); then
-	git config --global merge.tool Kaleidoscope
-	git config --global mergetool.vscode.cmd "ksdiff --merge --output $MERGED --base $BASE -- $LOCAL --snapshot $REMOTE --snapshot"
+  git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 fi
 
 if test "${distro}" = "Darwin"; then
   echo "Configuring mac-os settings..."
   bash ./script/mac-settings.sh
-else
-
+fi
 
 echo "Done!"
 
