@@ -1,5 +1,13 @@
 return {
   {
+    "mhanberg/output-panel.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>uo", "<cmd>OutputPanel<cr>", desc = "Toggle LSP output" },
+    },
+    config = true,
+  },
+  {
     "neovim/nvim-lspconfig",
     -- cmd = "LspInfo",
     opts = {
@@ -46,40 +54,6 @@ return {
           settings = {
             tailwindCSS = {
               emmetCompletions = true,
-            },
-          },
-        },
-        tsserver = {
-          root_dir = require("lspconfig").util.root_pattern(
-            ".git",
-            "pnpm-workspace.yaml",
-            "pnpm-lock.yaml",
-            "yarn.lock",
-            "package-lock.json",
-            "bun.lockb"
-          ),
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "literal",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = false,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = false,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
             },
           },
         },

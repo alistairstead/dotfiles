@@ -1,9 +1,11 @@
 return {
   {
     "ellisonleao/gruvbox.nvim",
+    lazy = true,
   },
   {
     "folke/tokyonight.nvim",
+    lazy = true,
     opts = { style = "moon" },
   },
   {
@@ -34,6 +36,7 @@ return {
   },
   {
     "mofiqul/dracula.nvim",
+    lazy = true,
     -- priority = 1000, -- make sure to load this before all the other start plugins
     opts = function()
       local colors = require("dracula").colors()
@@ -98,6 +101,7 @@ return {
   },
   {
     "code/dracula_pro",
+    lazy = true,
     dependencies = {
       { "mofiqul/dracula.nvim" },
     },

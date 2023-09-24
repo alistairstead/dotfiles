@@ -26,11 +26,14 @@
 # It's a good practice to pass "$@" by default. You'd be surprised at all the
 # bugs you avoid this way.
 #
-# Created by Zap installer
+# Created by Zap installer https://www.zapzsh.org
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-plug "zsh-users/zsh-autosuggestions"
-plug "zsh-users/zsh-syntax-highlighting"
+plug "marlonrichert/zsh-edit" # Better keyboard shortcuts
+plug "marlonrichert/zsh-hist" # Edit history from the command line.
+plug "zsh-users/zsh-autosuggestions" # Inline suggestions
+plug "zsh-users/zsh-syntax-highlighting" # Command-line syntax highlighting
+plug "zsh-users/zsh-history-substring-search" # History search
 plug "zap-zsh/supercharge"
 plug "zap-zsh/exa"
 plug "zap-zsh/vim"
@@ -179,14 +182,18 @@ alias dev='printf "%s\n" "${dev_commands[@]}" | fzf --height 20% --header Comman
 
 # bindkey -s ^f "zellij-switch\n"
 
+source "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -r ~/private/.zshrc ] && source ~/private/.zshrc
 
-# Load and initialise completion system
+# initialise completions with ZSH's compinit
 autoload -Uz compinit
 compinit
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 

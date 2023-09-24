@@ -2,12 +2,20 @@ return {
   {
     "telescope.nvim",
     dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
+      },
+      "debugloop/telescope-undo.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
     },
+    config = function(_, opts)
+      require("telescope").load_extension("undo")
+      require("telescope").load_extension("file_browser")
+    end,
     opts = {
       defaults = {
         prompt_prefix = " ",
@@ -129,6 +137,11 @@ return {
           require("telescope.builtin").colorscheme({ enable_preview = true })
         end,
         desc = "Colorscheme with preview",
+      },
+      {
+        "<leader>sB",
+        ":Telescope file_browser file_browser path=%:p:h=%:p:h<cr>",
+        desc = "Browse Files",
       },
     },
   },

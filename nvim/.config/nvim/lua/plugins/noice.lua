@@ -3,14 +3,18 @@ return {
   opts = {
     presets = {
       bottom_search = false,
+      lsp_doc_border = true,
     },
     lsp = {
       progress = {
-        enabled = false,
+        enabled = true,
       },
       override = {
         ["cmp.entry.get_documentation"] = true,
       },
+    },
+    messages = {
+      enabled = false,
     },
     routes = {
       {

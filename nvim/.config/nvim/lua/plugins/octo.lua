@@ -2,7 +2,7 @@ return {
   {
     "pwntester/octo.nvim",
     cmd = "Octo",
-    -- event = 'VeryLazy',
+    event = "VeryLazy",
     opts = {
       gh_env = function()
         -- the 'op.api' module provides the same interface as the CLI
@@ -27,6 +27,9 @@ return {
       { "mrjones2014/op.nvim", build = "make install" },
       -- another plugin to make the UI a bit nicer
       "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
     },
   },
 }

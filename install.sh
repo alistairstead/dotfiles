@@ -41,6 +41,10 @@ echo "Installing recipes from brew..."
 brew install adr-tools
 brew install ag
 brew install awscli
+brew install coreutils
+brew install curl
+# https://direnv.net
+brew install direnv
 brew install exa
 brew install fd
 brew install fzf
@@ -105,7 +109,9 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 
 if test ! $(which asdf); then
   echo "Installing asdf..."
-  brew install asdf
+  # Documentation: https://asdf-vm.com
+  # brew install asdf
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
 
   asdf plugin-add erlang
   asdf plugin-add elixir
@@ -114,7 +120,6 @@ if test ! $(which asdf); then
   asdf plugin-add postgres
   asdf plugin-add php https://github.com/asdf-community/asdf-php.git
   asdf plugin-add direnv
-
 
   brew install \
     coreutils automake autoconf openssl \

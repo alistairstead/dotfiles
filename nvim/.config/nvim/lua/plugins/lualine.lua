@@ -23,6 +23,11 @@ return {
       -- theme = "dracula-nvim",
       sections = {
         lualine_a = { { "mode", cond = is_not_active }, { get_name, cond = is_active } },
+        lualine_z = {
+          function()
+            return " " .. os.date("%I:%M %p")
+          end,
+        },
       },
     }
   end,
