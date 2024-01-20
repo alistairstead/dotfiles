@@ -3,19 +3,19 @@ return {
     "telescope.nvim",
     dependencies = {
       {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
+        "debugloop/telescope-undo.nvim",
+        keys = { { "<leader>U", "<cmd>Telescope undo<cr>", "Undo tree" } },
         config = function()
-          require("telescope").load_extension("fzf")
+          require("telescope").load_extension("undo")
         end,
       },
-      "debugloop/telescope-undo.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
+      {
+        "ThePrimeagen/git-worktree.nvim",
+        config = function()
+          require("telescope").load_extension("git_worktree")
+        end,
+      },
     },
-    config = function(_, opts)
-      require("telescope").load_extension("undo")
-      require("telescope").load_extension("file_browser")
-    end,
     opts = {
       defaults = {
         prompt_prefix = " ",
@@ -132,16 +132,20 @@ return {
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
       { "<leader>sw", "<cmd>Telescope grep_string<cr>", desc = "Word" },
       {
-        "<leader>cc",
+        "<leader>tc",
         function()
           require("telescope.builtin").colorscheme({ enable_preview = true })
         end,
         desc = "Colorscheme with preview",
       },
       {
-        "<leader>sB",
-        ":Telescope file_browser file_browser path=%:p:h=%:p:h<cr>",
-        desc = "Browse Files",
+        "<leader>fp",
+        function()
+          require("telescope.builtin").find_files({
+            cwd = require("lazy.core.config").options.root,
+          })
+        end,
+        desc = "Find Plugin File",
       },
     },
   },

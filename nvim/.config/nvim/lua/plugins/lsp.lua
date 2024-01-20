@@ -60,7 +60,7 @@ return {
       },
       setup = {
         eslint = function()
-          require("lazyvim.util").on_attach(function(client)
+          require("lazyvim.util").lsp.on_attach(function(client)
             if client.name == "eslint" then
               client.server_capabilities.documentFormattingProvider = true
             elseif client.name == "tsserver" then
@@ -68,6 +68,42 @@ return {
             end
           end)
         end,
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    -- dev = true,
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        ["markdown"] = { { "prettierd", "prettier" } },
+        ["markdown.mdx"] = { { "prettierd", "prettier" } },
+        ["javascript"] = { { "prettierd", "prettier" } },
+        ["javascriptreact"] = { { "prettierd", "prettier" } },
+        ["typescript"] = { { "prettierd", "prettier" } },
+        ["typescriptreact"] = { { "prettierd", "prettier" } },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        lua = { "selene", "luacheck" },
+        markdown = { "markdownlint" },
+      },
+      linters = {
+        selene = {
+          condition = function(ctx)
+            return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
+          end,
+        },
+        luacheck = {
+          condition = function(ctx)
+            return vim.fs.find({ ".luacheckrc" }, { path = ctx.filename, upward = true })[1]
+          end,
+        },
       },
     },
   },

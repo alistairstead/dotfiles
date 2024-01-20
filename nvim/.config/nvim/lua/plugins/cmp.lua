@@ -66,8 +66,10 @@ return {
       })
 
       -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "nvim_lsp_signature_help" } }))
-      -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "conventionalcommits" } }))
-      -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "git" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "conventionalcommits" } }))
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "git" } }))
+
+      return opts
     end,
   },
 }

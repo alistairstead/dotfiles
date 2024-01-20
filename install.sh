@@ -51,6 +51,7 @@ brew install fzf
 brew install gdu
 brew install gh
 brew install git
+brew install gum
 brew install jq
 
 brew tap neovim/neovim
@@ -62,6 +63,7 @@ brew install ssh-copy-id
 brew install starship
 brew install stow
 brew install trash
+brew install yabai
 brew install zoxide
 
 if test ! ENV["CI"]; then
@@ -75,11 +77,13 @@ if test ! ENV["CI"]; then
   brew install fantastical
   brew install figma
   brew install google-chrome
+  brew install hammerspoon
   brew install kap
   brew install kitty
   brew install nordvpn
   brew install orbstack
   brew install rocket
+  brew install wezterm
 
   # Install op cli
   brew tap 1password/tap
@@ -101,7 +105,7 @@ cd ~/dotfiles
 
 echo "Creating symlinks..."
 
-stow asdf bin git kitty nvim ssh zsh
+stow asdf bin gh git kitty nvim ssh starship tmux yabai zsh
 
 echo "Install zap..."
 
@@ -164,6 +168,11 @@ if test "${distro}" = "Darwin"; then
   echo "Configuring mac-os settings..."
   bash ./script/mac-settings.sh
 fi
+
+echo "Configuring tmux plugins..."
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
+~/.tmux/plugins/tpm/bin/update_plugins all
 
 echo "Done!"
 

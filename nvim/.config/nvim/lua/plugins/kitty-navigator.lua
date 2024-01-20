@@ -1,5 +1,6 @@
 return {
   "knubie/vim-kitty-navigator",
+  enabled = false,
   keys = {
     { "<C-h>", "<cmd>KittyNavigateLeft<cr>", desc = "KittyNavigateLeft" },
     { "<C-l>", "<cmd>KittyNavigateRight<cr>", desc = "KittyNavigateRight" },

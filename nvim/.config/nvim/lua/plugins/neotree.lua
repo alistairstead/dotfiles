@@ -3,24 +3,6 @@ return {
   dependencies = {
     {
       "s1n7ax/nvim-window-picker",
-      opts = {
-        show_prompt = true,
-        filter_rules = {
-          -- filter using buffer options
-          bo = {
-            -- if the file type is one of following, the window will be ignored
-            filetype = { "NvimTree", "neo-tree", "notify" },
-            -- if the buffer type is one of following, the window will be ignored
-            buftype = {},
-          },
-        },
-        fg_color = "#EF87BD",
-        -- if you have include_current_win == true, then current_win_hl_color will
-        -- be highlighted using this background color
-        current_win_hl_color = "#454158",
-        -- all the windows except the current window will be highlighted using this color
-        other_win_hl_color = "#454158",
-      },
     },
   },
   opts = {
@@ -30,7 +12,7 @@ return {
     filesystem = {
       use_libuv_file_watcher = true,
       follow_current_file = {
-        enabled = false, -- This will find and focus the file in the active buffer every time
+        enabled = true, -- This will find and focus the file in the active buffer every time
         --               -- the current file is changed while the tree is open.
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },

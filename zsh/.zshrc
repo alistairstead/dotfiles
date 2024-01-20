@@ -72,13 +72,6 @@ if test $(which brew); then
   }
 fi
 
-# Freshen up your brew.
-freshbrew() {
-  brew bump
-  brew cleanup
-  brew doctor
-}
-
 alias ga='git add'
 alias gs='git status -sb'
 alias gco='git co'
@@ -123,64 +116,15 @@ function runr() {
       --layout="reverse" | \
     xargs -o npm run
 }
-alias cb='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff {1} --color=always" --pointer="" | xargs git checkout'
+alias cb='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1} " --pointer="" | xargs git checkout'
 
-alias alert='notify -t "Status" -m "Finished" -s Glass'
 
-# https://gist.github.com/reegnz/b9e40993d410b75c2d866441add2cb55
-function jqf() {
-  echo "" | \
-    fzf \
-      --disabled \
-      --print-query
-      --preview "jq -C {q} $1" \
-      --prompt="Query  " \
-      --header="Interactive jq playground" \
-      --preview-window="down:90"
-}
-function tzf() {
-  tz -list | fzf -m | awk '{print $4}' | tr "\n" ";" | xargs -I {} sh -c "TZ_LIST='{}' tz"
-}
 function ghpr() {
   GH_FORCE_TTY=100% gh pr list | fzf --query "$1" --ansi --preview 'GH_FORCE_TTY=100% gh pr view {1}' --preview-window down --header-lines 3 | awk '{print $1}' | xargs gh pr checkout -f
 }
 function ghgist() {
   GH_FORCE_TTY=100% gh gist list --limit 20 | fzf --ansi --preview 'GH_FORCE_TTY=100% gh gist view {1}' --preview-window down | awk '{print $1}' | xargs gh gist edit
 }
-
-# git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/AstroNvim
-# git clone git@github.com:nvim-lua/kickstart.nvim.git ~/.config/kickstart
-# git clone https://github.com/nvim-lua/kickstart.nvim.git ~/.config/kickstart
-# git clone https://github.com/NvChad/NvChad ~/.config/NvChad --depth 1
-# git clone https://github.com/LazyVim/starter ~/.config/LazyVim
-alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
-alias nvim-kick="NVIM_APPNAME=kickstart nvim"
-alias nvim-chad="NVIM_APPNAME=NvChad nvim"
-alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
-function nvims() {
-  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
-}
-bindkey "^a" "nvims\n"
-
-local dev_commands=(
-	'tz' 'task' 'watson' 'archey' 'ncdu'
-	'fkill' 'lazydocker' 'ntl' 'ranger'
-	'speed-test' 'serve' 'vtop' 'htop' 'btop'
-	'lazygit' 'gitui' 'tig' 'tldr'
-  'calcurse' 'cmatrix' 'cowsay' 'exa' 'fd' 'dooit' 'taskell' 'gh' 'gitui' 'hyperfine' 'lolcat'
-  'mc' 'navi' 'neofetch' 'newsboat' 'nnn' 'tree' 'vhs' 'vifm' 'zellij' 'tmux' 'zoxide'
-)
-alias dev='printf "%s\n" "${dev_commands[@]}" | fzf --height 20% --header Commands | bash'
-
-# bindkey -s ^f "zellij-switch\n"
 
 source "$HOME/.asdf/asdf.sh"
 # append completions to fpath
@@ -197,3 +141,11 @@ eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
+
+# pnpm
+export PNPM_HOME="/Users/alistairstead/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
