@@ -105,7 +105,7 @@ cd ~/dotfiles
 
 echo "Creating symlinks..."
 
-stow asdf bin gh git kitty nvim ssh starship tmux yabai zsh
+stow asdf bin gh git kitty nvim ssh starship tmux wezterm yabai zsh
 
 echo "Install zap..."
 

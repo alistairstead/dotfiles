@@ -80,7 +80,7 @@ local config = {
   adjust_window_size_when_changing_font_size = false,
   debug_key_events = false,
   enable_tab_bar = false,
-  native_macos_fullscreen_mode = false,
+  native_macos_fullscreen_mode = true,
   window_close_confirmation = "NeverPrompt",
   window_decorations = "RESIZE",
 
@@ -89,9 +89,7 @@ local config = {
     k.cmd_key(".", k.multiple_actions(":ZenMode")),
     k.cmd_key("[", act.SendKey({ mods = "CTRL", key = "o" })),
     k.cmd_key("]", act.SendKey({ mods = "CTRL", key = "i" })),
-    k.cmd_key("f", k.multiple_actions(":Grep")),
     k.cmd_key("H", act.SendKey({ mods = "CTRL", key = "h" })),
-    k.cmd_key("i", k.multiple_actions(":SmartGoTo")),
     k.cmd_key("J", act.SendKey({ mods = "CTRL", key = "j" })),
     k.cmd_key("K", act.SendKey({ mods = "CTRL", key = "k" })),
     k.cmd_key("L", act.SendKey({ mods = "CTRL", key = "l" })),
@@ -116,13 +114,13 @@ local config = {
     k.cmd_to_tmux_prefix("g", "g"),
     k.cmd_to_tmux_prefix("k", "T"),
     k.cmd_to_tmux_prefix("l", "L"),
-    k.cmd_to_tmux_prefix("n", '"'),
-    k.cmd_to_tmux_prefix("N", "%"),
+    k.cmd_to_tmux_prefix("N", '"'),
+    k.cmd_to_tmux_prefix("n", "%"),
     k.cmd_to_tmux_prefix("o", "u"),
     k.cmd_to_tmux_prefix("T", "!"),
     k.cmd_to_tmux_prefix("t", "c"),
     k.cmd_to_tmux_prefix("w", "x"),
-    k.cmd_to_tmux_prefix("z", "z"),
+    k.cmd_to_tmux_prefix("f", "z"),
 
     k.cmd_key(
       "R",
@@ -195,5 +193,63 @@ local config = {
     },
   },
 }
+
+wezterm.on("user-var-changed", function(window, pane, name, value)
+  -- local appearance = window:get_appearance()
+  -- local is_dark = appearance:find("Dark")
+  local overrides = window:get_config_overrides() or {}
+  wezterm.log_info("name", name)
+  wezterm.log_info("value", value)
+
+  if name == "T_SESSION" then
+    local session = value
+    wezterm.log_info("is session", session)
+    overrides.background = {
+      {
+        source = {
+          Gradient = {
+            colors = { "#000000" },
+          },
+        },
+        width = "100%",
+        height = "100%",
+        opacity = 0.95,
+      },
+    }
+  end
+
+  if name == "ZEN_MODE" then
+    local incremental = value:find("+")
+    local number_value = tonumber(value)
+    if incremental ~= nil then
+      while number_value > 0 do
+        window:perform_action(wezterm.action.IncreaseFontSize, pane)
+        number_value = number_value - 1
+      end
+    elseif number_value < 0 then
+      window:perform_action(wezterm.action.ResetFontSize, pane)
+      overrides.font_size = nil
+    else
+      overrides.font_size = number_value
+    end
+  end
+  if name == "DIFF_VIEW" then
+    local incremental = value:find("+")
+    local number_value = tonumber(value)
+    if incremental ~= nil then
+      while number_value > 0 do
+        window:perform_action(wezterm.action.DecreaseFontSize, pane)
+        number_value = number_value - 1
+      end
+    elseif number_value < 0 then
+      window:perform_action(wezterm.action.ResetFontSize, pane)
+      overrides.background = nil
+      overrides.font_size = nil
+    else
+      overrides.font_size = number_value
+    end
+  end
+  window:set_config_overrides(overrides)
+end)
 
 return config

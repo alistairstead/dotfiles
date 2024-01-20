@@ -1,27 +1,52 @@
 return {
   {
-    "telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     dependencies = {
       {
         "debugloop/telescope-undo.nvim",
         keys = { { "<leader>U", "<cmd>Telescope undo<cr>", "Undo tree" } },
-        config = function()
-          require("telescope").load_extension("undo")
-        end,
       },
+      { "natecraddock/telescope-zf-native.nvim" },
+      { "ThePrimeagen/harpoon" },
       {
         "ThePrimeagen/git-worktree.nvim",
-        config = function()
-          require("telescope").load_extension("git_worktree")
-        end,
       },
     },
+    config = function(_, opts)
+      local telescope = require("telescope")
+      telescope.setup(opts)
+      telescope.load_extension("harpoon")
+      telescope.load_extension("git_worktree")
+      -- telescope.load_extension("import")
+      -- telescope.load_extension("live_grep_args")
+      -- telescope.load_extension("neoclip")
+      -- telescope.load_extension("notify")
+      -- telescope.load_extension("package_info")
+      -- telescope.load_extension("tailiscope")
+      telescope.load_extension("undo")
+      telescope.load_extension("zf-native")
+    end,
     opts = {
       defaults = {
-        prompt_prefix = " ",
-        selection_caret = "  ",
-        path_display = { "truncate" },
-        layout_strategy = "horizontal",
+        path_display = { "smart" },
+        prompt_position = "top",
+        prompt_prefix = " ",
+        selection_caret = " ",
+        sorting_strategy = "ascending",
+        color_devicons = true,
+        selection_strategy = "reset",
+        scroll_strategy = "cycle",
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--hidden",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--trim", -- add this value
+        },
         layout_config = {
           width = 0.95,
           height = 0.85,
@@ -46,11 +71,14 @@ return {
             },
           },
         },
-        color_devicons = true,
-        selection_strategy = "reset",
-        sorting_strategy = "ascending",
-        scroll_strategy = "cycle",
-        file_ignore_patters = { ".git/", "yarn.lock", "package-lock.json", "node_Modules", ".build", ".sst" },
+        file_ignore_patters = {
+          ".git/",
+          "yarn.lock",
+          "package-lock.json",
+          "node_Modules",
+          ".build",
+          ".sst",
+        },
         mappings = {
           i = {
             ["<C-n>"] = require("telescope.actions").cycle_history_next,
@@ -73,6 +101,10 @@ return {
         },
       },
       pickers = {
+        git_files = {
+          prompt_prefix = "󰊢 ",
+          show_untracked = true,
+        },
         find_files = {
           hidden = true,
           theme = "dropdown",
@@ -87,6 +119,18 @@ return {
         },
       },
       extensions = {
+        ["zf-native"] = {
+          file = { -- options for sorting file-like items
+            enable = true, -- override default telescope file sorter
+            highlight_results = true, -- highlight matching text in results
+            match_filename = true, -- enable zf filename match priority
+          },
+          generic = { -- options for sorting all other items
+            enable = true, -- override default telescope generic item sorter
+            highlight_results = true, -- highlight matching text in results
+            match_filename = false, -- disable zf filename match priority
+          },
+        },
         ["ui-select"] = {
           require("telescope.themes").get_dropdown({
             -- even more opts
@@ -132,7 +176,7 @@ return {
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
       { "<leader>sw", "<cmd>Telescope grep_string<cr>", desc = "Word" },
       {
-        "<leader>tc",
+        "<leader>fc",
         function()
           require("telescope.builtin").colorscheme({ enable_preview = true })
         end,

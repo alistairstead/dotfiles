@@ -32,13 +32,13 @@ return {
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_next_item()
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
             -- this way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
           elseif has_words_before() then
-            cmp.complete()
+            cmp.complete({ behavior = cmp.SelectBehavior.Insert })
           else
             fallback()
           end
