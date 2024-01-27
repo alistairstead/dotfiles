@@ -103,18 +103,21 @@ return {
       pickers = {
         git_files = {
           prompt_prefix = "󰊢 ",
-          show_untracked = true,
+          -- show_untracked = true,
         },
         find_files = {
+          prompt_prefix = " ",
           hidden = true,
           theme = "dropdown",
           previewer = false,
         },
         buffers = {
+          prompt_prefix = " ",
           previewer = false,
           theme = "dropdown",
         },
         lsp_references = {
+          prompt_prefix = " ",
           previewer = false,
         },
       },

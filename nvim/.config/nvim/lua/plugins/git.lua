@@ -68,8 +68,30 @@ return {
     },
   },
   {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "┊" },
+        change = { text = "┊" },
+        delete = { text = "┊" },
+        topdelete = { text = "┊" },
+        changedelete = { text = "┊" },
+        untracked = { text = "┊" },
+      },
+    },
+  },
+  {
     "ruifm/gitlinker.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     opts = {},
+    keys = {
+      {
+        "<leader>gy",
+        function()
+          require("gitlinker").get_buf_range_url("n")
+        end,
+        desc = "Yank GitHub URL",
+      },
+    },
   },
 }

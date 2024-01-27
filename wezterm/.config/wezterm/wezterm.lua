@@ -20,7 +20,8 @@ local config = {
   background = {
     b.get_background(),
   },
-
+  macos_window_background_blur = 15,
+  color_scheme = "Catppuccin Mocha",
   font_size = 18,
   line_height = 1.1,
   cell_width = 1.1,
@@ -61,7 +62,6 @@ local config = {
       }),
     },
   },
-  color_scheme = "Catppuccin Mocha",
 
   window_padding = {
     left = 30,
