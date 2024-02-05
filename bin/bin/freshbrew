@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: show releases URLS for each apps
-
 gum style \
 	--foreground 12 --border-foreground 12 --border double \
 	--align center --width 50 --margin "1 1" --padding "1 2" \

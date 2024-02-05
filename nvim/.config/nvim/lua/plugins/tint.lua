@@ -1,5 +1,6 @@
 return {
   "levouh/tint.nvim",
+  enabled = false,
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     tint = -50,

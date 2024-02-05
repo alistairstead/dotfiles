@@ -51,7 +51,6 @@ for i = 1, 9 do
   altShiftNumber(num)
 end
 
--- NOTE: use as arrow keys
 local homeRow = { h = "west", j = "south", k = "north", l = "east" }
 
 for key, direction in pairs(homeRow) do

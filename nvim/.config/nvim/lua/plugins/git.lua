@@ -50,16 +50,79 @@ return {
         end,
       },
     },
+    config = function(_, opts)
+      require("git-worktree").setup(opts)
+      local Worktree = require("git-worktree")
+      local utils = require("utils")
+      local function file_exists(filename)
+        local file = io.open(filename, "r")
+        if file then
+          -- Obviously close the file if it did successfully open.
+          file:close()
+          return true
+        end
+        return false
+      end
+
+      -- op = Operations.Switch, Operations.Create, Operations.Delete
+      -- metadata = table of useful values (structure dependent on op)
+      --      Switch
+      --          path = path you switched to
+      --          prev_path = previous worktree path
+      --      Create
+      --          path = path where worktree created
+      --          branch = branch name
+      --          upstream = upstream remote name
+      --      Delete
+      --          path = path where worktree deleted
+
+      Worktree.on_tree_change(function(op, metadata)
+        if op == Worktree.Operations.Switch then
+          print("Switched from " .. metadata.prev_path .. " to " .. metadata.path)
+          utils.closeOtherBuffers()
+          if file_exists(".envrc") then
+            local handle = io.popen([["/opt/homebrew/bin/direnv allow ."]])
+            if handle == nil then
+              print("direnv allow . failed")
+              return
+            end
+            local result = handle:read("*a")
+            local ok, _, _ = handle:close()
+            if ok then
+              print("direnv allow .")
+              print(result)
+            else
+              print("direnv allow . failed")
+            end
+          end
+          if file_exists("pnpm-lock.yaml") then
+            local handle = io.popen([["/opt/homebrew/bin/pnpm i"]])
+            if handle == nil then
+              print("pnpm install failed")
+              return
+            end
+            local result = handle:read("*a")
+            local ok, _, _ = handle:close()
+            if ok then
+              print("phpm install")
+              print(result)
+            else
+              print("pnpm install failed")
+            end
+          end
+        end
+      end)
+    end,
     keys = {
       {
-        "<leader>gw",
+        "<leader>gww",
         function()
           require("telescope").extensions.git_worktree.git_worktrees()
         end,
         desc = "Worktree switch and delete <c-d>",
       },
       {
-        "<leader>gW",
+        "<leader>gwc",
         function()
           require("telescope").extensions.git_worktree.create_git_worktree()
         end,
@@ -78,6 +141,32 @@ return {
         changedelete = { text = "┊" },
         untracked = { text = "┊" },
       },
+      on_attach = function(buffer)
+        local gs = package.loaded.gitsigns
+
+        local function map(mode, l, r, desc)
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+        end
+
+        map({ "n", "v" }, "<leader>gx", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+        map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+        map("n", "<leader>gS", gs.stage_buffer, "Stage Buffer")
+        map("n", "<leader>gh", gs.preview_hunk, "Preview Hunk")
+        map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
+        map("n", "<leader>gX", gs.reset_buffer, "Reset Buffer")
+        map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
+        map("n", "<leader>gb", function()
+          gs.blame_line({ full = true })
+        end, "Blame Line")
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+      end,
+    },
+    keys = {
+      -- git hunk navigation - previous / next
+      { "gh", ":Gitsigns next_hunk<CR>", desc = "Goto next git hunk" },
+      { "gH", ":Gitsigns prev_hunk<CR>", desc = "Goto previous git hunk" },
+      { "]g", ":Gitsigns next_hunk<CR>", desc = "Goto next git hunk" },
+      { "[g", ":Gitsigns prev_hunk<CR>", desc = "Goto previous git hunk" },
     },
   },
   {
