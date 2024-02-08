@@ -1,23 +1,23 @@
-#!/usr/bin/env fish
+#!/bin/sh
 
 gum style \
     --foreground 12 --border-foreground 12 --border double \
     --align center --width 60 --margin "1 0" --padding "1 0" \
-    '██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗
-██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
+    ' ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗
+ ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
 ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗
 ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝
 ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗
  ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝'
 
-set -l NOW (date +"%Y-%m-%d-%H-%M-%S")
+NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 echo -e "$NOW\n" >>/tmp/u-$NOW.txt
 
 gum spin --spinner globe --title "🐙 gh extensions upgrading..." --show-output -- gh extension upgrade --all >>/tmp/u-$NOW.txt
 echo "\n" >>/tmp/u-$NOW.txt
 echo "✅ 🐙 gh extensions upgraded"
 
-gum spin --spinner globe --title "🪟 tpm plugins updating..." --show-output -- ~/.config/tmux/plugins/tpm/bin/update_plugins all >>/tmp/u-$NOW.txt
+gum spin --spinner globe --title "🪟 tpm plugins updating..." --show-output -- ~/.tmux/plugins/tpm/bin/update_plugins all >>/tmp/u-$NOW.txt
 echo "\n" >>/tmp/u-$NOW.txt
 echo "✅ 🪟 tpm plugins updated"
 
@@ -38,10 +38,11 @@ gum spin --spinner globe --title "🍻 brew updating" --show-output -- brew upda
 echo "\n" >>/tmp/u-$NOW.txt
 echo "✅ 🍻 brew updated"
 
-set -l OUTDATED (brew outdated)
+OUTDATED=$(brew outdated)
 echo $OUTDATED >>/tmp/u-$NOW.txt
 
 if test -n "$OUTDATED"
+then
     gum spin --spinner globe --title "🍻 brew upgrading" --show-output -- brew upgrade >>/tmp/u-$NOW.txt
     echo "\n" >>/tmp/u-$NOW.txt
     echo "✅ 🍻 brew upgraded"
@@ -51,7 +52,7 @@ if test -n "$OUTDATED"
     echo "✅ 🍻 brew cleaned up"
 else
     echo "No outdated brew packages" >>/tmp/u-$NOW.txt
-end
+fi
 
 gum spin --spinner globe --title "🍻 brew doctoring" --show-output -- brew doctor >>/tmp/u-$NOW.txt
 echo "\n" >>/tmp/u-$NOW.txt

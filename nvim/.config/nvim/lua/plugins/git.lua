@@ -53,7 +53,6 @@ return {
     config = function(_, opts)
       require("git-worktree").setup(opts)
       local Worktree = require("git-worktree")
-      local utils = require("utils")
       local function file_exists(filename)
         local file = io.open(filename, "r")
         if file then
@@ -79,7 +78,6 @@ return {
       Worktree.on_tree_change(function(op, metadata)
         if op == Worktree.Operations.Switch then
           print("Switched from " .. metadata.prev_path .. " to " .. metadata.path)
-          utils.closeOtherBuffers()
           if file_exists(".envrc") then
             local handle = io.popen([["/opt/homebrew/bin/direnv allow ."]])
             if handle == nil then

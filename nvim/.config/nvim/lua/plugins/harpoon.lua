@@ -44,20 +44,29 @@ return {
   },
   keys = function()
     local harpoon = require("harpoon")
+    local wk = require("which-key")
+    wk.register({
+      h = {
+        name = "+Harpoon",
+      },
+    }, {
+      prefix = "<leader>",
+      mode = { "n" },
+    })
     return {
       {
         "<leader>ha",
         function()
           harpoon:list():append()
         end,
-        desc = "Harpoon - Add file",
+        desc = "Add file",
       },
       {
         "<leader>he",
         function()
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
-        desc = "Harpoon - Toggle quick menu",
+        desc = "Toggle quick menu",
       },
       {
         "<leader>1",

@@ -20,9 +20,10 @@
 # As in other shells, ~ expands to $HOME _at the beginning of a value only._
 # ZDOTDIR=${XDG_CONFIG_HOME:=~/.config}/zsh
 
-export PATH=/Users/$USER/bin:$PATH
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="$(brew --prefix python)/libexec/bin:$PATH"
+export PATH=/Users/$USER/bin:$PATH
 
 
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_installed

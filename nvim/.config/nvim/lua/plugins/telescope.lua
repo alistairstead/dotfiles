@@ -4,7 +4,7 @@ return {
     dependencies = {
       {
         "debugloop/telescope-undo.nvim",
-        keys = { { "<leader>U", "<cmd>Telescope undo<cr>", "Undo tree" } },
+        keys = { { "<leader>su", "<cmd>Telescope undo<cr>", "Undo tree" } },
       },
       { "natecraddock/telescope-zf-native.nvim" },
       { "ThePrimeagen/harpoon" },
@@ -152,13 +152,13 @@ return {
       { "<C-p>", "<cmd>Telescope git_files<CR>", desc = "git files" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       -- find
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "[fb] Find existing buffers" },
-      { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "[bb] Find existing buffers" },
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "[ff] Find Files" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "[fr] Find recently opened files" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find existing buffers" },
+      { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Find existing buffers" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Find recently opened files" },
       -- git
-      { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "[gc] Git commits" },
-      { "<leader>gf", "<cmd>Telescope git_files<CR>", desc = "[gf] Git files" },
+      { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Git commits" },
+      { "<leader>gf", "<cmd>Telescope git_files<CR>", desc = "Git files" },
       -- search
       { "<leader>s.", "<cmd>Telescope find_files search_dirs=~/.dotfiles<cr>", desc = "Auto Commands" },
       { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
@@ -178,14 +178,7 @@ return {
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
       { "<leader>sw", "<cmd>Telescope grep_string<cr>", desc = "Word" },
       {
-        "<leader>fc",
-        function()
-          require("telescope.builtin").colorscheme({ enable_preview = true })
-        end,
-        desc = "Colorscheme with preview",
-      },
-      {
-        "<leader>fp",
+        "<leader>sp",
         function()
           require("telescope.builtin").find_files({
             cwd = require("lazy.core.config").options.root,

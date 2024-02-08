@@ -90,17 +90,7 @@ return {
       table.insert(opts.output, {
         open_on_run = false,
       })
-      -- table.insert(
-      --   opts.adapters,
-      --   require("neotest-jest")({
-      --     jestCommand = "npm test --",
-      --     jestConfigFile = "custom.jest.config.ts",
-      --     env = { CI = true },
-      --     cwd = function()
-      --       return vim.fn.getcwd()
-      --     end,
-      --   })
-      -- )
+      table.insert(opts.adapters, require("neotest-jest")({}))
     end,
   },
 }

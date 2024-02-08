@@ -51,6 +51,7 @@ brew install fzf
 brew install gdu
 brew install gh
 brew install git
+brew install gnu-sed
 brew install gum
 brew install jq
 
@@ -172,7 +173,6 @@ fi
 echo "Configuring tmux plugins..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
-~/.tmux/plugins/tpm/bin/update_plugins all
 
 echo "Done!"
 
