@@ -16,7 +16,7 @@ return {
       {
         "<leader>tL",
         function()
-          require("neotest").run.run_last({ strategy = "dap" })
+          require("neotest").run.run_last({ strategy = "dap", suite = true })
         end,
         desc = "Debug Last Test",
       },
@@ -90,7 +90,7 @@ return {
       table.insert(opts.output, {
         open_on_run = false,
       })
-      table.insert(opts.adapters, require("neotest-jest")({}))
+      -- table.insert(opts.adapters, require("neotest-jest")({}))
     end,
   },
 }

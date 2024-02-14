@@ -25,6 +25,7 @@ return {
             "package-lock.json",
             "bun.lockb"
           ),
+          single_file_support = false,
           settings = {
             typescript = {
               inlayHints = {

@@ -103,7 +103,8 @@ return {
       pickers = {
         git_files = {
           prompt_prefix = "󰊢 ",
-          -- show_untracked = true,
+          hidden = true,
+          show_untracked = true,
         },
         find_files = {
           prompt_prefix = " ",
@@ -118,7 +119,10 @@ return {
         },
         lsp_references = {
           prompt_prefix = " ",
-          previewer = false,
+          previewer = true,
+        },
+        defaults = {
+          file_ignore_patterns = { "yarn.lock", "node_modules/*" },
         },
       },
       extensions = {

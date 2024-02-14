@@ -4,27 +4,28 @@ return {
     "b0o/incline.nvim",
   },
   cmd = "ZenMode",
+  keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
   opts = {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
-    window = {
-      zindex = 10,
-      backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-      -- height and width can be:
-      -- * an absolute number of cells when > 1
-      -- * a percentage of the width / height of the editor when <= 1
-      -- * a function that returns the width or the height
-      width = 0.85, -- width of the Zen window
-      height = 0.85, -- height of the Zen window
-      -- by default, no options are changed for the Zen window
-      -- uncomment any of the options below, or add other vim.wo options you want to apply
-      options = {
-        number = false, -- disable number column
-        relativenumber = false, -- disable relative numbers
-        list = false, -- disable whitespace characters
-      },
-    },
+    -- window = {
+    --   zindex = 10,
+    --   backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+    --   -- height and width can be:
+    --   -- * an absolute number of cells when > 1
+    --   -- * a percentage of the width / height of the editor when <= 1
+    --   -- * a function that returns the width or the height
+    --   width = 0.85, -- width of the Zen window
+    --   height = 0.85, -- height of the Zen window
+    --   -- by default, no options are changed for the Zen window
+    --   -- uncomment any of the options below, or add other vim.wo options you want to apply
+    --   options = {
+    --     number = false, -- disable number column
+    --     relativenumber = false, -- disable relative numbers
+    --     list = false, -- disable whitespace characters
+    --   },
+    -- },
     plugins = {
       -- disable some global vim options (vim.o...)
       -- comment the lines to not apply the options
@@ -57,7 +58,7 @@ return {
       wezterm = {
         enabled = true,
         -- can be either an absolute font size or the number of incremental steps
-        font = "+2", -- (10% increase per step)
+        -- font = "+2", -- (10% increase per step)
       },
     },
     -- callback where you can add custom code when the Zen window opens

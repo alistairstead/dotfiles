@@ -11,6 +11,12 @@ return {
     "neovim/nvim-lspconfig",
     -- cmd = "LspInfo",
     opts = {
+      diagnostics = {
+        virtual_text = {
+          prefix = "◦",
+          spacing = 4,
+        },
+      },
       capabilities = {
         textDocument = {
           foldingRange = {

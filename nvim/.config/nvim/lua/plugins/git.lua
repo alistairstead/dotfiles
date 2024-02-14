@@ -7,12 +7,70 @@ return {
       "sindrets/diffview.nvim",
     },
     opts = {
-      console_timeout = 20000,
-      disable_commit_confirmation = true,
+      disable_hint = true,
+      disable_commit_confirmation = "auto",
+      console_timeout = 1000,
       auto_show_console = true,
       disable_insert_on_commit = false,
       integrations = {
+        telescope = true,
         diffview = true,
+      },
+      telescope_sorter = function()
+        return require("telescope").extensions.fzf.native_fzf_sorter()
+      end,
+      signs = {
+        -- { CLOSED, OPENED }
+        hunk = { "", "" },
+        item = { " ", " " },
+        section = { " ", " " },
+      },
+      sections = {
+        -- Reverting/Cherry Picking
+        sequencer = {
+          folded = false,
+          hidden = false,
+        },
+        untracked = {
+          folded = false,
+          hidden = false,
+        },
+        unstaged = {
+          folded = false,
+          hidden = false,
+        },
+        staged = {
+          folded = false,
+          hidden = false,
+        },
+        stashes = {
+          folded = true,
+          hidden = false,
+        },
+        unpulled_upstream = {
+          folded = true,
+          hidden = false,
+        },
+        unmerged_upstream = {
+          folded = false,
+          hidden = false,
+        },
+        unpulled_pushRemote = {
+          folded = true,
+          hidden = false,
+        },
+        unmerged_pushRemote = {
+          folded = false,
+          hidden = false,
+        },
+        recent = {
+          folded = true,
+          hidden = false,
+        },
+        rebase = {
+          folded = true,
+          hidden = false,
+        },
       },
     },
     keys = {
@@ -20,7 +78,7 @@ return {
       {
         "<leader>gg",
         function()
-          require("neogit").open()
+          require("neogit").open({ cwd = vim.fn.expand("%:p:h") })
         end,
         desc = "Neogit",
       },
