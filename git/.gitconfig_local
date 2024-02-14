@@ -20,40 +20,18 @@
 [init]
 	defaultBranch = main
 
-[color]
-  ui = auto
-
 [diff]
-
-	# Detect copies as well as renames
 	renames = copies
 
-[diff "bin"]
-	# Use `hexdump` to diff binary files
-	textconv = hexdump -v -C
-
-[help]
-
-	# Automatically correct and execute mistyped commands
-	autocorrect = 1
-
 [merge]
-
-	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 
+[rerere]
+  enabled = true
+
 [push]
-
-	# Use the Git 1.x.x default to avoid errors on machines with old Git
-	# installations. To use `simple` instead, add this to your `~/.extra` file:
-	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	# Make `git push` push relevant annotated tags when pushing branches out.
-	followTags = true
-  default = simple
+  default = current
   autoSetupRemote = true
-
-
-# URL shorthands
 
 [help]
   autocorrect = 1

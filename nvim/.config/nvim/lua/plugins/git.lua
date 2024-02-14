@@ -21,9 +21,9 @@ return {
       end,
       signs = {
         -- { CLOSED, OPENED }
-        hunk = { "", "" },
-        item = { " ", " " },
-        section = { " ", " " },
+        hunk = { "", "" },
+        item = { "", "" },
+        section = { "", "" },
       },
       sections = {
         -- Reverting/Cherry Picking
