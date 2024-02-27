@@ -23,10 +23,11 @@ local config = {
   macos_window_background_blur = 15,
   color_scheme = "Catppuccin Mocha",
   font_size = 18,
-  line_height = 1.1,
-  cell_width = 1.1,
+  line_height = 1.3,
+  cell_width = 1.04,
   warn_about_missing_glyphs = true,
   freetype_load_target = "Light",
+  use_cap_height_to_scale_fallback_fonts = true,
   -- "Monaspace Argon",
   -- "Monaspace Krypton",
   -- "Monaspace Neon",
@@ -34,6 +35,30 @@ local config = {
   -- "Monaspace Xenon",
   font = f.font_with_fallback("Monaspace Neon", "ExtraLight"),
   font_rules = {
+    -- {
+    --   intensity = "Bold",
+    --   italic = false,
+    --   font = wezterm.font({
+    --     family = "Monaspace Neon",
+    --     weight = "Regular",
+    --   }),
+    -- },
+    -- {
+    --   italic = false,
+    --   intensity = "Half",
+    --   font = wezterm.font({
+    --     family = "Monaspace Neon",
+    --     weight = "ExtraLight",
+    --   }),
+    -- },
+    -- {
+    --   italic = false,
+    --   intensity = "Normal",
+    --   font = wezterm.font({
+    --     family = "Monaspace Neon",
+    --     weight = "ExtraLight",
+    --   }),
+    -- },
     {
       intensity = "Bold",
       italic = true,
@@ -67,7 +92,7 @@ local config = {
     left = 30,
     right = 30,
     top = 20,
-    bottom = 10,
+    bottom = 20,
   },
 
   set_environment_variables = {

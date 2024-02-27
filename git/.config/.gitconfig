@@ -14,17 +14,28 @@
   branches = branch -a
   remotes = remote -v
 
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[merge]
+	renames = copies
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
 [apply]
   whitespace = fix
 
 [init]
 	defaultBranch = main
-
-[diff]
-	renames = copies
-
-[merge]
-	log = true
 
 [rerere]
   enabled = true

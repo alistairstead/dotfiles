@@ -1,18 +1,52 @@
-#!/bin/bash
+#!/bin/sh
 
-echo "yabai updating..."
+gum style \
+    --foreground 12 --border-foreground 12 --border double \
+    --align center --width 60 --margin "1 0" --padding "1 0" \
+    ' ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗
+ ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
+██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗
+██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝
+╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗
+ ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝'
 
-# set codesigning certificate name here (default: yabai-cert)
-export YABAI_CERT=
+NOW=$(date +"%Y-%m-%d-%H-%M-%S")
+echo -e "$NOW\n" >>/tmp/u-$NOW.txt
 
 # stop yabai
 yabai --stop-service
 
 # reinstall yabai
-brew reinstall koekeishiya/formulae/yabai
-codesign -fs "${YABAI_CERT:-yabai-cert}" "$(brew --prefix yabai)/bin/yabai"
+gum spin --spinner globe --title "🍻 brew updating yabai" --show-output -- brew reinstall koekeishiya/formulae/yabai >>/tmp/u-$NOW.txt
 
-sudo bash -c 'echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" > /private/etc/sudoers.d/yabai'
+WHOAMI=$(whoami)
+# Get the SHA-256 hash of the yabai program
+YABAI_PATH=$(which yabai)
+if [ -z "$YABAI_PATH" ]; then
+    echo " yabai not found!"
+    exit 1
+fi
+HASH=$(shasum -a 256 "$YABAI_PATH" | awk '{print $1}') >>/tmp/u-$NOW.txt
+
+# Check if HASH is non-empty
+if [ -z "$HASH" ]; then
+    echo " Failed to get hash for yabai!"
+    exit 1
+fi
+
+# Construct the new sudoers entry
+SUDOERS_ENTRY="$WHOAMI ALL=(root) NOPASSWD: sha256:$HASH $YABAI_PATH --load-sa"
+
+# Write the entry to /private/etc/sudoers.d/yabai
+echo "$SUDOERS_ENTRY" | sudo tee /private/etc/sudoers.d/yabai >>/tmp/u-$NOW.txt
+
+# Set the appropriate permissions for the sudoers file
+sudo chmod 0440 /private/etc/sudoers.d/yabai >>/tmp/u-$NOW.txt
+
+echo "Updated /private/etc/sudoers.d/yabai successfully!"
 
 # finally, start yabai
 yabai --start-service
+
+echo "✅ 🧾 logged to /tmp/u-$NOW.txt"
+

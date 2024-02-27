@@ -53,25 +53,6 @@ if which trash >/dev/null 2>&1; then
   alias rm='trash'
 fi
 
-if test $(which brew); then
-  brew() {
-    case "$1" in
-    cleanup)
-      (cd "$(brew --repo)" && git prune && git gc)
-      rm -rf "$(brew --cache)"
-      ;;
-    bump)
-      command brew update
-      command brew upgrade
-      brew cleanup
-      ;;
-    *)
-      command brew "$@"
-      ;;
-    esac
-  }
-fi
-
 alias ga='git add'
 alias gs='git status -sb'
 alias gco='git co'
@@ -138,7 +119,7 @@ compinit
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(direnv hook zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
 
@@ -149,3 +130,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"

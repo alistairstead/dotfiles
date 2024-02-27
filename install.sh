@@ -51,15 +51,18 @@ brew install fzf
 brew install gdu
 brew install gh
 brew install git
+brew install git-delta
 brew install gnu-sed
 brew install gum
 brew install jq
+brew install yq
 
 brew tap neovim/neovim
 brew install --HEAD neovim
 brew install fzf
 
 brew install ripgrep
+brew install joshmedeski/sesh/sesh
 brew install ssh-copy-id
 brew install starship
 brew install stow
@@ -80,7 +83,6 @@ if test ! ENV["CI"]; then
   brew install google-chrome
   brew install hammerspoon
   brew install kap
-  brew install kitty
   brew install nordvpn
   brew install orbstack
   brew install rocket
@@ -157,8 +159,8 @@ else
   git config --global credential.helper cache
 fi
 
-git config --global core.excludesfile "${HOME}/.gitignore_global"
-git config --global include.path "${HOME}/.gitconfig_local"
+git config --global core.excludesfile "${HOME}/.config/.gitignore"
+git config --global include.path "${HOME}/.config/.gitconfig"
 
 # better diffs
 if test $(which diff-so-fancy); then

@@ -47,7 +47,8 @@ end
 
 for i = 1, 9 do
   local num = tostring(i)
-  alt(num, { "space --focus " .. num })
+  -- This keyboard shortcut prevents access to :pound <- see I can't type it
+  -- alt(num, { "space --focus " .. num })
   altShiftNumber(num)
 end
 

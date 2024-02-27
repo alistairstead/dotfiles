@@ -59,4 +59,3 @@ echo "\n" >>/tmp/u-$NOW.txt
 echo "✅ 🍻 brew doctored"
 
 echo "✅ 🧾 logged to /tmp/u-$NOW.txt"
-man /tmp/u-$NOW.txt

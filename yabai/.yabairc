@@ -8,9 +8,9 @@
 #    ╚═╝   ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝
 # A tiling window manager for macOS
 # https://github.com/koekeishiya/yabai
-
-sudo yabai --load-sa
+#
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
 # global settings
 yabai -m config mouse_follows_focus off
@@ -40,21 +40,23 @@ yabai -m config layout bsp # bsp, stack, float, or chain
 yabai -m config top_padding 15
 yabai -m config bottom_padding 15
 yabai -m config left_padding 15
-# NOTE: for OBS floating head
-# yabai -m config left_padding                 450
 yabai -m config right_padding 15
 yabai -m config window_gap 15
+
+yabai -m space 1 --label main
+yabai -m space 2 --label browser
 
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app='^1Password' manage=off
 yabai -m rule --add app='^Around' manage=off
 
-yabai -m rule --add app="^Kitty$" space=1
-yabai -m rule --add app="^WezTerm$" space=1
-yabai -m rule --add app="^Safari$" space=^2
-yabai -m rule --add app="^Google Chrome$" space=^2
+yabai -m rule --add app="^Kitty$" space=main
+yabai -m rule --add app="^WezTerm$" space=main
+yabai -m rule --add app="^Safari$" space=browser
+yabai -m rule --add app="^Google Chrome$" space=browser
 yabai -m rule --add app="^Spark Desktop$" space=3
+yabai -m rule --add app-"^Messages$" space=3
 yabai -m rule --add app="^Twitter$" space=4
 yabai -m rule --add app="^Slack$" space=4
 yabai -m rule --add app="^Fantastical$" space=5
