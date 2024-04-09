@@ -19,12 +19,18 @@
 # To set a default value that is returned *without* setting X, use ${X:-Y}
 # As in other shells, ~ expands to $HOME _at the beginning of a value only._
 # ZDOTDIR=${XDG_CONFIG_HOME:=~/.config}/zsh
-
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="$(brew --prefix python)/libexec/bin:$PATH"
 export PATH=/Users/$USER/bin:$PATH
 
+export GIT_EDITOR='nvim'
+export VISUAL='nvim'
+export EDITOR='nvim'
+
+export TERM=xterm-256color
 
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_installed
 

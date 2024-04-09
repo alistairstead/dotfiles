@@ -103,12 +103,13 @@ local config = {
 
   -- general options
   adjust_window_size_when_changing_font_size = false,
-  debug_key_events = false,
+  debug_key_events = true,
   enable_tab_bar = false,
   native_macos_fullscreen_mode = true,
   window_close_confirmation = "NeverPrompt",
   window_decorations = "RESIZE",
-
+  -- fix left alt key to type special characters such as #
+  send_composed_key_when_left_alt_is_pressed = true,
   -- keys
   keys = {
     k.cmd_key(".", k.multiple_actions(":ZenMode")),
@@ -218,63 +219,5 @@ local config = {
     },
   },
 }
-
-wezterm.on("user-var-changed", function(window, pane, name, value)
-  -- local appearance = window:get_appearance()
-  -- local is_dark = appearance:find("Dark")
-  local overrides = window:get_config_overrides() or {}
-  wezterm.log_info("name", name)
-  wezterm.log_info("value", value)
-
-  if name == "T_SESSION" then
-    local session = value
-    wezterm.log_info("is session", session)
-    overrides.background = {
-      {
-        source = {
-          Gradient = {
-            colors = { "#000000" },
-          },
-        },
-        width = "100%",
-        height = "100%",
-        opacity = 0.95,
-      },
-    }
-  end
-
-  if name == "ZEN_MODE" then
-    local incremental = value:find("+")
-    local number_value = tonumber(value)
-    if incremental ~= nil then
-      while number_value > 0 do
-        window:perform_action(wezterm.action.IncreaseFontSize, pane)
-        number_value = number_value - 1
-      end
-    elseif number_value < 0 then
-      window:perform_action(wezterm.action.ResetFontSize, pane)
-      overrides.font_size = nil
-    else
-      overrides.font_size = number_value
-    end
-  end
-  if name == "DIFF_VIEW" then
-    local incremental = value:find("+")
-    local number_value = tonumber(value)
-    if incremental ~= nil then
-      while number_value > 0 do
-        window:perform_action(wezterm.action.DecreaseFontSize, pane)
-        number_value = number_value - 1
-      end
-    elseif number_value < 0 then
-      window:perform_action(wezterm.action.ResetFontSize, pane)
-      overrides.background = nil
-      overrides.font_size = nil
-    else
-      overrides.font_size = number_value
-    end
-  end
-  window:set_config_overrides(overrides)
-end)
 
 return config

@@ -55,14 +55,17 @@ brew install git-delta
 brew install gnu-sed
 brew install gum
 brew install jq
+brew install libpq
+brew link --force libpq
 brew install yq
 
 brew tap neovim/neovim
-brew install --HEAD neovim
+brew install lpeg && brew install neovim --HEAD
 brew install fzf
 
 brew install ripgrep
 brew install joshmedeski/sesh/sesh
+brew install pulumi/tap/pulumi
 brew install ssh-copy-id
 brew install starship
 brew install stow
@@ -138,10 +141,6 @@ fi
 
 test -f ~/.ssh/config.local || touch ~/.ssh/config.local
 
-if test $(which brew); then
-	brew install diff-so-fancy || brew upgrade diff-so-fancy
-fi
-
 if [ "$(uname -s)" = "Darwin" ]; then
   echo "Configuring git for mac-os settings..."
   # Don't ask ssh password all the time
@@ -161,11 +160,6 @@ fi
 
 git config --global core.excludesfile "${HOME}/.config/.gitignore"
 git config --global include.path "${HOME}/.config/.gitconfig"
-
-# better diffs
-if test $(which diff-so-fancy); then
-  git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-fi
 
 if test "${distro}" = "Darwin"; then
   echo "Configuring mac-os settings..."

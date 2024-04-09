@@ -38,6 +38,7 @@ plug "zap-zsh/supercharge"
 plug "zap-zsh/exa"
 plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
+plug "reegnz/jq-zsh-plugin"
 
 alias vim="nvim"
 alias zshrc="vim ~/.zshrc"
@@ -84,21 +85,7 @@ gc() {
 }
 
 
-alias dockerps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'"
-
-function runr() {
-  jq -r '.scripts | keys[]' package.json |
-    fzf \
-      --header="Select a script to run…" \
-      --prompt="󰎙 Script  " \
-      --preview "jq -r '.scripts | { \"{1}\" } | .[]' package.json" \
-      --preview-window="down,1,border-horizontal" \
-      --height="50%" \
-      --layout="reverse" | \
-    xargs -o npm run
-}
 alias cb='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1} " --pointer="" | xargs git checkout'
-
 
 function ghpr() {
   GH_FORCE_TTY=100% gh pr list | fzf --query "$1" --ansi --preview 'GH_FORCE_TTY=100% gh pr view {1}' --preview-window down --header-lines 3 | awk '{print $1}' | xargs gh pr checkout -f
@@ -122,7 +109,6 @@ eval "$(direnv hook zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
 
-
 # pnpm
 export PNPM_HOME="/Users/alistairstead/Library/pnpm"
 case ":$PATH:" in
@@ -130,4 +116,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+
+# sst
+export PATH=/Users/alistairstead/.sst/bin:$PATH

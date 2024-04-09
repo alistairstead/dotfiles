@@ -1,4 +1,4 @@
-require("auto-reload")
+-- require("auto-reload")
 -- hs.loadSpoon("EmmyLua")
 -- require("vim-mode")
 -- require("only-show-alacritty")

@@ -7,23 +7,3 @@ add_newline = true
 [character]
 success_symbol = '[❯](green)'
 
-[direnv]
-disabled = false
-
-[package]
-disabled = false
-
-[git_branch]
-disabled = true
-
-[git_commit]
-disabled = true
-
-[git_state]
-disabled = true
-
-[git_metrics]
-disabled = true
-
-[git_status]
-disabled = true

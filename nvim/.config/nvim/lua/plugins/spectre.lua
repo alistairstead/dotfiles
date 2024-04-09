@@ -18,6 +18,13 @@ return {
       {
         "<leader>srr",
         function()
+          require("spectre").open_file_search()
+        end,
+        desc = "Replace in current file",
+      },
+      {
+        "<leader>srR",
+        function()
           require("spectre").open()
         end,
         desc = "Replace in files",
@@ -35,7 +42,7 @@ return {
         function()
           require("spectre").open_file_search({ select_word = true })
         end,
-        desc = "Replace current word in files",
+        desc = "Replace current word in file",
       },
     }
   end,

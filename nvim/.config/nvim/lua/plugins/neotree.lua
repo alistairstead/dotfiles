@@ -9,6 +9,10 @@ return {
     enable_git_status = true,
     enable_diagnostics = false,
     sync_root_with_cwd = false,
+    source_selector = {
+      winbar = true,
+      statusline = true,
+    },
     filesystem = {
       use_libuv_file_watcher = true,
       follow_current_file = {
@@ -32,7 +36,7 @@ return {
       icon = {
         folder_closed = "",
         folder_open = "",
-        folder_empty = "󰜌",
+        folder_empty = "",
       },
       git_status = {
         symbols = {
@@ -42,16 +46,48 @@ return {
           deleted = "", -- "◦", -- this can only be used in the git_status source
           renamed = "", -- "", -- this can only be used in the git_status source
           -- Status type
-          untracked = "",
+          untracked = "◦",
           ignored = "",
           unstaged = "",
           staged = "",
           conflict = "",
         },
       },
+      event_handlers = {
+        {
+          event = "file_opened",
+          handler = function(file_path)
+            -- auto close
+            -- vimc.cmd("Neotree close")
+            -- OR
+            require("neo-tree.command").execute({ action = "close" })
+          end,
+        },
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function()
+            vim.cmd("highlight! Cursor blend=100")
+          end,
+        },
+        {
+          event = "neo_tree_buffer_leave",
+          handler = function()
+            vim.cmd("highlight! Cursor guibg=#5f87af blend=0")
+          end,
+        },
+      },
     },
     window = {
       mappings = {
+        ["e"] = function()
+          vim.api.nvim_exec("Neotree focus filesystem left", true)
+        end,
+        ["b"] = function()
+          vim.api.nvim_exec("Neotree focus buffers left", true)
+        end,
+        ["g"] = function()
+          vim.api.nvim_exec("Neotree focus git_status left", true)
+        end,
         ["l"] = "open",
         ["o"] = "open_with_window_picker",
         ["h"] = "close_node",

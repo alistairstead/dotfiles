@@ -1,25 +1,11 @@
---- Get all the changes in the git repository
----@param staged? boolean
----@return string
-local function get_git_diff(staged)
-  local cmd = staged and "git diff --staged" or "git diff"
-  local handle = io.popen(cmd)
-  if not handle then
-    return ""
-  end
-
-  local result = handle:read("*a")
-  handle:close()
-  return result
-end
-
 local prompts = {
   -- Code related prompts
   Explain = "Please explain how the following code works.",
-  Review = "Please review the following code and provide suggestions for improvements for performance, clarity and readability.",
-  Tests = "Please breifly explain how the selected code works, then generate unit tests for it with vitest.",
-  Refactor = "Please refactor the following code to improve its performance, clarity and readability.",
+  Review = "Please review the following code and provide suggestions for improvement.",
+  Tests = "Please explain how the selected code works, then generate vitest unit tests for it using it().",
+  Refactor = "Please refactor the following code to improve its clarity and readability.",
   FixCode = "Please fix the following code to make it work as intended.",
+  FixError = "Please explain the error in the following text and provide a solution.",
   BetterNamings = "Please provide better names for the following variables and functions.",
   Documentation = "Please provide documentation for the following code.",
   -- Text related prompts
@@ -30,26 +16,51 @@ local prompts = {
 }
 
 return {
-  -- Import the copilot plugin
   { import = "lazyvim.plugins.extras.coding.copilot" },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    version = "v2.*",
+    -- branch = "canary",
     dependencies = {
-      { "nvim-telescope/telescope.nvim" }, -- Use telescope for help actions
+      { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/plenary.nvim" },
     },
-    opts = {
-      show_help = "no",
-      prompts = prompts,
-      debug = false, -- Set to true to see the response from GitHub Copilot API. The log file will be in ~/.local/state/nvim/CopilotChat.nvim.log.
-      disable_extra_info = "yes", -- Disable extra information (e.g.: system prompt, token count) in the response.
-      hide_system_prompt = "yes", -- Show user prompts only and hide system prompts.
-      proxy = "", -- Proxies requests via https or socks
-    },
-    build = function()
-      vim.notify("Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim.")
-    end,
     event = "VeryLazy",
+    opts = {
+      prompts = prompts,
+      window = {
+        title = " Chat",
+      },
+    },
+    config = function(_, opts)
+      local chat = require("CopilotChat")
+      local select = require("CopilotChat.select")
+
+      chat.setup(opts)
+
+      vim.api.nvim_create_user_command("CopilotChatVisual", function(args)
+        chat.ask(args.args, { selection = select.visual })
+      end, { nargs = "*", range = true })
+
+      -- Inline chat with Copilot
+      vim.api.nvim_create_user_command("CopilotChatInline", function(args)
+        chat.ask(args.args, {
+          selection = select.visual,
+          window = {
+            layout = "float",
+            relative = "cursor",
+            width = 1,
+            height = 0.4,
+            row = 1,
+          },
+        })
+      end, { nargs = "*", range = true })
+
+      -- Restore CopilotChatBuffer
+      vim.api.nvim_create_user_command("CopilotChatBuffer", function(args)
+        chat.ask(args.args, { selection = select.buffer })
+      end, { nargs = "*", range = true })
+    end,
     keys = function()
       local wk = require("which-key")
       wk.register({
@@ -60,7 +71,6 @@ return {
         },
       }, {
         prefix = "<leader>",
-        mode = { "n" },
         silent = true,
         noremap = true,
         nowait = false,
@@ -70,17 +80,28 @@ return {
         {
           "<leader>cch",
           function()
-            require("CopilotChat.code_actions").show_help_actions()
+            require("CopilotChat.code_actions").show_help_actions({
+              selection = require("CopilotChat.select").line,
+            })
+          end,
+          desc = "Help actions",
+        },
+        -- Show prompts actions with telescope
+        {
+          "<leader>ccp",
+          function()
+            local actions = require("CopilotChat.actions")
+            require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
           end,
           desc = "Prompt actions",
         },
         {
-          "<leader>ccp",
-          ":lua require('CopilotChat.code_actions').show_prompt_actions(true)<CR>",
+          "<leader>ap",
+          ":lua require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions({selection = require('CopilotChat.select').visual}))<CR>",
           mode = "x",
-          desc = "Prompt actions",
+          desc = "CopilotChat - Prompt actions",
         },
-        -- Code-related commands
+        -- Code related commands
         { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "Explain code" },
         { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "Generate tests" },
         { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "Review code" },
@@ -95,9 +116,9 @@ return {
         },
         {
           "<leader>ccx",
-          ":CopilotChatInPlace<cr>",
+          ":CopilotChatInline<cr>",
           mode = "x",
-          desc = "Run in-place code",
+          desc = "Inline chat",
         },
         -- Custom input for CopilotChat
         {
@@ -112,25 +133,13 @@ return {
         },
         -- Generate commit message based on the git diff
         {
-          "<leader>ccm",
-          function()
-            local diff = get_git_diff()
-            if diff ~= "" then
-              vim.fn.setreg('"', diff)
-              vim.cmd("CopilotChat Write commit message for the change with commitizen convention.")
-            end
-          end,
+          "<leader>ccM",
+          "<cmd>CopilotChatCommit<cr>",
           desc = "Generate commit message for all changes",
         },
         {
-          "<leader>ccM",
-          function()
-            local diff = get_git_diff(true)
-            if diff ~= "" then
-              vim.fn.setreg('"', diff)
-              vim.cmd("CopilotChat Write commit message for the change with commitizen convention.")
-            end
-          end,
+          "<leader>ccm",
+          "<cmd>CopilotChatCommitStaged<cr>",
           desc = "Generate commit message for staged changes",
         },
         -- Quick chat with Copilot
@@ -139,21 +148,19 @@ return {
           function()
             local input = vim.fn.input("Quick Chat: ")
             if input ~= "" then
-              -- Copy all the lines to the unnamed register
-              vim.cmd('normal! ggVG"*y')
-              vim.cmd("CopilotChat " .. input)
+              vim.cmd("CopilotChatBuffer " .. input)
             end
           end,
           desc = "Quick chat",
         },
         -- Debug
         { "<leader>ccd", "<cmd>CopilotChatDebugInfo<cr>", desc = "Debug Info" },
-        -- Fix the issue with the diagnostic
+        -- Fix the issue with diagnostic
         { "<leader>ccf", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "Fix Diagnostic" },
         -- Clear buffer and chat history
         { "<leader>ccl", "<cmd>CopilotChatReset<cr>", desc = "Clear buffer and chat history" },
         -- Toggle Copilot Chat Vsplit
-        { "<leader>ccv", "<cmd>CopilotChatVsplitToggle<cr>", desc = "Toggle Vsplit" },
+        { "<leader>ccv", "<cmd>CopilotChatToggle<cr>", desc = "Toggle Vsplit" },
       }
     end,
   },

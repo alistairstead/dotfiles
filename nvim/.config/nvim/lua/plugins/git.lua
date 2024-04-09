@@ -1,16 +1,15 @@
 return {
   {
     "TimUntersberger/neogit",
-    -- event = "VeryLazy",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
     },
     opts = {
-      disable_hint = true,
+      disable_hint = false,
       disable_commit_confirmation = "auto",
-      console_timeout = 1000,
-      auto_show_console = true,
+      console_timeout = 2000,
+      auto_show_console = false,
       disable_insert_on_commit = false,
       integrations = {
         telescope = true,
@@ -25,53 +24,6 @@ return {
         item = { "", "" },
         section = { "", "" },
       },
-      sections = {
-        -- Reverting/Cherry Picking
-        sequencer = {
-          folded = false,
-          hidden = false,
-        },
-        untracked = {
-          folded = false,
-          hidden = false,
-        },
-        unstaged = {
-          folded = false,
-          hidden = false,
-        },
-        staged = {
-          folded = false,
-          hidden = false,
-        },
-        stashes = {
-          folded = true,
-          hidden = false,
-        },
-        unpulled_upstream = {
-          folded = true,
-          hidden = false,
-        },
-        unmerged_upstream = {
-          folded = false,
-          hidden = false,
-        },
-        unpulled_pushRemote = {
-          folded = true,
-          hidden = false,
-        },
-        unmerged_pushRemote = {
-          folded = false,
-          hidden = false,
-        },
-        recent = {
-          folded = true,
-          hidden = false,
-        },
-        rebase = {
-          folded = true,
-          hidden = false,
-        },
-      },
     },
     keys = {
       { "<leader>gc", "<cmd>lua require('neogit').open({'commit'})<CR>", desc = "Git commit" },
@@ -85,8 +37,26 @@ return {
     },
   },
   {
+    "akinsho/git-conflict.nvim",
+    opts = {
+      highlights = { -- They must have background color, otherwise the default color will be used
+        incoming = "DiffAdd",
+        current = "DiffText",
+      },
+    },
+    keys = {
+      -- Chose conflict
+      { "<leader>gfc", "<cmd>GitConflictChooseTheirs<cr>", desc = "Git Conflict Choose - Incoming changes" },
+      { "<leader>gfo", "<cmd>GitConflictChooseOurs<cr>", desc = "Git Conflict Choose - Current changes" },
+      { "<leader>gfb", "<cmd>GitConflictChooseBoth<cr>", desc = "Git Conflict Choose - Both changes" },
+      -- Navigate conflicts
+      { "<leader>gfl", "<cmd>GitConflictListQf<cr>", desc = "Git Conflict Quicklist" },
+      { "<leader>gfp", "<cmd>GitConflictPrevConflict<cr>", desc = "Git Conflict Previous" },
+      { "<leader>gfp", "<cmd>GitConflictPrevConflict<cr>", desc = "Git Conflict Previous" },
+    },
+  },
+  {
     "sindrets/diffview.nvim",
-    -- event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = {
       "DiffviewOpen",
@@ -169,22 +139,38 @@ return {
         end
       end)
     end,
-    keys = {
-      {
-        "<leader>gww",
-        function()
-          require("telescope").extensions.git_worktree.git_worktrees()
-        end,
-        desc = "Worktree switch and delete <c-d>",
-      },
-      {
-        "<leader>gwc",
-        function()
-          require("telescope").extensions.git_worktree.create_git_worktree()
-        end,
-        desc = "Worktree create",
-      },
-    },
+    keys = function()
+      local wk = require("which-key")
+      wk.register({
+        g = {
+          w = {
+            name = "+Worktree",
+          },
+        },
+      }, {
+        prefix = "<leader>",
+        mode = { "n" },
+        silent = true,
+        noremap = true,
+        nowait = false,
+      })
+      return {
+        {
+          "<leader>gww",
+          function()
+            require("telescope").extensions.git_worktree.git_worktrees()
+          end,
+          desc = "Worktree switch and delete <c-d>",
+        },
+        {
+          "<leader>gwc",
+          function()
+            require("telescope").extensions.git_worktree.create_git_worktree()
+          end,
+          desc = "Worktree create",
+        },
+      }
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",

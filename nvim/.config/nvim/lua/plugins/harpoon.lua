@@ -55,6 +55,11 @@ return {
     })
     return {
       {
+        "<leader>fm",
+        "<cmd>Telescope harpoon marks<cr>",
+        desc = "Telescope Harpoon Marks",
+      },
+      {
         "<leader>ha",
         function()
           harpoon:list():append()
@@ -62,39 +67,46 @@ return {
         desc = "Add file",
       },
       {
-        "<leader>he",
+        "<leader>hh",
         function()
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
         desc = "Toggle quick menu",
       },
       {
-        "<leader>1",
+        "<leader>h1",
         function()
           harpoon:list():select(1)
         end,
-        desc = "Harpoon - File 1",
+        desc = "Mark 1",
       },
       {
-        "<leader>2",
+        "<leader>h2",
         function()
           harpoon:list():select(2)
         end,
-        desc = "Harpoon - File 2",
+        desc = "Mark 2",
       },
       {
-        "<leader>3",
+        "<leader>h3",
         function()
           harpoon:list():select(3)
         end,
-        desc = "Harpoon - File 3",
+        desc = "Mark 3",
       },
       {
-        "<leader>4",
+        "<leader>h4",
         function()
           harpoon:list():select(4)
         end,
-        desc = "Harpoon - File 4",
+        desc = "Mark 4",
+      },
+      {
+        "<leader>h5",
+        function()
+          harpoon:list():select(5)
+        end,
+        desc = "Mark 5",
       },
     }
   end,
