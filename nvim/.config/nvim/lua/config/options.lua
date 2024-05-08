@@ -9,6 +9,9 @@ opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.swapfile = false
+opt.mouse = ""
+opt.spelllang = "en_GB"
+opt.spellfile = "~/.config/nvim/spell/en.utf-8.add"
 
 opt.listchars = {
   space = " ",

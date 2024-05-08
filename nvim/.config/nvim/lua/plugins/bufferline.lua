@@ -1,6 +1,7 @@
 return {
   {
     "akinsho/bufferline.nvim",
+    version = "4.5.*",
     opts = {
       options = {
         color_icons = false,

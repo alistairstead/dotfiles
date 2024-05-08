@@ -86,6 +86,7 @@ if test ! ENV["CI"]; then
   brew install google-chrome
   brew install hammerspoon
   brew install kap
+  brew install karabiner-elements
   brew install nordvpn
   brew install orbstack
   brew install rocket
@@ -102,6 +103,7 @@ brew cleanup
 echo "Installing fonts..."
 brew tap homebrew/cask-fonts
 brew install font-symbols-only-nerd-font
+brew install font-monaspace
 
 echo "Installing personal dotfiles..."
 git clone git@github.com:alistairstead/dotfiles.git ~/dotfiles
@@ -111,7 +113,7 @@ cd ~/dotfiles
 
 echo "Creating symlinks..."
 
-stow asdf bin gh git kitty nvim ssh starship tmux wezterm yabai zsh
+stow asdf bin direnv gh git hammerspoon karabiner kitty nvim ssh starship tmux wezterm yabai zsh
 
 echo "Install zap..."
 

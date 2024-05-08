@@ -64,7 +64,7 @@ return {
         function()
           harpoon:list():append()
         end,
-        desc = "Add file",
+        desc = "Add file to Harpoon",
       },
       {
         "<leader>hh",

@@ -1,7 +1,7 @@
 return {
   {
     "pwntester/octo.nvim",
-    lazy = true,
+    -- lazy = true,
     cmd = "Octo",
     config = function()
       -- the 'op.api' module provides the same interface as the CLI

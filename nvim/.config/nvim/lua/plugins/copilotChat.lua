@@ -2,7 +2,7 @@ local prompts = {
   -- Code related prompts
   Explain = "Please explain how the following code works.",
   Review = "Please review the following code and provide suggestions for improvement.",
-  Tests = "Please explain how the selected code works, then generate vitest unit tests for it using it().",
+  Tests = "Please explain how the selected code works, then generate vitest unit tests for it using describe() and it().",
   Refactor = "Please refactor the following code to improve its clarity and readability.",
   FixCode = "Please fix the following code to make it work as intended.",
   FixError = "Please explain the error in the following text and provide a solution.",
@@ -19,8 +19,8 @@ return {
   { import = "lazyvim.plugins.extras.coding.copilot" },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    version = "v2.*",
-    -- branch = "canary",
+    -- version = "v2.*",
+    branch = "canary",
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/plenary.nvim" },
@@ -32,35 +32,6 @@ return {
         title = " Chat",
       },
     },
-    config = function(_, opts)
-      local chat = require("CopilotChat")
-      local select = require("CopilotChat.select")
-
-      chat.setup(opts)
-
-      vim.api.nvim_create_user_command("CopilotChatVisual", function(args)
-        chat.ask(args.args, { selection = select.visual })
-      end, { nargs = "*", range = true })
-
-      -- Inline chat with Copilot
-      vim.api.nvim_create_user_command("CopilotChatInline", function(args)
-        chat.ask(args.args, {
-          selection = select.visual,
-          window = {
-            layout = "float",
-            relative = "cursor",
-            width = 1,
-            height = 0.4,
-            row = 1,
-          },
-        })
-      end, { nargs = "*", range = true })
-
-      -- Restore CopilotChatBuffer
-      vim.api.nvim_create_user_command("CopilotChatBuffer", function(args)
-        chat.ask(args.args, { selection = select.buffer })
-      end, { nargs = "*", range = true })
-    end,
     keys = function()
       local wk = require("which-key")
       wk.register({
@@ -95,31 +66,12 @@ return {
           end,
           desc = "Prompt actions",
         },
-        {
-          "<leader>ap",
-          ":lua require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions({selection = require('CopilotChat.select').visual}))<CR>",
-          mode = "x",
-          desc = "CopilotChat - Prompt actions",
-        },
         -- Code related commands
         { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "Explain code" },
         { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "Generate tests" },
         { "<leader>ccr", "<cmd>CopilotChatReview<cr>", desc = "Review code" },
         { "<leader>ccR", "<cmd>CopilotChatRefactor<cr>", desc = "Refactor code" },
         { "<leader>ccn", "<cmd>CopilotChatBetterNamings<cr>", desc = "Better Naming" },
-        -- Chat with Copilot in visual mode
-        {
-          "<leader>ccv",
-          ":CopilotChatVisual",
-          mode = "x",
-          desc = "Open in vertical split",
-        },
-        {
-          "<leader>ccx",
-          ":CopilotChatInline<cr>",
-          mode = "x",
-          desc = "Inline chat",
-        },
         -- Custom input for CopilotChat
         {
           "<leader>cci",
@@ -153,8 +105,8 @@ return {
           end,
           desc = "Quick chat",
         },
-        -- Debug
-        { "<leader>ccd", "<cmd>CopilotChatDebugInfo<cr>", desc = "Debug Info" },
+        -- Create documentation
+        { "<leader>ccd", "<cmd>CopilotChatDocs<cr>", desc = "Draft documentation" },
         -- Fix the issue with diagnostic
         { "<leader>ccf", "<cmd>CopilotChatFixDiagnostic<cr>", desc = "Fix Diagnostic" },
         -- Clear buffer and chat history

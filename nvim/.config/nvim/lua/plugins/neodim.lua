@@ -4,10 +4,10 @@ return {
   enabled = false,
   event = { "BufReadPost", "BufNewFile" },
   opts = {
-    alpha = 0.5,
+    alpha = 0.7,
     hide = {
       signs = false,
-      virtual_text = true,
+      virtual_text = false,
       underline = true,
     },
   },
