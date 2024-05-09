@@ -11,12 +11,21 @@ return {
       {
         "ThePrimeagen/git-worktree.nvim",
       },
+      {
+        "danielfalk/smart-open.nvim",
+        branch = "0.2.x",
+        dependencies = {
+          "kkharji/sqlite.lua",
+          { "nvim-telescope/telescope-fzy-native.nvim" },
+        },
+      },
     },
     config = function(_, opts)
       local telescope = require("telescope")
       telescope.setup(opts)
       telescope.load_extension("harpoon")
       telescope.load_extension("git_worktree")
+      telescope.load_extension("smart_open")
       -- telescope.load_extension("import")
       -- telescope.load_extension("live_grep_args")
       -- telescope.load_extension("neoclip")
@@ -142,6 +151,10 @@ return {
           require("telescope.themes").get_dropdown({
             -- even more opts
           }),
+        },
+        smart_open = {
+          cwd_only = true,
+          filename_first = true,
         },
         project = {
           base_dirs = {
