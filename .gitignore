@@ -1,2 +1,5 @@
 /zsh/.zsh_sessions/
 /tmux/.config/tmux/plugins/
+
+node_modules
+bin/bin/*
