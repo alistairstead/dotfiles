@@ -11,6 +11,13 @@ return {
       "DBUIAddConnection",
       "DBUIFindBuffer",
     },
+    keys = {
+      {
+        "<leader>uD",
+        "<cmd>DBUIToggle<CR>",
+        desc = "Dadbod UI",
+      },
+    },
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
     end,

@@ -7,8 +7,8 @@ return {
       return {}
     end,
   },
-  -- then: setup supertab in cmp
   {
+    -- then: setup supertab in cmp
     "hrsh7th/nvim-cmp",
     dependencies = {
       { "hrsh7th/cmp-cmdline" },
@@ -28,41 +28,41 @@ return {
       local cmp = require("cmp")
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<CR>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            if luasnip.expandable() then
+              luasnip.expand()
+            else
+              cmp.confirm({
+                select = true,
+              })
+            end
+          else
+            fallback()
+          end
+        end),
+
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- this way you will only jump inside the snippet region
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete({ behavior = cmp.SelectBehavior.Insert })
+            cmp.select_next_item()
+          elseif luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
           else
             fallback()
           end
         end, { "i", "s" }),
+
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
+          elseif luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           else
             fallback()
           end
         end, { "i", "s" }),
-        -- ["<CR>"] = cmp.mapping({
-        --   i = function(fallback)
-        --     if cmp.visible() and cmp.get_active_entry() then
-        --       cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
-        --     else
-        --       fallback()
-        --     end
-        --   end,
-        --   s = cmp.mapping.confirm({ select = true }),
-        --   c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-        -- }),
       })
 
       -- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "nvim_lsp_signature_help" } }))

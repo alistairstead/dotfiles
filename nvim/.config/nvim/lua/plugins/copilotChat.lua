@@ -19,8 +19,8 @@ return {
   { import = "lazyvim.plugins.extras.coding.copilot" },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    -- version = "v2.*",
-    branch = "canary",
+    version = "v2.*",
+    -- branch = "canary",
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-lua/plenary.nvim" },

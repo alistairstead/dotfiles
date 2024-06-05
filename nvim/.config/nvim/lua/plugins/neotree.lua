@@ -6,18 +6,18 @@ return {
     },
   },
   opts = {
-    enable_git_status = true,
+    open_files_do_not_replace_types = { "edgy" },
+    enable_git_status = false,
     enable_diagnostics = false,
     sync_root_with_cwd = false,
-    source_selector = {
-      winbar = true,
-      statusline = true,
-    },
+    -- source_selector = {
+    --   winbar = true,
+    --   statusline = true,
+    -- },
     filesystem = {
       use_libuv_file_watcher = true,
       follow_current_file = {
         enabled = true, -- This will find and focus the file in the active buffer every time
-        --               -- the current file is changed while the tree is open.
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
     },
@@ -89,6 +89,7 @@ return {
           vim.api.nvim_exec("Neotree focus git_status left", true)
         end,
         ["l"] = "open",
+        ["L"] = "open_with_window_picker",
         ["o"] = "open_with_window_picker",
         ["h"] = "close_node",
         ["S"] = "split_with_window_picker",

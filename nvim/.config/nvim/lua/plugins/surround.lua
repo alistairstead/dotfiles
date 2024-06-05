@@ -1,5 +1,6 @@
 return {
   "echasnovski/mini.surround",
+  enabled = true,
   opts = {
     mappings = {
       add = "as",

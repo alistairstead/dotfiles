@@ -8,11 +8,12 @@ return {
     opts = {
       hint = "statusline-winbar",
       show_prompt = true,
+      selection_chars = "dfghjkl;",
       filter_rules = {
         -- filter using buffer options
         bo = {
           -- if the file type is one of following, the window will be ignored
-          filetype = { "NvimTree", "neo-tree", "notify" },
+          filetype = { "NvimTree", "neo-tree", "notify", "edgy" },
           -- if the buffer type is one of following, the window will be ignored
           buftype = {},
         },

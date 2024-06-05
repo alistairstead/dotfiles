@@ -4,7 +4,7 @@ gum style \
     --foreground 12 --border-foreground 12 --border double \
     --align center --width 60 --margin "1 0" --padding "1 0" \
     ' ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗
- ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
+██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
 ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗
 ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝
 ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗
@@ -34,7 +34,7 @@ gum spin --spinner globe --title "🌳 nvim-treesitter updating" -- nvim --headl
 echo "\n" >>/tmp/u-$NOW.txt
 echo "✅ 🌳 nvim-treesitter updated"
 
-gum spin --spinner globe --title "🍻 brew updating" --show-output -- brew update >>/tmp/u-$NOW.txt
+gum spin --spinner globe --title "🍻 brew updating" --show-output -- brew update  >> tee /tmp/u-$NOW.txt
 echo "\n" >>/tmp/u-$NOW.txt
 echo "✅ 🍻 brew updated"
 
@@ -43,11 +43,11 @@ echo $OUTDATED >>/tmp/u-$NOW.txt
 
 if test -n "$OUTDATED"
 then
-    gum spin --spinner globe --title "🍻 brew upgrading" --show-output -- brew upgrade >>/tmp/u-$NOW.txt
+    gum spin --spinner globe --title "🍻 brew upgrading" --show-output -- brew upgrade >> tee /tmp/u-$NOW.txt
     echo "\n" >>/tmp/u-$NOW.txt
     echo "✅ 🍻 brew upgraded"
 
-    gum spin --spinner globe --title "🍻 brew cleaning up" --show-output -- brew cleanup --prune=all >>/tmp/u-$NOW.txt
+    gum spin --spinner globe --title "🍻 brew cleaning up" --show-output -- brew cleanup --prune=all >> tee /tmp/u-$NOW.txt
     echo "\n" >>/tmp/u-$NOW.txt
     echo "✅ 🍻 brew cleaned up"
 else

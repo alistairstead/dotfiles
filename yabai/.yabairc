@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # ██╗   ██╗ █████╗ ██████╗  █████╗ ██╗
 # ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗██║
@@ -8,7 +8,35 @@
 #    ╚═╝   ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝
 # A tiling window manager for macOS
 # https://github.com/koekeishiya/yabai
-#
+
+# Function definitions
+adjust_spaces() {
+  local desired_spaces=("$@")
+  local display=1
+  for desired_space in "${desired_spaces[@]}"; do
+    local actual_space=$(yabai -m query --spaces | jq 'map(select(.display == '$display')) | length')
+    yabai -m display --focus $display
+    while (( actual_space != desired_space )); do
+      if (( actual_space < desired_space )); then
+        yabai -m space --create
+        ((actual_space++))
+      else
+        local last_space_index=$(yabai -m query --spaces | jq '.[].index | select(. == '$spaces_on_display')')
+        yabai -m space --focus $last_space_index
+        yabai -m space --destroy
+        ((actual_space--))
+      fi
+    done
+    ((display++))
+  done
+}
+
+setup_space() {
+  local idx="$1"
+  local name="$2"
+  yabai -m space "$idx" --label "$name"
+}
+
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
@@ -43,23 +71,44 @@ yabai -m config left_padding 15
 yabai -m config right_padding 15
 yabai -m config window_gap 15
 
-yabai -m space 1 --label main
-yabai -m space 2 --label browser
+# yabai -m space 1 --label main
+# yabai -m space 2 --label browser
 
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app='^1Password' manage=off
 yabai -m rule --add app='^Around' manage=off
 
-yabai -m rule --add app="^Kitty$" space=main
-yabai -m rule --add app="^WezTerm$" space=main
-yabai -m rule --add app="^Safari$" space=browser
-yabai -m rule --add app="^Google Chrome$" space=browser
-yabai -m rule --add app="^Spark Desktop$" space=3
-yabai -m rule --add app-"^Messages$" space=3
-yabai -m rule --add app="^Twitter$" space=4
-yabai -m rule --add app="^Slack$" space=4
-yabai -m rule --add app="^Fantastical$" space=5
-yabai -m rule --add app="^Music$" space=6
+# Spaces adjustment
+num_displays=$(yabai -m query --displays | jq 'length')
+if [[ "$num_displays" -eq 3 ]]; then
+  adjust_spaces 3 3 4
+elif [[ "$num_displays" -eq 2 ]]; then
+  adjust_spaces 5 5
+elif [[ "$num_displays" -eq 1 ]]; then
+  adjust_spaces 10
+fi
+
+# Spaces setup
+setup_space 1 terminal
+setup_space 2 browser
+setup_space 3 notes
+setup_space 4 chat
+setup_space 5 calendar
+setup_space 6 email
+setup_space 7 social
+setup_space 8 spare
+setup_space 9 music
+setup_space 10 other
+
+yabai -m rule --add app="^WezTerm$" space=^1
+yabai -m rule --add app="^Safari$" space=^2
+yabai -m rule --add app="^Google Chrome$" space=^2
+yabai -m rule --add app="^Spark Desktop$" space=^6
+yabai -m rule --add app-"^Messages$" space=^4
+yabai -m rule --add app="^Twitter$" space=^7
+yabai -m rule --add app="^Slack$" space=^4
+yabai -m rule --add app="^Fantastical$" space=^5
+yabai -m rule --add app="^Music$" space=^9
 
 echo "yabai configuration loaded.."

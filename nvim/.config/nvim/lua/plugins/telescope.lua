@@ -23,7 +23,6 @@ return {
     config = function(_, opts)
       local telescope = require("telescope")
       telescope.setup(opts)
-      telescope.load_extension("harpoon")
       telescope.load_extension("git_worktree")
       telescope.load_extension("smart_open")
       -- telescope.load_extension("import")
@@ -37,6 +36,10 @@ return {
     end,
     opts = {
       defaults = {
+        get_selection_window = function()
+          require("edgy").goto_main()
+          return 0
+        end,
         path_display = { "smart" },
         prompt_position = "top",
         prompt_prefix = " ",

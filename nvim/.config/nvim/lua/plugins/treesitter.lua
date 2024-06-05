@@ -21,5 +21,11 @@ return {
     add("twig")
     add("typescript")
     add("lua")
+    add("markdown")
+    add("markdown_inline")
+    add("yaml")
+    add("toml")
+    add("json")
+    add("go")
   end,
 }

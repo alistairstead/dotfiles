@@ -5,6 +5,7 @@ return {
       "jose-elias-alvarez/typescript.nvim",
       {
         "OlegGulevskyy/better-ts-errors.nvim",
+        enabled = false,
         dependencies = { "MunifTanjim/nui.nvim" },
         config = {
           keymaps = {
@@ -25,32 +26,34 @@ return {
             "package-lock.json",
             "bun.lockb"
           ),
-          single_file_support = false,
-          settings = {
-            typescript = {
-              inlayHints = {
-                -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
-                includeInlayParameterNameHints = "literal",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = false,
-                includeInlayVariableTypeHints = false,
-                includeInlayPropertyDeclarationTypeHints = false,
-                includeInlayFunctionLikeReturnTypeHints = false,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = false,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-          },
+          -- single_file_support = false,
+          -- settings = {
+          --   typescript = {
+          --     implementationsCodeLens = { enabled = true },
+          --     referencesCodeLens = { enabled = true, showOnAllFunctions = true },
+          --     inlayHints = {
+          --       -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
+          --       includeInlayParameterNameHints = "literal",
+          --       includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          --       includeInlayFunctionParameterTypeHints = false,
+          --       includeInlayVariableTypeHints = false,
+          --       includeInlayPropertyDeclarationTypeHints = false,
+          --       includeInlayFunctionLikeReturnTypeHints = false,
+          --       includeInlayEnumMemberValueHints = true,
+          --     },
+          --   },
+          --   javascript = {
+          --     inlayHints = {
+          --       includeInlayParameterNameHints = "all",
+          --       includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          --       includeInlayFunctionParameterTypeHints = true,
+          --       includeInlayVariableTypeHints = true,
+          --       includeInlayPropertyDeclarationTypeHints = true,
+          --       includeInlayFunctionLikeReturnTypeHints = false,
+          --       includeInlayEnumMemberValueHints = true,
+          --     },
+          --   },
+          -- },
         },
       },
     },

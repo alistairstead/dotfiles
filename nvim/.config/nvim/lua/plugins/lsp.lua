@@ -13,9 +13,12 @@ return {
     opts = {
       diagnostics = {
         virtual_text = {
-          prefix = "◦",
-          spacing = 4,
+          -- prefix = "◦",
+          prefix = "icons",
+          source = "if_many",
+          spacing = 2,
         },
+        severity_sort = true,
       },
       capabilities = {
         textDocument = {
@@ -28,41 +31,46 @@ return {
       inlay_hints = {
         enabled = false,
       },
+      -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
+      -- Be aware that you also will need to properly configure your LSP server to
+      -- provide the code lenses.
+      codelens = {
+        enabled = false,
+      },
       servers = {
-        astro = {},
-        eslint = {
-          root_dir = require("lspconfig.util").root_pattern(
-            ".git",
-            "pnpm-workspace.yaml",
-            "pnpm-lock.yaml",
-            "yarn.lock",
-            "package-lock.json",
-            "bun.lockb"
-          ),
-        },
+        -- eslint = {
+        --   root_dir = require("lspconfig.util").root_pattern(
+        --     ".git",
+        --     "pnpm-workspace.yaml",
+        --     "pnpm-lock.yaml",
+        --     "yarn.lock",
+        --     "package-lock.json",
+        --     "bun.lockb"
+        --   ),
+        -- },
         intelephense = {
           init_options = {
             licenceKey = "/Users/alistairstead/Documents/intelephense.txt",
           },
         },
-        yamlls = {
-          settings = {
-            yaml = {
-              schemas = {
-                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                ["https://json.schemastore.org/github-actions.json"] = "/.github/actions/*",
-              },
-            },
-          },
-        },
-        tailwindcss = {
-          root_dir = require("lspconfig.util").root_pattern(".git"),
-          settings = {
-            tailwindCSS = {
-              emmetCompletions = true,
-            },
-          },
-        },
+        -- yamlls = {
+        --   settings = {
+        --     yaml = {
+        --       schemas = {
+        --         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        --         ["https://json.schemastore.org/github-actions.json"] = "/.github/actions/*",
+        --       },
+        --     },
+        --   },
+        -- },
+        -- tailwindcss = {
+        --   root_dir = require("lspconfig.util").root_pattern(".git"),
+        --   settings = {
+        --     tailwindCSS = {
+        --       emmetCompletions = true,
+        --     },
+        --   },
+        -- },
       },
       setup = {
         eslint = function()
@@ -77,21 +85,21 @@ return {
       },
     },
   },
-  {
-    "stevearc/conform.nvim",
-    -- dev = true,
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        ["markdown"] = { { "prettierd", "prettier" } },
-        ["markdown.mdx"] = { { "prettierd", "prettier" } },
-        ["javascript"] = { { "prettierd", "prettier" } },
-        ["javascriptreact"] = { { "prettierd", "prettier" } },
-        ["typescript"] = { { "prettierd", "prettier" } },
-        ["typescriptreact"] = { { "prettierd", "prettier" } },
-      },
-    },
-  },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   -- dev = true,
+  --   optional = true,
+  --   opts = {
+  --     formatters_by_ft = {
+  --       ["markdown"] = { { "prettierd", "prettier" } },
+  --       ["markdown.mdx"] = { { "prettierd", "prettier" } },
+  --       ["javascript"] = { { "prettierd", "prettier" } },
+  --       ["javascriptreact"] = { { "prettierd", "prettier" } },
+  --       ["typescript"] = { { "prettierd", "prettier" } },
+  --       ["typescriptreact"] = { { "prettierd", "prettier" } },
+  --     },
+  --   },
+  -- },
   {
     "mfussenegger/nvim-lint",
     opts = {

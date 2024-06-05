@@ -219,6 +219,14 @@ local config = {
       }),
     },
   },
+  mouse_bindings = {
+    -- CMD-click will open the link under the mouse cursor
+    {
+      event = { Up = { streak = 1, button = "Left" } },
+      mods = "CMD",
+      action = wezterm.action.OpenLinkAtMouseCursor,
+    },
+  },
 }
 
 return config

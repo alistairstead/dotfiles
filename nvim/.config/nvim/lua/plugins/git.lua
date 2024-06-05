@@ -26,6 +26,7 @@ return {
       },
     },
     keys = {
+      { "<leader>gb", "<cmd>Telescope git_branches<CR>", desc = "Git branches" },
       { "<leader>gc", "<cmd>lua require('neogit').open({'commit'})<CR>", desc = "Git commit" },
       {
         "<leader>gg",
@@ -38,6 +39,7 @@ return {
   },
   {
     "akinsho/git-conflict.nvim",
+    enabled = false,
     opts = {
       highlights = { -- They must have background color, otherwise the default color will be used
         incoming = "DiffAdd",
@@ -78,6 +80,16 @@ return {
       "DiffviewRefresh",
       "DiffviewFileHistory",
     },
+    opts = function()
+      local actions = require("diffview.actions")
+      return {
+        keymaps = {
+          file_panel = {
+            ["q"] = "<cmd>DiffviewClose<cr>",
+          },
+        },
+      }
+    end,
     keys = { { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview Open" } },
   },
   {
@@ -209,7 +221,7 @@ return {
         map("n", "<leader>gu", gs.undo_stage_hunk, "Undo Stage Hunk")
         map("n", "<leader>gX", gs.reset_buffer, "Reset Buffer")
         map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
-        map("n", "<leader>gb", function()
+        map("n", "<leader>gB", function()
           gs.blame_line({ full = true })
         end, "Blame Line")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")

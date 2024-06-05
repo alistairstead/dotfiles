@@ -25,10 +25,12 @@ export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 export PATH="$(brew --prefix python)/libexec/bin:$PATH"
 export PATH=/Users/$USER/bin:$PATH
+export PATH=/Users/$USER/go/bin:$PATH
 
 export GIT_EDITOR='nvim'
 export VISUAL='nvim'
 export EDITOR='nvim'
+export VI_MODE_ESC_INSERT="jk"
 
 export TERM=xterm-256color
 

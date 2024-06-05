@@ -2,9 +2,10 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
-      { "nvim-neotest/nvim-nio" },
+      "nvim-neotest/nvim-nio",
       "haydenmeade/neotest-jest",
       "marilari88/neotest-vitest",
+      "nvim-neotest/neotest-go",
     },
     keys = {
       {
@@ -47,47 +48,17 @@ return {
         desc = "Toggle Output Panel",
       },
     },
-    -- opts = {
-    --   output = {
-    --     open_on_run = false,
-    --   },
-    --   adapters = {
-    --     ["neotest-vitest"] = {
-    --       -- vitestConfigFile = function()
-    --       --   local file = vim.fn.expand("%:p")
-    --       --   if string.find(file, "/packages/") then
-    --       --     return string.match(file, "(.-/[^/]+/)src") .. "vitest.config.ts"
-    --       --   end
-    --       --   if string.find(file, "/apps/") then
-    --       --     return string.match(file, "(.-/[^/]+/)src") .. "vitest.config.ts"
-    --       --   end
-    --       --
-    --       --   return vim.fn.getcwd() .. "/vitest.config.ts"
-    --       -- end,
-    --       -- env = { CI = true },
-    --       -- cwd = function()
-    --       --   return vim.fn.getcwd()
-    --       -- end,
-    --     },
-    --     -- ["neotest-jest"] = {
-    --     --   jestCommand = "pnpm test --",
-    --     --   jestConfigFile = function()
-    --     --     local file = vim.fn.expand("%:p")
-    --     --     if string.find(file, "/packages/") then
-    --     --       return string.match(file, "(.-/[^/]+/)src") .. "jest.config.ts"
-    --     --     end
-    --     --
-    --     --     return vim.fn.getcwd() .. "/jest.config.ts"
-    --     --   end,
-    --     --   env = { CI = true },
-    --     --   cwd = function()
-    --     --     return vim.fn.getcwd()
-    --     --   end,
-    --     -- },
-    --   },
-    -- },
     opts = function(_, opts)
       table.insert(opts.adapters, require("neotest-vitest"))
+      table.insert(
+        opts.adapters,
+        require("neotest-go")({
+          experimental = {
+            test_table = true,
+          },
+          recursive_run = true,
+        })
+      )
       table.insert(opts.output, {
         open_on_run = false,
       })

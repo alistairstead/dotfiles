@@ -21,7 +21,7 @@ end
 # using Homebrew.
 
 # Check for Homebrew
-if test ! $(which brew); then
+if test ! "$(which brew)"; then
   echo "  Installing Homebrew for you."
   distro=$(uname)
   # Install the correct homebrew for each OS type
@@ -45,7 +45,7 @@ brew install coreutils
 brew install curl
 # https://direnv.net
 brew install direnv
-brew install exa
+brew install eza
 brew install fd
 brew install fzf
 brew install gdu
@@ -59,6 +59,7 @@ brew install libpq
 brew link --force libpq
 brew install yq
 
+brew install remotemobprogramming/brew/mob
 brew tap neovim/neovim
 brew install lpeg && brew install neovim --HEAD
 brew install fzf
@@ -108,7 +109,7 @@ brew install font-monaspace
 echo "Installing personal dotfiles..."
 git clone git@github.com:alistairstead/dotfiles.git ~/dotfiles
 
-cd ~/dotfiles
+cd ~/dotfiles || exit
 
 
 echo "Creating symlinks..."

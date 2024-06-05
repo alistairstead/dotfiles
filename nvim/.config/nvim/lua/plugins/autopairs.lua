@@ -1,6 +1,6 @@
 return {
   "windwp/nvim-autopairs",
   event = "InsertEnter",
-  enable = false,
+  enabled = false,
   opts = {}, -- this is equalent to setup({}) function
 }
