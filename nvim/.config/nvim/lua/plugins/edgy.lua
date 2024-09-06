@@ -43,7 +43,7 @@ return {
           open = function()
             require("neo-tree.command").execute({ dir = LazyVim.root() })
           end,
-          size = { height = 0.5 },
+          size = { width = 0.2 },
         },
         { title = "UndoTree", ft = "undotree" },
         {

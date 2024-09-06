@@ -17,6 +17,11 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local config = {
+  -- Set default shell to Fish
+  default_prog = {
+    "/opt/homebrew/bin/tmux",
+  },
+
   background = {
     b.get_background(),
   },
@@ -89,25 +94,25 @@ local config = {
   },
 
   window_padding = {
-    left = 30,
-    right = 30,
-    top = 20,
-    bottom = 20,
+    left = 20,
+    right = 20,
+    top = 65,
+    bottom = 5,
   },
 
   set_environment_variables = {
     -- THEME_FLAVOUR = "latte",
     BAT_THEME = h.is_dark() and "Catppuccin-mocha" or "Catppuccin-latte",
-    TERM = "xterm-256color",
+    TERM = "tmux-256color",
   },
 
   -- general options
   adjust_window_size_when_changing_font_size = false,
-  debug_key_events = true,
+  debug_key_events = false,
   enable_tab_bar = false,
   native_macos_fullscreen_mode = true,
   window_close_confirmation = "NeverPrompt",
-  window_decorations = "RESIZE",
+  window_decorations = "INTEGRATED_BUTTONS|RESIZE",
   -- fix left alt key to type special characters such as #
   send_composed_key_when_left_alt_is_pressed = true,
   -- keys
@@ -197,6 +202,14 @@ local config = {
       action = act.Multiple({
         act.SendKey({ mods = "CTRL", key = "b" }),
         act.SendKey({ key = "n" }),
+      }),
+    },
+    {
+      mods = "CTRL",
+      key = "[",
+      action = act.Multiple({
+        act.SendKey({ mods = "CTRL", key = "b" }),
+        act.SendKey({ key = "[" }),
       }),
     },
 

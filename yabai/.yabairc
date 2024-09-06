@@ -40,6 +40,9 @@ setup_space() {
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
+# yabai -m signal --add event=window_resized action='sleep 2'
+# yabai -m signal --add event=window_moved action='sleep 2'
+
 # global settings
 yabai -m config mouse_follows_focus off
 yabai -m config focus_follows_mouse off
@@ -63,31 +66,27 @@ yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 yabai -m config mouse_drop_action swap
 
+# modify window shadows (default: on, options: on, off, float)
+# example: show shadows only for floating windows
+# yabai -m config window_shadow float
+
 # general space settings
 yabai -m config layout bsp # bsp, stack, float, or chain
-yabai -m config top_padding 15
-yabai -m config bottom_padding 15
-yabai -m config left_padding 15
-yabai -m config right_padding 15
-yabai -m config window_gap 15
+yabai -m config top_padding 10
+yabai -m config bottom_padding 10
+yabai -m config left_padding 10
+yabai -m config right_padding 10
+yabai -m config window_gap 10
 
-# yabai -m space 1 --label main
-# yabai -m space 2 --label browser
-
-# apps to not manage (ignore)
-yabai -m rule --add app="^System Settings$" manage=off
-yabai -m rule --add app='^1Password' manage=off
-yabai -m rule --add app='^Around' manage=off
-
-# Spaces adjustment
-num_displays=$(yabai -m query --displays | jq 'length')
-if [[ "$num_displays" -eq 3 ]]; then
-  adjust_spaces 3 3 4
-elif [[ "$num_displays" -eq 2 ]]; then
-  adjust_spaces 5 5
-elif [[ "$num_displays" -eq 1 ]]; then
-  adjust_spaces 10
-fi
+# # Spaces adjustment
+# num_displays=$(yabai -m query --displays | jq 'length')
+# if [[ "$num_displays" -eq 3 ]]; then
+#   adjust_spaces 3 3 4
+# elif [[ "$num_displays" -eq 2 ]]; then
+#   adjust_spaces 5 5
+# elif [[ "$num_displays" -eq 1 ]]; then
+#   adjust_spaces 10
+# fi
 
 # Spaces setup
 setup_space 1 terminal
@@ -101,9 +100,17 @@ setup_space 8 spare
 setup_space 9 music
 setup_space 10 other
 
+# apps to not manage (ignore)
+yabai -m rule --add app="^System Settings$" manage=off
+# yabai -m rule --add app='^1Password' manage=off
+yabai -m rule --add app='^Around' manage=off
+# yabai -m rule --add app='^Messages' manage=off
+
 yabai -m rule --add app="^WezTerm$" space=^1
 yabai -m rule --add app="^Safari$" space=^2
 yabai -m rule --add app="^Google Chrome$" space=^2
+yabai -m rule --add app="^Todoist$" space=^3
+yabai -m rule --add app="^Obsidian$" space=^3
 yabai -m rule --add app="^Spark Desktop$" space=^6
 yabai -m rule --add app-"^Messages$" space=^4
 yabai -m rule --add app="^Twitter$" space=^7

@@ -34,17 +34,8 @@ return {
     },
     keys = function()
       local wk = require("which-key")
-      wk.register({
-        c = {
-          c = {
-            name = "+Copilot",
-          },
-        },
-      }, {
-        prefix = "<leader>",
-        silent = true,
-        noremap = true,
-        nowait = false,
+      wk.add({
+        { "<leader>cc", group = "Copilot", nowait = false, remap = false },
       })
       return {
         -- Show help actions with telescope

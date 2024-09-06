@@ -32,8 +32,10 @@ export VISUAL='nvim'
 export EDITOR='nvim'
 export VI_MODE_ESC_INSERT="jk"
 
-export TERM=xterm-256color
+export TERM=tmux-256color
 
 export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_installed
 
 
+
+alias assume=". assume"

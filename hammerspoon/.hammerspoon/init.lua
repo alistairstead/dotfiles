@@ -2,7 +2,7 @@
 -- hs.loadSpoon("EmmyLua")
 -- require("vim-mode")
 -- require("only-show-alacritty")
-require("keyboard.yabai")
+-- require("keyboard.yabai")
 -- require("keyboard.hyper")
 -- require("keyboard.arrows")
 -- require("keyboard.tmux")

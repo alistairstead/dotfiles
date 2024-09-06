@@ -7,7 +7,7 @@ return {
         "OlegGulevskyy/better-ts-errors.nvim",
         enabled = false,
         dependencies = { "MunifTanjim/nui.nvim" },
-        config = {
+        opts = {
           keymaps = {
             toggle = "<leader>dd", -- default '<leader>dd'
             go_to_definition = "<leader>dx", -- default '<leader>dx'
@@ -18,14 +18,14 @@ return {
     opts = {
       servers = {
         tsserver = {
-          root_dir = require("lspconfig").util.root_pattern(
-            ".git",
-            "pnpm-workspace.yaml",
-            "pnpm-lock.yaml",
-            "yarn.lock",
-            "package-lock.json",
-            "bun.lockb"
-          ),
+          -- root_dir = require("lspconfig").util.root_pattern(
+          --   ".git",
+          --   "pnpm-workspace.yaml",
+          --   "pnpm-lock.yaml",
+          --   "yarn.lock",
+          --   "package-lock.json",
+          --   "bun.lockb"
+          -- ),
           -- single_file_support = false,
           -- settings = {
           --   typescript = {

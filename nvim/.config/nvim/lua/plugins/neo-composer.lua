@@ -16,12 +16,9 @@ return {
   keys = function()
     local wk = require("which-key")
 
-    wk.register({
-      m = {
-        name = "+MacroComposer",
-      },
-    }, {
-      prefix = "<leader>",
+    wk.add({
+      prefix = "<leader>m",
+      group = "+MacroComposer",
       mode = { "v", "n" },
     })
     return {

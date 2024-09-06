@@ -1,12 +1,12 @@
 return {
-  {
-    "mhanberg/output-panel.nvim",
-    event = "VeryLazy",
-    keys = {
-      { "<leader>uo", "<cmd>OutputPanel<cr>", desc = "Toggle LSP output" },
-    },
-    config = true,
-  },
+  -- {
+  --   "mhanberg/output-panel.nvim",
+  --   event = "VeryLazy",
+  --   keys = {
+  --     { "<leader>uo", "<cmd>OutputPanel<cr>", desc = "Toggle LSP output" },
+  --   },
+  --   config = true,
+  -- },
   {
     "neovim/nvim-lspconfig",
     -- cmd = "LspInfo",
@@ -53,24 +53,24 @@ return {
             licenceKey = "/Users/alistairstead/Documents/intelephense.txt",
           },
         },
-        -- yamlls = {
-        --   settings = {
-        --     yaml = {
-        --       schemas = {
-        --         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-        --         ["https://json.schemastore.org/github-actions.json"] = "/.github/actions/*",
-        --       },
-        --     },
-        --   },
-        -- },
-        -- tailwindcss = {
-        --   root_dir = require("lspconfig.util").root_pattern(".git"),
-        --   settings = {
-        --     tailwindCSS = {
-        --       emmetCompletions = true,
-        --     },
-        --   },
-        -- },
+        yamlls = {
+          settings = {
+            yaml = {
+              schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["https://json.schemastore.org/github-actions.json"] = "/.github/actions/*",
+              },
+            },
+          },
+        },
+        tailwindcss = {
+          -- root_dir = require("lspconfig.util").root_pattern(".git"),
+          settings = {
+            tailwindCSS = {
+              emmetCompletions = true,
+            },
+          },
+        },
       },
       setup = {
         eslint = function()
@@ -85,21 +85,6 @@ return {
       },
     },
   },
-  -- {
-  --   "stevearc/conform.nvim",
-  --   -- dev = true,
-  --   optional = true,
-  --   opts = {
-  --     formatters_by_ft = {
-  --       ["markdown"] = { { "prettierd", "prettier" } },
-  --       ["markdown.mdx"] = { { "prettierd", "prettier" } },
-  --       ["javascript"] = { { "prettierd", "prettier" } },
-  --       ["javascriptreact"] = { { "prettierd", "prettier" } },
-  --       ["typescript"] = { { "prettierd", "prettier" } },
-  --       ["typescriptreact"] = { { "prettierd", "prettier" } },
-  --     },
-  --   },
-  -- },
   {
     "mfussenegger/nvim-lint",
     opts = {

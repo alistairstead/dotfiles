@@ -1,6 +1,6 @@
 return {
+  -- { import = "lazyvim.plugins.extras.coding.mini.surround" },
   "echasnovski/mini.surround",
-  enabled = true,
   opts = {
     mappings = {
       add = "as",

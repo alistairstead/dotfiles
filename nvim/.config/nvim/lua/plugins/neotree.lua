@@ -7,8 +7,8 @@ return {
   },
   opts = {
     open_files_do_not_replace_types = { "edgy" },
-    enable_git_status = false,
-    enable_diagnostics = false,
+    enable_git_status = true,
+    enable_diagnostics = true,
     sync_root_with_cwd = false,
     -- source_selector = {
     --   winbar = true,

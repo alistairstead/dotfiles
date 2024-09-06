@@ -38,38 +38,6 @@ return {
     },
   },
   {
-    "akinsho/git-conflict.nvim",
-    enabled = false,
-    opts = {
-      highlights = { -- They must have background color, otherwise the default color will be used
-        incoming = "DiffAdd",
-        current = "DiffText",
-      },
-    },
-    keys = function()
-      local wk = require("which-key")
-      wk.register({
-        c = {
-          name = "+Conflict",
-        },
-      }, {
-        prefix = "<leader>g",
-        mode = { "n" },
-      })
-
-      return {
-        -- Chose conflict
-        { "<leader>gct", "<cmd>GitConflictChooseTheirs<cr>", desc = "Git Conflict Choose - Incoming changes" },
-        { "<leader>gco", "<cmd>GitConflictChooseOurs<cr>", desc = "Git Conflict Choose - Current changes" },
-        { "<leader>gcb", "<cmd>GitConflictChooseBoth<cr>", desc = "Git Conflict Choose - Both changes" },
-        -- Navigate conflicts
-        { "<leader>gcl", "<cmd>GitConflictListQf<cr>", desc = "Git Conflict Quicklist" },
-        { "<leader>gcp", "<cmd>GitConflictPrevConflict<cr>", desc = "Git Conflict Previous" },
-        { "<leader>gcp", "<cmd>GitConflictPrevConflict<cr>", desc = "Git Conflict Previous" },
-      }
-    end,
-  },
-  {
     "sindrets/diffview.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = {
@@ -165,18 +133,8 @@ return {
     end,
     keys = function()
       local wk = require("which-key")
-      wk.register({
-        g = {
-          w = {
-            name = "+Worktree",
-          },
-        },
-      }, {
-        prefix = "<leader>",
-        mode = { "n" },
-        silent = true,
-        noremap = true,
-        nowait = false,
+      wk.add({
+        { "<leader>gw", group = "Worktree", nowait = false, remap = false },
       })
       return {
         {

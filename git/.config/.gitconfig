@@ -14,6 +14,8 @@
   branches = branch -a
   remotes = remote -v
 
+  undo = reset --soft HEAD^
+
 [core]
     pager = delta
 
@@ -26,7 +28,7 @@
 
 [merge]
 	; renames = copies
-  conflictstyle = diff3
+  ; conflictstyle = diff3
 
 [diff]
   colorMoved = default

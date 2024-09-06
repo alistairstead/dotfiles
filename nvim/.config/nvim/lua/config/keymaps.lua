@@ -11,8 +11,8 @@ map("i", "jk", "<ESC>", default_opts)
 map("t", "jk", "<C-\\><C-n>", default_opts)
 
 -- windows
-vim.keymap.del("n", "<leader>w-")
-vim.keymap.del("n", "<leader>w|")
+-- vim.keymap.del("n", "<leader>w-")
+-- vim.keymap.del("n", "<leader>w|")
 
 map("n", "<leader>wh", "<C-W>s", { desc = "Split window below", remap = true })
 map("n", "<leader>wv", "<C-W>v", { desc = "Split window right", remap = true })
